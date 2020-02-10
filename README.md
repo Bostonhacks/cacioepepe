@@ -2,6 +2,8 @@
 
 BostonHacks Registration Portal
 
+[![License](http://img.shields.io/badge/License-MIT-brightgreen.svg)](./LICENSE)
+
 ## Project setup
 
 ```bash
