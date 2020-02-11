@@ -21,9 +21,9 @@ Did any tests fail when you ran them? Please read [Handling breaking changes].
 
 - [ ] No, no existing tests failed, so this is *not* a breaking change.
 - [ ] Yes, this is a breaking change. *If not, delete the remainder of this section.*
-   - [ ] I wrote a design doc: *Replace this with a link to your design doc's short link*
-   - [ ] I got input from a developer, specifically from: *Replace with the names of who gave advice*
-   - [ ] I wrote a migration guide: *Replace with a link to your migration guide*
+  - [ ] I wrote a design doc: *Replace this with a link to your design doc's short link*
+  - [ ] I got input from a developer, specifically from: *Replace with the names of who gave advice*
+  - [ ] I wrote a migration guide: *Replace with a link to your migration guide*
 
 <!-- Links -->
 [issue database]: https://github.com/bostonhacks/cacioepepe/issues

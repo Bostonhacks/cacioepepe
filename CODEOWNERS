@@ -4,5 +4,6 @@
 # These names are just suggestions. It is fine to have your changes
 # reviewed by someone else.
 
+functions/ @rishabnayak
 firestore.rules @rishabnayak
 src/* @rishabnayak
