@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import firebase from "firebase/app";
-import { db, functions } from "@/firebase/init.js";
+import { functions } from "@/firebase/init.js";
 
 Vue.use(Vuex);
 
@@ -25,15 +25,18 @@ const actions = {
     if (!user) {
       return;
     }
-    const mydb = db.collection("users").doc(user.uid);
-    var raid = await mydb.get();
+    var raid = await functions.httpsCallable("getUserData")({
+      uid: user.uid
+    });
     if (!raid.exists) {
       await functions.httpsCallable("createNewUser")({
         uid: user.uid,
         displayName: user.displayName,
         email: user.email
       });
-      raid = await mydb.get();
+      raid = await functions.httpsCallable("getUserData")({
+        uid: user.uid
+      });
       context.commit("setUser", raid.data());
     } else {
       context.commit("setUser", raid.data());
@@ -44,8 +47,9 @@ const actions = {
     if (!user) {
       return;
     }
-    const mydb = db.collection("users").doc(user.uid);
-    var raid = await mydb.get();
+    var raid = await functions.httpsCallable("getUserData")({
+      uid: user.uid
+    });
     context.commit("setUser", raid.data());
   },
   logOut: async context => {

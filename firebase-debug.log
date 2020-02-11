@@ -1,0 +1,131 @@
+[debug] [2020-02-11T04:20:57.643Z] ----------------------------------------------------------------------
+[debug] [2020-02-11T04:20:57.644Z] Command:       /usr/local/Cellar/node/13.6.0/bin/node /usr/local/bin/firebase deploy
+[debug] [2020-02-11T04:20:57.645Z] CLI Version:   7.11.0
+[debug] [2020-02-11T04:20:57.645Z] Platform:      darwin
+[debug] [2020-02-11T04:20:57.645Z] Node Version:  v13.6.0
+[debug] [2020-02-11T04:20:57.645Z] Time:          Mon Feb 10 2020 23:20:57 GMT-0500 (Eastern Standard Time)
+[debug] [2020-02-11T04:20:57.645Z] ----------------------------------------------------------------------
+[debug] [2020-02-11T04:20:57.645Z] 
+[debug] [2020-02-11T04:20:57.654Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-11T04:20:57.654Z] > authorizing via signed-in user
+[debug] [2020-02-11T04:20:57.654Z] [iam] checking project bostonhacks-cacioepepe for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2020-02-11T04:20:57.656Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/bostonhacks-cacioepepe:testIamPermissions  
+
+[debug] [2020-02-11T04:20:59.863Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-11T04:20:59.865Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/bostonhacks-cacioepepe  
+ 
+[debug] [2020-02-11T04:21:01.167Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'bostonhacks-cacioepepe'...
+[info] 
+[info] i  deploying storage, firestore, functions, hosting
+[debug] [2020-02-11T04:21:02.195Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/bostonhacks-cacioepepe  
+ 
+[debug] [2020-02-11T04:21:02.602Z] <<< HTTP RESPONSE 200
+[info] i  firebase.storage: checking storage.rules for compilation errors...
+[debug] [2020-02-11T04:21:02.604Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/bostonhacks-cacioepepe:test  
+
+[debug] [2020-02-11T04:21:02.847Z] <<< HTTP RESPONSE 200
+[info] ✔  firebase.storage: rules file storage.rules compiled successfully
+[info] i  firestore: reading indexes from firestore.indexes.json...
+[info] i  cloud.firestore: checking firestore.rules for compilation errors...
+[debug] [2020-02-11T04:21:02.849Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/bostonhacks-cacioepepe:test  
+
+[debug] [2020-02-11T04:21:03.079Z] <<< HTTP RESPONSE 200
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully
+[debug] [2020-02-11T04:21:03.080Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase serve --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "dependencies": {
+    "firebase-admin": "^8.6.0",
+    "firebase-functions": "^3.3.0",
+    "glob": "^7.1.6"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.1.6"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2020-02-11T04:21:03.081Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/bostonhacks-cacioepepe/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2020-02-11T04:21:03.081Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/bostonhacks-cacioepepe/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2020-02-11T04:21:03.538Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-11T04:21:03.586Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2020-02-11T04:21:03.587Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/bostonhacks-cacioepepe/adminSdkConfig  
+ 
+[debug] [2020-02-11T04:21:03.902Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-11T04:21:03.903Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/bostonhacks-cacioepepe/versions  
+
+[debug] [2020-02-11T04:21:05.323Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-11T04:21:05.324Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/bostonhacks-cacioepepe/releases?pageSize=10&pageToken=  
+ 
+[debug] [2020-02-11T04:21:05.577Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-11T04:21:05.578Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/bostonhacks-cacioepepe/rulesets/11add7db-73c5-41d6-be1a-6d6a436f0cd9  
+ 
+[debug] [2020-02-11T04:21:05.817Z] <<< HTTP RESPONSE 200
+[info] i  storage: latest version of storage.rules already up to date, skipping upload...
+[debug] [2020-02-11T04:21:05.819Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/bostonhacks-cacioepepe/releases?pageSize=10&pageToken=  
+ 
+[debug] [2020-02-11T04:21:05.819Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta2/projects/bostonhacks-cacioepepe/databases/(default)/collectionGroups/-/indexes  
+ 
+[debug] [2020-02-11T04:21:06.093Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-11T04:21:06.093Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/bostonhacks-cacioepepe/rulesets/71cc4a50-9028-45ac-a0cb-30ac392ae4d7  
+ 
+[debug] [2020-02-11T04:21:06.162Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-11T04:21:06.163Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta2/projects/bostonhacks-cacioepepe/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false  
+ 
+[debug] [2020-02-11T04:21:06.398Z] <<< HTTP RESPONSE 200
+[info] i  firestore: latest version of firestore.rules already up to date, skipping upload...
+[debug] [2020-02-11T04:21:06.449Z] <<< HTTP RESPONSE 200
+[info] ✔  firestore: deployed indexes in firestore.indexes.json successfully
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2020-02-11T04:21:06.451Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/bostonhacks-cacioepepe/configs  
+ 
+[debug] [2020-02-11T04:21:06.850Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (28.8 KB) for uploading
+[debug] [2020-02-11T04:21:07.181Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/bostonhacks-cacioepepe/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2020-02-11T04:21:07.876Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-11T04:21:07.876Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-cc0cccae-a0cb-4df5-810d-346983b36bb4/7350848e-3380-4e53-8998-fc9ac7332c2e.zip?GoogleAccessId=service-1038640085828@gcf-admin-robot.iam.gserviceaccount.com&Expires=1581396667&Signature=i22NgLJZRsfWO6CTsMibRAGB%2BGlDkNVa4aFot9YyOqU4QVSilRoSv7x6PwiCSjKZBAoKWlsP7vdbpCg3L0jS9UzSrY%2FAaMl3cGdfYuuhCAdri3Ju4qck5ksuh8stPzZ6J9A%2FCEG84nffE2UeGJpFWgWKODg%2BLiTurzCmiXxWxb7DZz8BnTnj1t%2F3%2BDknSoQLrAznrNqUyCotbKYeOYpk5GtGZXJOnTgfTzsXq3BuYEK6L8Wx6MKPsHgjQEqUMtcLeNSjLRL0736BX%2Bi4DXPEvdXQaKbtKU5xNcr611qK3M7gOeJTJ%2FXrWKk%2BbgGa0iBhFS5AgTL8LNOEfhj75Gx4AA%3D%3D  
+ <request body omitted>
+[debug] [2020-02-11T04:21:08.146Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: functions folder uploaded successfully
+[info] i  hosting[bostonhacks-cacioepepe]: beginning deploy...
+[info] i  hosting[bostonhacks-cacioepepe]: found 29 files in dist
+[debug] [2020-02-11T04:21:08.250Z] [hosting] hash cache [ZGlzdA] stored for 29 files
+[debug] [2020-02-11T04:21:08.250Z] [hosting][hash queue][FINAL]
+[debug] [2020-02-11T04:21:08.250Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/bostonhacks-cacioepepe/versions/ad7f1c0804e9c111:populateFiles  
+ <request body omitted>
+[debug] [2020-02-11T04:21:08.887Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-11T04:21:08.899Z] [hosting][populate queue][FINAL]
+[debug] [2020-02-11T04:21:08.899Z] [hosting] uploads queued: 29
+[debug] [2020-02-11T04:21:12.075Z] [hosting][upload queue][FINAL]
+[info] ✔  hosting[bostonhacks-cacioepepe]: file upload complete
+[debug] [2020-02-11T04:21:12.075Z] [hosting] deploy completed after 3928ms
+[debug] [2020-02-11T04:21:13.506Z] [rules] releasing firebase.storage/bostonhacks-cacioepepe.appspot.com with ruleset projects/bostonhacks-cacioepepe/rulesets/11add7db-73c5-41d6-be1a-6d6a436f0cd9
+[debug] [2020-02-11T04:21:13.506Z] >>> HTTP REQUEST PATCH https://firebaserules.googleapis.com/v1/projects/bostonhacks-cacioepepe/releases/firebase.storage/bostonhacks-cacioepepe.appspot.com  
+
+[debug] [2020-02-11T04:21:14.733Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-11T04:21:14.733Z] [rules] updated release projects/bostonhacks-cacioepepe/releases/firebase.storage/bostonhacks-cacioepepe.appspot.com
+[info] ✔  storage: released rules storage.rules to firebase.storage
+[debug] [2020-02-11T04:21:14.734Z] [rules] releasing cloud.firestore with ruleset projects/bostonhacks-cacioepepe/rulesets/71cc4a50-9028-45ac-a0cb-30ac392ae4d7
+[debug] [2020-02-11T04:21:14.734Z] >>> HTTP REQUEST PATCH https://firebaserules.googleapis.com/v1/projects/bostonhacks-cacioepepe/releases/cloud.firestore  
+
+[debug] [2020-02-11T04:21:15.514Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-11T04:21:15.515Z] [rules] updated release projects/bostonhacks-cacioepepe/releases/cloud.firestore
+[info] ✔  firestore: released rules firestore.rules to cloud.firestore
+[debug] [2020-02-11T04:21:15.516Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/bostonhacks-cacioepepe/locations/-/functions  
+ 
