@@ -70,4 +70,4 @@ firebase deploy --only functions
 
 ## Contributing
 
-To contribute to Cacioepepe, view our [contribution guide](https://github.com/bostonhacks/caciopepe/blob/master/CONTRIBUTING.md).
+To contribute to Cacioepepe, view our [contribution guide](https://github.com/Bostonhacks/caciopepe/blob/master/CONTRIBUTING.md).
