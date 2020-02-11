@@ -2,6 +2,7 @@
 
 BostonHacks Registration Portal
 
+[![Actions Status](https://github.com/bostonhacks/cacioepepe/workflows/Build/badge.svg)](https://github.com/bostonhacks/cacioepepe/actions)
 [![License](http://img.shields.io/badge/License-MIT-brightgreen.svg)](./LICENSE)
 
 ## Project setup
@@ -69,4 +70,4 @@ firebase deploy --only functions
 
 ## Contributing
 
-To contribute to Caciopepe, view our [contribution guide](https://github.com/bostonhacks/caciopepe/blob/master/CONTRIBUTING.md).
+To contribute to Cacioepepe, view our [contribution guide](https://github.com/bostonhacks/caciopepe/blob/master/CONTRIBUTING.md).
