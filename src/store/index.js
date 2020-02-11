@@ -28,6 +28,7 @@ const actions = {
     var raid = await functions.httpsCallable("getUserData")({
       uid: user.uid
     });
+    console.log(raid.data);
     if (!raid.exists) {
       await functions.httpsCallable("createNewUser")({
         uid: user.uid,
@@ -37,9 +38,9 @@ const actions = {
       raid = await functions.httpsCallable("getUserData")({
         uid: user.uid
       });
-      context.commit("setUser", raid.data());
+      context.commit("setUser", raid.data);
     } else {
-      context.commit("setUser", raid.data());
+      context.commit("setUser", raid.data);
     }
   },
   getUser: async context => {
@@ -50,7 +51,7 @@ const actions = {
     var raid = await functions.httpsCallable("getUserData")({
       uid: user.uid
     });
-    context.commit("setUser", raid.data());
+    context.commit("setUser", raid.data);
   },
   logOut: async context => {
     await firebase.auth().signOut();
