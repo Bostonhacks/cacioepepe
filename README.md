@@ -2,6 +2,7 @@
 
 BostonHacks Registration Portal
 
+[![Actions Status](https://github.com/bostonhacks/cacioepepe/workflows/Build/badge.svg)](https://github.com/bostonhacks/cacioepepe/actions)
 [![License](http://img.shields.io/badge/License-MIT-brightgreen.svg)](./LICENSE)
 
 ## Project setup
