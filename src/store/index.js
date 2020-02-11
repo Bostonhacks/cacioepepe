@@ -28,8 +28,7 @@ const actions = {
     var raid = await functions.httpsCallable("getUserData")({
       uid: user.uid
     });
-    console.log(raid.data);
-    if (!raid.exists) {
+    if (!raid) {
       await functions.httpsCallable("createNewUser")({
         uid: user.uid,
         displayName: user.displayName,
