@@ -43,4 +43,4 @@ Please make sure all your checkins have detailed commit messages explaining the 
 
 Once you've gotten an LGTM from a project maintainer and once your PR has received
 the green light from all our automated testing, wait for one the package maintainers
-to merge the pull request and `pub submit` any affected packages.
+to merge the pull request.
