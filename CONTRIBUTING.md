@@ -1,4 +1,4 @@
-# Contributing to Caciopepe
+# Contributing to Cacioepepe
 
 ## Things you will need
 
@@ -9,15 +9,15 @@
 ## Getting the code and configuring your environment
 
 * Ensure all the dependencies described in the previous section are installed.
-* Fork `https://github.com/Bostonhacks/caciopepe` into your own GitHub account. If
+* Fork `https://github.com/Bostonhacks/cacioepepe` into your own GitHub account. If
    you already have a fork, and are now installing a development environment on
    a new machine, make sure you've updated your fork so that you don't use stale
    configuration options from long ago.
 * If you haven't configured your machine with an SSH key that's known to github, then
    follow [GitHub's directions](https://help.github.com/articles/generating-ssh-keys/)
    to generate an SSH key.
-* `git clone git@github.com:<your_name_here>/caciopepe.git`
-* `git remote add upstream git@github.com:Bostonhacks/caciopepe.git` (So that you
+* `git clone git@github.com:<your_name_here>/cacioepepe.git`
+* `git remote add upstream git@github.com:Bostonhacks/cacioepepe.git` (So that you
    fetch from the master repository, not your clone, when running `git fetch`
    et al.)
 
@@ -36,7 +36,7 @@ To start working on a patch:
 To send us a pull request:
 
 * `git pull-request` (if you are using [Hub](http://github.com/github/hub/)) or
-  go to `https://github.com/Bostonhacks/caciopepe` and click the
+  go to `https://github.com/Bostonhacks/cacioepepe` and click the
   "Compare & pull request" button
 
 Please make sure all your checkins have detailed commit messages explaining the patch.
