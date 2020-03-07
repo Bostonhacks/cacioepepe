@@ -11,17 +11,25 @@
           ></v-img>
         </v-flex>
         <v-flex mb-4>
-          <h1 class="display-2 font-weight-bold mb-3">
-            Welcome to Cacioepepe
-          </h1>
+          <h1 class="display-2 font-weight-bold mb-3">Welcome to Cacioepepe</h1>
         </v-flex>
+        <v-btn color="primary" dark v-if="user.role == 'superUser'"
+          >God Mode</v-btn
+        >
       </v-layout>
     </v-container>
   </v-layout>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "landingPage",
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
+  }
+};
 </script>
 
 <style></style>
