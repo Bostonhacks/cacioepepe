@@ -4,7 +4,7 @@
 # These names are just suggestions. It is fine to have your changes
 # reviewed by someone else.
 
-functions/userFunctions/* @rishabnayak
+functions/userFunctions/* @rishabnayak @jinyoungbang
 functions/index.js @rishabnayak
 firestore.rules @rishabnayak
 src/* @rishabnayak
