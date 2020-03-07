@@ -42,6 +42,28 @@ const actions = {
       context.commit("setUser", raid.data);
     }
   },
+  setSponsor: async context => {
+    const user = firebase.auth().currentUser;
+    if (!user) {
+      return;
+    }
+    var raid = await functions.httpsCallable("getUserData")({
+      uid: user.uid
+    });
+    if (!raid) {
+      await functions.httpsCallable("createNewSponsor")({
+        uid: user.uid,
+        displayName: user.displayName,
+        email: user.email
+      });
+      raid = await functions.httpsCallable("getUserData")({
+        uid: user.uid
+      });
+      context.commit("setUser", raid.data);
+    } else {
+      context.commit("setUser", raid.data);
+    }
+  },
   getUser: async context => {
     const user = firebase.auth().currentUser;
     if (!user) {
