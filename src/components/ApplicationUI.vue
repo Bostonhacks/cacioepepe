@@ -33,24 +33,35 @@
         v-model="educationLevel"
         label="Select your Level of Education (required)"
       ></v-select>
+      <v-btn color="primary" class="mr-4" @click="saveApplication">Save</v-btn>
       <v-btn
         type="submit"
         color="primary"
         class="mr-4"
         @click="submitApplication"
         :disabled="
-          firstname == null ||
-            lastname == null ||
-            inmateID == null ||
-            birthdate == null ||
-            location == null ||
-            race == null ||
-            sex == null
+          name == null ||
+            phone == null ||
+            age == null ||
+            gender == null ||
+            pronouns == null ||
+            educationLevel == null ||
+            university == null ||
+            major == null ||
+            minor == null ||
+            resume == null ||
+            githubURL == null ||
+            linkedinURL == null ||
+            otherURL == null ||
+            beenToHackathon == null ||
+            attendedBHacks == null ||
+            marketingData == null ||
+            tAndC1 == null ||
+            tAndC2 == null
         "
         >Submit</v-btn
       >
     </v-form>
-    <v-btn color="primary" class="mr-4" @click="saveApplication">Save</v-btn>
   </v-container>
 </template>
 <script>
@@ -97,6 +108,29 @@ export default {
   methods: {
     async saveApplication() {
       await functions.httpsCallable("saveApplication")({
+        uid: this.user.uid,
+        name: this.name,
+        phone: this.phone,
+        age: this.age,
+        gender: this.gender,
+        pronouns: this.pronouns,
+        educationLevel: this.educationLevel,
+        university: this.university,
+        major: this.major,
+        minor: this.minor,
+        resume: this.resume,
+        githubURL: this.githubURL,
+        linkedinURL: this.linkedinURL,
+        otherURL: this.otherURL,
+        beenToHackathon: this.beenToHackathon,
+        attendedBHacks: this.attendedBHacks,
+        marketingData: this.marketingData,
+        tAndC1: this.tAndC1,
+        tAndC2: this.tAndC2
+      });
+    },
+    async submitApplication() {
+      await functions.httpsCallable("submitApplication")({
         uid: this.user.uid,
         name: this.name,
         phone: this.phone,
