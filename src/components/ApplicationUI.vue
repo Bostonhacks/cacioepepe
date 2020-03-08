@@ -10,12 +10,24 @@
         label="Name"
         placeholder="John Doe"
       ></v-text-field>
-      <v-file-input
-        chips
-        multiple
-        label="Resume Upload"
-        v-model="uploadedResume"
-      ></v-file-input>
+      <div v-if="resume">
+        <v-btn color="primary" class="mr-4" :href="resume[0]"
+          >View Uploaded Resume</v-btn
+        >
+        <v-btn color="primary" class="mr-4" @click="deleteResume"
+          >Delete Resume</v-btn
+        >
+      </div>
+      <div v-else>
+        <v-file-input
+          chips
+          multiple
+          label="Resume Upload (PDF Only)"
+          accept="application/pdf"
+          @change="uploadResume"
+          v-model="uploadedResume"
+        ></v-file-input>
+      </div>
       <v-select
         :items="educationLevels"
         v-model="educationLevel"
@@ -38,9 +50,7 @@
         >Submit</v-btn
       >
     </v-form>
-    <v-btn color="primary" class="mr-4" @click.stop="saveApplication"
-      >Save</v-btn
-    >
+    <v-btn color="primary" class="mr-4" @click="saveApplication">Save</v-btn>
   </v-container>
 </template>
 <script>
@@ -53,7 +63,7 @@ export default {
       phone: null,
       age: null,
       gender: null,
-      prounouns: null,
+      pronouns: null,
       educationLevels: [
         "High School",
         "College Freshman",
@@ -86,31 +96,51 @@ export default {
   },
   methods: {
     async saveApplication() {
-      await functions.httpsCallable("uploadResume")({
-        file: this.uploadedResume[0]
+      await functions.httpsCallable("saveApplication")({
+        uid: this.user.uid,
+        name: this.name,
+        phone: this.phone,
+        age: this.age,
+        gender: this.gender,
+        pronouns: this.pronouns,
+        educationLevel: this.educationLevel,
+        university: this.university,
+        major: this.major,
+        minor: this.minor,
+        resume: this.resume,
+        githubURL: this.githubURL,
+        linkedinURL: this.linkedinURL,
+        otherURL: this.otherURL,
+        beenToHackathon: this.beenToHackathon,
+        attendedBHacks: this.attendedBHacks,
+        marketingData: this.marketingData,
+        tAndC1: this.tAndC1,
+        tAndC2: this.tAndC2
       });
-      console.log(this.uploadedResume[0]);
-      //   await functions.httpsCallable("saveApplication")({
-      //     uid: this.user.uid,
-      //     name: this.name,
-      //     phone: this.phone,
-      //     age: this.age,
-      //     gender: this.gender,
-      //     prounouns: this.pronouns,
-      //     educationLevel: this.educationLevel,
-      //     university: this.university,
-      //     major: this.major,
-      //     minor: this.minor,
-      //     resume: this.resume,
-      //     githubURL: this.githubURL,
-      //     linkedinURL: this.linkedinURL,
-      //     otherURL: this.otherURL,
-      //     beenToHackathon: this.beenToHackathon,
-      //     attendedBHacks: this.attendedBHacks,
-      //     marketingData: this.marketingData,
-      //     tAndC1: this.tAndC1,
-      //     tAndC2: this.tAndC2
-      //   });
+    },
+    async uploadResume() {
+      const reader = new FileReader();
+      reader.readAsDataURL(this.uploadedResume[0]);
+      reader.onload = async () => {
+        functions
+          .httpsCallable("uploadResume")({
+            file: reader.result.split(",")[1],
+            displayName: this.user.displayName,
+            type: this.uploadedResume[0].type,
+            uid: this.user.uid
+          })
+          .then(async data => {
+            this.resume = [data.data.URL, data.data.location];
+            this.uploadedResume = null;
+          });
+      };
+    },
+    async deleteResume() {
+      await functions.httpsCallable("deleteResume")({
+        uid: this.user.uid,
+        location: this.resume[1]
+      });
+      this.resume = null;
     }
   },
   async mounted() {
@@ -126,7 +156,7 @@ export default {
         (this.phone = rawAppData.data.phone),
         (this.age = rawAppData.data.age),
         (this.gender = rawAppData.data.gender),
-        (this.prounouns = rawAppData.data.pronouns),
+        (this.pronouns = rawAppData.data.pronouns),
         (this.educationLevel = rawAppData.data.educationLevel),
         (this.university = rawAppData.data.university),
         (this.major = rawAppData.data.major),
