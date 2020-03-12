@@ -10,7 +10,6 @@ module.exports.createApplication = functions.https.onCall(async data => {
   });
   const applications = db.collection("applications").doc(data.uid);
   await applications.set({
-    rawAppData: null,
     name: null,
     phone: null,
     age: null,
