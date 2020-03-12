@@ -14,7 +14,7 @@ module.exports.createApplication = functions.https.onCall(async data => {
     phone: null,
     age: null,
     gender: null,
-    prounouns: null,
+    pronouns: null,
     educationLevel: null,
     university: null,
     major: null,
