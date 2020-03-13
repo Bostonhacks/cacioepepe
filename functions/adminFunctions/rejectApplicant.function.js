@@ -11,6 +11,6 @@ module.exports.rejectApplicant = functions.https.onCall(async data => {
   });
   await application.update({
     status: 2
-  })
+  });
   return;
 });

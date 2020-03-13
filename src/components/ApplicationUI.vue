@@ -16,20 +16,12 @@
         placeholder="123-456-7890"
         :rules="phoneRules"
       ></v-text-field>
-
-      <!--
-            attendedBHacks == null ||
-            marketingData == null ||
-            tAndC1 == null ||
-      tAndC2 == null-->
-
       <v-text-field
         v-model="age"
         type="number"
         label="Age"
         :rules="ageRules"
       ></v-text-field>
-
       <v-select v-model="gender" :items="genderList" label="Gender"></v-select>
       <v-select
         v-model="pronouns"
@@ -43,7 +35,6 @@
       ></v-select>
       <v-select v-model="major" :items="courseList" label="Major"></v-select>
       <v-select v-model="minor" :items="courseList" label="Minor"></v-select>
-
       <div v-if="resume">
         <v-btn color="primary" class="mr-4" :href="resume[0]"
           >View Uploaded Resume</v-btn
@@ -67,7 +58,6 @@
         v-model="educationLevel"
         label="Select your Level of Education (required)"
       ></v-select>
-
       <v-text-field v-model="githubURL" label="Github URL"></v-text-field>
       <v-text-field v-model="linkedinURL" label="LinkedIn URL"></v-text-field>
       <v-text-field v-model="otherURL" label="Other URL"></v-text-field>
@@ -94,7 +84,6 @@
         v-model="tAndC2"
         label="Do you accept the terms and conditions?"
       ></v-switch>
-
       <v-btn color="primary" class="mr-4" @click="saveApplication">Save</v-btn>
       <v-btn
         color="primary"
