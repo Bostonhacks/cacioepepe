@@ -16,6 +16,9 @@ const getters = {
 const mutations = {
   setUser: (state, payload) => {
     state.user = payload;
+  },
+  setSponsor: (state, payload) => {
+    state.user = payload;
   }
 };
 
@@ -28,7 +31,7 @@ const actions = {
     var raid = await functions.httpsCallable("getUserData")({
       uid: user.uid
     });
-    if (!raid) {
+    if (!raid.data) {
       await functions.httpsCallable("createNewUser")({
         uid: user.uid,
         displayName: user.displayName,
@@ -50,7 +53,7 @@ const actions = {
     var raid = await functions.httpsCallable("getUserData")({
       uid: user.uid
     });
-    if (!raid) {
+    if (!raid.data) {
       await functions.httpsCallable("createNewSponsor")({
         uid: user.uid,
         displayName: user.displayName,
@@ -59,9 +62,9 @@ const actions = {
       raid = await functions.httpsCallable("getUserData")({
         uid: user.uid
       });
-      context.commit("setUser", raid.data);
+      context.commit("setSponsor", raid.data);
     } else {
-      context.commit("setUser", raid.data);
+      context.commit("setSponsor", raid.data);
     }
   },
   getUser: async context => {
