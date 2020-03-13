@@ -6,10 +6,11 @@ const db = admin.firestore();
 module.exports.createApplication = functions.https.onCall(async data => {
   const mydb = db.collection("users").doc(data.uid);
   await mydb.update({
-    applicationStatus: "started"
+    applicationStatus: 0
   });
   const applications = db.collection("applications").doc(data.uid);
   await applications.set({
+    status: 0,
     rawAppData: null,
     name: null,
     phone: null,

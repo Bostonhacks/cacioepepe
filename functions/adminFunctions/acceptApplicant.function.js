@@ -6,7 +6,7 @@ const db = admin.firestore();
 module.exports.rejectApplication = functions.https.onCall(async data => {
   const applications = db.collection("users").doc(data.uid);
   await applications.update({
-    applicationStatus: "accepted"
+    applicationStatus: 4
   });
   return;
 });

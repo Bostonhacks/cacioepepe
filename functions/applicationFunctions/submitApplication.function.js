@@ -6,10 +6,11 @@ const db = admin.firestore();
 module.exports.submitApplication = functions.https.onCall(async data => {
   const mydb = db.collection("users").doc(data.uid);
   await mydb.update({
-    applicationStatus: "submitted"
+    applicationStatus: 1
   });
   const applications = db.collection("applications").doc(data.uid);
   await applications.update({
+    status: 1,
     name: data.name,
     phone: data.phone,
     age: data.age,
