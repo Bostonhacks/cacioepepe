@@ -11,7 +11,6 @@ module.exports.createApplication = functions.https.onCall(async data => {
   const applications = db.collection("applications").doc(data.uid);
   await applications.set({
     status: 0,
-    rawAppData: null,
     name: null,
     phone: null,
     age: null,
