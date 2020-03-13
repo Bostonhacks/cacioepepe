@@ -68,6 +68,12 @@ To deploy only functions,
 firebase deploy --only functions
 ```
 
+To deploy a specific function,
+
+```bash
+firebase deploy --only functions:(function name)
+```
+
 ## Contributing
 
 To contribute to Cacioepepe, view our [contribution guide](https://github.com/Bostonhacks/cacioepepe/blob/master/CONTRIBUTING.md).

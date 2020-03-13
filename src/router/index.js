@@ -11,6 +11,14 @@ const routes = [
     component: () => import("@/views/Home.vue")
   },
   {
+    path: "/admin",
+    name: "admin",
+    component: () => import("@/views/Admin.vue"),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: "/application",
     name: "application",
     component: () => import("@/views/Application.vue"),
