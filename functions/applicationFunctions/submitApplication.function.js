@@ -15,7 +15,7 @@ module.exports.submitApplication = functions.https.onCall(async data => {
     phone: data.phone,
     age: data.age,
     gender: data.gender,
-    proouns: data.pronouns,
+    pronouns: data.pronouns,
     educationLevel: data.educationLevel,
     university: data.university,
     major: data.major,
