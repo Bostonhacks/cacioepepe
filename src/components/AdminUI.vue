@@ -12,7 +12,32 @@
               :items="data"
               :items-per-page="5"
               class="elevation-1"
-            ></v-data-table>
+            >
+              <template v-slot:item.status="{ item }">
+                <!-- ORANGE -->
+                <span v-if="item.status == 0"></span>
+                <!-- TEAL -->
+                <span v-if="item.status == 1"
+                  ><v-img
+                    :src="require('../assets/teal_circle.png')"
+                    class="my-3"
+                    contain
+                    height="20"
+                    max-width="35"
+                  ></v-img
+                ></span>
+                <!-- BLACK -->
+                <span v-if="item.status == 2">rejected</span>
+                <!-- YELLOW -->
+                <span v-if="item.status == 3">waitlisted</span>
+                <!-- GREEN -->
+                <span v-if="item.status == 4">accepted</span>
+                <!-- BLUE -->
+                <span v-if="item.status == 5">confirmed</span>
+                <!-- RED -->
+                <span v-if="item.status == 6">declined</span>
+              </template>
+            </v-data-table>
           </template>
         </v-flex>
       </v-layout>
@@ -22,6 +47,7 @@
 
 <script>
 import { functions } from "../firebase/init";
+
 export default {
   name: "AdminUI",
   computed: {
