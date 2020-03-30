@@ -20,6 +20,24 @@ firebase.auth().onAuthStateChanged(async () => {
         vuetify,
         render: h => h(App)
       }).$mount("#app");
+    }
+    if (document.referrer.endsWith("mentorlogin")) {
+      await store.dispatch("setMentor");
+      new Vue({
+        router,
+        store,
+        vuetify,
+        render: h => h(App)
+      }).$mount("#app");
+    }
+    if (document.referrer.endsWith("volunteerlogin")) {
+      await store.dispatch("setVolunteer");
+      new Vue({
+        router,
+        store,
+        vuetify,
+        render: h => h(App)
+      }).$mount("#app");
     } else {
       await store.dispatch("setUser");
       new Vue({
