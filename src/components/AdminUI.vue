@@ -6,6 +6,76 @@
         <v-flex mb-4>
           <h1 class="display-2 font-weight-bold mb-3">Welcome to God Mode!</h1>
           <template>
+            <v-simple-table height="300px">
+              <template v-slot:default>
+                <thead>
+                  <tr>
+                    <th class="text-left">Color</th>
+                    <th class="text-left">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-left">
+                      <svg height="30" width="50">
+                        <circle cx="20" cy="20" r="10" fill="orange" />
+                      </svg>
+                    </td>
+                    <td class="text-left">Started</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <svg height="30" width="50">
+                        <circle cx="20" cy="20" r="10" fill="teal" />
+                      </svg>
+                    </td>
+                    <td class="text-left">Submitted</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <svg height="30" width="50">
+                        <circle cx="20" cy="20" r="10" fill="black" />
+                      </svg>
+                    </td>
+                    <td class="text-left">Rejected</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <svg height="30" width="50">
+                        <circle cx="20" cy="20" r="10" fill="yellow" />
+                      </svg>
+                    </td>
+                    <td class="text-left">Waitlisted</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <svg height="30" width="50">
+                        <circle cx="20" cy="20" r="10" fill="green" />
+                      </svg>
+                    </td>
+                    <td class="text-left">Accepted</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <svg height="30" width="50">
+                        <circle cx="20" cy="20" r="10" fill="blue" />
+                      </svg>
+                    </td>
+                    <td class="text-left">Confirmed</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">
+                      <svg height="30" width="50">
+                        <circle cx="20" cy="20" r="10" fill="red" />
+                      </svg>
+                    </td>
+                    <td class="text-left">Declined</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+          </template>
+          <template>
             <v-data-table
               v-if="data !== null"
               :headers="headers"
@@ -15,27 +85,42 @@
             >
               <template v-slot:item.status="{ item }">
                 <!-- ORANGE -->
-                <span v-if="item.status == 0"></span>
+                <span v-if="item.status == 0">
+                  <svg height="30" width="50">
+                    <circle cx="20" cy="20" r="10" fill="orange" />
+                  </svg>
+                </span>
                 <!-- TEAL -->
                 <span v-if="item.status == 1"
-                  ><v-img
-                    :src="require('../assets/teal_circle.png')"
-                    class="my-3"
-                    contain
-                    height="20"
-                    max-width="35"
-                  ></v-img
+                  ><svg height="30" width="50">
+                    <circle cx="20" cy="20" r="10" fill="teal" /></svg
                 ></span>
                 <!-- BLACK -->
-                <span v-if="item.status == 2">rejected</span>
+                <span v-if="item.status == 2">
+                  <svg height="30" width="50">
+                    <circle cx="20" cy="20" r="10" fill="black" />
+                  </svg>
+                </span>
                 <!-- YELLOW -->
-                <span v-if="item.status == 3">waitlisted</span>
+                <span v-if="item.status == 3"
+                  ><svg height="30" width="50">
+                    <circle cx="20" cy="20" r="10" fill="yellow" /></svg
+                ></span>
                 <!-- GREEN -->
-                <span v-if="item.status == 4">accepted</span>
+                <span v-if="item.status == 4"
+                  ><svg height="30" width="50">
+                    <circle cx="20" cy="20" r="10" fill="green" /></svg
+                ></span>
                 <!-- BLUE -->
-                <span v-if="item.status == 5">confirmed</span>
+                <span v-if="item.status == 5"
+                  ><svg height="30" width="50">
+                    <circle cx="20" cy="20" r="10" fill="blue" /></svg
+                ></span>
                 <!-- RED -->
-                <span v-if="item.status == 6">declined</span>
+                <span v-if="item.status == 6"
+                  ><svg height="30" width="50">
+                    <circle cx="20" cy="20" r="10" fill="red" /></svg
+                ></span>
               </template>
             </v-data-table>
           </template>
