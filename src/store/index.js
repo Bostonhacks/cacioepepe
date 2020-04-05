@@ -19,12 +19,6 @@ const mutations = {
   },
   setSponsor: (state, payload) => {
     state.user = payload;
-  },
-  setMentor: (state, payload) => {
-    state.user = payload;
-  },
-  setVolunteer: (state, payload) => {
-    state.user = payload;
   }
 };
 
@@ -71,50 +65,6 @@ const actions = {
       context.commit("setSponsor", raid.data);
     } else {
       context.commit("setSponsor", raid.data);
-    }
-  },
-  setMentor: async context => {
-    const user = firebase.auth().currentUser;
-    if (!user) {
-      return;
-    }
-    var raid = await functions.httpsCallable("getUserData")({
-      uid: user.uid
-    });
-    if (!raid.data) {
-      await functions.httpsCallable("createNewMentor")({
-        uid: user.uid,
-        displayName: user.displayName,
-        email: user.email
-      });
-      raid = await functions.httpsCallable("getUserData")({
-        uid: user.uid
-      });
-      context.commit("setMentor", raid.data);
-    } else {
-      context.commit("setMentor", raid.data);
-    }
-  },
-  setVolunteer: async context => {
-    const user = firebase.auth().currentUser;
-    if (!user) {
-      return;
-    }
-    var raid = await functions.httpsCallable("getUserData")({
-      uid: user.uid
-    });
-    if (!raid.data) {
-      await functions.httpsCallable("createNewVolunteer")({
-        uid: user.uid,
-        displayName: user.displayName,
-        email: user.email
-      });
-      raid = await functions.httpsCallable("getUserData")({
-        uid: user.uid
-      });
-      context.commit("setVolunteer", raid.data);
-    } else {
-      context.commit("setVolunteer", raid.data);
     }
   },
   getUser: async context => {
