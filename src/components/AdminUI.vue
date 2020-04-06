@@ -6,7 +6,7 @@
         <v-flex mb-4>
           <h1 class="display-2 font-weight-bold mb-3">Welcome to God Mode!</h1>
           <template>
-            <v-simple-table height="300px">
+            <v-simple-table height="300px" width="100px">
               <template v-slot:default>
                 <thead>
                   <tr>
@@ -15,62 +15,81 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="text-left">
-                      <svg height="30" width="50">
-                        <circle cx="20" cy="20" r="10" fill="orange" />
-                      </svg>
-                    </td>
-                    <td class="text-left">Started</td>
-                  </tr>
-                  <tr>
-                    <td class="text-left">
-                      <svg height="30" width="50">
-                        <circle cx="20" cy="20" r="10" fill="teal" />
-                      </svg>
-                    </td>
-                    <td class="text-left">Submitted</td>
-                  </tr>
-                  <tr>
-                    <td class="text-left">
-                      <svg height="30" width="50">
-                        <circle cx="20" cy="20" r="10" fill="black" />
-                      </svg>
-                    </td>
-                    <td class="text-left">Rejected</td>
-                  </tr>
-                  <tr>
-                    <td class="text-left">
-                      <svg height="30" width="50">
-                        <circle cx="20" cy="20" r="10" fill="yellow" />
-                      </svg>
-                    </td>
-                    <td class="text-left">Waitlisted</td>
-                  </tr>
-                  <tr>
-                    <td class="text-left">
-                      <svg height="30" width="50">
-                        <circle cx="20" cy="20" r="10" fill="green" />
-                      </svg>
-                    </td>
-                    <td class="text-left">Accepted</td>
-                  </tr>
-                  <tr>
-                    <td class="text-left">
-                      <svg height="30" width="50">
-                        <circle cx="20" cy="20" r="10" fill="blue" />
-                      </svg>
-                    </td>
-                    <td class="text-left">Confirmed</td>
-                  </tr>
-                  <tr>
-                    <td class="text-left">
-                      <svg height="30" width="50">
-                        <circle cx="20" cy="20" r="10" fill="red" />
-                      </svg>
-                    </td>
-                    <td class="text-left">Declined</td>
-                  </tr>
+                  <v-radio-group v-model="choice">
+                    <tr>
+                      <td class="text-left">
+                        <svg height="30" width="50">
+                          <circle cx="20" cy="20" r="10" fill="orange" />
+                        </svg>
+                      </td>
+                      <td class="text-left">
+                        <v-radio label="Started" value="started"></v-radio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left">
+                        <svg height="30" width="50">
+                          <circle cx="20" cy="20" r="10" fill="teal" />
+                        </svg>
+                      </td>
+                      <td class="text-left">
+                        <v-radio label="Submitted" value="submitted"></v-radio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left">
+                        <svg height="30" width="50">
+                          <circle cx="20" cy="20" r="10" fill="black" />
+                        </svg>
+                      </td>
+                      <td class="text-left">
+                        <v-radio label="Rejected" value="rejected"></v-radio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left">
+                        <svg height="30" width="50">
+                          <circle cx="20" cy="20" r="10" fill="yellow" />
+                        </svg>
+                      </td>
+                      <td class="text-left">
+                        <v-radio
+                          label="Waitlisted"
+                          value="waitlisted"
+                        ></v-radio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left">
+                        <svg height="30" width="50">
+                          <circle cx="20" cy="20" r="10" fill="green" />
+                        </svg>
+                      </td>
+                      <td class="text-left">
+                        <v-radio label="Accepcted" value="accepted"></v-radio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left">
+                        <svg height="30" width="50">
+                          <circle cx="20" cy="20" r="10" fill="blue" />
+                        </svg>
+                      </td>
+                      <td class="text-left">
+                        <v-radio label="Confirmed" value="confirmed"></v-radio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left">
+                        <svg height="30" width="50">
+                          <circle cx="20" cy="20" r="10" fill="red" />
+                        </svg>
+                      </td>
+                      <td class="text-left">
+                        <v-radio label="Declined" value="Declined"></v-radio>
+                      </td>
+                    </tr>
+                  </v-radio-group>
                 </tbody>
               </template>
             </v-simple-table>
