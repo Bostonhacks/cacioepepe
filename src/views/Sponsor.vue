@@ -3,7 +3,7 @@
     <SponsorUI />
 
     <v-container class="Companies">
-      <v-subheader>Sponsor Companies </v-subheader>
+      <v-subheader>Sponsor Companies</v-subheader>
 
       <v-list-item two-line>
         <v-list-item-content>
@@ -28,9 +28,13 @@
       <v-subheader>Statistics</v-subheader>
 
       <div class="genderChart">
-        <GenderChart />
-        <MajorChart />
-        <LineGraph />
+        <v-btn @click="forceRerender(`2016`)">2016</v-btn>
+        <v-btn @click="forceRerender(`2017`)">2017</v-btn>
+        <v-btn @click="forceRerender(`2018`)">2018</v-btn>
+        <v-btn @click="forceRerender(`2019`)">2019</v-btn>
+        <GenderChart v-if="renderComponent" :year="year"/>
+        <MajorChart v-if="renderComponent" :year="year" :chart-data="testChartData" />
+        <LineGraph v-if="renderComponent" :year="year" :chart-data="testChartData" />
       </div>
     </v-container>
 
@@ -38,14 +42,14 @@
       <!-- 
         Somthing similar to museum view's gallary stuff
 
-        -->
+      -->
     </v-container>
   </v-card>
 
   <!-- 
   <v-container>
     <MajorChart />
-  </v-container> -->
+  </v-container>-->
 </template>
 
 <script>
@@ -60,6 +64,41 @@ export default {
     MajorChart,
     LineGraph,
     SponsorUI
+  },
+  data() {
+    return {
+      year: "2019",
+      renderComponent: true,
+      updateData: {
+        label: "Wooo data was updated",
+        backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+        data: [50, 30, 20]
+      },
+      testChartData: {
+        labels: [
+          "Computer Science",
+          "Electrical Engineering",
+          "Computer Engineering"
+        ],
+        datasets: [
+          {
+            label: "Data One",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: [40, 20, 10]
+          }
+        ]
+      }
+    };
+  },
+  methods: {
+    forceRerender(year) {
+      this.year = year;
+      this.renderComponent = false;
+
+      this.$nextTick(() => {
+        this.renderComponent = true;
+      })
+    },
   }
 };
 </script>
