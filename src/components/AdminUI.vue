@@ -6,95 +6,100 @@
         <v-flex mb-4>
           <h1 class="display-2 font-weight-bold mb-3">Welcome to God Mode!</h1>
           <template>
-            <v-simple-table height="300px" width="100px">
-              <template v-slot:default>
-                <thead>
-                  <tr>
-                    <th class="text-left">Color</th>
-                    <th class="text-left">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <v-radio-group v-model="choice">
+            <modal name="pickStatus" :width="300" :height="300">
+              <v-simple-table height="300px" width="100px">
+                <template v-slot:default>
+                  <thead>
                     <tr>
-                      <td class="text-left">
-                        <svg height="30" width="50">
-                          <circle cx="20" cy="20" r="10" fill="orange" />
-                        </svg>
-                      </td>
-                      <td class="text-left">
-                        <v-radio label="Started" value="started"></v-radio>
-                      </td>
+                      <th class="text-center">Status</th>
                     </tr>
-                    <tr>
-                      <td class="text-left">
-                        <svg height="30" width="50">
-                          <circle cx="20" cy="20" r="10" fill="teal" />
-                        </svg>
-                      </td>
-                      <td class="text-left">
-                        <v-radio label="Submitted" value="submitted"></v-radio>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-left">
-                        <svg height="30" width="50">
-                          <circle cx="20" cy="20" r="10" fill="black" />
-                        </svg>
-                      </td>
-                      <td class="text-left">
-                        <v-radio label="Rejected" value="rejected"></v-radio>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-left">
-                        <svg height="30" width="50">
-                          <circle cx="20" cy="20" r="10" fill="yellow" />
-                        </svg>
-                      </td>
-                      <td class="text-left">
-                        <v-radio
-                          label="Waitlisted"
-                          value="waitlisted"
-                        ></v-radio>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-left">
-                        <svg height="30" width="50">
-                          <circle cx="20" cy="20" r="10" fill="green" />
-                        </svg>
-                      </td>
-                      <td class="text-left">
-                        <v-radio label="Accepcted" value="accepted"></v-radio>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-left">
-                        <svg height="30" width="50">
-                          <circle cx="20" cy="20" r="10" fill="blue" />
-                        </svg>
-                      </td>
-                      <td class="text-left">
-                        <v-radio label="Confirmed" value="confirmed"></v-radio>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text-left">
-                        <svg height="30" width="50">
-                          <circle cx="20" cy="20" r="10" fill="red" />
-                        </svg>
-                      </td>
-                      <td class="text-left">
-                        <v-radio label="Declined" value="Declined"></v-radio>
-                      </td>
-                    </tr>
-                  </v-radio-group>
-                </tbody>
-              </template>
-            </v-simple-table>
-          </template>
-          <template>
+                  </thead>
+                  <tbody>
+                    <v-radio-group v-model="choice">
+                      <tr>
+                        <td class="text-center">
+                          <svg height="30" width="50">
+                            <circle cx="20" cy="20" r="10" fill="orange" />
+                          </svg>
+                        </td>
+                        <td class="text-center">
+                          <v-radio label="Started" value="started"></v-radio>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">
+                          <svg height="30" width="50">
+                            <circle cx="20" cy="20" r="10" fill="teal" />
+                          </svg>
+                        </td>
+                        <td class="text-center">
+                          <v-radio
+                            label="Submitted"
+                            value="submitted"
+                          ></v-radio>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">
+                          <svg height="30" width="50">
+                            <circle cx="20" cy="20" r="10" fill="black" />
+                          </svg>
+                        </td>
+                        <td class="text-center">
+                          <v-radio label="Rejected" value="rejected"></v-radio>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">
+                          <svg height="30" width="50">
+                            <circle cx="20" cy="20" r="10" fill="yellow" />
+                          </svg>
+                        </td>
+                        <td class="text-center">
+                          <v-radio
+                            label="Waitlisted"
+                            value="waitlisted"
+                          ></v-radio>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">
+                          <svg height="30" width="50">
+                            <circle cx="20" cy="20" r="10" fill="green" />
+                          </svg>
+                        </td>
+                        <td class="text-center">
+                          <v-radio label="Accepcted" value="accepted"></v-radio>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">
+                          <svg height="30" width="50">
+                            <circle cx="20" cy="20" r="10" fill="blue" />
+                          </svg>
+                        </td>
+                        <td class="text-center">
+                          <v-radio
+                            label="Confirmed"
+                            value="confirmed"
+                          ></v-radio>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">
+                          <svg height="30" width="50">
+                            <circle cx="20" cy="20" r="10" fill="red" />
+                          </svg>
+                        </td>
+                        <td class="text-center">
+                          <v-radio label="Declined" value="Declined"></v-radio>
+                        </td>
+                      </tr>
+                    </v-radio-group>
+                  </tbody>
+                </template>
+              </v-simple-table>
+            </modal>
             <v-data-table
               v-if="data !== null"
               :headers="headers"
@@ -105,40 +110,54 @@
               <template v-slot:item.status="{ item }">
                 <!-- ORANGE -->
                 <span v-if="item.status == 0">
-                  <svg height="30" width="50">
-                    <circle cx="20" cy="20" r="10" fill="orange" />
-                  </svg>
+                  <button class="btn" @click="$modal.show('pickStatus')">
+                    <svg height="30" width="50">
+                      <circle cx="20" cy="20" r="10" fill="orange" />
+                    </svg>
+                  </button>
                 </span>
                 <!-- TEAL -->
                 <span v-if="item.status == 1"
-                  ><svg height="30" width="50">
-                    <circle cx="20" cy="20" r="10" fill="teal" /></svg
+                  ><button class="btn" @click="$modal.show('pickStatus')">
+                    <svg height="30" width="50">
+                      <circle cx="20" cy="20" r="10" fill="teal" />
+                    </svg></button
                 ></span>
                 <!-- BLACK -->
                 <span v-if="item.status == 2">
-                  <svg height="30" width="50">
-                    <circle cx="20" cy="20" r="10" fill="black" />
-                  </svg>
+                  <button class="btn" @click="$modal.show('pickStatus')">
+                    <svg height="30" width="50">
+                      <circle cx="20" cy="20" r="10" fill="black" />
+                    </svg>
+                  </button>
                 </span>
                 <!-- YELLOW -->
                 <span v-if="item.status == 3"
-                  ><svg height="30" width="50">
-                    <circle cx="20" cy="20" r="10" fill="yellow" /></svg
+                  ><button class="btn" @click="$modal.show('pickStatus')">
+                    <svg height="30" width="50">
+                      <circle cx="20" cy="20" r="10" fill="yellow" />
+                    </svg></button
                 ></span>
                 <!-- GREEN -->
                 <span v-if="item.status == 4"
-                  ><svg height="30" width="50">
-                    <circle cx="20" cy="20" r="10" fill="green" /></svg
+                  ><button class="btn" @click="$modal.show('pickStatus')">
+                    <svg height="30" width="50">
+                      <circle cx="20" cy="20" r="10" fill="green" />
+                    </svg></button
                 ></span>
                 <!-- BLUE -->
                 <span v-if="item.status == 5"
-                  ><svg height="30" width="50">
-                    <circle cx="20" cy="20" r="10" fill="blue" /></svg
+                  ><button class="btn" @click="$modal.show('pickStatus')">
+                    <svg height="30" width="50">
+                      <circle cx="20" cy="20" r="10" fill="blue" />
+                    </svg></button
                 ></span>
                 <!-- RED -->
                 <span v-if="item.status == 6"
-                  ><svg height="30" width="50">
-                    <circle cx="20" cy="20" r="10" fill="red" /></svg
+                  ><button class="btn" @click="$modal.show('pickStatus')">
+                    <svg height="30" width="50">
+                      <circle cx="20" cy="20" r="10" fill="red" />
+                    </svg></button
                 ></span>
               </template>
             </v-data-table>
@@ -161,6 +180,8 @@ export default {
   },
   data() {
     return {
+      time: 0,
+      duration: 5000,
       headers: [
         {
           text: "Name",
