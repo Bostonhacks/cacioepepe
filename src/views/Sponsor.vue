@@ -25,31 +25,47 @@
     </v-container>
 
     <v-container>
-      <v-subheader>Statistics</v-subheader>
+      <h1>
+        Recap -
+        <v-btn @click="toggleYearSelect()" elevation="0">
+          <h1>{{years[yearIndex]}}</h1>
+        </v-btn>
+      </h1>
+      <v-card class="mx-auto" max-width="300" tile v-if="renderYearSelect">
+        <v-list shaped>
+          <v-subheader>Select a Year</v-subheader>
+          <v-list-item-group v-model="yearIndex" color="primary">
+            <v-list-item v-for="(year, i) in years" :key="i">
+              <v-list-item-content>
+                <v-list-item-title v-text="year"></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-card>
+      <v-divider></v-divider>
 
-      <div class="genderChart">
-        <v-btn @click="forceRerender(`2016`)">2016</v-btn>
-        <v-btn @click="forceRerender(`2017`)">2017</v-btn>
-        <v-btn @click="forceRerender(`2018`)">2018</v-btn>
-        <v-btn @click="forceRerender(`2019`)">2019</v-btn>
-        <GenderChart v-if="renderComponent" :year="year"/>
-        <MajorChart v-if="renderComponent" :year="year" :chart-data="testChartData" />
-        <LineGraph v-if="renderComponent" :year="year" :chart-data="testChartData" />
-      </div>
+      <v-row>
+        <v-col>
+          <GenderChart v-if="renderComponent" :year="years[yearIndex]" />
+        </v-col>
+        <v-col>
+          <MajorChart v-if="renderComponent" :year="years[yearIndex]" :chart-data="testChartData" />
+        </v-col>
+        <v-col>
+          <LineGraph v-if="renderComponent" :year="yearIndex" :chart-data="testChartData" />
+        </v-col>
+      </v-row>
     </v-container>
 
     <v-container>
-      <!-- 
-        Somthing similar to museum view's gallary stuff
-
-      -->
+      <!-- sponsorTables -->
+      <h2>Sponsor Benefits</h2>
+      <GeneralSponsorTable />
+      <RecruitingSponsorTable />
+      <BrandingSponsorTable />
     </v-container>
   </v-card>
-
-  <!-- 
-  <v-container>
-    <MajorChart />
-  </v-container>-->
 </template>
 
 <script>
@@ -57,17 +73,33 @@ import GenderChart from "../components/GenderChart";
 import MajorChart from "../components/MajorChart";
 import LineGraph from "../components/LineGraph";
 import SponsorUI from "../components/SponsorUI";
+import GeneralSponsorTable from "../components/GeneralSponsorTable";
+import RecruitingSponsorTable from "../components/RecruitingSponsorTable";
+import BrandingSponsorTable from "../components/BrandingSponsorTable";
 
 export default {
   components: {
     GenderChart,
     MajorChart,
     LineGraph,
-    SponsorUI
+    SponsorUI,
+    GeneralSponsorTable,
+    RecruitingSponsorTable,
+    BrandingSponsorTable
+  },
+  watch: {
+    yearIndex: {
+      handler: function() {
+        this.forceRerender();
+      },
+      deep: true
+    }
   },
   data() {
     return {
-      year: "2019",
+      yearIndex: "3",
+      years: ["2016", "2017", "2018", "2019"],
+      renderYearSelect: false,
       renderComponent: true,
       updateData: {
         label: "Wooo data was updated",
@@ -92,13 +124,15 @@ export default {
   },
   methods: {
     forceRerender(year) {
-      this.year = year;
       this.renderComponent = false;
 
       this.$nextTick(() => {
         this.renderComponent = true;
-      })
+      });
     },
+    toggleYearSelect() {
+      this.renderYearSelect = !this.renderYearSelect;
+    }
   }
 };
 </script>

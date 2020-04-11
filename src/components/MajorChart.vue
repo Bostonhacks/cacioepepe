@@ -1,9 +1,9 @@
 <script>
-import { Pie } from "vue-chartjs";
+import { Doughnut } from "vue-chartjs";
 
 export default {
   name: "MajorChart",
-  extends: Pie,
+  extends: Doughnut,
   data: () => ({
     chartdata: {
       labels: [
