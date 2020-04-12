@@ -15,6 +15,10 @@ module.exports.submitVolunteerApplication = functions.https.onCall(
       educationLevel: data.educationLevel,
       university: data.university,
       email: data.email,
+      preEvent: data.preEvent,
+      postEvent: data.postEvent,
+      tablingEvent: data.tablingEvent,
+      eventVolunteer: data.eventVolunteer,
       picturePermission: data.picturePermission,
       tAandC: data.tAandC
     });

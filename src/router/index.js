@@ -43,9 +43,17 @@ const routes = [
     }
   },
   {
+    path: "/mentor",
+    name: "mentor",
+    component: () => import("@/views/Mentor.vue"),
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
     path: "/volunteer",
     name: "volunteer",
-    component: () => import("@/views/volunteerHome.vue"),
+    component: () => import("@/views/Volunteer.vue"),
     meta: {
       requiresAuth: false
     }
