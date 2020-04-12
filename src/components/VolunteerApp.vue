@@ -202,6 +202,7 @@ export default {
         picturePermission: this.picturePermission,
         tAandC: this.tAandC
       });
+      this.$router.push("/");
     }
   },
   async mounted() {
