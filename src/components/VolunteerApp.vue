@@ -33,7 +33,13 @@
         </v-col>
 
         <v-col cols="12" sm="6">
-          <v-text-field v-model="gender" label="Gender" outlined></v-text-field>
+          <v-select
+            :items="genderList"
+            v-model="gender"
+            label="Gender"
+            outlined
+          >
+          </v-select>
         </v-col>
       </v-row>
       <v-row>
@@ -66,12 +72,12 @@
         </v-col>
 
         <v-col class="d-flex" cols="12" sm="6">
-          <v-text-field
+          <v-select
             :items="educationLevels"
             v-model="educationLevel"
             label="Select your Level of Education (required)"
             outlined
-          ></v-text-field>
+          ></v-select>
         </v-col>
       </v-row>
       <div class="inline">
@@ -112,7 +118,7 @@
         label="Do you consent to us taking a picture or video during the event?"
       ></v-switch>
       <v-switch
-        v-model="tAndC"
+        v-model="tAandC"
         label="Do you accept the terms and conditions?"
       ></v-switch>
       <v-btn
@@ -129,7 +135,6 @@
             university == null ||
             email == null ||
             picturePermission == null ||
-            university == null ||
             tAandC == null
         "
         >Submit</v-btn
@@ -171,6 +176,7 @@ export default {
           (/\d/g.test(v) && v.length === 10) ||
           "Phone Number must be a valid US phone number"
       ],
+      genderList: ["Female", "Male", "Other"],
       educationLevels: [
         "High School",
         "College Freshman",
@@ -184,44 +190,35 @@ export default {
   },
   methods: {
     async submitApplication() {
-      await functions.httpsCallable("submitApplication")({
-        uid: this.user.uid,
-        name: this.name,
+      await functions.httpsCallable("submitVolunteerApplication")({
+        first: this.first,
+        last: this.last,
         phone: this.phone,
-        age: this.age,
         gender: this.gender,
-        pronouns: this.pronouns,
+        pronoun: this.pronoun,
         educationLevel: this.educationLevel,
         university: this.university,
-        major: this.major,
-        minor: this.minor,
-        resume: this.resume,
-        githubURL: this.githubURL,
-        linkedinURL: this.linkedinURL,
-        otherURL: this.otherURL,
-        beenToHackathon: this.beenToHackathon,
-        attendedBHacks: this.attendedBHacks,
-        marketingData: this.marketingData,
-        tAndC1: this.tAndC1,
-        tAndC2: this.tAndC2
+        email: this.email,
+        picturePermission: this.picturePermission,
+        tAandC: this.tAandC
       });
-    },
-    async mounted() {
-      fetch(
-        "https://raw.githubusercontent.com/MLH/mlh-policies/master/schools.csv"
-      )
-        .then(response => response.text())
-        .then(result => {
-          let schoolList = result.split("\n").map(item => {
-            item = item.startsWith('"')
-              ? item.substring(1, item.length - 2)
-              : item;
-            return item;
-          });
-          schoolList.splice(0, 1);
-          this.universityList = schoolList;
-        });
     }
+  },
+  async mounted() {
+    fetch(
+      "https://raw.githubusercontent.com/MLH/mlh-policies/master/schools.csv"
+    )
+      .then(response => response.text())
+      .then(result => {
+        let schoolList = result.split("\n").map(item => {
+          item = item.startsWith('"')
+            ? item.substring(1, item.length - 2)
+            : item;
+          return item;
+        });
+        schoolList.splice(0, 1);
+        this.universityList = schoolList;
+      });
   }
 };
 </script>
