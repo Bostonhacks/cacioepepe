@@ -1,0 +1,940 @@
+[debug] [2020-04-15T10:04:13.303Z] ----------------------------------------------------------------------
+[debug] [2020-04-15T10:04:13.305Z] Command:       /usr/local/bin/node /usr/local/bin/firebase functions:shell
+[debug] [2020-04-15T10:04:13.305Z] CLI Version:   7.3.1
+[debug] [2020-04-15T10:04:13.305Z] Platform:      darwin
+[debug] [2020-04-15T10:04:13.305Z] Node Version:  v10.16.3
+[debug] [2020-04-15T10:04:13.306Z] Time:          Wed Apr 15 2020 19:04:13 GMT+0900 (Korean Standard Time)
+[debug] [2020-04-15T10:04:13.306Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2020-04-15T10:04:13.319Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-04-15T10:04:13.319Z] > authorizing via signed-in user
+[debug] [2020-04-15T10:04:13.319Z] [iam] checking project bostonhacks-cacioepepe for permissions ["firebase.projects.get"]
+[debug] [2020-04-15T10:04:13.321Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/bostonhacks-cacioepepe:testIamPermissions  
+
+[debug] [2020-04-15T10:04:13.666Z] <<< HTTP RESPONSE 200
+[warn] ⚠  Your requested "node" version "8" doesn't match your global version "10"
+[info] ✔  functions: Emulator started at http://localhost:5000
+[debug] [2020-04-15T10:04:13.951Z] [functions] Watching "/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions" for Cloud Functions...
+[debug] [2020-04-15T10:04:14.242Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:04:14.243Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:04:14.245Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:04:14.246Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:04:14.247Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:04:14.655Z] [functions[acceptApplicant]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/acceptApplicant).
+[debug] [2020-04-15T10:04:14.655Z] [functions[rejectApplicant]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/rejectApplicant).
+[debug] [2020-04-15T10:04:14.655Z] [functions[retrieveSubmittedApplications]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/retrieveSubmittedApplications).
+[debug] [2020-04-15T10:04:14.655Z] [functions[retrieveAcceptedApplications]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/retrieveAcceptedApplications).
+[debug] [2020-04-15T10:04:14.655Z] [functions[retrieveAllApplications]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/retrieveAllApplications).
+[debug] [2020-04-15T10:04:14.655Z] [functions[retrieveConfirmedApplications]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/retrieveConfirmedApplications).
+[debug] [2020-04-15T10:04:14.656Z] [functions[retrieveDeclinedApplications]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/retrieveDeclinedApplications).
+[debug] [2020-04-15T10:04:14.656Z] [functions[retrieveRejectedApplications]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/retrieveRejectedApplications).
+[debug] [2020-04-15T10:04:14.656Z] [functions[retrieveWaitlistedApplications]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/retrieveWaitlistedApplications).
+[debug] [2020-04-15T10:04:14.656Z] [functions[waitlistApplicant]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/waitlistApplicant).
+[debug] [2020-04-15T10:04:14.656Z] [functions[createApplication]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/createApplication).
+[debug] [2020-04-15T10:04:14.656Z] [functions[deleteResume]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/deleteResume).
+[debug] [2020-04-15T10:04:14.656Z] [functions[loadApplication]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/loadApplication).
+[debug] [2020-04-15T10:04:14.656Z] [functions[saveApplication]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/saveApplication).
+[debug] [2020-04-15T10:04:14.656Z] [functions[submitApplication]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/submitApplication).
+[debug] [2020-04-15T10:04:14.656Z] [functions[uploadResume]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/uploadResume).
+[debug] [2020-04-15T10:04:14.656Z] [functions[createNewSponsor]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/createNewSponsor).
+[debug] [2020-04-15T10:04:14.656Z] [functions[oneClickDownload]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/oneClickDownload).
+[debug] [2020-04-15T10:04:14.656Z] [functions[createNewUser]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/createNewUser).
+[debug] [2020-04-15T10:04:14.656Z] [functions[getUserData]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/getUserData).
+[info] i  functions: Loaded functions: acceptApplicant, rejectApplicant, retrieveSubmittedApplications, retrieveAcceptedApplications, retrieveAllApplications, retrieveConfirmedApplications, retrieveDeclinedApplications, retrieveRejectedApplications, retrieveWaitlistedApplications, waitlistApplicant, createApplication, deleteResume, loadApplication, saveApplication, submitApplication, uploadResume, createNewSponsor, oneClickDownload, createNewUser, getUserData
+[debug] [2020-04-15T10:04:20.502Z] Accepted request POST /bostonhacks-cacioepepe/us-central1/oneClickDownload --> oneClickDownload
+[debug] [2020-04-15T10:04:20.772Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:04:20.773Z] [functions] Beginning execution of "oneClickDownload"
+[debug] [2020-04-15T10:04:20.773Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:04:20.775Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:04:20.776Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:04:20.777Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:04:21.180Z] DEBUG: [runtime-status] Trigger "oneClickDownload" has been found, beginning invocation! {}
+[debug] [2020-04-15T10:04:21.180Z] DEBUG: [runtime-status]  {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"oneClickDownload","entryPoint":"oneClickDownload"}
+[debug] [2020-04-15T10:04:21.180Z] DEBUG: [runtime-status] Running oneClickDownload in mode HTTPS {}
+[debug] [2020-04-15T10:04:21.186Z] {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_14929.sock"}
+[debug] [2020-04-15T10:04:21.187Z] DEBUG: [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_14929.sock"}
+[debug] [2020-04-15T10:04:21.202Z] DEBUG: [runtime-status] Ephemeral server used! {}
+[debug] [2020-04-15T10:04:21.209Z] DEBUG: [runtime-status] Ephemeral server survived. {}
+[info] >  [ 'resumes/EJMfmkGZlwPHDCsb5YURpKPhLUf1/Jin Young Bang_Resume.pdf',
+[info] >    'resumes/MgjqcK1GEtN2FZxehZXocuux85g2/Rishab Nayak_Resume.pdf',
+[info] >    'resumes/dBMfqIgG4rdMEo37b0kqjotVJbm2/Rishab Nayak_Resume.pdf' ]
+[info] >  archive finalized
+[info] >  Unhandled error { [Error: EISDIR: illegal operation on a directory, open '/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T']
+[info] >    errno: -21,
+[info] >    code: 'EISDIR',
+[info] >    syscall: 'open',
+[info] >    path: '/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T' }
+[debug] [2020-04-15T10:04:22.161Z] [functions] Finished "oneClickDownload" in ~1s
+[debug] [2020-04-15T10:04:51.439Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:04:52.990Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:04:52.990Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:04:52.995Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:04:52.997Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:04:52.998Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:04:54.163Z] Accepted request POST /bostonhacks-cacioepepe/us-central1/oneClickDownload --> oneClickDownload
+[debug] [2020-04-15T10:04:54.439Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:04:54.440Z] [functions] Beginning execution of "oneClickDownload"
+[debug] [2020-04-15T10:04:54.440Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:04:54.443Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:04:54.443Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:04:54.444Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:04:54.864Z] DEBUG: [runtime-status] Trigger "oneClickDownload" has been found, beginning invocation! {}
+[debug] [2020-04-15T10:04:54.864Z] DEBUG: [runtime-status]  {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"oneClickDownload","entryPoint":"oneClickDownload"}
+[debug] [2020-04-15T10:04:54.864Z] DEBUG: [runtime-status] Running oneClickDownload in mode HTTPS {}
+[debug] [2020-04-15T10:04:54.870Z] {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_14955.sock"}
+[debug] [2020-04-15T10:04:54.871Z] DEBUG: [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_14955.sock"}
+[debug] [2020-04-15T10:04:54.891Z] DEBUG: [runtime-status] Ephemeral server used! {}
+[debug] [2020-04-15T10:04:54.899Z] DEBUG: [runtime-status] Ephemeral server survived. {}
+[info] >  [ 'resumes/EJMfmkGZlwPHDCsb5YURpKPhLUf1/Jin Young Bang_Resume.pdf',
+[info] >    'resumes/MgjqcK1GEtN2FZxehZXocuux85g2/Rishab Nayak_Resume.pdf',
+[info] >    'resumes/dBMfqIgG4rdMEo37b0kqjotVJbm2/Rishab Nayak_Resume.pdf' ]
+[info] >  archive finalized
+[info] >  /var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T
+[info] >  .AddressBookLocks
+[info] >  .BQR82RBBHL.com.tinyspeck.slackmacgap.OySsG1
+[info] >  .CalendarLocks
+[info] >  .LINKS
+[info] >  .com.google.Chrome.f2xAk4
+[info] >  .keystoneAgentLock
+[info] >  .notion.id.0nqOky
+[info] >  .notion.id.NKFNFY
+[info] >  .notion.id.OfU1cg
+[info] >  .notion.id.T8zfMh
+[info] >  .notion.id.VmWjj7
+[info] >  .notion.id.roGBk9
+[info] >  AudioComponentRegistrar
+[info] >  Cleanup At Startup
+[info] >  CoreFxPipe_4f683e3491714e1d81231d39bc8b24ed
+[info] >  CoreFxPipe_59174115276e49009116da47784f1e1b
+[info] >  CoreFxPipe_601bdcd3504e41e499a8def036f128fc
+[info] >  CoreFxPipe_76dbeaa84a31429d820ee7c2158c40b2
+[info] >  CoreFxPipe_973b2a67677d4a0696f71b8ca450159f
+[info] >  CoreFxPipe_a3d696759e1c4dfd8897aec9e8bb748b
+[info] >  CoreFxPipe_c2557a5210b743ca8e31b539668e8a4e
+[info] >  CoreFxPipe_vscode.326e7566a03dcda4325f059ebf6ed38e
+[info] >  Jin Young Bang_Resume.pdf
+[info] >  MSau_28195
+[info] >  MSau_7379
+[info] >  MSau_8272
+[info] >  Notion Crashes
+[info] >  Rishab Nayak_Resume.pdf
+[info] >  Slack Crashes
+[info] >  SynchronizerAutomationLogs.txt
+[info] >  TelemetryUploadFilecom.microsoft.autoupdate.fba.txt
+[info] >  TemporaryItems
+[info] >  VSCode Crashes
+[info] >  VSFeedbackVSRTCLogs
+[info] >  appInsights-node01a9e54d-ccdf-4f27-8058-4839d2555d2d
+[info] >  appInsights-node26e39823-0967-4af2-acc9-4d111ffda880
+[info] >  appInsights-nodeAIF-444c3af9-8e69-4462-ab49-4191e6ad1916
+[info] >  appInsights-nodeAIF-d9b70cd4-b9f9-4d70-929b-a071c400b217
+[info] >  clr-debug-pipe-14018-1586943047-in
+[info] >  clr-debug-pipe-14018-1586943047-out
+[info] >  com.adobe.accmac.ACCFinderSync
+[info] >  com.apple.AMPArtworkAgent
+[info] >  com.apple.AMPDeviceDiscoveryAgent
+[info] >  com.apple.AUHelperService
+[info] >  com.apple.AddressBook.ContactsAccountsService
+[info] >  com.apple.AirPlayUIAgent
+[info] >  com.apple.AppSSOAgent
+[info] >  com.apple.AppStore
+[info] >  com.apple.BKAgentService
+[info] >  com.apple.CalendarAgent
+[info] >  com.apple.CalendarNotification.CalNCService
+[info] >  com.apple.CloudDocs.MobileDocumentsFileProvider
+[info] >  com.apple.CloudPhotosConfiguration
+[info] >  com.apple.CoreRoutine.helperservice
+[info] >  com.apple.CryptoTokenKit.setoken
+[info] >  com.apple.DataDetectorsLocalSources
+[info] >  com.apple.MailCacheDelete
+[info] >  com.apple.Music.MusicCacheExtension
+[info] >  com.apple.OSDUIHelper
+[info] >  com.apple.PhotoBooth
+[info] >  com.apple.Photos
+[info] >  com.apple.PressAndHold
+[info] >  com.apple.Preview
+[info] >  com.apple.Safari.CacheDeleteExtension
+[info] >  com.apple.ScreenTimeAgent
+[info] >  com.apple.Siri
+[info] >  com.apple.SiriNCService
+[info] >  com.apple.SocialPushAgent
+[info] >  com.apple.Spotlight
+[info] >  com.apple.Stickies
+[info] >  com.apple.TV.TVCacheExtension
+[info] >  com.apple.TelephonyUtilities
+[info] >  com.apple.TextEdit
+[info] >  com.apple.UsageTrackingAgent
+[info] >  com.apple.accessibility.mediaaccessibilityd
+[info] >  com.apple.amp.mediasharingd
+[info] >  com.apple.appstoreagent
+[info] >  com.apple.archiveutility
+[info] >  com.apple.avconferenced
+[info] >  com.apple.bird
+[info] >  com.apple.cloudd
+[info] >  com.apple.cloudkit.upload-request.cache
+[info] >  com.apple.corerecents.recentsd
+[info] >  com.apple.corespeechd
+[info] >  com.apple.fileprovider.ArchiveService
+[info] >  com.apple.fileproviderd
+[info] >  com.apple.finder
+[info] >  com.apple.geod
+[info] >  com.apple.identityservicesd
+[info] >  com.apple.imagent
+[info] >  com.apple.imdpersistence.IMDPersistenceAgent
+[info] >  com.apple.inputmethod.EmojiFunctionRowItem
+[info] >  com.apple.inputmethod.Korean
+[info] >  com.apple.mapspushd
+[info] >  com.apple.mediaanalysisd
+[info] >  com.apple.notificationcenterui.WeatherSummary
+[info] >  com.apple.parsecd
+[info] >  com.apple.passd
+[info] >  com.apple.photoanalysisd
+[info] >  com.apple.photolibraryd
+[info] >  com.apple.proactiveeventtrackerd
+[info] >  com.apple.progressd
+[info] >  com.apple.quicklook.QuickLookUIService
+[info] >  com.apple.quicklook.ui.helper
+[info] >  com.apple.remindd
+[info] >  com.apple.replayd
+[info] >  com.apple.routined
+[info] >  com.apple.siri.media-indexer
+[info] >  com.apple.speech.speechsynthesisd
+[info] >  com.apple.studentd
+[info] >  com.apple.tccd
+[info] >  com.apple.touristd
+[info] >  com.apple.transparencyd
+[info] >  com.apple.trustd
+[info] >  com.apple.useractivityd
+[info] >  com.apple.wifivelocity
+[info] >  com.microsoft.Powerpoint
+[info] >  com.shazam.mac.Shazam
+[info] >  dotnet-diagnostic-14018-1586943047-socket
+[info] >  firebase_emulator_invocation_14556.sock
+[info] >  firebase_emulator_invocation_14656.sock
+[info] >  firebase_emulator_invocation_14668.sock
+[info] >  firebase_emulator_invocation_14708.sock
+[info] >  firebase_emulator_invocation_14749.sock
+[info] >  firebase_emulator_invocation_14770.sock
+[info] >  firebase_emulator_invocation_14827.sock
+[info] >  firebase_emulator_invocation_14863.sock
+[info] >  firebase_emulator_invocation_14900.sock
+[info] >  firebase_emulator_invocation_14955.sock
+[info] >  homed
+[info] >  hsperfdata_jybang
+[info] >  java_test_runner
+[info] >  lmao.zip
+[info] >  net-export
+[info] >  qtsingleapp-delfin-f853-1f5
+[info] >  qtsingleapp-delfin-f853-1f5-lockfile
+[info] >  remote-file-71752ccfe2464e99
+[info] >  skyeTemp
+[info] >  ssh-nrHqQhqa2vCG
+[info] >  studentd
+[info] >  testing
+[info] >  typescript-case-check
+[info] >  vscode-git-ipc-04cc9ad7845bcc5bca782fa51e5c34026c03238
+[info] >  vscode-git-ipc-108f8967ad1d03e4b5bdb472b001415c0c566f7
+[info] >  vscode-git-ipc-1588db23c2460a427aa3e416999f09d2cad126b
+[info] >  vscode-git-ipc-1a908e5c6fe12e8636da021605da1c2d59bcd66
+[info] >  vscode-git-ipc-208d3f5245748f28e5f8b42d741063361c692f3
+[info] >  vscode-git-ipc-330d0ab14c5b02ed945ab46d53be53d4c26f3bc
+[info] >  vscode-git-ipc-58e53b07dcd2f35a1bcaf56e6677b0d13130d53
+[info] >  vscode-git-ipc-927edc60dab4445b08c840bd33ec0dc53f019f7
+[info] >  vscode-typescript501
+[info] >  vscodesws_26416
+[info] >  vscodesws_56d75
+[info] >  vscodesws_6a9b9
+[info] >  vscodesws_86c64
+[info] >  vscodesws_93463
+[info] >  xcrun_db
+[info] >  done
+[info] >  Unhandled error { [Error: ENOENT: no such file or directory, stat 'lmao.zip'] errno: -2, code: 'ENOENT', syscall: 'stat', path: 'lmao.zip' }
+[debug] [2020-04-15T10:04:58.185Z] [functions] Finished "oneClickDownload" in ~3s
+[debug] [2020-04-15T10:05:05.181Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:05:05.279Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:05:06.564Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:05:06.565Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:05:06.568Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:05:06.570Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:05:06.571Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:05:12.191Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:05:13.482Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:05:13.482Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:05:13.485Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:05:13.486Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:05:13.486Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:05:14.417Z] Accepted request POST /bostonhacks-cacioepepe/us-central1/oneClickDownload --> oneClickDownload
+[debug] [2020-04-15T10:05:14.691Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:05:14.691Z] [functions] Beginning execution of "oneClickDownload"
+[debug] [2020-04-15T10:05:14.691Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:05:14.695Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:05:14.696Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:05:14.697Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:05:15.106Z] DEBUG: [runtime-status] Trigger "oneClickDownload" has been found, beginning invocation! {}
+[debug] [2020-04-15T10:05:15.106Z] DEBUG: [runtime-status]  {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"oneClickDownload","entryPoint":"oneClickDownload"}
+[debug] [2020-04-15T10:05:15.106Z] DEBUG: [runtime-status] Running oneClickDownload in mode HTTPS {}
+[debug] [2020-04-15T10:05:15.113Z] {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_14966.sock"}
+[debug] [2020-04-15T10:05:15.113Z] DEBUG: [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_14966.sock"}
+[debug] [2020-04-15T10:05:15.135Z] DEBUG: [runtime-status] Ephemeral server used! {}
+[debug] [2020-04-15T10:05:15.142Z] DEBUG: [runtime-status] Ephemeral server survived. {}
+[info] >  [ 'resumes/EJMfmkGZlwPHDCsb5YURpKPhLUf1/Jin Young Bang_Resume.pdf',
+[info] >    'resumes/MgjqcK1GEtN2FZxehZXocuux85g2/Rishab Nayak_Resume.pdf',
+[info] >    'resumes/dBMfqIgG4rdMEo37b0kqjotVJbm2/Rishab Nayak_Resume.pdf' ]
+[info] >  archive finalized
+[info] >  done
+[info] >  Unhandled error { [Error: ENOENT: no such file or directory, stat 'lmao.zip'] errno: -2, code: 'ENOENT', syscall: 'stat', path: 'lmao.zip' }
+[debug] [2020-04-15T10:05:18.481Z] [functions] Finished "oneClickDownload" in ~3s
+[debug] [2020-04-15T10:05:41.278Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:05:42.700Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:05:42.701Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:05:42.706Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:05:42.707Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:05:42.708Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:05:47.714Z] Accepted request POST /bostonhacks-cacioepepe/us-central1/oneClickDownload --> oneClickDownload
+[debug] [2020-04-15T10:05:47.997Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:05:47.997Z] [functions] Beginning execution of "oneClickDownload"
+[debug] [2020-04-15T10:05:47.997Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:05:48.000Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:05:48.001Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:05:48.001Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:05:48.425Z] DEBUG: [runtime-status] Trigger "oneClickDownload" has been found, beginning invocation! {}
+[debug] [2020-04-15T10:05:48.425Z] DEBUG: [runtime-status]  {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"oneClickDownload","entryPoint":"oneClickDownload"}
+[debug] [2020-04-15T10:05:48.425Z] DEBUG: [runtime-status] Running oneClickDownload in mode HTTPS {}
+[debug] [2020-04-15T10:05:48.430Z] {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_14984.sock"}
+[debug] [2020-04-15T10:05:48.431Z] DEBUG: [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_14984.sock"}
+[debug] [2020-04-15T10:05:48.449Z] DEBUG: [runtime-status] Ephemeral server used! {}
+[debug] [2020-04-15T10:05:48.457Z] DEBUG: [runtime-status] Ephemeral server survived. {}
+[info] >  [ 'resumes/EJMfmkGZlwPHDCsb5YURpKPhLUf1/Jin Young Bang_Resume.pdf',
+[info] >    'resumes/MgjqcK1GEtN2FZxehZXocuux85g2/Rishab Nayak_Resume.pdf',
+[info] >    'resumes/dBMfqIgG4rdMEo37b0kqjotVJbm2/Rishab Nayak_Resume.pdf' ]
+[info] >  archive finalized
+[info] >  done
+[info] >  Unhandled error { Error: EPERM: operation not permitted, unlink '/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T'
+[info] >      at Object.unlinkSync (fs.js:956:3)
+[info] >      at module.exports.oneClickDownload.functions.https.onCall (/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js:74:13)
+[info] >      at process._tickCallback (internal/process/next_tick.js:68:7)
+[info] >    errno: -1,
+[info] >    syscall: 'unlink',
+[info] >    code: 'EPERM',
+[info] >    path: '/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T' }
+[debug] [2020-04-15T10:05:52.601Z] [functions] Finished "oneClickDownload" in ~4s
+[debug] [2020-04-15T10:06:07.565Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:06:07.961Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:06:09.243Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:06:09.244Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:06:09.246Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:06:09.247Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:06:09.248Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:06:11.018Z] Accepted request POST /bostonhacks-cacioepepe/us-central1/oneClickDownload --> oneClickDownload
+[debug] [2020-04-15T10:06:11.293Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:06:11.293Z] [functions] Beginning execution of "oneClickDownload"
+[debug] [2020-04-15T10:06:11.294Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:06:11.297Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:06:11.298Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:06:11.298Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:06:11.724Z] DEBUG: [runtime-status] Trigger "oneClickDownload" has been found, beginning invocation! {}
+[debug] [2020-04-15T10:06:11.725Z] DEBUG: [runtime-status]  {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"oneClickDownload","entryPoint":"oneClickDownload"}
+[debug] [2020-04-15T10:06:11.725Z] DEBUG: [runtime-status] Running oneClickDownload in mode HTTPS {}
+[debug] [2020-04-15T10:06:11.730Z] {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_14994.sock"}
+[debug] [2020-04-15T10:06:11.732Z] DEBUG: [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_14994.sock"}
+[debug] [2020-04-15T10:06:11.753Z] DEBUG: [runtime-status] Ephemeral server used! {}
+[debug] [2020-04-15T10:06:11.760Z] DEBUG: [runtime-status] Ephemeral server survived. {}
+[info] >  [ 'resumes/EJMfmkGZlwPHDCsb5YURpKPhLUf1/Jin Young Bang_Resume.pdf',
+[info] >    'resumes/MgjqcK1GEtN2FZxehZXocuux85g2/Rishab Nayak_Resume.pdf',
+[info] >    'resumes/dBMfqIgG4rdMEo37b0kqjotVJbm2/Rishab Nayak_Resume.pdf' ]
+[info] >  archive finalized
+[info] >  done
+[debug] [2020-04-15T10:06:15.445Z] [functions] Finished "oneClickDownload" in ~3s
+[debug] [2020-04-15T10:06:59.579Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:07:01.039Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:07:01.040Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:07:01.044Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:07:01.045Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:07:01.046Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:07:01.957Z] Accepted request POST /bostonhacks-cacioepepe/us-central1/oneClickDownload --> oneClickDownload
+[debug] [2020-04-15T10:07:02.233Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:07:02.234Z] [functions] Beginning execution of "oneClickDownload"
+[debug] [2020-04-15T10:07:02.234Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:07:02.237Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:07:02.238Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:07:02.238Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:07:02.644Z] DEBUG: [runtime-status] Trigger "oneClickDownload" has been found, beginning invocation! {}
+[debug] [2020-04-15T10:07:02.644Z] DEBUG: [runtime-status]  {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"oneClickDownload","entryPoint":"oneClickDownload"}
+[debug] [2020-04-15T10:07:02.644Z] DEBUG: [runtime-status] Running oneClickDownload in mode HTTPS {}
+[debug] [2020-04-15T10:07:02.650Z] {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15014.sock"}
+[debug] [2020-04-15T10:07:02.651Z] DEBUG: [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15014.sock"}
+[debug] [2020-04-15T10:07:02.673Z] DEBUG: [runtime-status] Ephemeral server used! {}
+[debug] [2020-04-15T10:07:02.680Z] DEBUG: [runtime-status] Ephemeral server survived. {}
+[info] >  [ 'resumes/EJMfmkGZlwPHDCsb5YURpKPhLUf1/Jin Young Bang_Resume.pdf',
+[info] >    'resumes/MgjqcK1GEtN2FZxehZXocuux85g2/Rishab Nayak_Resume.pdf',
+[info] >    'resumes/dBMfqIgG4rdMEo37b0kqjotVJbm2/Rishab Nayak_Resume.pdf' ]
+[info] >  archive finalized
+[info] >  done
+[debug] [2020-04-15T10:07:06.736Z] [functions] Finished "oneClickDownload" in ~4s
+[debug] [2020-04-15T10:07:47.767Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:07:49.295Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:07:49.296Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:07:49.304Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:07:49.305Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:07:49.306Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:09:22.515Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:09:23.998Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:09:23.998Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:09:24.003Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:09:24.006Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:09:24.006Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:09:27.804Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:09:27.905Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:09:29.198Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:09:29.199Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:09:29.202Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:09:29.202Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:09:29.203Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:09:38.355Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:09:39.650Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:09:39.650Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:09:39.653Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:09:39.654Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:09:39.655Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:09:50.063Z] Accepted request POST /bostonhacks-cacioepepe/us-central1/oneClickDownload --> oneClickDownload
+[debug] [2020-04-15T10:09:50.348Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:09:50.348Z] [functions] Beginning execution of "oneClickDownload"
+[debug] [2020-04-15T10:09:50.348Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:09:50.352Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:09:50.352Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:09:50.353Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:09:50.878Z] DEBUG: [runtime-status] Trigger "oneClickDownload" has been found, beginning invocation! {}
+[debug] [2020-04-15T10:09:50.878Z] DEBUG: [runtime-status]  {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"oneClickDownload","entryPoint":"oneClickDownload"}
+[debug] [2020-04-15T10:09:50.878Z] DEBUG: [runtime-status] Running oneClickDownload in mode HTTPS {}
+[debug] [2020-04-15T10:09:50.883Z] {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15080.sock"}
+[debug] [2020-04-15T10:09:50.883Z] DEBUG: [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15080.sock"}
+[debug] [2020-04-15T10:09:50.906Z] DEBUG: [runtime-status] Ephemeral server used! {}
+[debug] [2020-04-15T10:09:50.916Z] DEBUG: [runtime-status] Ephemeral server survived. {}
+[info] >  Zip file created.
+[info] >  Zip file finalized
+[debug] [2020-04-15T10:09:54.768Z] [functions] Finished "oneClickDownload" in ~3s
+[debug] [2020-04-15T10:10:02.304Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:10:03.617Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:10:03.617Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:10:03.620Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:10:03.621Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:10:03.621Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:10:19.274Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:10:20.583Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:10:20.584Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:10:20.587Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:10:20.587Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:10:20.588Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:11:59.389Z] Accepted request POST /bostonhacks-cacioepepe/us-central1/oneClickDownload --> oneClickDownload
+[debug] [2020-04-15T10:11:59.951Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:11:59.952Z] [functions] Beginning execution of "oneClickDownload"
+[debug] [2020-04-15T10:11:59.952Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:11:59.960Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:11:59.962Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:11:59.963Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:12:00.746Z] DEBUG: [runtime-status] Trigger "oneClickDownload" has been found, beginning invocation! {}
+[debug] [2020-04-15T10:12:00.746Z] DEBUG: [runtime-status]  {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"oneClickDownload","entryPoint":"oneClickDownload"}
+[debug] [2020-04-15T10:12:00.746Z] DEBUG: [runtime-status] Running oneClickDownload in mode HTTPS {}
+[debug] [2020-04-15T10:12:00.752Z] {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15165.sock"}
+[debug] [2020-04-15T10:12:00.752Z] DEBUG: [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15165.sock"}
+[debug] [2020-04-15T10:12:00.777Z] DEBUG: [runtime-status] Ephemeral server used! {}
+[debug] [2020-04-15T10:12:00.785Z] DEBUG: [runtime-status] Ephemeral server survived. {}
+[info] >  Zip file created.
+[info] >  Unhandled error { Error: No such object: bostonhacks-cacioepepe.appspot.com/resumes/dBMfqIgG4rdMEo37b0kqjotVJbm2/Rishab Nayak_Resume.pdf
+[info] >      at new ApiError (/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/@google-cloud/common/build/src/util.js:58:15)
+[info] >      at Util.parseHttpRespMessage (/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/@google-cloud/common/build/src/util.js:160:41)
+[info] >      at Util.handleResp (/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/@google-cloud/common/build/src/util.js:134:76)
+[info] >      at Duplexify.requestStream.on.on.res (/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/@google-cloud/storage/build/src/file.js:823:31)
+[info] >      at Duplexify.emit (events.js:198:13)
+[info] >      at DestroyableTransform.emit (events.js:198:13)
+[info] >      at onResponse (/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/retry-request/index.js:200:19)
+[info] >      at PassThrough.<anonymous> (/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/retry-request/index.js:152:11)
+[info] >      at PassThrough.emit (events.js:203:15)
+[info] >      at /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/teeny-request/build/src/index.js:201:29
+[info] >    code: 404,
+[info] >    errors: [],
+[info] >    response:
+[info] >     PassThrough {
+[info] >       _readableState:
+[info] >        ReadableState {
+[info] >          objectMode: false,
+[info] >          highWaterMark: 16384,
+[info] >          buffer: BufferList { head: null, tail: null, length: 0 },
+[info] >          length: 0,
+[info] >          pipes: null,
+[info] >          pipesCount: 0,
+[info] >          flowing: false,
+[info] >          ended: true,
+[info] >          endEmitted: true,
+[info] >          reading: false,
+[info] >          sync: false,
+[info] >          needReadable: false,
+[info] >          emittedReadable: false,
+[info] >          readableListening: false,
+[info] >          resumeScheduled: false,
+[info] >          paused: false,
+[info] >          emitClose: true,
+[info] >          autoDestroy: false,
+[info] >          destroyed: false,
+[info] >          defaultEncoding: 'utf8',
+[info] >          awaitDrain: 0,
+[info] >          readingMore: false,
+[info] >          decoder: null,
+[info] >          encoding: null },
+[info] >       readable: false,
+[info] >       _events:
+[info] >        [Object: null prototype] { prefinish: [Function: prefinish], error: [Array] },
+[info] >       _eventsCount: 2,
+[info] >       _maxListeners: undefined,
+[info] >       _writableState:
+[info] >        WritableState {
+[info] >          objectMode: false,
+[info] >          highWaterMark: 16384,
+[info] >          finalCalled: false,
+[info] >          needDrain: false,
+[info] >          ending: true,
+[info] >          ended: true,
+[info] >          finished: true,
+[info] >          destroyed: false,
+[info] >          decodeStrings: true,
+[info] >          defaultEncoding: 'utf8',
+[info] >          length: 0,
+[info] >          writing: false,
+[info] >          corked: 0,
+[info] >          sync: false,
+[info] >          bufferProcessing: false,
+[info] >          onwrite: [Function: bound onwrite],
+[info] >          writecb: null,
+[info] >          writelen: 0,
+[info] >          bufferedRequest: null,
+[info] >          lastBufferedRequest: null,
+[info] >          pendingcb: 0,
+[info] >          prefinished: true,
+[info] >          errorEmitted: false,
+[info] >          emitClose: true,
+[info] >          autoDestroy: false,
+[info] >          bufferedRequestCount: 0,
+[info] >          corkedRequestsFree: [Object] },
+[info] >       writable: false,
+[info] >       allowHalfOpen: true,
+[info] >       _transformState:
+[info] >        { afterTransform: [Function: bound afterTransform],
+[info] >          needTransform: false,
+[info] >          transforming: false,
+[info] >          writecb: null,
+[info] >          writechunk: null,
+[info] >          writeencoding: 'buffer' },
+[info] >       statusCode: 404,
+[info] >       statusMessage: 'Not Found',
+[info] >       request:
+[info] >        { agent: false,
+[info] >          headers: [Object],
+[info] >          href:
+[info] >           'https://storage.googleapis.com/storage/v1/b/bostonhacks-cacioepepe.appspot.com/o/resumes%2FdBMfqIgG4rdMEo37b0kqjotVJbm2%2FRishab%20Nayak_Resume.pdf?alt=media' },
+[info] >       body: [Circular],
+[info] >       headers:
+[info] >        { 'alt-svc':
+[info] >           'quic=":443"; ma=2592000; v="46,43",h3-Q050=":443"; ma=2592000,h3-Q049=":443"; ma=2592000,h3-Q048=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,h3-T050=":443"; ma=2592000',
+[info] >          'cache-control': 'private, max-age=0',
+[info] >          connection: 'close',
+[info] >          'content-length': '111',
+[info] >          'content-type': 'text/html; charset=UTF-8',
+[info] >          date: 'Wed, 15 Apr 2020 10:12:03 GMT',
+[info] >          expires: 'Wed, 15 Apr 2020 10:12:03 GMT',
+[info] >          server: 'UploadServer',
+[info] >          vary: 'Origin, X-Origin',
+[info] >          'x-guploader-uploadid':
+[info] >           'AEnB2UoJMq46sSj985rXJStqW1W3Te5sdyx3aaRg4pvvoI89kn9aKRy5JSvd8eETr5oBzuptyr94g7S5Sy0hHnmMyZRm0_ffkQ' },
+[info] >       toJSON: [Function: toJSON] },
+[info] >    message:
+[info] >     'No such object: bostonhacks-cacioepepe.appspot.com/resumes/dBMfqIgG4rdMEo37b0kqjotVJbm2/Rishab Nayak_Resume.pdf' }
+[debug] [2020-04-15T10:12:04.045Z] [functions] Finished "oneClickDownload" in ~3s
+[debug] [2020-04-15T10:12:37.511Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:12:39.063Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:12:39.064Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:12:39.070Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:12:39.071Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:12:39.072Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:12:41.456Z] Accepted request POST /bostonhacks-cacioepepe/us-central1/oneClickDownload --> oneClickDownload
+[debug] [2020-04-15T10:12:41.738Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:12:41.738Z] [functions] Beginning execution of "oneClickDownload"
+[debug] [2020-04-15T10:12:41.738Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:12:41.742Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:12:41.742Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:12:41.743Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:12:42.156Z] DEBUG: [runtime-status] Trigger "oneClickDownload" has been found, beginning invocation! {}
+[debug] [2020-04-15T10:12:42.156Z] DEBUG: [runtime-status]  {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"oneClickDownload","entryPoint":"oneClickDownload"}
+[debug] [2020-04-15T10:12:42.156Z] DEBUG: [runtime-status] Running oneClickDownload in mode HTTPS {}
+[debug] [2020-04-15T10:12:42.162Z] {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15168.sock"}
+[debug] [2020-04-15T10:12:42.162Z] DEBUG: [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15168.sock"}
+[debug] [2020-04-15T10:12:42.184Z] DEBUG: [runtime-status] Ephemeral server used! {}
+[debug] [2020-04-15T10:12:42.191Z] DEBUG: [runtime-status] Ephemeral server survived. {}
+[info] >  [ 'resumes/EJMfmkGZlwPHDCsb5YURpKPhLUf1/Jin Young Bang_Resume.pdf',
+[info] >    'resumes/MgjqcK1GEtN2FZxehZXocuux85g2/Rishab Nayak_Resume.pdf',
+[info] >    'resumes/dBMfqIgG4rdMEo37b0kqjotVJbm2/Rishab Nayak_Resume.pdf' ]
+[info] >  [ 'Jin Young Bang_Resume.pdf',
+[info] >    'Rishab Nayak_Resume.pdf',
+[info] >    'Rishab Nayak_Resume.pdf' ]
+[info] >  Zip file created.
+[info] >  Unhandled error { Error: No such object: bostonhacks-cacioepepe.appspot.com/resumes/dBMfqIgG4rdMEo37b0kqjotVJbm2/Rishab Nayak_Resume.pdf
+[info] >      at new ApiError (/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/@google-cloud/common/build/src/util.js:58:15)
+[info] >      at Util.parseHttpRespMessage (/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/@google-cloud/common/build/src/util.js:160:41)
+[info] >      at Util.handleResp (/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/@google-cloud/common/build/src/util.js:134:76)
+[info] >      at Duplexify.requestStream.on.on.res (/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/@google-cloud/storage/build/src/file.js:823:31)
+[info] >      at Duplexify.emit (events.js:198:13)
+[info] >      at DestroyableTransform.emit (events.js:198:13)
+[info] >      at onResponse (/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/retry-request/index.js:200:19)
+[info] >      at PassThrough.<anonymous> (/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/retry-request/index.js:152:11)
+[info] >      at PassThrough.emit (events.js:203:15)
+[info] >      at /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/teeny-request/build/src/index.js:201:29
+[info] >    code: 404,
+[info] >    errors: [],
+[info] >    response:
+[info] >     PassThrough {
+[info] >       _readableState:
+[info] >        ReadableState {
+[info] >          objectMode: false,
+[info] >          highWaterMark: 16384,
+[info] >          buffer: BufferList { head: null, tail: null, length: 0 },
+[info] >          length: 0,
+[info] >          pipes: null,
+[info] >          pipesCount: 0,
+[info] >          flowing: false,
+[info] >          ended: true,
+[info] >          endEmitted: true,
+[info] >          reading: false,
+[info] >          sync: false,
+[info] >          needReadable: false,
+[info] >          emittedReadable: false,
+[info] >          readableListening: false,
+[info] >          resumeScheduled: false,
+[info] >          paused: false,
+[info] >          emitClose: true,
+[info] >          autoDestroy: false,
+[info] >          destroyed: false,
+[info] >          defaultEncoding: 'utf8',
+[info] >          awaitDrain: 0,
+[info] >          readingMore: false,
+[info] >          decoder: null,
+[info] >          encoding: null },
+[info] >       readable: false,
+[info] >       _events:
+[info] >        [Object: null prototype] { prefinish: [Function: prefinish], error: [Array] },
+[info] >       _eventsCount: 2,
+[info] >       _maxListeners: undefined,
+[info] >       _writableState:
+[info] >        WritableState {
+[info] >          objectMode: false,
+[info] >          highWaterMark: 16384,
+[info] >          finalCalled: false,
+[info] >          needDrain: false,
+[info] >          ending: true,
+[info] >          ended: true,
+[info] >          finished: true,
+[info] >          destroyed: false,
+[info] >          decodeStrings: true,
+[info] >          defaultEncoding: 'utf8',
+[info] >          length: 0,
+[info] >          writing: false,
+[info] >          corked: 0,
+[info] >          sync: false,
+[info] >          bufferProcessing: false,
+[info] >          onwrite: [Function: bound onwrite],
+[info] >          writecb: null,
+[info] >          writelen: 0,
+[info] >          bufferedRequest: null,
+[info] >          lastBufferedRequest: null,
+[info] >          pendingcb: 0,
+[info] >          prefinished: true,
+[info] >          errorEmitted: false,
+[info] >          emitClose: true,
+[info] >          autoDestroy: false,
+[info] >          bufferedRequestCount: 0,
+[info] >          corkedRequestsFree: [Object] },
+[info] >       writable: false,
+[info] >       allowHalfOpen: true,
+[info] >       _transformState:
+[info] >        { afterTransform: [Function: bound afterTransform],
+[info] >          needTransform: false,
+[info] >          transforming: false,
+[info] >          writecb: null,
+[info] >          writechunk: null,
+[info] >          writeencoding: 'buffer' },
+[info] >       statusCode: 404,
+[info] >       statusMessage: 'Not Found',
+[info] >       request:
+[info] >        { agent: false,
+[info] >          headers: [Object],
+[info] >          href:
+[info] >           'https://storage.googleapis.com/storage/v1/b/bostonhacks-cacioepepe.appspot.com/o/resumes%2FdBMfqIgG4rdMEo37b0kqjotVJbm2%2FRishab%20Nayak_Resume.pdf?alt=media' },
+[info] >       body: [Circular],
+[info] >       headers:
+[info] >        { 'alt-svc':
+[info] >           'quic=":443"; ma=2592000; v="46,43",h3-Q050=":443"; ma=2592000,h3-Q049=":443"; ma=2592000,h3-Q048=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,h3-T050=":443"; ma=2592000',
+[info] >          'cache-control': 'private, max-age=0',
+[info] >          connection: 'close',
+[info] >          'content-length': '111',
+[info] >          'content-type': 'text/html; charset=UTF-8',
+[info] >          date: 'Wed, 15 Apr 2020 10:12:45 GMT',
+[info] >          expires: 'Wed, 15 Apr 2020 10:12:45 GMT',
+[info] >          server: 'UploadServer',
+[info] >          vary: 'Origin, X-Origin',
+[info] >          'x-guploader-uploadid':
+[info] >           'AEnB2UpXlZ6abOMe2j_Ayn5KaMA8B2kdMeyZZY4NKKXeXOePXq3X4243X5OX5MlFyJeJdlKe3_7y3B_rNBSBZ8peE0ux1vBBdg' },
+[info] >       toJSON: [Function: toJSON] },
+[info] >    message:
+[info] >     'No such object: bostonhacks-cacioepepe.appspot.com/resumes/dBMfqIgG4rdMEo37b0kqjotVJbm2/Rishab Nayak_Resume.pdf' }
+[debug] [2020-04-15T10:12:45.289Z] [functions] Finished "oneClickDownload" in ~3s
+[debug] [2020-04-15T10:15:07.086Z] Accepted request POST /bostonhacks-cacioepepe/us-central1/oneClickDownload --> oneClickDownload
+[debug] [2020-04-15T10:15:07.586Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:15:07.586Z] [functions] Beginning execution of "oneClickDownload"
+[debug] [2020-04-15T10:15:07.587Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:15:07.592Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:15:07.594Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:15:07.595Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:15:08.462Z] DEBUG: [runtime-status] Trigger "oneClickDownload" has been found, beginning invocation! {}
+[debug] [2020-04-15T10:15:08.462Z] DEBUG: [runtime-status]  {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"oneClickDownload","entryPoint":"oneClickDownload"}
+[debug] [2020-04-15T10:15:08.462Z] DEBUG: [runtime-status] Running oneClickDownload in mode HTTPS {}
+[debug] [2020-04-15T10:15:08.470Z] {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15192.sock"}
+[debug] [2020-04-15T10:15:08.471Z] DEBUG: [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15192.sock"}
+[debug] [2020-04-15T10:15:08.494Z] DEBUG: [runtime-status] Ephemeral server used! {}
+[debug] [2020-04-15T10:15:08.501Z] DEBUG: [runtime-status] Ephemeral server survived. {}
+[info] >  [ 'resumes/EJMfmkGZlwPHDCsb5YURpKPhLUf1/Jin Young Bang_Resume.pdf',
+[info] >    'resumes/MgjqcK1GEtN2FZxehZXocuux85g2/Rishab Nayak_Resume.pdf' ]
+[info] >  [ 'Jin Young Bang_Resume.pdf', 'Rishab Nayak_Resume.pdf' ]
+[info] >  Zip file created.
+[info] >  Zip file finalized.
+[debug] [2020-04-15T10:15:11.830Z] [functions] Finished "oneClickDownload" in ~3s
+[debug] [2020-04-15T10:18:12.675Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/applicationFunctions/uploadResume.function.js changed, reloading triggers
+[debug] [2020-04-15T10:18:14.163Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:18:14.164Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:18:14.169Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:18:14.170Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:18:14.170Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:18:27.847Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:18:29.323Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:18:29.323Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:18:29.327Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:18:29.329Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:18:29.330Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:18:50.978Z] Accepted request POST /bostonhacks-cacioepepe/us-central1/oneClickDownload --> oneClickDownload
+[debug] [2020-04-15T10:18:51.573Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:18:51.573Z] [functions] Beginning execution of "oneClickDownload"
+[debug] [2020-04-15T10:18:51.574Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:18:51.579Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:18:51.581Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:18:51.581Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:18:52.333Z] DEBUG: [runtime-status] Trigger "oneClickDownload" has been found, beginning invocation! {}
+[debug] [2020-04-15T10:18:52.333Z] DEBUG: [runtime-status]  {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"oneClickDownload","entryPoint":"oneClickDownload"}
+[debug] [2020-04-15T10:18:52.333Z] DEBUG: [runtime-status] Running oneClickDownload in mode HTTPS {}
+[debug] [2020-04-15T10:18:52.340Z] {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15258.sock"}
+[debug] [2020-04-15T10:18:52.340Z] DEBUG: [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15258.sock"}
+[debug] [2020-04-15T10:18:52.367Z] DEBUG: [runtime-status] Ephemeral server used! {}
+[debug] [2020-04-15T10:18:52.374Z] DEBUG: [runtime-status] Ephemeral server survived. {}
+[info] >  [ 'resumes/EJMfmkGZlwPHDCsb5YURpKPhLUf1/Jin Young Bang_Resume.pdf',
+[info] >    'resumes/MgjqcK1GEtN2FZxehZXocuux85g2/Rishab Nayak_Resume.pdf' ]
+[info] >  [ 'Jin Young Bang_Resume.pdf', 'Rishab Nayak_Resume.pdf' ]
+[info] >  Zip file created.
+[info] >  Zip file finalized.
+[info] >  Zip file generated.
+[debug] [2020-04-15T10:18:55.879Z] [functions] Finished "oneClickDownload" in ~3s
+[debug] [2020-04-15T10:20:14.184Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:20:15.697Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:20:15.697Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:20:15.701Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:20:15.702Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:20:15.703Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:20:20.593Z] Accepted request POST /bostonhacks-cacioepepe/us-central1/oneClickDownload --> oneClickDownload
+[debug] [2020-04-15T10:20:21.030Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:20:21.030Z] [functions] Beginning execution of "oneClickDownload"
+[debug] [2020-04-15T10:20:21.030Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:20:21.033Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:20:21.034Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:20:21.034Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:20:21.403Z] DEBUG: [runtime-status] Trigger "oneClickDownload" has been found, beginning invocation! {}
+[debug] [2020-04-15T10:20:21.403Z] DEBUG: [runtime-status]  {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"oneClickDownload","entryPoint":"oneClickDownload"}
+[debug] [2020-04-15T10:20:21.403Z] DEBUG: [runtime-status] Running oneClickDownload in mode HTTPS {}
+[debug] [2020-04-15T10:20:21.409Z] {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15293.sock"}
+[debug] [2020-04-15T10:20:21.410Z] DEBUG: [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15293.sock"}
+[debug] [2020-04-15T10:20:21.435Z] DEBUG: [runtime-status] Ephemeral server used! {}
+[debug] [2020-04-15T10:20:21.442Z] DEBUG: [runtime-status] Ephemeral server survived. {}
+[info] >  [ 'resumes/EJMfmkGZlwPHDCsb5YURpKPhLUf1/Jin Young Bang_Resume.pdf',
+[info] >    'resumes/MgjqcK1GEtN2FZxehZXocuux85g2/Rishab Nayak_Resume.pdf' ]
+[info] >  [ 'Jin Young Bang_Resume.pdf', 'Rishab Nayak_Resume.pdf' ]
+[info] >  Zip file created.
+[info] >  Zip file finalized.
+[info] >  Zip file generated.
+[debug] [2020-04-15T10:20:24.805Z] [functions] Finished "oneClickDownload" in ~3s
+[debug] [2020-04-15T10:20:54.838Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:20:56.366Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:20:56.366Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:20:56.371Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:20:56.373Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:20:56.375Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:20:59.341Z] Accepted request POST /bostonhacks-cacioepepe/us-central1/oneClickDownload --> oneClickDownload
+[debug] [2020-04-15T10:20:59.603Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:20:59.604Z] [functions] Beginning execution of "oneClickDownload"
+[debug] [2020-04-15T10:20:59.604Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:20:59.607Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:20:59.608Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:20:59.610Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:20:59.996Z] DEBUG: [runtime-status] Trigger "oneClickDownload" has been found, beginning invocation! {}
+[debug] [2020-04-15T10:20:59.996Z] DEBUG: [runtime-status]  {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"oneClickDownload","entryPoint":"oneClickDownload"}
+[debug] [2020-04-15T10:20:59.996Z] DEBUG: [runtime-status] Running oneClickDownload in mode HTTPS {}
+[debug] [2020-04-15T10:21:00.001Z] {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15304.sock"}
+[debug] [2020-04-15T10:21:00.001Z] DEBUG: [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15304.sock"}
+[debug] [2020-04-15T10:21:00.022Z] DEBUG: [runtime-status] Ephemeral server used! {}
+[debug] [2020-04-15T10:21:00.029Z] DEBUG: [runtime-status] Ephemeral server survived. {}
+[info] >  [ 'resumes/EJMfmkGZlwPHDCsb5YURpKPhLUf1/Jin Young Bang_Resume.pdf',
+[info] >    'resumes/MgjqcK1GEtN2FZxehZXocuux85g2/Rishab Nayak_Resume.pdf' ]
+[info] >  [ 'Jin Young Bang_Resume.pdf', 'Rishab Nayak_Resume.pdf' ]
+[info] >  Zip file created.
+[info] >  Zip file finalized.
+[info] >  Zip file generated.
+[debug] [2020-04-15T10:21:03.666Z] [functions] Finished "oneClickDownload" in ~3s
+[debug] [2020-04-15T10:21:31.386Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:21:32.906Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:21:32.906Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:21:32.911Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:21:32.912Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:21:32.914Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:21:36.102Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:21:37.407Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:21:37.408Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:21:37.410Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:21:37.411Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:21:37.412Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:22:11.247Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/index.js changed, reloading triggers
+[debug] [2020-04-15T10:22:11.247Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/package-lock.json changed, reloading triggers
+[debug] [2020-04-15T10:22:11.247Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/package.json changed, reloading triggers
+[debug] [2020-04-15T10:22:12.537Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:22:12.538Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:22:12.540Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:22:12.541Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:22:12.542Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:22:16.675Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/testing.zip changed, reloading triggers
+[debug] [2020-04-15T10:22:17.943Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:22:17.943Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:22:17.946Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:22:17.946Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:22:17.947Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:22:18.945Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/lmaooooo.zip changed, reloading triggers
+[debug] [2020-04-15T10:22:20.230Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:22:20.231Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:22:20.234Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:22:20.235Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:22:20.235Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:22:21.520Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/example.zip changed, reloading triggers
+[debug] [2020-04-15T10:22:22.783Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:22:22.784Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:22:22.788Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:22:22.789Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:22:22.792Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:22:23.486Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/file.zip changed, reloading triggers
+[debug] [2020-04-15T10:22:23.744Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/testing.zip changed, reloading triggers
+[debug] [2020-04-15T10:22:23.745Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/lmaooooo.zip changed, reloading triggers
+[debug] [2020-04-15T10:22:23.745Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/example.zip changed, reloading triggers
+[debug] [2020-04-15T10:22:23.745Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/file.zip changed, reloading triggers
+[debug] [2020-04-15T10:22:25.006Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:22:25.007Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:22:25.010Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:22:25.010Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:22:25.011Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:22:37.700Z] Accepted request POST /bostonhacks-cacioepepe/us-central1/oneClickDownload --> oneClickDownload
+[debug] [2020-04-15T10:22:37.961Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:22:37.961Z] [functions] Beginning execution of "oneClickDownload"
+[debug] [2020-04-15T10:22:37.962Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:22:37.964Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:22:37.965Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:22:37.966Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:22:38.342Z] DEBUG: [runtime-status] Trigger "oneClickDownload" has been found, beginning invocation! {}
+[debug] [2020-04-15T10:22:38.343Z] DEBUG: [runtime-status]  {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"oneClickDownload","entryPoint":"oneClickDownload"}
+[debug] [2020-04-15T10:22:38.343Z] DEBUG: [runtime-status] Running oneClickDownload in mode HTTPS {}
+[debug] [2020-04-15T10:22:38.348Z] {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15412.sock"}
+[debug] [2020-04-15T10:22:38.348Z] DEBUG: [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15412.sock"}
+[debug] [2020-04-15T10:22:38.366Z] DEBUG: [runtime-status] Ephemeral server used! {}
+[debug] [2020-04-15T10:22:38.373Z] DEBUG: [runtime-status] Ephemeral server survived. {}
+[info] >  Zip file created.
+[info] >  Zip file finalized.
+[info] >  Zip file generated.
+[debug] [2020-04-15T10:22:41.982Z] [functions] Finished "oneClickDownload" in ~3s
+[debug] [2020-04-15T10:22:58.091Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/createNewSponsor.function.js changed, reloading triggers
+[debug] [2020-04-15T10:22:58.091Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:22:59.371Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:22:59.372Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:22:59.375Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:22:59.376Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:22:59.376Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:24:03.408Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:24:05.013Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:24:05.014Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:24:05.020Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:24:05.022Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:24:05.024Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:24:41.264Z] DEBUG: File /Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/sponsorFunctions/oneClickDownload.function.js changed, reloading triggers
+[debug] [2020-04-15T10:24:42.728Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:24:42.729Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:24:42.734Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:24:42.735Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:24:42.736Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:24:43.774Z] Accepted request POST /bostonhacks-cacioepepe/us-central1/oneClickDownload --> oneClickDownload
+[debug] [2020-04-15T10:24:44.027Z] DEBUG: [runtime-status] Functions runtime initialized. {"cwd":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions","node_version":"10.16.3"}
+[debug] [2020-04-15T10:24:44.028Z] [functions] Beginning execution of "oneClickDownload"
+[debug] [2020-04-15T10:24:44.028Z] DEBUG: [runtime-status] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true} {}
+[debug] [2020-04-15T10:24:44.031Z] DEBUG: [runtime-status] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-04-15T10:24:44.032Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to /Users/jybang/Documents/GitHub/BostonHacks/Cacioepepe-a8d01db9ada2.json. Non-emulated services will access production using these credentials. Be careful!
+[debug] [2020-04-15T10:24:44.032Z] DEBUG: [runtime-status] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jybang/Documents/GitHub/BostonHacks/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-04-15T10:24:44.398Z] DEBUG: [runtime-status] Trigger "oneClickDownload" has been found, beginning invocation! {}
+[debug] [2020-04-15T10:24:44.399Z] DEBUG: [runtime-status]  {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"oneClickDownload","entryPoint":"oneClickDownload"}
+[debug] [2020-04-15T10:24:44.399Z] DEBUG: [runtime-status] Running oneClickDownload in mode HTTPS {}
+[debug] [2020-04-15T10:24:44.404Z] {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15647.sock"}
+[debug] [2020-04-15T10:24:44.405Z] DEBUG: [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/5l/kk7qyz_n0w501b486m0r8dnm0000gn/T/firebase_emulator_invocation_15647.sock"}
+[debug] [2020-04-15T10:24:44.432Z] DEBUG: [runtime-status] Ephemeral server used! {}
+[debug] [2020-04-15T10:24:44.439Z] DEBUG: [runtime-status] Ephemeral server survived. {}
+[info] >  Zip file created.
+[info] >  Zip file finalized.
+[info] >  Zip file generated.
+[debug] [2020-04-15T10:24:47.671Z] [functions] Finished "oneClickDownload" in ~3s

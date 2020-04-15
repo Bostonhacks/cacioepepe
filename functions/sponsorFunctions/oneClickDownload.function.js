@@ -2,20 +2,15 @@ const admin = require("firebase-admin");
 const functions = require("firebase-functions");
 const archiver = require("archiver");
 const UUID = require("uuid-v4");
-const path = require("path");
 const os = require("os");
 const fs = require("fs");
 
 const db = admin.firestore();
 
 const { Storage } = require("@google-cloud/storage");
-
-// Instantiates a client. If you don't specify credentials when constructing
-// the client, the client library will look for credentials in the
-// environment.
 const storage = new Storage();
 
-module.exports.oneClickDownload = functions.https.onCall(async data => {
+module.exports.oneClickDownload = functions.https.onCall(async () => {
   // Gets list of resume pathfile in Firebase Storage
   const applications = db.collection("applications").where("status", ">", 0);
   var userData = await applications.get();
@@ -27,36 +22,42 @@ module.exports.oneClickDownload = functions.https.onCall(async data => {
     paths.push(element.data().resume[1]);
   });
 
-  const storage = new Storage();
+  // console.log(paths);
+  // console.log(names);
+
   const bucket = storage.bucket("bostonhacks-cacioepepe.appspot.com");
 
   // Creates a temporary file path
-  const tempFilePath = path.join(os.tmpdir(), "testing");
+  const tempFilePath = os.tmpdir();
 
-  var output = fs.createWriteStream("./testing.zip");
+  // Creates a zip file
+  var output = fs.createWriteStream(tempFilePath + "/Resume.zip");
   var archive = archiver("zip", {
     gzip: true,
     zlib: { level: 9 } // Sets the compression level.
   });
   archive.pipe(output);
 
+  console.log("Zip file created.");
+
   // Downloads the resumes to the tempfile
   var uuid = UUID();
   for (var i = 0; i < paths.length; i++) {
     var file = bucket.file(paths[i]);
     await file.download({
-      destination: tempFilePath
+      destination: tempFilePath + "/" + names[i]
     });
     // Attempting to put the files into the zip file
-    await archive.file(names[i], { name: names[i] });
-    archive.file(tempFilePath + "/" + names[i], {name: names[i]})
-
+    archive.file(tempFilePath + "/" + names[i], { name: names[i] });
   }
+  // Finalize the zip file with all the resumes inside
+  await archive.finalize();
 
-  console.log("done");
+  console.log("Zip file finalized.");
 
-  await bucket.upload("testing.zip", {
-    destination: "allResumes/" + "testing.zip",
+  // Uploads resume back to allResumes folder in Firebase Storage
+  await bucket.upload(tempFilePath + "/Resume.zip", {
+    destination: "allResumes/" + "Resume.zip",
     metadata: {
       contentType: "application/zip",
       metadata: {
@@ -65,5 +66,18 @@ module.exports.oneClickDownload = functions.https.onCall(async data => {
     }
   });
 
-  return fs.unlinkSync(tempFilePath);
+  console.log("Zip file generated.");
+
+  return {
+    URL:
+      "https://firebasestorage.googleapis.com/v0/b/" +
+      bucket.name +
+      "/o/" +
+      "allResumes" +
+      "%2F" +
+      encodeURIComponent("Resume.zip") +
+      "?alt=media&token=" +
+      uuid,
+    location: "allResumes/Resume.zip"
+  };
 });
