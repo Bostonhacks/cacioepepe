@@ -23,12 +23,12 @@ module.exports.uploadResume = functions.https.onCall(async data => {
       "https://firebasestorage.googleapis.com/v0/b/" +
       bucket.name +
       "/o/" +
-      "allResumes%2F" +
+      "resumes%2F" +
       data.uid +
       "%2F" +
-      encodeURIComponent("Resume.zip") +
+      encodeURIComponent(data.displayName + "_Resume.pdf") +
       "?alt=media&token=" +
       uuid,
-    location: "allResumes/Resume.zip"
+    location: "resumes/" + data.uid + "/" + data.displayName + "_Resume.pdf"
   };
 });
