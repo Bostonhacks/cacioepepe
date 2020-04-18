@@ -25,13 +25,8 @@
     </v-container>
 
     <v-container>
-      <h1>
-        Recap -
-        <v-btn @click="toggleYearSelect()" elevation="0">
-          <h1>{{years[yearIndex]}}</h1>
-        </v-btn>
-      </h1>
-      <v-card class="mx-auto" max-width="300" tile v-if="renderYearSelect">
+      <h1>Recap -</h1>
+      <v-card class="mx-auto" max-width="300" tile>
         <v-list shaped>
           <v-subheader>Select a Year</v-subheader>
           <v-list-item-group v-model="yearIndex" color="primary">
@@ -47,13 +42,19 @@
 
       <v-row>
         <v-col>
-          <GenderChart v-if="renderComponent" :year="years[yearIndex]" />
+          <LineChart :chartData="lineChartData" />
         </v-col>
         <v-col>
-          <MajorChart v-if="renderComponent" :year="years[yearIndex]" :chart-data="testChartData" />
-        </v-col>
-        <v-col>
-          <LineGraph v-if="renderComponent" :year="yearIndex" :chart-data="testChartData" />
+          <PieChart
+            :year="yearIndex"
+            :chartData="majorChartData"
+            id="majorChart"
+          />
+          <PieChart
+            :year="yearIndex"
+            :chartData="genderChartData"
+            id="genderChart"
+          />
         </v-col>
       </v-row>
     </v-container>
@@ -69,19 +70,17 @@
 </template>
 
 <script>
-import GenderChart from "../components/GenderChart";
-import MajorChart from "../components/MajorChart";
-import LineGraph from "../components/LineGraph";
+import LineChart from "../components/LineChart";
 import SponsorUI from "../components/SponsorUI";
 import GeneralSponsorTable from "../components/GeneralSponsorTable";
 import RecruitingSponsorTable from "../components/RecruitingSponsorTable";
 import BrandingSponsorTable from "../components/BrandingSponsorTable";
+import PieChart from "../components/PieChart";
 
 export default {
   components: {
-    GenderChart,
-    MajorChart,
-    LineGraph,
+    LineChart,
+    PieChart,
     SponsorUI,
     GeneralSponsorTable,
     RecruitingSponsorTable,
@@ -99,14 +98,21 @@ export default {
     return {
       yearIndex: "3",
       years: ["2016", "2017", "2018", "2019"],
-      renderYearSelect: false,
-      renderComponent: true,
-      updateData: {
-        label: "Wooo data was updated",
-        backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-        data: [50, 30, 20]
+      lineChartData: {
+        labels: ["2016", "2017", "2018", "2019"],
+        datasets: [
+          {
+            backgroundColor: "#f87979",
+            borderColor: "#f87979",
+            radius: 5,
+            borderWidth: 5,
+            data: [1024, 1223, 1480, 1657],
+            fill: false,
+            showLines: false
+          }
+        ]
       },
-      testChartData: {
+      majorChartData: {
         labels: [
           "Computer Science",
           "Electrical Engineering",
@@ -117,22 +123,60 @@ export default {
             label: "Data One",
             backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
             data: [40, 20, 10]
+          },
+          {
+            label: "Data Two",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: [10, 90, 10]
+          },
+          {
+            label: "Data Three",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: [15, 15, 70]
+          },
+          {
+            label: "Data Four",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: [5, 5, 90]
+          },
+          {
+            label: "Data Five",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: [20, 70, 5]
+          }
+        ]
+      },
+      genderChartData: {
+        labels: ["Male", "Female", "Other"],
+        datasets: [
+          {
+            label: "2016",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: [40, 20, 10]
+          },
+          {
+            label: "2017",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: [10, 90, 10]
+          },
+          {
+            label: "2018",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: [15, 15, 70]
+          },
+          {
+            label: "2019",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: [5, 5, 90]
+          },
+          {
+            label: "2020",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: [20, 70, 5]
           }
         ]
       }
     };
-  },
-  methods: {
-    forceRerender(year) {
-      this.renderComponent = false;
-
-      this.$nextTick(() => {
-        this.renderComponent = true;
-      });
-    },
-    toggleYearSelect() {
-      this.renderYearSelect = !this.renderYearSelect;
-    }
   }
 };
 </script>
