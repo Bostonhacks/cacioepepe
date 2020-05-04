@@ -1,44 +1,38 @@
 <template>
-  <v-card>
+  <v-container>
     <SponsorUI />
 
-    <v-container class="Companies">
+    <v-container>
       <v-subheader>Sponsor Companies</v-subheader>
-
-      <v-list-item two-line>
+      <v-list-item two-line v-for="(company, i) in companyData" :key="i">
         <v-list-item-content>
-          <v-list-item-title>Company1</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-list-item two-line>
-        <v-list-item-content>
-          <v-list-item-title>Company2</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-list-item two-line>
-        <v-list-item-content>
-          <v-list-item-title>Company3</v-list-item-title>
+          <v-list-item-title>{{ company.name }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-container>
 
     <v-container>
-      <h1>Recap -</h1>
-      <v-card class="mx-auto" max-width="300" tile>
-        <v-list shaped>
-          <v-subheader>Select a Year</v-subheader>
-          <v-list-item-group v-model="yearIndex" color="primary">
-            <v-list-item v-for="(year, i) in years" :key="i">
-              <v-list-item-content>
-                <v-list-item-title v-text="year"></v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
+      <v-row>
+        <h1 class="display-1 pb-10">
+          Recap
+          <v-btn
+            class="display-1"
+            text
+            @click="toggleYearSelect = !toggleYearSelect"
+            >{{ years[yearIndex] }}</v-btn
+          >
+        </h1>
+      </v-row>
+      <v-card v-if="toggleYearSelect">
+        <v-subheader>Select a Year</v-subheader>
+        <v-list-item-group v-model="yearIndex" color="primary">
+          <v-list-item v-for="(year, i) in years" :key="i">
+            <v-list-item-content>
+              <v-list-item-title>{{ year }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
       </v-card>
-      <v-divider></v-divider>
 
       <v-row>
         <v-col>
@@ -50,6 +44,8 @@
             :chartData="majorChartData"
             id="majorChart"
           />
+        </v-col>
+        <v-col>
           <PieChart
             :year="yearIndex"
             :chartData="genderChartData"
@@ -60,13 +56,12 @@
     </v-container>
 
     <v-container>
-      <!-- sponsorTables -->
       <h2>Sponsor Benefits</h2>
       <GeneralSponsorTable />
       <RecruitingSponsorTable />
       <BrandingSponsorTable />
     </v-container>
-  </v-card>
+  </v-container>
 </template>
 
 <script>
@@ -89,14 +84,38 @@ export default {
   watch: {
     yearIndex: {
       handler: function() {
-        this.forceRerender();
+        if (this.yearIndex === undefined) {
+          this.yearIndex = this.lastYearIndex;
+        } else {
+          this.lastYearIndex = this.yearIndex;
+        }
       },
       deep: true
     }
   },
   data() {
     return {
+      toggleYearSelect: false,
+      companyData: [
+        {
+          name: "Company 1",
+          image: null
+        },
+        {
+          name: "Company 2",
+          image: null
+        },
+        {
+          name: "Company 3",
+          image: null
+        },
+        {
+          name: "Company 4",
+          image: null
+        }
+      ],
       yearIndex: "3",
+      lastYearIndex: "3",
       years: ["2016", "2017", "2018", "2019"],
       lineChartData: {
         labels: ["2016", "2017", "2018", "2019"],
