@@ -1,8 +1,5 @@
 <template>
   <v-layout align-center justify-center>
-    <div
-      :style="{ 'background-image': 'url(http://www.w3.org/2000/svg)' }"
-    ></div>
     <v-container>
       <v-layout text-center wrap>
         <v-flex xs12></v-flex>
