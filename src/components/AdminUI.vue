@@ -1,17 +1,28 @@
 <template>
   <v-layout align-center justify-center>
+    <div
+      :style="{ 'background-image': 'url(http://www.w3.org/2000/svg)' }"
+    ></div>
     <v-container>
       <v-layout text-center wrap>
         <v-flex xs12></v-flex>
         <v-flex mb-4>
           <h1 class="display-2 font-weight-bold mb-3">Welcome to God Mode!</h1>
           <template>
+            <div id="demo">
+              <demo-grid
+                :data="gridData"
+                :columns="gridColumns"
+                :filter-key="searchQuery"
+              >
+              </demo-grid>
+            </div>
             <modal name="pickStatus" :width="300" :height="300">
               <v-simple-table height="300px" width="100px">
                 <template v-slot:default>
                   <thead>
                     <tr>
-                      <th class="text-center">Status</th>
+                      <th class="text-left">Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -23,7 +34,11 @@
                           </svg>
                         </td>
                         <td class="text-center">
-                          <v-radio label="Started" value="started"></v-radio>
+                          <v-radio
+                            label="Started"
+                            value="started"
+                            item.status="0"
+                          ></v-radio>
                         </td>
                       </tr>
                       <tr>
@@ -36,6 +51,7 @@
                           <v-radio
                             label="Submitted"
                             value="submitted"
+                            item.status="1"
                           ></v-radio>
                         </td>
                       </tr>
@@ -46,7 +62,11 @@
                           </svg>
                         </td>
                         <td class="text-center">
-                          <v-radio label="Rejected" value="rejected"></v-radio>
+                          <v-radio
+                            label="Rejected"
+                            value="rejected"
+                            item.status="2"
+                          ></v-radio>
                         </td>
                       </tr>
                       <tr>
@@ -59,6 +79,7 @@
                           <v-radio
                             label="Waitlisted"
                             value="waitlisted"
+                            item.status="3"
                           ></v-radio>
                         </td>
                       </tr>
@@ -69,7 +90,11 @@
                           </svg>
                         </td>
                         <td class="text-center">
-                          <v-radio label="Accepcted" value="accepted"></v-radio>
+                          <v-radio
+                            label="Accepcted"
+                            value="accepted"
+                            item.status="4"
+                          ></v-radio>
                         </td>
                       </tr>
                       <tr>
@@ -82,6 +107,7 @@
                           <v-radio
                             label="Confirmed"
                             value="confirmed"
+                            item.status="5"
                           ></v-radio>
                         </td>
                       </tr>
@@ -92,7 +118,12 @@
                           </svg>
                         </td>
                         <td class="text-center">
-                          <v-radio label="Declined" value="Declined"></v-radio>
+                          <v-radio
+                            label="Declined"
+                            value="Declined"
+                            item.status="6"
+                          >
+                          </v-radio>
                         </td>
                       </tr>
                     </v-radio-group>
@@ -100,12 +131,20 @@
                 </template>
               </v-simple-table>
             </modal>
+            <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search"
+              single-line
+              hide-details
+            ></v-text-field>
             <v-data-table
               v-if="data !== null"
               :headers="headers"
               :items="data"
               :items-per-page="5"
               class="elevation-1"
+              :search="search"
             >
               <template v-slot:item.status="{ item }">
                 <!-- ORANGE -->
@@ -159,6 +198,15 @@
                       <circle cx="20" cy="20" r="10" fill="red" />
                     </svg></button
                 ></span>
+                <!-- Edit and Delete -->
+                <td class="justify-center layout px-0">
+                  <v-icon small class="mr-2" @click="editItem(props.item)">
+                    edit
+                  </v-icon>
+                  <v-icon small @click="deleteItem(props.item)">
+                    delete
+                  </v-icon>
+                </td>
               </template>
             </v-data-table>
           </template>
@@ -169,7 +217,10 @@
 </template>
 
 <script>
+import Vue from "vue";
 import { functions } from "../firebase/init";
+import { GridPlugin, Edit, Toolbar } from "@syncfusion/ej2-vue-grids";
+Vue.use(GridPlugin);
 
 export default {
   name: "AdminUI",
@@ -209,8 +260,17 @@ export default {
         { text: "T&C2", value: "t&c2" },
         { text: "Status?", value: "status" }
       ],
-      data: null
+      data: null,
+      editOptions: {
+        allowAdding: true,
+        allowEditing: true,
+        allowDeleting: true
+      },
+      toolbarOptions: ["Add", "Edit", "Delete"]
     };
+  },
+  provide: {
+    grid: [Edit, Toolbar]
   },
   async mounted() {
     var out = await functions.httpsCallable("retrieveAllApplications")({});
