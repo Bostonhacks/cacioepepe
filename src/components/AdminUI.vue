@@ -1,9 +1,12 @@
+
+
 <template>
   <v-layout align-center justify-center>
     <v-container>
       <v-layout text-center wrap>
         <v-flex xs12></v-flex>
         <v-flex mb-4>
+          <AdminStats />
           <h1 class="display-2 font-weight-bold mb-3">Welcome to God Mode!</h1>
           <template>
             <div id="demo">
@@ -14,6 +17,8 @@
               >
               </demo-grid>
             </div>
+
+            <!-- Pick Status Modal -->
             <modal name="pickStatus" :width="300" :height="300">
               <v-simple-table height="300px" width="100px">
                 <template v-slot:default>
@@ -38,21 +43,21 @@
                           ></v-radio>
                         </td>
                       </tr>
-                      <tr>
-                        <td class="text-center">
-                          <svg height="30" width="50">
-                            <circle cx="20" cy="20" r="10" fill="teal" />
-                          </svg>
-                        </td>
-                        <td class="text-center">
-                          <v-radio
-                            label="Submitted"
-                            value="submitted"
-                            item.status="1"
-                          ></v-radio>
-                        </td>
-                      </tr>
-                      <tr>
+                        <tr>
+                          <td class="text-center">
+                            <svg height="30" width="50">
+                              <circle cx="20" cy="20" r="10" fill="teal" />
+                            </svg>
+                          </td>
+                          <td class="text-center">
+                            <v-radio
+                              label="Submitted"
+                              value="submitted"
+                              item.status="1"
+                            ></v-radio>
+                          </td>
+                        </tr>
+                        <tr @click="this.methods.reject;">
                         <td class="text-center">
                           <svg height="30" width="50">
                             <circle cx="20" cy="20" r="10" fill="black" />
@@ -128,6 +133,7 @@
                 </template>
               </v-simple-table>
             </modal>
+
             <v-text-field
               v-model="search"
               append-icon="mdi-magnify"
@@ -195,15 +201,6 @@
                       <circle cx="20" cy="20" r="10" fill="red" />
                     </svg></button
                 ></span>
-                <!-- Edit and Delete -->
-                <td class="justify-center layout px-0">
-                  <v-icon small class="mr-2" @click="editItem(props.item)">
-                    edit
-                  </v-icon>
-                  <v-icon small @click="deleteItem(props.item)">
-                    delete
-                  </v-icon>
-                </td>
               </template>
             </v-data-table>
           </template>
@@ -215,6 +212,7 @@
 
 <script>
 import Vue from "vue";
+import AdminStats from "../components/AdminStats";
 import { functions } from "../firebase/init";
 import { GridPlugin, Edit, Toolbar } from "@syncfusion/ej2-vue-grids";
 Vue.use(GridPlugin);
@@ -226,10 +224,16 @@ export default {
       return this.$store.state.user;
     }
   },
+  methods: {
+    reject: function() {
+      console.log("test");  // var out = functions.httpsCallable("rejectApplicant")({});
+    }
+  },
   data() {
     return {
       time: 0,
       duration: 5000,
+      search: '',
       headers: [
         {
           text: "Name",
@@ -272,8 +276,12 @@ export default {
   async mounted() {
     var out = await functions.httpsCallable("retrieveAllApplications")({});
     this.data = out.data;
+  },
+  components: {
+    AdminStats
   }
 };
+
 </script>
 
 <style></style>
