@@ -1,5 +1,3 @@
-
-
 <template>
   <v-layout align-center justify-center>
     <v-container>
@@ -21,116 +19,117 @@
             <!-- Pick Status Modal -->
             <modal name="pickStatus" :width="300" :height="300">
               <v-simple-table height="300px" width="100px">
-                <template v-slot:default>
-                  <thead>
+                <thead>
+                  <tr>
+                    <th class="text-left">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <v-radio-group
+                    v-model="choice"
+                    @click="this.methods.changeStatus()"
+                  >
                     <tr>
-                      <th class="text-left">Status</th>
+                      <td class="text-center">
+                        <svg height="30" width="50">
+                          <circle cx="20" cy="20" r="10" fill="orange" />
+                        </svg>
+                      </td>
+                      <td class="text-center">
+                        <v-radio
+                          label="Started"
+                          value="started"
+                          item.status="0"
+                        ></v-radio>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    <v-radio-group v-model="choice">
-                      <tr>
-                        <td class="text-center">
-                          <svg height="30" width="50">
-                            <circle cx="20" cy="20" r="10" fill="orange" />
-                          </svg>
-                        </td>
-                        <td class="text-center">
-                          <v-radio
-                            label="Started"
-                            value="started"
-                            item.status="0"
-                          ></v-radio>
-                        </td>
-                      </tr>
-                        <tr>
-                          <td class="text-center">
-                            <svg height="30" width="50">
-                              <circle cx="20" cy="20" r="10" fill="teal" />
-                            </svg>
-                          </td>
-                          <td class="text-center">
-                            <v-radio
-                              label="Submitted"
-                              value="submitted"
-                              item.status="1"
-                            ></v-radio>
-                          </td>
-                        </tr>
-                        <tr @click="this.methods.reject;">
-                        <td class="text-center">
-                          <svg height="30" width="50">
-                            <circle cx="20" cy="20" r="10" fill="black" />
-                          </svg>
-                        </td>
-                        <td class="text-center">
-                          <v-radio
-                            label="Rejected"
-                            value="rejected"
-                            item.status="2"
-                          ></v-radio>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">
-                          <svg height="30" width="50">
-                            <circle cx="20" cy="20" r="10" fill="yellow" />
-                          </svg>
-                        </td>
-                        <td class="text-center">
-                          <v-radio
-                            label="Waitlisted"
-                            value="waitlisted"
-                            item.status="3"
-                          ></v-radio>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">
-                          <svg height="30" width="50">
-                            <circle cx="20" cy="20" r="10" fill="green" />
-                          </svg>
-                        </td>
-                        <td class="text-center">
-                          <v-radio
-                            label="Accepcted"
-                            value="accepted"
-                            item.status="4"
-                          ></v-radio>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">
-                          <svg height="30" width="50">
-                            <circle cx="20" cy="20" r="10" fill="blue" />
-                          </svg>
-                        </td>
-                        <td class="text-center">
-                          <v-radio
-                            label="Confirmed"
-                            value="confirmed"
-                            item.status="5"
-                          ></v-radio>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">
-                          <svg height="30" width="50">
-                            <circle cx="20" cy="20" r="10" fill="red" />
-                          </svg>
-                        </td>
-                        <td class="text-center">
-                          <v-radio
-                            label="Declined"
-                            value="Declined"
-                            item.status="6"
-                          >
-                          </v-radio>
-                        </td>
-                      </tr>
-                    </v-radio-group>
-                  </tbody>
-                </template>
+                    <tr>
+                      <td class="text-center">
+                        <svg height="30" width="50">
+                          <circle cx="20" cy="20" r="10" fill="teal" />
+                        </svg>
+                      </td>
+                      <td class="text-center">
+                        <v-radio
+                          label="Submitted"
+                          value="submitted"
+                          item.status="1"
+                        ></v-radio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">
+                        <svg height="30" width="50">
+                          <circle cx="20" cy="20" r="10" fill="black" />
+                        </svg>
+                      </td>
+                      <td class="text-center">
+                        <v-radio
+                          label="Rejected"
+                          value="rejected"
+                          item.status="2"
+                        ></v-radio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">
+                        <svg height="30" width="50">
+                          <circle cx="20" cy="20" r="10" fill="yellow" />
+                        </svg>
+                      </td>
+                      <td class="text-center">
+                        <v-radio
+                          label="Waitlisted"
+                          value="waitlisted"
+                          item.status="3"
+                        ></v-radio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">
+                        <svg height="30" width="50">
+                          <circle cx="20" cy="20" r="10" fill="green" />
+                        </svg>
+                      </td>
+                      <td class="text-center">
+                        <v-radio
+                          label="Accepcted"
+                          value="accepted"
+                          item.status="4"
+                        ></v-radio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">
+                        <svg height="30" width="50">
+                          <circle cx="20" cy="20" r="10" fill="blue" />
+                        </svg>
+                      </td>
+                      <td class="text-center">
+                        <v-radio
+                          label="Confirmed"
+                          value="confirmed"
+                          item.status="5"
+                        ></v-radio>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">
+                        <svg height="30" width="50">
+                          <circle cx="20" cy="20" r="10" fill="red" />
+                        </svg>
+                      </td>
+                      <td class="text-center">
+                        <v-radio
+                          label="Declined"
+                          value="Declined"
+                          item.status="6"
+                        >
+                        </v-radio>
+                      </td>
+                    </tr>
+                  </v-radio-group>
+                </tbody>
               </v-simple-table>
             </modal>
 
@@ -225,15 +224,18 @@ export default {
     }
   },
   methods: {
-    reject: function() {
-      console.log("test");  // var out = functions.httpsCallable("rejectApplicant")({});
+    changeStatus() {
+      Vue.set(this.data, 2);
+    },
+    async acceptApplicant() {
+      await functions.httpsCallable("");
     }
   },
   data() {
     return {
       time: 0,
       duration: 5000,
-      search: '',
+      search: "",
       headers: [
         {
           text: "Name",
@@ -281,7 +283,6 @@ export default {
     AdminStats
   }
 };
-
 </script>
 
 <style></style>
