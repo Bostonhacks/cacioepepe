@@ -1,5 +1,3 @@
-
-
 <template>
   <v-layout align-center justify-center>
     <v-container>
@@ -9,14 +7,14 @@
           <AdminStats />
           <h1 class="display-2 font-weight-bold mb-3">Welcome to God Mode!</h1>
           <template>
-            <div id="demo">
+            <!-- <div id="demo">
               <demo-grid
                 :data="gridData"
                 :columns="gridColumns"
                 :filter-key="searchQuery"
               >
-              </demo-grid>
-            </div>
+              </demo-grid> 
+            </div>-->
 
             <!-- Pick Status Modal -->
             <modal name="pickStatus" :width="300" :height="300">
@@ -43,21 +41,21 @@
                           ></v-radio>
                         </td>
                       </tr>
-                        <tr>
-                          <td class="text-center">
-                            <svg height="30" width="50">
-                              <circle cx="20" cy="20" r="10" fill="teal" />
-                            </svg>
-                          </td>
-                          <td class="text-center">
-                            <v-radio
-                              label="Submitted"
-                              value="submitted"
-                              item.status="1"
-                            ></v-radio>
-                          </td>
-                        </tr>
-                        <tr @click="this.methods.reject;">
+                      <tr>
+                        <td class="text-center">
+                          <svg height="30" width="50">
+                            <circle cx="20" cy="20" r="10" fill="teal" />
+                          </svg>
+                        </td>
+                        <td class="text-center">
+                          <v-radio
+                            label="Submitted"
+                            value="submitted"
+                            item.status="1"
+                          ></v-radio>
+                        </td>
+                      </tr>
+                      <tr @click="this.methods.reject">
                         <td class="text-center">
                           <svg height="30" width="50">
                             <circle cx="20" cy="20" r="10" fill="black" />
@@ -124,8 +122,7 @@
                             label="Declined"
                             value="Declined"
                             item.status="6"
-                          >
-                          </v-radio>
+                          ></v-radio>
                         </td>
                       </tr>
                     </v-radio-group>
@@ -159,12 +156,13 @@
                   </button>
                 </span>
                 <!-- TEAL -->
-                <span v-if="item.status == 1"
-                  ><button class="btn" @click="$modal.show('pickStatus')">
+                <span v-if="item.status == 1">
+                  <button class="btn" @click="$modal.show('pickStatus')">
                     <svg height="30" width="50">
                       <circle cx="20" cy="20" r="10" fill="teal" />
-                    </svg></button
-                ></span>
+                    </svg>
+                  </button>
+                </span>
                 <!-- BLACK -->
                 <span v-if="item.status == 2">
                   <button class="btn" @click="$modal.show('pickStatus')">
@@ -174,33 +172,37 @@
                   </button>
                 </span>
                 <!-- YELLOW -->
-                <span v-if="item.status == 3"
-                  ><button class="btn" @click="$modal.show('pickStatus')">
+                <span v-if="item.status == 3">
+                  <button class="btn" @click="$modal.show('pickStatus')">
                     <svg height="30" width="50">
                       <circle cx="20" cy="20" r="10" fill="yellow" />
-                    </svg></button
-                ></span>
+                    </svg>
+                  </button>
+                </span>
                 <!-- GREEN -->
-                <span v-if="item.status == 4"
-                  ><button class="btn" @click="$modal.show('pickStatus')">
+                <span v-if="item.status == 4">
+                  <button class="btn" @click="$modal.show('pickStatus')">
                     <svg height="30" width="50">
                       <circle cx="20" cy="20" r="10" fill="green" />
-                    </svg></button
-                ></span>
+                    </svg>
+                  </button>
+                </span>
                 <!-- BLUE -->
-                <span v-if="item.status == 5"
-                  ><button class="btn" @click="$modal.show('pickStatus')">
+                <span v-if="item.status == 5">
+                  <button class="btn" @click="$modal.show('pickStatus')">
                     <svg height="30" width="50">
                       <circle cx="20" cy="20" r="10" fill="blue" />
-                    </svg></button
-                ></span>
+                    </svg>
+                  </button>
+                </span>
                 <!-- RED -->
-                <span v-if="item.status == 6"
-                  ><button class="btn" @click="$modal.show('pickStatus')">
+                <span v-if="item.status == 6">
+                  <button class="btn" @click="$modal.show('pickStatus')">
                     <svg height="30" width="50">
                       <circle cx="20" cy="20" r="10" fill="red" />
-                    </svg></button
-                ></span>
+                    </svg>
+                  </button>
+                </span>
               </template>
             </v-data-table>
           </template>
@@ -226,14 +228,14 @@ export default {
   },
   methods: {
     reject: function() {
-      console.log("test");  // var out = functions.httpsCallable("rejectApplicant")({});
+      console.log("test"); // var out = functions.httpsCallable("rejectApplicant")({});
     }
   },
   data() {
     return {
       time: 0,
       duration: 5000,
-      search: '',
+      search: "",
       headers: [
         {
           text: "Name",
@@ -241,25 +243,82 @@ export default {
           sortable: false,
           value: "name"
         },
-        { text: "Applicant UID", value: "uid" },
-        { text: "Phone", value: "phone" },
-        { text: "Age", value: "age" },
-        { text: "Gender", value: "gender" },
-        { text: "Pronouns", value: "pronouns" },
-        { text: "Education Level", value: "education" },
-        { text: "University", value: "university" },
-        { text: "Major", value: "major" },
-        { text: "Minor", value: "minor" },
-        { text: "Resume", value: "resume[0]" },
-        { text: "Github", value: "github" },
-        { text: "LinkedIn", value: "linkedin" },
-        { text: "Other", value: "other" },
-        { text: "Been to Hackathon?", value: "beenToHackathon" },
-        { text: "Attended BostonHacks?", value: "bhacks" },
-        { text: "Marketing", value: "marketing" },
-        { text: "T&C1", value: "t&c1" },
-        { text: "T&C2", value: "t&c2" },
-        { text: "Status?", value: "status" }
+        {
+          text: "Applicant UID",
+          value: "uid"
+        },
+        {
+          text: "Phone",
+          value: "phone"
+        },
+        {
+          text: "Age",
+          value: "age"
+        },
+        {
+          text: "Gender",
+          value: "gender"
+        },
+        {
+          text: "Pronouns",
+          value: "pronouns"
+        },
+        {
+          text: "Education Level",
+          value: "education"
+        },
+        {
+          text: "University",
+          value: "university"
+        },
+        {
+          text: "Major",
+          value: "major"
+        },
+        {
+          text: "Minor",
+          value: "minor"
+        },
+        {
+          text: "Resume",
+          value: "resume[0]"
+        },
+        {
+          text: "Github",
+          value: "github"
+        },
+        {
+          text: "LinkedIn",
+          value: "linkedin"
+        },
+        {
+          text: "Other",
+          value: "other"
+        },
+        {
+          text: "Been to Hackathon?",
+          value: "beenToHackathon"
+        },
+        {
+          text: "Attended BostonHacks?",
+          value: "bhacks"
+        },
+        {
+          text: "Marketing",
+          value: "marketing"
+        },
+        {
+          text: "T&C1",
+          value: "t&c1"
+        },
+        {
+          text: "T&C2",
+          value: "t&c2"
+        },
+        {
+          text: "Status?",
+          value: "status"
+        }
       ],
       data: null,
       editOptions: {
@@ -281,7 +340,6 @@ export default {
     AdminStats
   }
 };
-
 </script>
 
 <style></style>
