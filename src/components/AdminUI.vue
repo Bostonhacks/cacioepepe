@@ -211,7 +211,7 @@ export default {
         },
         {
           text: "Education Level",
-          value: "education"
+          value: "educationLevel"
         },
         {
           text: "University",
@@ -231,15 +231,15 @@ export default {
         },
         {
           text: "Github",
-          value: "github"
+          value: "githubURL"
         },
         {
           text: "LinkedIn",
-          value: "linkedin"
+          value: "linkedinURL"
         },
         {
           text: "Other",
-          value: "other"
+          value: "otherURL"
         },
         {
           text: "Been to Hackathon?",
@@ -247,19 +247,19 @@ export default {
         },
         {
           text: "Attended BostonHacks?",
-          value: "bhacks"
+          value: "attendedBHacks"
         },
         {
           text: "Marketing",
-          value: "marketing"
+          value: "marketingData"
         },
         {
           text: "T&C1",
-          value: "t&c1"
+          value: "tAndC1"
         },
         {
           text: "T&C2",
-          value: "t&c2"
+          value: "tAndC2"
         },
         {
           text: "Status?",
