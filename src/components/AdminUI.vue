@@ -1,5 +1,3 @@
-
-
 <template>
   <v-layout align-center justify-center>
     <v-container>
@@ -43,21 +41,21 @@
                           ></v-radio>
                         </td>
                       </tr>
-                        <tr>
-                          <td class="text-center">
-                            <svg height="30" width="50">
-                              <circle cx="20" cy="20" r="10" fill="teal" />
-                            </svg>
-                          </td>
-                          <td class="text-center">
-                            <v-radio
-                              label="Submitted"
-                              value="submitted"
-                              item.status="1"
-                            ></v-radio>
-                          </td>
-                        </tr>
-                        <tr @click="this.methods.reject;">
+                      <tr>
+                        <td class="text-center">
+                          <svg height="30" width="50">
+                            <circle cx="20" cy="20" r="10" fill="teal" />
+                          </svg>
+                        </td>
+                        <td class="text-center">
+                          <v-radio
+                            label="Submitted"
+                            value="submitted"
+                            item.status="1"
+                          ></v-radio>
+                        </td>
+                      </tr>
+                      <tr @click="this.methods.reject">
                         <td class="text-center">
                           <svg height="30" width="50">
                             <circle cx="20" cy="20" r="10" fill="black" />
@@ -226,14 +224,14 @@ export default {
   },
   methods: {
     reject: function() {
-      console.log("test");  // var out = functions.httpsCallable("rejectApplicant")({});
+      console.log("test"); // var out = functions.httpsCallable("rejectApplicant")({});
     }
   },
   data() {
     return {
       time: 0,
       duration: 5000,
-      search: '',
+      search: "",
       headers: [
         {
           text: "Name",
@@ -281,7 +279,6 @@ export default {
     AdminStats
   }
 };
-
 </script>
 
 <style></style>
