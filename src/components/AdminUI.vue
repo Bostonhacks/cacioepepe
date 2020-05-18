@@ -7,20 +7,6 @@
           <AdminStats />
           <h1 class="display-2 font-weight-bold mb-3">Welcome to God Mode!</h1>
           <template>
-            <!-- <div id="demo">
-              <demo-grid
-                :data="gridData"
-                :columns="gridColumns"
-                :filter-key="searchQuery"
-              >
-              </demo-grid> 
-            </div>-->
-
-            <!-- Pick Status Modal -->
-            <!-- <modal name="pickStatus" :width="300" :height="300">
-              
-            </modal> -->
-
             <v-dialog v-model="dialog" max-width="500px">
               <v-card>
                 <v-card-title>
