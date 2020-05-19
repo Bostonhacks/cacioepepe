@@ -41,6 +41,14 @@ const routes = [
     meta: {
       requiresAuth: false
     }
+  },
+  {
+    path: "/live",
+    name: "live",
+    component: () => import("@/views/Live.vue"),
+    meta: {
+      requiresAuth: false
+    }
   }
 ];
 
