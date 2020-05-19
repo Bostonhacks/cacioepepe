@@ -296,8 +296,7 @@
 </template>
 
 <script>
-// import LandingPage from "../components/LandingPage";
-import LiveNavBar from "../components/live/LiveNavBar";
+import LiveNavBar from "../components/LiveNavBar";
 export default {
   data() {
     return {
@@ -351,7 +350,6 @@ export default {
     };
   },
   components: {
-    // LandingPage,
     LiveNavBar
   },
   methods: {
