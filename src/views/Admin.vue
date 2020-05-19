@@ -4,10 +4,12 @@
 
 <script>
 import AdminUI from "../components/AdminUI";
+import AdminStats from "../components/AdminStats";
 
 export default {
   components: {
-    AdminUI
+    AdminUI,
+    AdminStats
   }
 };
 </script>
