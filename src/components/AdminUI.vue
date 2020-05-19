@@ -7,130 +7,65 @@
           <AdminStats />
           <h1 class="display-2 font-weight-bold mb-3">Welcome to God Mode!</h1>
           <template>
-            <div id="demo">
-              <demo-grid
-                :data="gridData"
-                :columns="gridColumns"
-                :filter-key="searchQuery"
-              >
-              </demo-grid>
-            </div>
+            <v-dialog v-model="dialog" max-width="500px">
+              <v-card>
+                <v-card-title>
+                  <span class="headline">Status</span>
+                </v-card-title>
 
-            <!-- Pick Status Modal -->
-            <modal name="pickStatus" :width="300" :height="300">
-              <v-simple-table height="300px" width="100px">
-                <template v-slot:default>
-                  <thead>
-                    <tr>
-                      <th class="text-left">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <v-radio-group v-model="choice">
-                      <tr>
-                        <td class="text-center">
-                          <svg height="30" width="50">
-                            <circle cx="20" cy="20" r="10" fill="orange" />
-                          </svg>
-                        </td>
-                        <td class="text-center">
-                          <v-radio
-                            label="Started"
-                            value="started"
-                            item.status="0"
-                          ></v-radio>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">
-                          <svg height="30" width="50">
-                            <circle cx="20" cy="20" r="10" fill="teal" />
-                          </svg>
-                        </td>
-                        <td class="text-center">
-                          <v-radio
-                            label="Submitted"
-                            value="submitted"
-                            item.status="1"
-                          ></v-radio>
-                        </td>
-                      </tr>
-                      <tr @click="this.methods.reject">
-                        <td class="text-center">
-                          <svg height="30" width="50">
-                            <circle cx="20" cy="20" r="10" fill="black" />
-                          </svg>
-                        </td>
-                        <td class="text-center">
-                          <v-radio
-                            label="Rejected"
-                            value="rejected"
-                            item.status="2"
-                          ></v-radio>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">
-                          <svg height="30" width="50">
-                            <circle cx="20" cy="20" r="10" fill="yellow" />
-                          </svg>
-                        </td>
-                        <td class="text-center">
-                          <v-radio
-                            label="Waitlisted"
-                            value="waitlisted"
-                            item.status="3"
-                          ></v-radio>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">
-                          <svg height="30" width="50">
-                            <circle cx="20" cy="20" r="10" fill="green" />
-                          </svg>
-                        </td>
-                        <td class="text-center">
-                          <v-radio
-                            label="Accepcted"
-                            value="accepted"
-                            item.status="4"
-                          ></v-radio>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">
-                          <svg height="30" width="50">
-                            <circle cx="20" cy="20" r="10" fill="blue" />
-                          </svg>
-                        </td>
-                        <td class="text-center">
-                          <v-radio
-                            label="Confirmed"
-                            value="confirmed"
-                            item.status="5"
-                          ></v-radio>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">
-                          <svg height="30" width="50">
-                            <circle cx="20" cy="20" r="10" fill="red" />
-                          </svg>
-                        </td>
-                        <td class="text-center">
-                          <v-radio
-                            label="Declined"
-                            value="Declined"
-                            item.status="6"
-                          >
-                          </v-radio>
-                        </td>
-                      </tr>
-                    </v-radio-group>
-                  </tbody>
-                </template>
-              </v-simple-table>
-            </modal>
+                <v-card-text>
+                  <v-container>
+                    <v-row>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-radio-group
+                          v-if="editItem"
+                          v-model="editItem.status"
+                        >
+                          <tr>
+                            <td class="text-center">
+                              <svg height="30" width="50">
+                                <circle cx="20" cy="20" r="10" fill="green" />
+                              </svg>
+                            </td>
+                            <td class="text-center">
+                              <v-radio label="Accepted" value="4"></v-radio>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">
+                              <svg height="30" width="50">
+                                <circle cx="20" cy="20" r="10" fill="black" />
+                              </svg>
+                            </td>
+                            <td class="text-center">
+                              <v-radio label="Rejected" value="2"></v-radio>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">
+                              <svg height="30" width="50">
+                                <circle cx="20" cy="20" r="10" fill="yellow" />
+                              </svg>
+                            </td>
+                            <td class="text-center">
+                              <v-radio label="Waitlisted" value="3"></v-radio>
+                            </td>
+                          </tr>
+                        </v-radio-group>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-card-text>
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="blue darken-1" text @click="close"
+                    >Cancel</v-btn
+                  >
+                  <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
 
             <v-text-field
               v-model="search"
@@ -146,59 +81,22 @@
               :items-per-page="5"
               class="elevation-1"
               :search="search"
-            >
+              ><template v-slot:item.resume[0]="{ item }">
+                <button>
+                  <a :href="item.resume[0]">Open</a>
+                </button>
+              </template>
               <template v-slot:item.status="{ item }">
-                <!-- ORANGE -->
-                <span v-if="item.status == 0">
-                  <button class="btn" @click="$modal.show('pickStatus')">
-                    <svg height="30" width="50">
-                      <circle cx="20" cy="20" r="10" fill="orange" />
-                    </svg>
-                  </button>
-                </span>
-                <!-- TEAL -->
-                <span v-if="item.status == 1"
-                  ><button class="btn" @click="$modal.show('pickStatus')">
-                    <svg height="30" width="50">
-                      <circle cx="20" cy="20" r="10" fill="teal" />
-                    </svg></button
-                ></span>
-                <!-- BLACK -->
-                <span v-if="item.status == 2">
-                  <button class="btn" @click="$modal.show('pickStatus')">
-                    <svg height="30" width="50">
-                      <circle cx="20" cy="20" r="10" fill="black" />
-                    </svg>
-                  </button>
-                </span>
-                <!-- YELLOW -->
-                <span v-if="item.status == 3"
-                  ><button class="btn" @click="$modal.show('pickStatus')">
-                    <svg height="30" width="50">
-                      <circle cx="20" cy="20" r="10" fill="yellow" />
-                    </svg></button
-                ></span>
-                <!-- GREEN -->
-                <span v-if="item.status == 4"
-                  ><button class="btn" @click="$modal.show('pickStatus')">
-                    <svg height="30" width="50">
-                      <circle cx="20" cy="20" r="10" fill="green" />
-                    </svg></button
-                ></span>
-                <!-- BLUE -->
-                <span v-if="item.status == 5"
-                  ><button class="btn" @click="$modal.show('pickStatus')">
-                    <svg height="30" width="50">
-                      <circle cx="20" cy="20" r="10" fill="blue" />
-                    </svg></button
-                ></span>
-                <!-- RED -->
-                <span v-if="item.status == 6"
-                  ><button class="btn" @click="$modal.show('pickStatus')">
-                    <svg height="30" width="50">
-                      <circle cx="20" cy="20" r="10" fill="red" />
-                    </svg></button
-                ></span>
+                <button @click="editStatus(item)">
+                  <svg height="30" width="50">
+                    <circle
+                      cx="20"
+                      cy="20"
+                      r="10"
+                      :fill="getColor(item.status)"
+                    />
+                  </svg>
+                </button>
               </template>
             </v-data-table>
           </template>
@@ -209,11 +107,8 @@
 </template>
 
 <script>
-import Vue from "vue";
 import AdminStats from "../components/AdminStats";
 import { functions } from "../firebase/init";
-import { GridPlugin, Edit, Toolbar } from "@syncfusion/ej2-vue-grids";
-Vue.use(GridPlugin);
 
 export default {
   name: "AdminUI",
@@ -223,15 +118,70 @@ export default {
     }
   },
   methods: {
-    reject: function() {
-      console.log("test"); // var out = functions.httpsCallable("rejectApplicant")({});
+    getColor(status) {
+      if (status == 0) {
+        return "orange";
+      }
+      if (status == 1) {
+        return "teal";
+      }
+      if (status == 2) {
+        return "black";
+      }
+      if (status == 3) {
+        return "yellow";
+      }
+      if (status == 4) {
+        return "green";
+      }
+      if (status == 5) {
+        return "blue";
+      } else {
+        return "red";
+      }
+    },
+    editStatus(item) {
+      this.editIndex = this.data.indexOf(item);
+      this.editItem = Object.assign({}, item);
+      this.dialog = true;
+    },
+    close() {
+      this.dialog = false;
+      this.editItem = null;
+      this.editIndex = null;
+    },
+    async save() {
+      if (this.editItem.status == 2) {
+        await functions.httpsCallable("rejectApplicant")({
+          uid: this.editItem.uid
+        });
+        Object.assign(this.data[this.editIndex], this.editItem);
+        this.close();
+      }
+      if (this.editItem.status == 3) {
+        await functions.httpsCallable("waitlistApplicant")({
+          uid: this.editItem.uid
+        });
+        Object.assign(this.data[this.editIndex], this.editItem);
+        this.close();
+      }
+      if (this.editItem.status == 4) {
+        await functions.httpsCallable("acceptApplicant")({
+          uid: this.editItem.uid
+        });
+        Object.assign(this.data[this.editIndex], this.editItem);
+        this.close();
+      } else {
+        this.close();
+      }
     }
   },
   data() {
     return {
-      time: 0,
-      duration: 5000,
       search: "",
+      editIndex: null,
+      editItem: null,
+      dialog: false,
       headers: [
         {
           text: "Name",
@@ -239,37 +189,85 @@ export default {
           sortable: false,
           value: "name"
         },
-        { text: "Applicant UID", value: "uid" },
-        { text: "Phone", value: "phone" },
-        { text: "Age", value: "age" },
-        { text: "Gender", value: "gender" },
-        { text: "Pronouns", value: "pronouns" },
-        { text: "Education Level", value: "education" },
-        { text: "University", value: "university" },
-        { text: "Major", value: "major" },
-        { text: "Minor", value: "minor" },
-        { text: "Resume", value: "resume[0]" },
-        { text: "Github", value: "github" },
-        { text: "LinkedIn", value: "linkedin" },
-        { text: "Other", value: "other" },
-        { text: "Been to Hackathon?", value: "beenToHackathon" },
-        { text: "Attended BostonHacks?", value: "bhacks" },
-        { text: "Marketing", value: "marketing" },
-        { text: "T&C1", value: "t&c1" },
-        { text: "T&C2", value: "t&c2" },
-        { text: "Status?", value: "status" }
+        {
+          text: "Applicant UID",
+          value: "uid"
+        },
+        {
+          text: "Phone",
+          value: "phone"
+        },
+        {
+          text: "Age",
+          value: "age"
+        },
+        {
+          text: "Gender",
+          value: "gender"
+        },
+        {
+          text: "Pronouns",
+          value: "pronouns"
+        },
+        {
+          text: "Education Level",
+          value: "education"
+        },
+        {
+          text: "University",
+          value: "university"
+        },
+        {
+          text: "Major",
+          value: "major"
+        },
+        {
+          text: "Minor",
+          value: "minor"
+        },
+        {
+          text: "Resume",
+          value: "resume[0]"
+        },
+        {
+          text: "Github",
+          value: "github"
+        },
+        {
+          text: "LinkedIn",
+          value: "linkedin"
+        },
+        {
+          text: "Other",
+          value: "other"
+        },
+        {
+          text: "Been to Hackathon?",
+          value: "beenToHackathon"
+        },
+        {
+          text: "Attended BostonHacks?",
+          value: "bhacks"
+        },
+        {
+          text: "Marketing",
+          value: "marketing"
+        },
+        {
+          text: "T&C1",
+          value: "t&c1"
+        },
+        {
+          text: "T&C2",
+          value: "t&c2"
+        },
+        {
+          text: "Status?",
+          value: "status"
+        }
       ],
-      data: null,
-      editOptions: {
-        allowAdding: true,
-        allowEditing: true,
-        allowDeleting: true
-      },
-      toolbarOptions: ["Add", "Edit", "Delete"]
+      data: null
     };
-  },
-  provide: {
-    grid: [Edit, Toolbar]
   },
   async mounted() {
     var out = await functions.httpsCallable("retrieveAllApplications")({});
@@ -277,6 +275,11 @@ export default {
   },
   components: {
     AdminStats
+  },
+  watch: {
+    dialog(val) {
+      val || this.close();
+    }
   }
 };
 </script>
