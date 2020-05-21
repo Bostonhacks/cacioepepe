@@ -1,10 +1,33 @@
 <template>
   <div>
     <v-toolbar>
-      <v-toolbar-title>Cacioepepe</v-toolbar-title>
+      <img
+        class="mr-3"
+        :src="require('../assets/BostonHacksMark.png')"
+        height="30"
+      />
+      <v-toolbar-title>BostonHacks</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn text @click="home()">Home</v-btn>
+        <v-btn
+          v-if="this.getRoutePath && this.getRoutePath == '/'"
+          text
+          href="#schedule"
+          >Schedule</v-btn
+        >
+        <v-btn
+          v-if="this.getRoutePath && this.getRoutePath == '/'"
+          text
+          href="#tracks"
+          >Tracks and Workshops</v-btn
+        >
+        <v-btn
+          v-if="this.getRoutePath && this.getRoutePath == '/'"
+          text
+          href="#FAQ"
+          >FAQ</v-btn
+        >
         <v-btn text @click="application()">Application</v-btn>
         <v-btn icon>
           <v-icon v-if="user" @click="signOut()">mdi-export-variant</v-icon>
@@ -24,6 +47,9 @@ export default {
   computed: {
     user() {
       return this.$store.state.user;
+    },
+    getRoutePath() {
+      return this.$route.path;
     }
   },
   methods: {
