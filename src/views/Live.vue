@@ -15,7 +15,7 @@
           </p>
         </div>
         <div class="quarter">
-          <img src="../assets/live/pinata.svg" />
+          <img src="../assets/pinata.svg" />
         </div>
       </div>
       <div class="flex-container card-container">

@@ -1,19 +1,11 @@
 <template>
   <v-layout class="d-inline">
-    <v-app-bar absolute color="indigo darken-4" dark>
-      <v-tabs right>
-        <v-tab>Schedule</v-tab>
-        <v-tab>Tracks and Workshops</v-tab>
-        <v-tab>FAQ</v-tab>
-      </v-tabs>
-    </v-app-bar>
-
     <header>
-      <div class="container-fluid">
+      <div id="top" class="container-fluid">
         <div class="row">
           <div class="col-6 col-sm-4 col-lg-3 align-self-center">
             <img
-              src="https://bostonhacks.io/images/logoColor.png"
+              src="../assets/BostonHacksHorizontal.png"
               class="img-fluid"
               alt="Boston Hacks Logo"
               id="logoTop"
@@ -47,10 +39,12 @@
             And you're invited!
           </p>
           <p>Registration is now closed! Click the link below to log in.</p>
-          <v-btn rounded color="deep-orange lighten-3" dark>Login</v-btn>
+          <v-btn rounded color="deep-orange lighten-3" dark @click="login()"
+            >Login</v-btn
+          >
         </v-col>
         <v-col cols="5">
-          <img src="https://bostonhacks.io/images/pinata.svg" />
+          <img src="../assets/pinata.svg" />
         </v-col>
       </v-row>
 
@@ -73,7 +67,7 @@
 
       <v-col>
         <v-row>
-          <div>
+          <div id="schedule">
             <h1>Event Schedule</h1>
           </div>
         </v-row>
@@ -185,8 +179,17 @@ export default {
     user() {
       return this.$store.state.user;
     }
+  },
+  methods: {
+    login() {
+      this.$router.push("/login");
+    }
   }
 };
 </script>
 
-<style></style>
+<style>
+html {
+  scroll-behavior: smooth;
+}
+</style>
