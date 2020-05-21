@@ -57,6 +57,14 @@ const routes = [
     meta: {
       requiresAuth: false
     }
+  },
+  {
+    path: "/live",
+    name: "live",
+    component: () => import("@/views/Live.vue"),
+    meta: {
+      requiresAuth: false
+    }
   }
 ];
 
@@ -70,14 +78,14 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(rec => rec.meta.requiresAuth)) {
     let user = store.state.user;
     if (user) {
-      if (to.name == "profile") {
+      if (to.name == "home") {
         next();
       } else {
         if (user.role) {
           next();
         } else {
           next({
-            name: "profile"
+            name: "home"
           });
         }
       }
