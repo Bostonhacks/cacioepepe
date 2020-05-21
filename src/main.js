@@ -6,7 +6,6 @@ import store from "./store";
 import firebase from "firebase/app";
 import "firebaseui/dist/firebaseui.css";
 import vuetify from "./plugins/vuetify";
-
 Vue.config.productionTip = false;
 
 var app = null;
