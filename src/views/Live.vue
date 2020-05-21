@@ -175,7 +175,7 @@
         </div>
         <br />
         <div class="container information">
-          <v-tabs v-model="active" color="black" slider-color="black">
+          <v-tabs grow v-model="active" color="black" slider-color="black">
             <v-tab :key="1" ripple>Basement</v-tab>
             <v-tab :key="2" ripple>Floor 1</v-tab>
             <v-tab :key="3" ripple>Floor 2</v-tab>
@@ -533,5 +533,9 @@ p {
   #header .half p {
     font-size: 1rem !important;
   }
+}
+
+.v-slide-group__prev {
+  display: none !important;
 }
 </style>

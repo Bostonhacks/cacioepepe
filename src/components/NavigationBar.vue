@@ -1,7 +1,12 @@
 <template>
   <div>
     <v-toolbar>
-      <v-toolbar-title>Cacioepepe</v-toolbar-title>
+      <img
+        class="mr-3"
+        :src="require('../assets/BostonHacksMark.png')"
+        height="30"
+      />
+      <v-toolbar-title>BostonHacks</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn text @click="home()">Home</v-btn>

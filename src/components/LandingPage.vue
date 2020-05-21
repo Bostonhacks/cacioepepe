@@ -1,16 +1,8 @@
 <template>
   <v-layout class="d-inline">
     <header>
-      <div id="top" class="container-fluid">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-6 col-sm-4 col-lg-3 align-self-center">
-            <img
-              src="../assets/BostonHacksHorizontal.png"
-              class="img-fluid"
-              alt="Boston Hacks Logo"
-              id="logoTop"
-            />
-          </div>
           <div class="col"></div>
           <div class="col-3 col-sm-2 col-lg-1">
             <a
@@ -22,6 +14,9 @@
               <img
                 src="https://s3.amazonaws.com/logged-assets/trust-badge/2020/mlh-trust-badge-2020-gray.svg"
                 alt="Major League Hacking 2020 Hackathon Season"
+                contain
+                height="100px"
+                width="150px"
               />
             </a>
           </div>
@@ -31,12 +26,11 @@
 
     <v-container>
       <v-row>
-        <v-col cols="7">
+        <v-spacer></v-spacer>
+
+        <v-col cols="6">
           <p class="display-1 indigo--text text--darken-4 font-weight-bold">
-            We're turning 5.
-          </p>
-          <p class="display-1 indigo--text text--darken-4 font-weight-bold">
-            And you're invited!
+            We're turning 6.<br />And you're invited!
           </p>
           <p>Registration is now closed! Click the link below to log in.</p>
           <v-btn rounded color="deep-orange lighten-3" dark @click="login()"
@@ -44,12 +38,20 @@
           >
         </v-col>
         <v-col cols="5">
-          <img src="../assets/pinata.svg" />
+          <img
+            src="../assets/pinata.svg"
+            contain
+            height="200px"
+            width="250px"
+          />
         </v-col>
+
+        <v-spacer></v-spacer>
       </v-row>
 
       <v-row>
-        <v-col cols="12" justify="end">
+        <v-spacer></v-spacer>
+        <v-col cols="7" justify="end">
           <p
             class="display-1 indigo--text text--darken-4 font-weight-bold mb-3 text-right"
           >
@@ -61,120 +63,100 @@
             We’d love to have you on board. Contact us at sponsor@bostonhacks.io
             or check out our sponsor document!
           </p>
-          <v-btn rounded color="deep-orange lighten-3" dark>Learn more</v-btn>
         </v-col>
       </v-row>
-
-      <v-col>
-        <v-row>
-          <div id="schedule">
-            <h1>Event Schedule</h1>
-          </div>
-        </v-row>
-        <v-row>
-          <v-col cols="6">
-            <v-row cols="12" v-for="event in today" :key="event.time">
-              <v-col cols="4">
-                <h1>{{ event.time }}</h1>
-              </v-col>
-              <v-col cols="8">
-                <h1>{{ event.event }}</h1>
-              </v-col>
-            </v-row>
-          </v-col>
-          <v-col cols="6">
-            <v-row cols="12" v-for="event in today" :key="event.time">
-              <v-col cols="4">
-                <h1>{{ event.time }}</h1>
-              </v-col>
-              <v-col cols="8">
-                <h1>{{ event.event }}</h1>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-      </v-col>
-
       <v-row>
-        <h1 class="indigo--text text--darken-4 font-weight-bold">
-          Tracks and Work­shops
-        </h1>
-        <v-row>
-          <v-col cols="7" justify="start">
-            <h2 class="display-1 red--text text--accent-2 font-weight-bold">
-              Next Gen
-            </h2>
-            <p
-              class="display-1 indigo--text text--darken-4 font-weight-light body-1"
-            >
-              School only prepares us for so much. In service of the next
-              generation, think either about tools you wish you had to help you
-              learn difficult concepts school or the skills you wish you had
-              entering the real world.
-            </p>
-          </v-col>
-          <v-col cols="5">
-            <img
-              class="col-md-6 offset-md-3 col-lg-6 offset-lg-0 d-flex justify-content-center"
-              src="https://bostonhacks.io/images/balloons.svg"
-            />
-          </v-col>
-        </v-row>
-
-        <v-row justify="end">
-          <v-col cols="6">
-            <h2 class="display-1 red--text text--accent-2 font-weight-bold">
-              Problem for the Ages
-            </h2>
-            <p
-              class="display-1 indigo--text text--darken-4 font-weight-light body-1"
-            >
-              It's easy to think that some problems are too big to solve today.
-              Instead of leaving them for the future, reflect on how we can
-              build products that tackle issues that will be affecting us for
-              generations to come. Examples include climate change, the refugee
-              crisis, and racial & gender equity.
-            </p>
-          </v-col>
-        </v-row>
-
-        <v-row>
-          <v-col cols="6" justify="end">
-            <h2 class="display-1 red--text text--accent-2 font-weight-bold">
-              Back to the Future
-            </h2>
-            <p
-              class="display-1 indigo--text text--darken-4 font-weight-light body-1"
-            >
-              As you get older, doing ordinary things can seem like an
-              impossible task. Help your future self out by developing tools
-              that make accomplishing day-to-day tasks for elderly people easier
-              than ever.
-            </p>
-          </v-col>
-        </v-row>
+        <v-spacer></v-spacer>
+        <v-btn rounded color="deep-orange lighten-3" dark @click="sponsor()"
+          >Learn more</v-btn
+        >
       </v-row>
+
+      <div id="schedule">
+        <v-row>
+          <h1 class="indigo--text text--darken-4 font-weight-bold">
+            Event Schedule
+          </h1>
+        </v-row>
+        <v-row>
+          <v-col cols="6">
+            <p class="text--darken-4 font-weight-bold">
+              7:00 AM Check In <br />
+              8:00 AM Breakfast <br />
+              9:00 AM Open Ceremony
+            </p>
+          </v-col>
+          <v-col cols="6">
+            <p class="text--darken-4 font-weight-bold">
+              7:00 AM Check In <br />
+              8:00 AM Breakfast <br />
+              9:00 AM Open Ceremony
+            </p>
+          </v-col>
+        </v-row>
+      </div>
+
+      <div id="tracks">
+        <v-row>
+          <h1 class="indigo--text text--darken-4 font-weight-bold">
+            Tracks and Work­shops
+          </h1>
+          <v-row>
+            <v-col cols="7" justify="start">
+              <h2 class="display-1 red--text text--accent-2 font-weight-bold">
+                Conservation for Society
+              </h2>
+              <p
+                class="display-1 indigo--text text--darken-4 font-weight-light body-1"
+              >
+                Scientists continue to release research about the effects humans
+                have on varying types of pollution. What can be done to
+                facilitate research, increase awareness, lessen our carbon
+                footprint, and in general just leave earth in a better state
+                than we found it?
+              </p>
+            </v-col>
+          </v-row>
+
+          <v-row justify="end">
+            <v-col cols="6">
+              <h2 class="display-1 red--text text--accent-2 font-weight-bold">
+                Smart Home
+              </h2>
+              <p
+                class="display-1 indigo--text text--darken-4 font-weight-light body-1"
+              >
+                Quarantine has us realizing that the home is not as efficient
+                and optimized as it could be. How can we incorporate software
+                and hardware to create a more comprehensive experience at home?
+              </p>
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col cols="6" justify="end">
+              <h2 class="display-1 red--text text--accent-2 font-weight-bold">
+                Fit-Tech
+              </h2>
+              <p
+                class="display-1 indigo--text text--darken-4 font-weight-light body-1"
+              >
+                Current fitness tech encourages people to stay indoors (Peloton,
+                online classes), or simply tracks data and provides analytics.
+                How can we revamp fitness with technology that makes exercise
+                more interactive and engaging, giving people more excuses to
+                enjoy the outdoors?
+              </p>
+            </v-col>
+          </v-row>
+        </v-row>
+      </div>
     </v-container>
   </v-layout>
 </template>
 
 <script>
 export default {
-  name: "landingPage",
-  data() {
-    return {
-      today: [
-        {
-          time: "1PM",
-          event: "Lunch"
-        },
-        {
-          time: "2PM",
-          event: "Dinner"
-        }
-      ]
-    };
-  },
   computed: {
     user() {
       return this.$store.state.user;
@@ -183,6 +165,9 @@ export default {
   methods: {
     login() {
       this.$router.push("/login");
+    },
+    sponsor() {
+      this.$router.push("/sponsor");
     }
   }
 };
