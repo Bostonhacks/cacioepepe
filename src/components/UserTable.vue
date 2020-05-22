@@ -4,8 +4,6 @@
       <v-layout text-center wrap>
         <v-flex xs12></v-flex>
         <v-flex mb-4>
-          <h1 class="display-2 font-weight-bold mb-3">Welcome to God Mode!</h1>
-          <AdminStats :data="data" />
           <template>
             <v-dialog v-model="dialog" max-width="500px">
               <v-card>
@@ -127,7 +125,10 @@
                 <v-checkbox v-model="item.tAndC2" disabled></v-checkbox>
               </template>
               <template v-slot:item.status="{ item }">
-                <button @click="editStatus(item)">
+                <button
+                  @click="editStatus(item)"
+                  :disabled="user.role != 'admin'"
+                >
                   <svg height="30" width="50">
                     <circle
                       cx="20"
@@ -158,11 +159,11 @@
 </template>
 
 <script>
-import AdminStats from "../components/AdminStats";
 import { functions } from "../firebase/init";
 
 export default {
-  name: "AdminUI",
+  name: "UserTable",
+  props: ["data"],
   computed: {
     user() {
       return this.$store.state.user;
@@ -325,16 +326,8 @@ export default {
           text: "Status?",
           value: "status"
         }
-      ],
-      data: null
+      ]
     };
-  },
-  async mounted() {
-    var out = await functions.httpsCallable("retrieveAllApplications")({});
-    this.data = out.data;
-  },
-  components: {
-    AdminStats
   },
   watch: {
     dialog(val) {
