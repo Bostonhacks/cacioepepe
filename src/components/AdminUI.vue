@@ -81,7 +81,8 @@
               :items-per-page="5"
               class="elevation-1"
               :search="search"
-              ><template v-slot:item.resume[0]="{ item }">
+            >
+              <template v-slot:item.resume[0]="{ item }">
                 <button>
                   <a :href="item.resume[0]">Open</a>
                 </button>
@@ -99,6 +100,17 @@
                 </button>
               </template>
             </v-data-table>
+          </template>
+          <template>
+            <div class="text-center">
+              <v-btn
+                class="ma-2"
+                outlined
+                color="indigo"
+                @click.native="downloadResumes"
+                >Download All Resumes</v-btn
+              >
+            </div>
           </template>
         </v-flex>
       </v-layout>
@@ -150,6 +162,11 @@ export default {
       this.editItem = null;
       this.editIndex = null;
     },
+    async downloadResumes() {
+      var res = await functions.httpsCallable("oneClickDownload")();
+      var url = res["data"].URL;
+      window.open(url, "_blank");
+    },
     async save() {
       if (this.editItem.status == 2) {
         await functions.httpsCallable("rejectApplicant")({
@@ -178,6 +195,7 @@ export default {
   },
   data() {
     return {
+      loader: null,
       search: "",
       editIndex: null,
       editItem: null,
