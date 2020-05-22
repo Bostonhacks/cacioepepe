@@ -1,5 +1,6 @@
 <template>
   <v-container fluid>
+    {{ data }}
     <v-row>
       <v-col cols="6" sm="3">
         <v-card class="pa=2" max-width="344" outlined tile>
@@ -136,5 +137,8 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "AdminStats",
+  props: ["data"]
+};
 </script>

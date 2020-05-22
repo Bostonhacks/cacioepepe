@@ -5,7 +5,7 @@
         <v-flex xs12></v-flex>
         <v-flex mb-4>
           <h1 class="display-2 font-weight-bold mb-3">Welcome to God Mode!</h1>
-          <AdminStats />
+          <AdminStats :data="data" />
           <template>
             <v-dialog v-model="dialog" max-width="500px">
               <v-card>
