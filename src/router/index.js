@@ -34,6 +34,15 @@ const routes = [
       requiresAuth: false
     }
   },
+
+  {
+    path: "/sponsor",
+    name: "sponsor",
+    component: () => import("@/views/Sponsor.vue"),
+    meta: {
+      requiresAuth: false
+    }
+  },
   {
     path: "/sponsorlogin",
     name: "sponsorlogin",
