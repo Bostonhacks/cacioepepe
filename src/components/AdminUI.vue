@@ -4,8 +4,8 @@
       <v-layout text-center wrap>
         <v-flex xs12></v-flex>
         <v-flex mb-4>
-          <AdminStats />
           <h1 class="display-2 font-weight-bold mb-3">Welcome to God Mode!</h1>
+          <AdminStats />
           <template>
             <v-dialog v-model="dialog" max-width="500px">
               <v-card>
@@ -82,9 +82,36 @@
               class="elevation-1"
               :search="search"
               ><template v-slot:item.resume[0]="{ item }">
-                <button>
-                  <a :href="item.resume[0]">Open</a>
+                <button v-if="item.resume[0]">
+                  <a :href="item.resume[0]" target="_blank">Open</a>
                 </button>
+              </template>
+              <template v-slot:item.githubURL="{ item }">
+                <button v-if="item.githubURL">
+                  <a :href="item.githubURL" target="_blank">Open</a>
+                </button>
+              </template>
+              <template v-slot:item.linkedinURL="{ item }">
+                <button v-if="item.linkedinURL">
+                  <a :href="item.linkedinURL" target="_blank">Open</a>
+                </button>
+              </template>
+              <template v-slot:item.otherURL="{ item }">
+                <button v-if="item.otherURL">
+                  <a :href="item.otherURL" target="_blank">Open</a>
+                </button>
+              </template>
+              <template v-slot:item.attendedBHacks="{ item }">
+                <v-checkbox v-model="item.attendedBHacks" disabled></v-checkbox>
+              </template>
+              <template v-slot:item.marketingData="{ item }">
+                <v-checkbox v-model="item.marketingData" disabled></v-checkbox>
+              </template>
+              <template v-slot:item.tAndC1="{ item }">
+                <v-checkbox v-model="item.tAndC1" disabled></v-checkbox>
+              </template>
+              <template v-slot:item.tAndC2="{ item }">
+                <v-checkbox v-model="item.tAndC2" disabled></v-checkbox>
               </template>
               <template v-slot:item.status="{ item }">
                 <button @click="editStatus(item)">
@@ -99,6 +126,17 @@
                 </button>
               </template>
             </v-data-table>
+          </template>
+          <template>
+            <div class="text-center">
+              <v-btn
+                class="ma-2"
+                outlined
+                color="indigo"
+                @click="downloadResumes"
+                >Download All Resumes</v-btn
+              >
+            </div>
           </template>
         </v-flex>
       </v-layout>
@@ -150,6 +188,11 @@ export default {
       this.editItem = null;
       this.editIndex = null;
     },
+    async downloadResumes() {
+      var res = await functions.httpsCallable("oneClickDownload")();
+      var url = res["data"].URL;
+      window.open(url, "_blank");
+    },
     async save() {
       if (this.editItem.status == 2) {
         await functions.httpsCallable("rejectApplicant")({
@@ -178,6 +221,7 @@ export default {
   },
   data() {
     return {
+      loader: null,
       search: "",
       editIndex: null,
       editItem: null,
