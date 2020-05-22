@@ -3,9 +3,7 @@ import { Line } from "vue-chartjs";
 
 export default {
   name: "LineGraph",
-  props: {
-    year: 0
-  },
+  props: ["year"],
   extends: Line,
   data: () => ({
     chartdata: {

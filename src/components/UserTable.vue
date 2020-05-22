@@ -4,8 +4,6 @@
       <v-layout text-center wrap>
         <v-flex xs12></v-flex>
         <v-flex mb-4>
-          <h1 class="display-2 font-weight-bold mb-3">Welcome to God Mode!</h1>
-          <AdminStats />
           <template>
             <v-dialog v-model="dialog" max-width="500px">
               <v-card>
@@ -87,18 +85,31 @@
                 </button>
               </template>
               <template v-slot:item.githubURL="{ item }">
-                <button v-if="item.githubURL">
+                <button v-if="item.githubURL && isLinkValid(item.githubURL)">
                   <a :href="item.githubURL" target="_blank">Open</a>
+                </button>
+                <button v-else-if="item.githubURL">
+                  <a :href="'http://' + item.githubURL" target="_blank">Open</a>
                 </button>
               </template>
               <template v-slot:item.linkedinURL="{ item }">
-                <button v-if="item.linkedinURL">
+                <button
+                  v-if="item.linkedinURL && isLinkValid(item.linkedinURL)"
+                >
                   <a :href="item.linkedinURL" target="_blank">Open</a>
+                </button>
+                <button v-else-if="item.linkedinURL">
+                  <a :href="'http://' + item.linkedinURL" target="_blank"
+                    >Open</a
+                  >
                 </button>
               </template>
               <template v-slot:item.otherURL="{ item }">
-                <button v-if="item.otherURL">
+                <button v-if="item.otherURL && isLinkValid(item.otherURL)">
                   <a :href="item.otherURL" target="_blank">Open</a>
+                </button>
+                <button v-else-if="item.otherURL">
+                  <a :href="'http://' + item.otherURL" target="_blank">Open</a>
                 </button>
               </template>
               <template v-slot:item.attendedBHacks="{ item }">
@@ -114,7 +125,10 @@
                 <v-checkbox v-model="item.tAndC2" disabled></v-checkbox>
               </template>
               <template v-slot:item.status="{ item }">
-                <button @click="editStatus(item)">
+                <button
+                  @click="editStatus(item)"
+                  :disabled="user.role != 'admin'"
+                >
                   <svg height="30" width="50">
                     <circle
                       cx="20"
@@ -145,11 +159,11 @@
 </template>
 
 <script>
-import AdminStats from "../components/AdminStats";
 import { functions } from "../firebase/init";
 
 export default {
-  name: "AdminUI",
+  name: "UserTable",
+  props: ["data"],
   computed: {
     user() {
       return this.$store.state.user;
@@ -187,6 +201,9 @@ export default {
       this.dialog = false;
       this.editItem = null;
       this.editIndex = null;
+    },
+    isLinkValid(item) {
+      return item.includes("http");
     },
     async downloadResumes() {
       var res = await functions.httpsCallable("oneClickDownload")();
@@ -309,16 +326,8 @@ export default {
           text: "Status?",
           value: "status"
         }
-      ],
-      data: null
+      ]
     };
-  },
-  async mounted() {
-    var out = await functions.httpsCallable("retrieveAllApplications")({});
-    this.data = out.data;
-  },
-  components: {
-    AdminStats
   },
   watch: {
     dialog(val) {

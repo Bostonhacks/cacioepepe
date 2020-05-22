@@ -12,3 +12,4 @@ Function Codes:
 - accepted = 4
 - confirmed = 5
 - declined = 6
+- checked in = 7
