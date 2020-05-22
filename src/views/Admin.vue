@@ -25,7 +25,7 @@
 
             <v-tab-item key="tabs[1]">
               <v-card flat tile>
-                <v-card-text><UserTable :data="data"/></v-card-text>
+                <v-card-text><HackerTable :data="data"/></v-card-text>
               </v-card>
             </v-tab-item>
 
@@ -42,13 +42,13 @@
 </template>
 
 <script>
-import UserTable from "../components/UserTable";
+import HackerTable from "../components/HackerTable";
 import AdminStats from "../components/AdminStats";
 import { functions } from "../firebase/init";
 
 export default {
   components: {
-    UserTable,
+    HackerTable,
     AdminStats
   },
   data() {
