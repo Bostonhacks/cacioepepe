@@ -81,8 +81,7 @@
               :items-per-page="5"
               class="elevation-1"
               :search="search"
-            >
-              <template v-slot:item.resume[0]="{ item }">
+              ><template v-slot:item.resume[0]="{ item }">
                 <button>
                   <a :href="item.resume[0]">Open</a>
                 </button>

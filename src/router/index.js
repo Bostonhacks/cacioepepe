@@ -41,6 +41,30 @@ const routes = [
     meta: {
       requiresAuth: false
     }
+  },
+  {
+    path: "/mentor",
+    name: "mentor",
+    component: () => import("@/views/Mentor.vue"),
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: "/volunteer",
+    name: "volunteer",
+    component: () => import("@/views/Volunteer.vue"),
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: "/live",
+    name: "live",
+    component: () => import("@/views/Live.vue"),
+    meta: {
+      requiresAuth: false
+    }
   }
 ];
 
