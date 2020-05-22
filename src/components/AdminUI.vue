@@ -83,7 +83,22 @@
               :search="search"
               ><template v-slot:item.resume[0]="{ item }">
                 <button>
-                  <a :href="item.resume[0]">Open</a>
+                  <a :href="item.resume[0]" target="_blank">Open</a>
+                </button>
+              </template>
+              <template v-slot:item.githubURL="{ item }">
+                <button>
+                  <a :href="item.githubURL" target="_blank">Open</a>
+                </button>
+              </template>
+              <template v-slot:item.linkedinURL="{ item }">
+                <button>
+                  <a :href="item.linkedinURL" target="_blank">Open</a>
+                </button>
+              </template>
+              <template v-slot:item.otherURL="{ item }">
+                <button>
+                  <a :href="item.otherURL" target="_blank">Open</a>
                 </button>
               </template>
               <template v-slot:item.status="{ item }">
@@ -106,7 +121,7 @@
                 class="ma-2"
                 outlined
                 color="indigo"
-                @click.native="downloadResumes"
+                @click="downloadResumes"
                 >Download All Resumes</v-btn
               >
             </div>
