@@ -15,7 +15,8 @@ const routes = [
     name: "admin",
     component: () => import("@/views/Admin.vue"),
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      isAdmin: true
     }
   },
   {
@@ -87,19 +88,22 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(rec => rec.meta.requiresAuth)) {
     let user = store.state.user;
     if (user) {
-      if (to.name == "home") {
-        next();
-      } else {
-        if (user.role) {
-          next();
-        } else {
-          next({
-            name: "home"
-          });
-        }
-      }
+      next();
     } else {
       next({ name: "login" });
+    }
+  } else {
+    next();
+  }
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(rec => rec.meta.isAdmin)) {
+    let user = store.state.user;
+    if (user.role == "admin") {
+      next();
+    } else {
+      next({ name: "home" });
     }
   } else {
     next();

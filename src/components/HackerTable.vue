@@ -2,7 +2,6 @@
   <v-layout align-center justify-center>
     <v-container>
       <v-layout text-center wrap>
-        <v-flex xs12></v-flex>
         <v-flex mb-4>
           <template>
             <v-dialog v-model="dialog" max-width="500px">
@@ -74,12 +73,16 @@
             ></v-text-field>
             <v-data-table
               v-if="data !== null"
+              v-model="selected"
+              show-select
+              item-key="name"
               :headers="headers"
               :items="data"
               :items-per-page="5"
               class="elevation-1"
               :search="search"
-              ><template v-slot:item.resume[0]="{ item }">
+            >
+              <template v-slot:item.resume[0]="{ item }">
                 <button v-if="item.resume[0]">
                   <a :href="item.resume[0]" target="_blank">Open</a>
                 </button>
@@ -141,17 +144,55 @@
               </template>
             </v-data-table>
           </template>
-          <template>
-            <div class="text-center">
-              <v-btn
-                class="ma-2"
-                outlined
-                color="indigo"
-                @click="downloadResumes"
-                >Download All Resumes</v-btn
-              >
-            </div>
-          </template>
+          <v-row align="center" justify="center">
+            <template>
+              <div class="text-center">
+                <v-btn
+                  v-if="selected.length > 0 && user.role == 'admin'"
+                  class="ma-2"
+                  outlined
+                  color="indigo"
+                  @click="acceptApplicants"
+                  >Accept Selected</v-btn
+                >
+              </div>
+            </template>
+            <template>
+              <div class="text-center">
+                <v-btn
+                  v-if="selected.length > 0 && user.role == 'admin'"
+                  class="ma-2"
+                  outlined
+                  color="indigo"
+                  @click="rejectApplicants"
+                  >Reject Selected</v-btn
+                >
+              </div>
+            </template>
+            <template>
+              <div class="text-center">
+                <v-btn
+                  v-if="selected.length > 0 && user.role == 'admin'"
+                  class="ma-2"
+                  outlined
+                  color="indigo"
+                  @click="waitlistApplicants"
+                  >Waitlist Selected</v-btn
+                >
+              </div>
+            </template>
+            <template>
+              <div class="text-center">
+                <v-btn
+                  class="ma-2"
+                  outlined
+                  color="indigo"
+                  @click="downloadResumes"
+                  >Download All Resumes</v-btn
+                >
+              </div>
+            </template>
+          </v-row>
         </v-flex>
       </v-layout>
     </v-container>
@@ -210,6 +251,33 @@ export default {
       var url = res["data"].URL;
       window.open(url, "_blank");
     },
+    async acceptApplicants() {
+      var UIDList = [];
+      this.selected.forEach(entry => {
+        UIDList.push(entry.uid);
+      });
+      await functions.httpsCallable("massAcceptEmail")({
+        UIDList: UIDList
+      });
+    },
+    async rejectApplicants() {
+      var UIDList = [];
+      this.selected.forEach(entry => {
+        UIDList.push(entry.uid);
+      });
+      await functions.httpsCallable("massRejectEmail")({
+        UIDList: UIDList
+      });
+    },
+    async waitlistApplicants() {
+      var UIDList = [];
+      this.selected.forEach(entry => {
+        UIDList.push(entry.uid);
+      });
+      await functions.httpsCallable("massWaitlistEmail")({
+        UIDList: UIDList
+      });
+    },
     async save() {
       if (this.editItem.status == 2) {
         await functions.httpsCallable("rejectApplicant")({
@@ -243,6 +311,7 @@ export default {
       editIndex: null,
       editItem: null,
       dialog: false,
+      selected: [],
       headers: [
         {
           text: "Name",
