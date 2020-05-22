@@ -162,7 +162,7 @@
 import { functions } from "../firebase/init";
 
 export default {
-  name: "UserTable",
+  name: "HackerTable",
   props: ["data"],
   computed: {
     user() {
