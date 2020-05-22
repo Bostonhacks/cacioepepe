@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <navigationBar />
+    <navigationBar v-if="this.getRoutePath && this.getRoutePath !== '/live'" />
     <router-view />
   </v-app>
 </template>
@@ -16,6 +16,11 @@ export default {
   },
   data() {
     return {};
+  },
+  computed: {
+    getRoutePath() {
+      return this.$route.path;
+    }
   }
 };
 </script>
