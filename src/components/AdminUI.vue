@@ -87,18 +87,31 @@
                 </button>
               </template>
               <template v-slot:item.githubURL="{ item }">
-                <button v-if="item.githubURL">
+                <button v-if="item.githubURL && isLinkValid(item.githubURL)">
                   <a :href="item.githubURL" target="_blank">Open</a>
+                </button>
+                <button v-else-if="item.githubURL">
+                  <a :href="'http://' + item.githubURL" target="_blank">Open</a>
                 </button>
               </template>
               <template v-slot:item.linkedinURL="{ item }">
-                <button v-if="item.linkedinURL">
+                <button
+                  v-if="item.linkedinURL && isLinkValid(item.linkedinURL)"
+                >
                   <a :href="item.linkedinURL" target="_blank">Open</a>
+                </button>
+                <button v-else-if="item.linkedinURL">
+                  <a :href="'http://' + item.linkedinURL" target="_blank"
+                    >Open</a
+                  >
                 </button>
               </template>
               <template v-slot:item.otherURL="{ item }">
-                <button v-if="item.otherURL">
+                <button v-if="item.otherURL && isLinkValid(item.otherURL)">
                   <a :href="item.otherURL" target="_blank">Open</a>
+                </button>
+                <button v-else-if="item.otherURL">
+                  <a :href="'http://' + item.otherURL" target="_blank">Open</a>
                 </button>
               </template>
               <template v-slot:item.attendedBHacks="{ item }">
@@ -187,6 +200,9 @@ export default {
       this.dialog = false;
       this.editItem = null;
       this.editIndex = null;
+    },
+    isLinkValid(item) {
+      return item.includes("http");
     },
     async downloadResumes() {
       var res = await functions.httpsCallable("oneClickDownload")();
