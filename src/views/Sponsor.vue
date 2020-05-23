@@ -35,17 +35,17 @@
       </v-card>
 
       <v-row>
-        <v-col>
+        <v-col class="col-4">
           <LineChart :chartData="lineChartData" />
         </v-col>
-        <v-col>
+        <v-col class="col-4">
           <PieChart
             :year="yearIndex"
             :chartData="majorChartData"
             id="majorChart"
           />
         </v-col>
-        <v-col>
+        <v-col class="col-4">
           <PieChart
             :year="yearIndex"
             :chartData="genderChartData"
