@@ -25,7 +25,7 @@
                               </svg>
                             </td>
                             <td class="text-center">
-                              <v-radio label="Accepted" value="4"></v-radio>
+                              <v-radio label="Accepted" :value="4"></v-radio>
                             </td>
                           </tr>
                           <tr>
@@ -35,7 +35,7 @@
                               </svg>
                             </td>
                             <td class="text-center">
-                              <v-radio label="Rejected" value="2"></v-radio>
+                              <v-radio label="Rejected" :value="2"></v-radio>
                             </td>
                           </tr>
                           <tr>
@@ -45,7 +45,7 @@
                               </svg>
                             </td>
                             <td class="text-center">
-                              <v-radio label="Waitlisted" value="3"></v-radio>
+                              <v-radio label="Waitlisted" :value="3"></v-radio>
                             </td>
                           </tr>
                         </v-radio-group>
@@ -184,6 +184,18 @@
             <template>
               <div class="text-center">
                 <v-btn
+                  v-if="selected.length > 0"
+                  class="ma-2"
+                  outlined
+                  color="indigo"
+                  @click="downloadSelectedResumes"
+                  >Download Selected Resumes</v-btn
+                >
+              </div>
+            </template>
+            <template>
+              <div class="text-center">
+                <v-btn
                   class="ma-2"
                   outlined
                   color="indigo"
@@ -260,6 +272,17 @@ export default {
         UIDList: UIDList
       });
     },
+    async downloadSelectedResumes() {
+      var resumeList = [];
+      this.selected.forEach(entry => {
+        resumeList.push(entry.resume);
+      });
+      var res = await functions.httpsCallable("oneClickSelectDownload")({
+        resumeList: resumeList
+      });
+      var url = res["data"].URL;
+      window.open(url, "_blank");
+    },
     async rejectApplicants() {
       var UIDList = [];
       this.selected.forEach(entry => {
@@ -285,15 +308,13 @@ export default {
         });
         Object.assign(this.data[this.editIndex], this.editItem);
         this.close();
-      }
-      if (this.editItem.status == 3) {
+      } else if (this.editItem.status == 3) {
         await functions.httpsCallable("waitlistApplicant")({
           uid: this.editItem.uid
         });
         Object.assign(this.data[this.editIndex], this.editItem);
         this.close();
-      }
-      if (this.editItem.status == 4) {
+      } else if (this.editItem.status == 4) {
         await functions.httpsCallable("acceptApplicant")({
           uid: this.editItem.uid
         });

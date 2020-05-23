@@ -10,9 +10,11 @@ const db = admin.firestore();
 const { Storage } = require("@google-cloud/storage");
 const storage = new Storage();
 
-module.exports.oneClickDownload = functions.https.onCall(async () => {
+module.exports.oneClickDownload = functions.https.onCall(async (_, context) => {
   // Gets list of resume pathfile in Firebase Storage
-  const applications = db.collection("applications").where("status", ">", 0);
+  const applications = db
+    .collection("applications")
+    .where("status", "in", [4, 5, 7]);
   var userData = await applications.get();
   var paths = [];
   var names = [];
@@ -57,7 +59,7 @@ module.exports.oneClickDownload = functions.https.onCall(async () => {
 
   // Uploads resume back to allResumes folder in Firebase Storage
   await bucket.upload(tempFilePath + "/Resume.zip", {
-    destination: "allResumes/" + "Resume.zip",
+    destination: "allResumes/" + context.auth.uid + "/" + "Resume.zip",
     metadata: {
       contentType: "application/zip",
       metadata: {
@@ -75,9 +77,11 @@ module.exports.oneClickDownload = functions.https.onCall(async () => {
       "/o/" +
       "allResumes" +
       "%2F" +
+      context.auth.uid +
+      "%2F" +
       encodeURIComponent("Resume.zip") +
       "?alt=media&token=" +
       uuid,
-    location: "allResumes/Resume.zip"
+    location: "allResumes/" + context.auth.uid + "/" + "Resume.zip"
   };
 });
