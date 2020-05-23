@@ -25,7 +25,17 @@
 
             <v-tab-item key="tabs[1]">
               <v-card flat tile>
-                <v-card-text><HackerTable :data="data"/></v-card-text>
+                <v-card-actions>
+                  <v-select
+                    :items="statusList"
+                    v-model="itemStatus"
+                    label="Status"
+                    multiple
+                    @change="filterStatus"
+                  >
+                  </v-select>
+                </v-card-actions>
+                <v-card-text><HackerTable :data="currentData"/></v-card-text>
               </v-card>
             </v-tab-item>
 
@@ -51,10 +61,33 @@ export default {
     HackerTable,
     AdminStats
   },
+  methods: {
+    async filterStatus() {
+      if (this.itemStatus.length == 0) {
+        this.currentData = this.data;
+      } else {
+        this.currentData = this.data.filter(item =>
+          this.itemStatus.includes(this.statusList[item.status])
+        );
+      }
+    }
+  },
   data() {
     return {
       data: null,
+      currentData: null,
       tab: null,
+      itemStatus: [],
+      statusList: [
+        "Started",
+        "Submitted",
+        "Rejected",
+        "Waitlisted",
+        "Accepted",
+        "Confirmed",
+        "Declined",
+        "Checked In"
+      ],
       text:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       tabs: ["Stats", "God Mode", "Settings"]
@@ -63,6 +96,7 @@ export default {
   async mounted() {
     var out = await functions.httpsCallable("retrieveAllApplications")({});
     this.data = out.data;
+    this.currentData = this.data;
   }
 };
 </script>
