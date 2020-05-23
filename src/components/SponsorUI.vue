@@ -4,32 +4,51 @@
       <v-layout text-center wrap>
         <v-flex xs12></v-flex>
         <v-flex mb-4>
-          <h1 class="display-2 font-weight-bold mb-3">Welcome Sponsor!</h1>
+          <h1 class="display-1 indigo--text text--darken-4 font-weight-bold">
+            Welcome Sponsor!
+          </h1>
 
           <template>
             <h3>About BostonHacks</h3>
             <v-row>
               <v-col>
                 <v-card>
-                  <h4>Who Are We?</h4>
-                  BostonHacks brings together over 500 students for an
-                  exhilarating 24 hours to build awesome projects. In our past
-                  two events, students had meaningful interactions with mentors,
-                  peers, and sponsors. A hackathon would be incomplete without
-                  the new technology, advice, and ideas our sponsors offer, and
-                  we’d be eager to have you join us this coming Fall!
+                  <h4
+                    class="display-1 indigo--text text--darken-4 font-weight-bold"
+                  >
+                    Who Are We?
+                  </h4>
+                  <p
+                    class="display-1 indigo--text text--darken-4 font-weight-light body-1"
+                  >
+                    BostonHacks brings together over 500 students for an
+                    exhilarating 24 hours to build awesome projects. In our past
+                    two events, students had meaningful interactions with
+                    mentors, peers, and sponsors. A hackathon would be
+                    incomplete without the new technology, advice, and ideas our
+                    sponsors offer, and we’d be eager to have you join us this
+                    coming Fall!
+                  </p>
                 </v-card>
               </v-col>
               <v-col>
                 <v-card>
-                  <h4>Why Us?</h4>
-                  <h5>Connect</h5>
-                  Resumes are two-dimensional (literally). Interviews give only
-                  a small snapshot of an individual’s abilities. By watching a
-                  project evolve over a hackathon, you can get a much better
-                  picture of a candidate. Plus, you’ll have access to a group of
-                  students that are extraordinarily passionate about what they
-                  do, and a friendly environment to interact with them in.
+                  <h4
+                    class="display-1 indigo--text text--darken-4 font-weight-bold"
+                  >
+                    Why Us?
+                  </h4>
+                  <p
+                    class="display-1 indigo--text text--darken-4 font-weight-light body-1"
+                  >
+                    Resumes are two-dimensional (literally). Interviews give
+                    only a small snapshot of an individual’s abilities. By
+                    watching a project evolve over a hackathon, you can get a
+                    much better picture of a candidate. Plus, you’ll have access
+                    to a group of students that are extraordinarily passionate
+                    about what they do, and a friendly environment to interact
+                    with them in.
+                  </p>
                 </v-card>
               </v-col>
             </v-row>
