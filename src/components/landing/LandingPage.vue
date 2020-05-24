@@ -30,7 +30,8 @@
 
         <v-col cols="6">
           <p class="display-1 indigo--text text--darken-4 font-weight-bold">
-            We're turning 6.<br />And you're invited!
+            We're turning 6.
+            <br />And you're invited!
           </p>
           <p>Registration is now closed! Click the link below to log in.</p>
           <v-btn rounded color="deep-orange lighten-3" dark @click="login()"
@@ -38,12 +39,7 @@
           >
         </v-col>
         <v-col cols="5">
-          <img
-            src="../assets/pinata.svg"
-            contain
-            height="200px"
-            width="250px"
-          />
+          <img src="@/assets/pinata.svg" contain height="200px" width="250px" />
         </v-col>
 
         <v-spacer></v-spacer>
@@ -81,16 +77,14 @@
         <v-row>
           <v-col cols="6">
             <p class="text--darken-4 font-weight-bold">
-              7:00 AM Check In <br />
-              8:00 AM Breakfast <br />
-              9:00 AM Open Ceremony
+              7:00 AM Check In
+              <br />8:00 AM Breakfast <br />9:00 AM Open Ceremony
             </p>
           </v-col>
           <v-col cols="6">
             <p class="text--darken-4 font-weight-bold">
-              7:00 AM Check In <br />
-              8:00 AM Breakfast <br />
-              9:00 AM Open Ceremony
+              7:00 AM Check In
+              <br />8:00 AM Breakfast <br />9:00 AM Open Ceremony
             </p>
           </v-col>
         </v-row>

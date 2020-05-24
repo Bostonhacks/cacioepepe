@@ -3,7 +3,7 @@
     <v-toolbar>
       <img
         class="mr-3"
-        :src="require('../assets/BostonHacksMark.png')"
+        :src="require('@/assets/BostonHacksMark.png')"
         height="30"
       />
       <v-toolbar-title>BostonHacks</v-toolbar-title>
