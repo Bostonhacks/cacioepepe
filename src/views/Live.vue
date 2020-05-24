@@ -15,7 +15,7 @@
           </p>
         </div>
         <div class="quarter">
-          <img src="../assets/pinata.svg" />
+          <img src="@/assets/pinata.svg" />
         </div>
       </div>
       <div class="flex-container card-container">
@@ -37,7 +37,7 @@
       </div>
     </div>
     <div class="dividers">
-      <img src="../assets/shapes/divider.png" alt class="divider-image" />
+      <img src="@/assets/shapes/divider.png" alt class="divider-image" />
     </div>
     <div id="faq">
       <div class="flex-container early">
@@ -46,7 +46,7 @@
             Frequently Asked Questions
           </div>
           <img
-            src="../assets/live/icons/help.svg"
+            src="@/assets/live/icons/help.svg"
             alt
             style="width: 80%; margin-left: 10%"
           />
@@ -78,7 +78,7 @@
       </div>
     </div>
     <div class="dividers">
-      <img src="../assets/shapes/divider.png" alt class="divider-image" />
+      <img src="@/assets/shapes/divider.png" alt class="divider-image" />
     </div>
     <div id="schedule">
       <div class="flex-container early">
@@ -151,7 +151,7 @@
             The Schedule
           </div>
           <img
-            src="../assets/live/icons/calendar.svg"
+            src="@/assets/live/icons/calendar.svg"
             alt
             style="width: 80%; margin-left: 10%"
           />
@@ -159,7 +159,7 @@
       </div>
     </div>
     <div class="dividers">
-      <img src="../assets/shapes/divider.png" alt class="divider-image" />
+      <img src="@/assets/shapes/divider.png" alt class="divider-image" />
     </div>
     <div id="map">
       <div class="flex-container early">
@@ -168,7 +168,7 @@
             Map
           </div>
           <img
-            src="../assets/live/icons/map.svg"
+            src="@/assets/live/icons/map.svg"
             alt
             style="width: 80%; margin-left: 10%"
           />
@@ -183,25 +183,25 @@
             <v-tab-item :key="1">
               <v-card flat style="height: 40rem">
                 <v-card-text>Basement: Floor Plan and Information</v-card-text>
-                <img src="../assets/live/basement.svg" style="width: 50%" />
+                <img src="@/assets/live/basement.svg" style="width: 50%" />
               </v-card>
             </v-tab-item>
             <v-tab-item :key="2">
               <v-card flat style="height: 40rem">
                 <v-card-text>Floor 1: Floor Plan and Information</v-card-text>
-                <img src="../assets/live/floor1.svg" style="width: 50%" />
+                <img src="@/assets/live/floor1.svg" style="width: 50%" />
               </v-card>
             </v-tab-item>
             <v-tab-item :key="3">
               <v-card flat style="height: 40rem">
                 <v-card-text>Floor 2: Floor Plan and Information</v-card-text>
-                <img src="../assets/live/floor2.svg" style="width: 50%" />
+                <img src="@/assets/live/floor2.svg" style="width: 50%" />
               </v-card>
             </v-tab-item>
             <v-tab-item :key="4">
               <v-card flat style="height: 40rem">
                 <v-card-text>Floor 3: Floor Plan and Information</v-card-text>
-                <img src="../assets/live/floor3.svg" style="width: 50%" />
+                <img src="@/assets/live/floor3.svg" style="width: 50%" />
               </v-card>
             </v-tab-item>
           </v-tabs>
@@ -209,7 +209,7 @@
       </div>
     </div>
     <div class="dividers">
-      <img src="../assets/shapes/divider.png" alt class="divider-image" />
+      <img src="@/assets/shapes/divider.png" alt class="divider-image" />
     </div>
     <div id="workshops">
       <div class="flex-container early">
@@ -229,7 +229,7 @@
             Workshops
           </div>
           <img
-            src="../assets/live/icons/workshop.svg"
+            src="@/assets/live/icons/workshop.svg"
             alt
             style="width: 80%;
           margin-left: 10%"
@@ -238,17 +238,17 @@
       </div>
     </div>
     <div class="dividers">
-      <img src="../assets/shapes/divider.png" alt class="divider-image" />
+      <img src="@/assets/shapes/divider.png" alt class="divider-image" />
     </div>
     <div id="prizes">
       <div class="container">
         <div style="font-size: 3rem; text-align: center; font-weight: bold">
           <img
-            src="../assets/live/icons/trophy.svg"
+            src="@/assets/live/icons/trophy.svg"
             alt
             style="height: 3rem"
           />Prizes
-          <img src="../assets/live/icons/trophy.svg" alt style="height: 3rem" />
+          <img src="@/assets/live/icons/trophy.svg" alt style="height: 3rem" />
         </div>
       </div>
       <br />
@@ -296,7 +296,7 @@
 </template>
 
 <script>
-import LiveNavBar from "../components/LiveNavBar";
+import LiveNavBar from "@/components/live/LiveNavBar";
 export default {
   data() {
     return {

@@ -86,7 +86,8 @@ export default {
   name: "LiveNavBar",
   data() {
     return {
-      drawer: false
+      drawer: false,
+      group: 0
     };
   }
 };

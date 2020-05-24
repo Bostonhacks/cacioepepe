@@ -3,7 +3,8 @@ module.exports = {
   productionSourceMap: false,
   lintOnSave: false,
   pwa: {
-    name: "Cacioepepe"
+    name: "BostonHacks",
+    themeColor: "#282561"
   },
   transpileDependencies: ["vuetify"]
 };

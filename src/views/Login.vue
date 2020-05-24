@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import LoginUI from "../components/LoginUI";
+import LoginUI from "@/components/login/LoginUI";
 
 export default {
   components: {
