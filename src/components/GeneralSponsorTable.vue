@@ -1,6 +1,11 @@
 <template>
   <div>
-    <v-data-table :headers="headers" :items="generals" hide-default-footer class="elevation-1"></v-data-table>
+    <v-data-table
+      :headers="headers"
+      :items="generals"
+      hide-default-footer
+      class="elevation-1"
+    ></v-data-table>
   </div>
 </template>
 <script>
@@ -65,7 +70,7 @@ export default {
           align: "start",
           sortable: false,
           value: "general",
-          width: "300px",
+          width: "300px"
           // font-size: "30px"
         },
         {

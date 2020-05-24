@@ -4,9 +4,7 @@
       <v-layout text-center wrap>
         <v-flex xs12></v-flex>
         <v-flex mb-4>
-          <h1 class="display-1 indigo--text text--darken-4 font-weight-bold">
-            Welcome Sponsor!
-          </h1>
+          <h1 class="display-2 font-weight-bold mb-3">Welcome Sponsor!</h1>
 
           <template>
             <h3>About BostonHacks</h3>

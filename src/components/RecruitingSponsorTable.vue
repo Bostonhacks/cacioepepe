@@ -1,6 +1,11 @@
 <template>
   <div>
-    <v-data-table :headers="headers" :items="recruitings" hide-default-footer class="elevation-1"></v-data-table>
+    <v-data-table
+      :headers="headers"
+      :items="recruitings"
+      hide-default-footer
+      class="elevation-1"
+    ></v-data-table>
   </div>
 </template>
 <script>
