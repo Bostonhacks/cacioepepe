@@ -1,9 +1,7 @@
 <template>
   <v-form>
     <v-container>
-      <h1>
-        Sign up to be a BostonHacks Volunteer!
-      </h1>
+      <h1>Sign up to be a BostonHacks Volunteer!</h1>
       <v-row>
         <v-col cols="12" sm="6">
           <v-text-field
@@ -38,8 +36,7 @@
             v-model="gender"
             label="Gender"
             outlined
-          >
-          </v-select>
+          ></v-select>
         </v-col>
       </v-row>
       <v-row>
@@ -80,9 +77,7 @@
           ></v-select>
         </v-col>
       </v-row>
-      <div class="inline">
-        Choose as many interests as you want
-      </div>
+      <div class="inline">Choose as many interests as you want</div>
       <v-row>
         <v-col class="d-flex" cols="12" sm="6">
           <v-checkbox-group column>
@@ -144,7 +139,7 @@
 </template>
 
 <script>
-import { functions } from "../firebase/init";
+import { functions } from "@/firebase/init";
 export default {
   name: "volunteer",
   data() {

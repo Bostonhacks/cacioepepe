@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import mentor from "../components/MentorApp";
+import mentor from "@/components/mentor/MentorApp";
 
 export default {
   components: {

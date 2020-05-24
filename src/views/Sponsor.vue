@@ -1,6 +1,59 @@
 <template>
   <v-container>
-    <SponsorUI />
+    <v-container>
+      <v-layout text-center wrap>
+        <v-flex xs12></v-flex>
+        <v-flex mb-4>
+          <h1 class="display-2 font-weight-bold mb-3">Welcome Sponsor!</h1>
+
+          <template>
+            <h3>About BostonHacks</h3>
+            <v-row>
+              <v-col>
+                <v-card>
+                  <h4
+                    class="display-1 indigo--text text--darken-4 font-weight-bold"
+                  >
+                    Who Are We?
+                  </h4>
+                  <p
+                    class="display-1 indigo--text text--darken-4 font-weight-light body-1"
+                  >
+                    BostonHacks brings together over 500 students for an
+                    exhilarating 24 hours to build awesome projects. In our past
+                    two events, students had meaningful interactions with
+                    mentors, peers, and sponsors. A hackathon would be
+                    incomplete without the new technology, advice, and ideas our
+                    sponsors offer, and we’d be eager to have you join us this
+                    coming Fall!
+                  </p>
+                </v-card>
+              </v-col>
+              <v-col>
+                <v-card>
+                  <h4
+                    class="display-1 indigo--text text--darken-4 font-weight-bold"
+                  >
+                    Why Us?
+                  </h4>
+                  <p
+                    class="display-1 indigo--text text--darken-4 font-weight-light body-1"
+                  >
+                    Resumes are two-dimensional (literally). Interviews give
+                    only a small snapshot of an individual’s abilities. By
+                    watching a project evolve over a hackathon, you can get a
+                    much better picture of a candidate. Plus, you’ll have access
+                    to a group of students that are extraordinarily passionate
+                    about what they do, and a friendly environment to interact
+                    with them in.
+                  </p>
+                </v-card>
+              </v-col>
+            </v-row>
+          </template>
+        </v-flex>
+      </v-layout>
+    </v-container>
 
     <v-container>
       <v-subheader>Sponsor Companies</v-subheader>
@@ -35,17 +88,17 @@
       </v-card>
 
       <v-row>
-        <v-col>
+        <v-col class="col-4">
           <LineChart :chartData="lineChartData" />
         </v-col>
-        <v-col>
+        <v-col class="col-4">
           <PieChart
             :year="yearIndex"
             :chartData="majorChartData"
             id="majorChart"
           />
         </v-col>
-        <v-col>
+        <v-col class="col-4">
           <PieChart
             :year="yearIndex"
             :chartData="genderChartData"
@@ -65,18 +118,16 @@
 </template>
 
 <script>
-import LineChart from "../components/LineChart";
-import SponsorUI from "../components/SponsorUI";
-import GeneralSponsorTable from "../components/GeneralSponsorTable";
-import RecruitingSponsorTable from "../components/RecruitingSponsorTable";
-import BrandingSponsorTable from "../components/BrandingSponsorTable";
-import PieChart from "../components/PieChart";
+import LineChart from "@/components/common/LineChart";
+import GeneralSponsorTable from "@/components/sponsor/GeneralSponsorTable";
+import RecruitingSponsorTable from "@/components/sponsor/RecruitingSponsorTable";
+import BrandingSponsorTable from "@/components/sponsor/BrandingSponsorTable";
+import PieChart from "@/components/common/PieChart";
 
 export default {
   components: {
     LineChart,
     PieChart,
-    SponsorUI,
     GeneralSponsorTable,
     RecruitingSponsorTable,
     BrandingSponsorTable
@@ -95,6 +146,19 @@ export default {
   },
   data() {
     return {
+      data: null,
+      currentData: null,
+      itemStatus: ["Accepted", "Confirmed", "Checked In"],
+      statusList: [
+        "Started",
+        "Submitted",
+        "Rejected",
+        "Waitlisted",
+        "Accepted",
+        "Confirmed",
+        "Declined",
+        "Checked In"
+      ],
       toggleYearSelect: false,
       companyData: [
         {
