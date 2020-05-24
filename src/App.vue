@@ -7,7 +7,7 @@
 
 <script>
 import store from "@/store/index.js";
-import navigationBar from "@/components/NavigationBar.vue";
+import navigationBar from "@/components/common/NavigationBar.vue";
 export default {
   name: "App",
   store,

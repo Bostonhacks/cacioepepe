@@ -112,8 +112,8 @@
   </v-container>
 </template>
 <script>
-import { functions } from "../firebase/init";
-import store from "../store/index";
+import { functions } from "../../firebase/init";
+import store from "../../store/index";
 export default {
   name: "ApplicationUI",
   data() {

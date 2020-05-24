@@ -296,7 +296,7 @@
 </template>
 
 <script>
-import LiveNavBar from "../components/LiveNavBar";
+import LiveNavBar from "../components/live/LiveNavBar";
 export default {
   data() {
     return {

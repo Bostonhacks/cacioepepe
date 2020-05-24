@@ -13,9 +13,7 @@
             dark
             grow
           >
-            <v-tab v-for="i in tabs" :key="i">
-              {{ i }}
-            </v-tab>
+            <v-tab v-for="i in tabs" :key="i">{{ i }}</v-tab>
 
             <v-tab-item key="tabs[0]">
               <v-card flat tile>
@@ -32,10 +30,11 @@
                     label="Status"
                     multiple
                     @change="filterStatus"
-                  >
-                  </v-select>
+                  ></v-select>
                 </v-card-actions>
-                <v-card-text><HackerTable :data="currentData"/></v-card-text>
+                <v-card-text>
+                  <HackerTable :data="currentData" />
+                </v-card-text>
               </v-card>
             </v-tab-item>
 
@@ -52,8 +51,8 @@
 </template>
 
 <script>
-import HackerTable from "../components/HackerTable";
-import AdminStats from "../components/AdminStats";
+import HackerTable from "../components/common/HackerTable";
+import AdminStats from "../components/admin/AdminStats";
 import { functions } from "../firebase/init";
 
 export default {

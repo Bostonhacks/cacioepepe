@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import volunteer from "../components/VolunteerApp";
+import volunteer from "../components/volunteer/VolunteerApp";
 
 export default {
   components: {

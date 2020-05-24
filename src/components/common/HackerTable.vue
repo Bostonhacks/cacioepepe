@@ -87,8 +87,7 @@
                   v-model="gender"
                   label="Gender"
                   multiple
-                >
-                </v-select>
+                ></v-select>
               </v-flex>
               <v-flex mx-1>
                 <v-select
@@ -182,9 +181,7 @@
                 </button>
               </template>
               <v-data-footer>
-                <v-text-field>
-                  text
-                </v-text-field>
+                <v-text-field>text</v-text-field>
               </v-data-footer>
             </v-data-table>
           </template>
@@ -256,7 +253,7 @@
 </template>
 
 <script>
-import { functions } from "../firebase/init";
+import { functions } from "@/firebase/init";
 
 export default {
   name: "HackerTable",

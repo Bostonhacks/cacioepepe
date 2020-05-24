@@ -1,9 +1,7 @@
 <template>
   <v-form>
     <v-container>
-      <h1>
-        Sign up to be a BostonHacks Mentor!
-      </h1>
+      <h1>Sign up to be a BostonHacks Volunteer!</h1>
       <v-row>
         <v-col cols="12" sm="6">
           <v-text-field
@@ -38,8 +36,7 @@
             v-model="gender"
             label="Gender"
             outlined
-          >
-          </v-select>
+          ></v-select>
         </v-col>
       </v-row>
       <v-row>
@@ -80,6 +77,37 @@
           ></v-select>
         </v-col>
       </v-row>
+      <div class="inline">Choose as many interests as you want</div>
+      <v-row>
+        <v-col class="d-flex" cols="12" sm="6">
+          <v-checkbox-group column>
+            <v-checkbox
+              v-model="tablingEvent"
+              label="Tabling at the Boston Hack Event"
+              value="Tabling at the Boston Hack Event"
+              hide-details
+            ></v-checkbox>
+            <v-checkbox
+              v-model="preEvent"
+              label="Pre-Event Set Up"
+              value="Pre-Event Set Up"
+              hide-details
+            ></v-checkbox>
+            <v-checkbox
+              v-model="postEvent"
+              label="Post Event Cleaning"
+              value="Post Event Cleaning"
+              hide-details
+            ></v-checkbox>
+            <v-checkbox
+              v-model="eventVolunteer"
+              label="During Event Volunteering"
+              value="During Event Volunteering"
+              hide-details
+            ></v-checkbox>
+          </v-checkbox-group>
+        </v-col>
+      </v-row>
       <v-switch
         v-model="picturePermission"
         label="Do you consent to us taking a picture or video during the event?"
@@ -111,9 +139,9 @@
 </template>
 
 <script>
-import { functions } from "../firebase/init";
+import { functions } from "../../firebase/init";
 export default {
-  name: "mentor",
+  name: "volunteer",
   data() {
     return {
       first: null,
@@ -123,6 +151,10 @@ export default {
       phone: null,
       educationLevel: null,
       pronoun: null,
+      preEvent: null,
+      postEvent: null,
+      tablingEvent: null,
+      eventVolunteer: null,
       university: null,
       picturePermission: null,
       universityList: null,
@@ -153,7 +185,7 @@ export default {
   },
   methods: {
     async submitApplication() {
-      await functions.httpsCallable("submitMentorApplication")({
+      await functions.httpsCallable("submitVolunteerApplication")({
         first: this.first,
         last: this.last,
         phone: this.phone,
@@ -162,6 +194,10 @@ export default {
         educationLevel: this.educationLevel,
         university: this.university,
         email: this.email,
+        preEvent: this.preEvent,
+        postEvent: this.postEvent,
+        tablingEvent: this.tablingEvent,
+        eventVolunteer: this.eventVolunteer,
         picturePermission: this.picturePermission,
         tAandC: this.tAandC
       });
