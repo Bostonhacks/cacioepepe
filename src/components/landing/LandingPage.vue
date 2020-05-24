@@ -39,12 +39,7 @@
           >
         </v-col>
         <v-col cols="5">
-          <img
-            src="../../assets/pinata.svg"
-            contain
-            height="200px"
-            width="250px"
-          />
+          <img src="@/assets/pinata.svg" contain height="200px" width="250px" />
         </v-col>
 
         <v-spacer></v-spacer>

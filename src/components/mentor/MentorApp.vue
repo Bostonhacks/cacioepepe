@@ -108,7 +108,7 @@
 </template>
 
 <script>
-import { functions } from "../../firebase/init";
+import { functions } from "@/firebase/init";
 export default {
   name: "mentor",
   data() {

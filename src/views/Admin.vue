@@ -51,11 +51,12 @@
 </template>
 
 <script>
-import HackerTable from "../components/common/HackerTable";
-import AdminStats from "../components/admin/AdminStats";
-import { functions } from "../firebase/init";
+import HackerTable from "@/components/common/HackerTable";
+import AdminStats from "@/components/admin/AdminStats";
+import { functions } from "@/firebase/init";
 
 export default {
+  name: "Admin",
   components: {
     HackerTable,
     AdminStats

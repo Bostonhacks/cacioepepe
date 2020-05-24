@@ -118,13 +118,11 @@
 </template>
 
 <script>
-import LineChart from "../components/common/LineChart";
-import GeneralSponsorTable from "../components/sponsor/GeneralSponsorTable";
-import RecruitingSponsorTable from "../components/sponsor/RecruitingSponsorTable";
-import BrandingSponsorTable from "../components/sponsor/BrandingSponsorTable";
-import PieChart from "../components/common/PieChart";
-// import HackerTable from "../components/common/HackerTable";
-// import { functions } from "../firebase/init";
+import LineChart from "@/components/common/LineChart";
+import GeneralSponsorTable from "@/components/sponsor/GeneralSponsorTable";
+import RecruitingSponsorTable from "@/components/sponsor/RecruitingSponsorTable";
+import BrandingSponsorTable from "@/components/sponsor/BrandingSponsorTable";
+import PieChart from "@/components/common/PieChart";
 
 export default {
   components: {
@@ -133,7 +131,6 @@ export default {
     GeneralSponsorTable,
     RecruitingSponsorTable,
     BrandingSponsorTable
-    // HackerTable
   },
   watch: {
     yearIndex: {
@@ -149,6 +146,19 @@ export default {
   },
   data() {
     return {
+      data: null,
+      currentData: null,
+      itemStatus: ["Accepted", "Confirmed", "Checked In"],
+      statusList: [
+        "Started",
+        "Submitted",
+        "Rejected",
+        "Waitlisted",
+        "Accepted",
+        "Confirmed",
+        "Declined",
+        "Checked In"
+      ],
       toggleYearSelect: false,
       companyData: [
         {

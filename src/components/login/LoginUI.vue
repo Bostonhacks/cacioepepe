@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { authUI, authUIConfig } from "../../firebase/init";
+import { authUI, authUIConfig } from "@/firebase/init";
 export default {
   name: "AuthUI",
   computed: {

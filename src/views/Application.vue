@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ApplicationUI from "../components/hacker/ApplicationUI";
+import ApplicationUI from "@/components/hacker/ApplicationUI";
 
 export default {
   components: {
