@@ -28,7 +28,8 @@ module.exports.addEventSchedule = functions.https.onCall(async data => {
 
   // Access DB to get data of events
   const eventSchedule = db.collection("admin").doc("eventSchedule");
-  var userData = await eventSchedule.get();
+  const mydb = db.collection("admin").doc("eventSchedule");
+  var userData = await mydb.get();
   var events = userData.data().schedule;
 
   // Append new event into the array
