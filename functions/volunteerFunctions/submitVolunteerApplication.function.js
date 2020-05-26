@@ -8,8 +8,13 @@ module.exports.submitVolunteerApplication = functions.https.onCall(
     if (!context.auth) {
       return { message: "Authentication Required!", code: 401 };
     }
+    const userdb = db.collection("users").doc(context.auth.uid);
+    await userdb.update({
+      applicationStatus: 1
+    });
     const mydb = db.collection("volunteers").doc(context.auth.uid);
     await mydb.add({
+      status: 1,
       first: data.first,
       last: data.last,
       phone: data.phone,
