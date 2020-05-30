@@ -23,6 +23,7 @@ module.exports.submitMentorApplication = functions.https.onCall(
       educationLevel: data.educationLevel,
       university: data.university,
       email: data.email,
+      resume: data.resume,
       picturePermission: data.picturePermission,
       tAandC: data.tAandC,
       uid: context.auth.uid

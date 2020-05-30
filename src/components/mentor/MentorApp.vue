@@ -77,6 +77,24 @@
           ></v-select>
         </v-col>
       </v-row>
+      <div v-if="resume">
+        <v-btn color="primary" class="mr-4" :href="resume[0]"
+          >View Uploaded Resume</v-btn
+        >
+        <v-btn color="primary" class="mr-4" @click="deleteResume"
+          >Delete Resume</v-btn
+        >
+      </div>
+      <div v-else>
+        <v-file-input
+          chips
+          multiple
+          label="Resume Upload (PDF Only)"
+          accept="application/pdf"
+          @change="uploadResume"
+          v-model="uploadedResume"
+        ></v-file-input>
+      </div>
       <v-switch
         v-model="picturePermission"
         label="Do you consent to us taking a picture or video during the event?"
@@ -96,6 +114,7 @@
             gender == null ||
             pronoun == null ||
             educationLevel == null ||
+            resume == null ||
             university == null ||
             email == null ||
             picturePermission == null ||
@@ -110,7 +129,7 @@
 <script>
 import { functions } from "@/firebase/init";
 export default {
-  name: "mentor",
+  name: "volunteer",
   data() {
     return {
       first: null,
@@ -120,6 +139,10 @@ export default {
       phone: null,
       educationLevel: null,
       pronoun: null,
+      preEvent: null,
+      postEvent: null,
+      tablingEvent: null,
+      eventVolunteer: null,
       university: null,
       picturePermission: null,
       universityList: null,
@@ -159,6 +182,7 @@ export default {
         educationLevel: this.educationLevel,
         university: this.university,
         email: this.email,
+        resume: this.resume,
         picturePermission: this.picturePermission,
         tAandC: this.tAandC
       });

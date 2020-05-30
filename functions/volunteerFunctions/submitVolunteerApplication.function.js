@@ -23,6 +23,7 @@ module.exports.submitVolunteerApplication = functions.https.onCall(
       educationLevel: data.educationLevel,
       university: data.university,
       email: data.email,
+      resume: data.resume,
       preEvent: data.preEvent,
       postEvent: data.postEvent,
       tablingEvent: data.tablingEvent,

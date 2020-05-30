@@ -77,6 +77,24 @@
           ></v-select>
         </v-col>
       </v-row>
+      <div v-if="resume">
+        <v-btn color="primary" class="mr-4" :href="resume[0]"
+          >View Uploaded Resume</v-btn
+        >
+        <v-btn color="primary" class="mr-4" @click="deleteResume"
+          >Delete Resume</v-btn
+        >
+      </div>
+      <div v-else>
+        <v-file-input
+          chips
+          multiple
+          label="Resume Upload (PDF Only)"
+          accept="application/pdf"
+          @change="uploadResume"
+          v-model="uploadedResume"
+        ></v-file-input>
+      </div>
       <div class="inline">Choose as many interests as you want</div>
       <v-row>
         <v-col class="d-flex" cols="12" sm="6">
@@ -158,6 +176,8 @@ export default {
       university: null,
       picturePermission: null,
       universityList: null,
+      uploadedResume: null,
+      resume: null,
       tAandC: null,
       emailRules: [
         v =>
@@ -194,6 +214,7 @@ export default {
         educationLevel: this.educationLevel,
         university: this.university,
         email: this.email,
+        resume: this.resume,
         preEvent: this.preEvent,
         postEvent: this.postEvent,
         tablingEvent: this.tablingEvent,
