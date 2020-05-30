@@ -119,11 +119,6 @@
               :search="search"
               :loading="data == null"
               loading-text="Loading please wait ..."
-              :caption="
-                this.$refs['hackerTable'].selectableItems.length +
-                  ' applicants match your query parameters.'
-              "
-              ref="hackerTable"
             >
               <template v-slot:item.resume[0]="{ item }">
                 <button v-if="item.resume[0]">

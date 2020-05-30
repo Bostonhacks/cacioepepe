@@ -119,56 +119,23 @@
               :search="search"
               :loading="data == null"
               loading-text="Loading please wait ..."
-              :caption="
-                this.$refs['hackerTable'].selectableItems.length +
-                  ' applicants match your query parameters.'
-              "
-              ref="hackerTable"
             >
               <template v-slot:item.resume[0]="{ item }">
                 <button v-if="item.resume[0]">
                   <a :href="item.resume[0]" target="_blank">Open</a>
                 </button>
               </template>
-              <template v-slot:item.githubURL="{ item }">
-                <button v-if="item.githubURL && isLinkValid(item.githubURL)">
-                  <a :href="item.githubURL" target="_blank">Open</a>
-                </button>
-                <button v-else-if="item.githubURL">
-                  <a :href="'http://' + item.githubURL" target="_blank">Open</a>
-                </button>
+              <template v-slot:item.preEvent="{ item }">
+                <v-checkbox v-model="item.preEvent" disabled></v-checkbox>
               </template>
-              <template v-slot:item.linkedinURL="{ item }">
-                <button
-                  v-if="item.linkedinURL && isLinkValid(item.linkedinURL)"
-                >
-                  <a :href="item.linkedinURL" target="_blank">Open</a>
-                </button>
-                <button v-else-if="item.linkedinURL">
-                  <a :href="'http://' + item.linkedinURL" target="_blank"
-                    >Open</a
-                  >
-                </button>
+              <template v-slot:item.postEvent="{ item }">
+                <v-checkbox v-model="item.postEvent" disabled></v-checkbox>
               </template>
-              <template v-slot:item.otherURL="{ item }">
-                <button v-if="item.otherURL && isLinkValid(item.otherURL)">
-                  <a :href="item.otherURL" target="_blank">Open</a>
-                </button>
-                <button v-else-if="item.otherURL">
-                  <a :href="'http://' + item.otherURL" target="_blank">Open</a>
-                </button>
+              <template v-slot:item.tablingEvent="{ item }">
+                <v-checkbox v-model="item.tablingEvent" disabled></v-checkbox>
               </template>
-              <template v-slot:item.attendedBHacks="{ item }">
-                <v-checkbox v-model="item.attendedBHacks" disabled></v-checkbox>
-              </template>
-              <template v-slot:item.marketingData="{ item }">
-                <v-checkbox v-model="item.marketingData" disabled></v-checkbox>
-              </template>
-              <template v-slot:item.tAndC1="{ item }">
-                <v-checkbox v-model="item.tAndC1" disabled></v-checkbox>
-              </template>
-              <template v-slot:item.tAndC2="{ item }">
-                <v-checkbox v-model="item.tAndC2" disabled></v-checkbox>
+              <template v-slot:item.eventVolunteer="{ item }">
+                <v-checkbox v-model="item.eventVolunteer" disabled></v-checkbox>
               </template>
               <template v-slot:item.status="{ item }">
                 <button
