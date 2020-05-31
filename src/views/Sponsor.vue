@@ -135,7 +135,7 @@
             id="genderChart"
           />
         </v-col>
-        <v-col>
+        <v-col class="col-4">
           <BarChart
             :year="yearIndex"
             :chartData="hackathonsChartData"
