@@ -89,12 +89,16 @@
 
       <v-row>
         <v-col class="col-4">
-          <LineChart :chartData="lineChartData" />
+          <LineChart
+            :chartData="lineChartData"
+            :options="lineChartData.options"
+          />
         </v-col>
         <v-col class="col-4">
           <PieChart
             :year="yearIndex"
             :chartData="majorChartData"
+            :options="majorChartData.options"
             id="majorChart"
           />
         </v-col>
@@ -102,7 +106,26 @@
           <PieChart
             :year="yearIndex"
             :chartData="genderChartData"
+            :options="genderChartData.options"
             id="genderChart"
+          />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col class="col-4">
+          <PieChart
+            :year="yearIndex"
+            :chartData="educationChartData"
+            :options="educationChartData.options"
+            id="educationChart"
+          />
+        </v-col>
+        <v-col class="col-4">
+          <PieChart
+            :year="yearIndex"
+            :chartData="hackathonsChartData"
+            :options="hackathonsChartData.options"
+            id="hackathonsChart"
           />
         </v-col>
       </v-row>
@@ -182,6 +205,12 @@ export default {
       lastYearIndex: "3",
       years: ["2016", "2017", "2018", "2019"],
       lineChartData: {
+        options: {
+          title: {
+            display: true,
+            text: "Number of Applicants"
+          }
+        },
         labels: ["2016", "2017", "2018", "2019"],
         datasets: [
           {
@@ -196,6 +225,12 @@ export default {
         ]
       },
       majorChartData: {
+        options: {
+          title: {
+            display: true,
+            text: "Majors"
+          }
+        },
         labels: [
           "Computer Science",
           "Electrical Engineering",
@@ -230,6 +265,12 @@ export default {
         ]
       },
       genderChartData: {
+        options: {
+          title: {
+            display: true,
+            text: "Genders"
+          }
+        },
         labels: ["Male", "Female", "Other"],
         datasets: [
           {
@@ -256,6 +297,78 @@ export default {
             label: "2020",
             backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
             data: [20, 70, 5]
+          }
+        ]
+      },
+      educationChartData: {
+        options: {
+          title: {
+            display: true,
+            text: "Education Levels"
+          }
+        },
+        labels: ["High School", "Undergraduate", "Graduate"],
+        datasets: [
+          {
+            label: "2016",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: [40, 20, 10]
+          },
+          {
+            label: "2017",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: [10, 90, 10]
+          },
+          {
+            label: "2018",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: [15, 15, 70]
+          },
+          {
+            label: "2019",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: [5, 5, 90]
+          },
+          {
+            label: "2020",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: [20, 70, 5]
+          }
+        ]
+      },
+      hackathonsChartData: {
+        options: {
+          title: {
+            display: true,
+            text: "Hackathons Attended"
+          }
+        },
+        labels: ["0", "1", "2", "3+"],
+        datasets: [
+          {
+            label: "Data One",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            data: [40, 20, 10, 30]
+          },
+          {
+            label: "Data Two",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            data: [10, 90, 10, 40]
+          },
+          {
+            label: "Data Three",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            data: [15, 15, 70]
+          },
+          {
+            label: "Data Four",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            data: [5, 5, 90, 20]
+          },
+          {
+            label: "Data Five",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            data: [20, 70, 5, 50]
           }
         ]
       }

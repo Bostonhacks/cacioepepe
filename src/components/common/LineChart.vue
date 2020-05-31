@@ -19,6 +19,7 @@ export default {
     chartData: {},
 
     options: {
+      display: true
       // title: {
       //   display: true,
       //   text: "Number of Applicants"
