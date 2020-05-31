@@ -56,15 +56,6 @@
     </v-container>
 
     <v-container>
-      <v-subheader>Sponsor Companies</v-subheader>
-      <v-list-item two-line v-for="(company, i) in companyData" :key="i">
-        <v-list-item-content>
-          <v-list-item-title>{{ company.name }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-container>
-
-    <v-container>
       <v-row>
         <h1 class="display-1 pb-10">
           Recap
@@ -112,7 +103,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col class="col-4">
+        <v-col class="col-6">
           <PieChart
             :year="yearIndex"
             :chartData="educationChartData"
@@ -120,7 +111,7 @@
             id="educationChart"
           />
         </v-col>
-        <v-col class="col-4">
+        <v-col class="col-6">
           <PieChart
             :year="yearIndex"
             :chartData="hackathonsChartData"
@@ -136,6 +127,46 @@
       <GeneralSponsorTable />
       <RecruitingSponsorTable />
       <BrandingSponsorTable />
+    </v-container>
+
+    <v-container>
+      <h2>Sponsor Companies</h2>
+
+      <v-row align="center" justify="center">
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/az.jpg"></v-img>
+        </v-col>
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/bose.png"></v-img>
+        </v-col>
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/CapitalOne.png"></v-img>
+        </v-col>
+      </v-row>
+
+      <v-row align="center" justify="center">
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/GoogleCloud.png"></v-img>
+        </v-col>
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/kind.jpg"></v-img>
+        </v-col>
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/Manulife_JohnHancock.png"></v-img>
+        </v-col>
+      </v-row>
+
+      <v-row align="center" justify="center">
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/Raytheon.jpg"></v-img>
+        </v-col>
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/spark.png"></v-img>
+        </v-col>
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/twilio.png"></v-img>
+        </v-col>
+      </v-row>
     </v-container>
   </v-container>
 </template>
@@ -183,24 +214,7 @@ export default {
         "Checked In"
       ],
       toggleYearSelect: false,
-      companyData: [
-        {
-          name: "Company 1",
-          image: null
-        },
-        {
-          name: "Company 2",
-          image: null
-        },
-        {
-          name: "Company 3",
-          image: null
-        },
-        {
-          name: "Company 4",
-          image: null
-        }
-      ],
+
       yearIndex: "3",
       lastYearIndex: "3",
       years: ["2016", "2017", "2018", "2019"],

@@ -51,7 +51,7 @@ export default {
           data: this.chartData,
           options: this.options
         });
-        if (this.chart.data.datasets.size > 1) {
+        if (this.chart.data.datasets.length > 1) {
           this.toggleYearData();
         }
       }
