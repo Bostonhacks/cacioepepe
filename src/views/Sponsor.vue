@@ -79,12 +79,46 @@
       </v-card>
 
       <v-row>
-        <v-col class="col-4">
-          <LineChart
-            :chartData="lineChartData"
-            :options="lineChartData.options"
-          />
+        <v-col>
+          <v-row justify="center">
+            <h4 class="display-1 indigo--text text--darken-4 font-weight-bold">
+              {{ this.totalApplicants[this.yearIndex] }}
+            </h4>
+          </v-row>
+          <v-row
+            justify="center"
+            class="indigo--text text--darken-4 font-weight-bold"
+            >Total Applicants</v-row
+          >
         </v-col>
+        <v-col>
+          <v-row justify="center">
+            <h4 class="display-1 indigo--text text--darken-4 font-weight-bold">
+              {{ this.newToBHacks[this.yearIndex] }}
+            </h4>
+          </v-row>
+          <v-row
+            justify="center"
+            class="indigo--text text--darken-4 font-weight-bold"
+            >New to BostonHacks</v-row
+          >
+        </v-col>
+        <v-col>
+          <v-row></v-row>
+          <v-row justify="center">
+            <h4 class="display-1 indigo--text text--darken-4 font-weight-bold">
+              500+
+            </h4>
+          </v-row>
+          <v-row
+            justify="center"
+            class="indigo--text text--darken-4 font-weight-bold"
+            >Education Level</v-row
+          >
+        </v-col>
+      </v-row>
+
+      <v-row>
         <v-col class="col-4">
           <PieChart
             :year="yearIndex"
@@ -101,18 +135,8 @@
             id="genderChart"
           />
         </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="col-6">
-          <PieChart
-            :year="yearIndex"
-            :chartData="educationChartData"
-            :options="educationChartData.options"
-            id="educationChart"
-          />
-        </v-col>
-        <v-col class="col-6">
-          <PieChart
+        <v-col>
+          <BarChart
             :year="yearIndex"
             :chartData="hackathonsChartData"
             :options="hackathonsChartData.options"
@@ -172,19 +196,19 @@
 </template>
 
 <script>
-import LineChart from "@/components/common/LineChart";
 import GeneralSponsorTable from "@/components/sponsor/GeneralSponsorTable";
 import RecruitingSponsorTable from "@/components/sponsor/RecruitingSponsorTable";
 import BrandingSponsorTable from "@/components/sponsor/BrandingSponsorTable";
 import PieChart from "@/components/common/PieChart";
+import BarChart from "@/components/common/BarChart";
 
 export default {
   components: {
-    LineChart,
     PieChart,
     GeneralSponsorTable,
     RecruitingSponsorTable,
-    BrandingSponsorTable
+    BrandingSponsorTable,
+    BarChart
   },
   watch: {
     yearIndex: {
@@ -214,7 +238,11 @@ export default {
         "Checked In"
       ],
       toggleYearSelect: false,
-
+      totalApplicants: [200, 300, 400, 500],
+      newToBHacks: [50, 100, 150, 20],
+      highSchool: [10, 20, 30, 40],
+      undergrad: [20, 30, 40, 50],
+      grad: [30, 40, 50, 60],
       yearIndex: "3",
       lastYearIndex: "3",
       years: ["2016", "2017", "2018", "2019"],
@@ -314,42 +342,6 @@ export default {
           }
         ]
       },
-      educationChartData: {
-        options: {
-          title: {
-            display: true,
-            text: "Education Levels"
-          }
-        },
-        labels: ["High School", "Undergraduate", "Graduate"],
-        datasets: [
-          {
-            label: "2016",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: [40, 20, 10]
-          },
-          {
-            label: "2017",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: [10, 90, 10]
-          },
-          {
-            label: "2018",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: [15, 15, 70]
-          },
-          {
-            label: "2019",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: [5, 5, 90]
-          },
-          {
-            label: "2020",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: [20, 70, 5]
-          }
-        ]
-      },
       hackathonsChartData: {
         options: {
           title: {
@@ -362,26 +354,43 @@ export default {
           {
             label: "Data One",
             backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
-            data: [40, 20, 10, 30]
+            barPercentage: 0.5,
+            barThickness: 6,
+            maxBarThickness: 8,
+            minBarLength: 2,
+            data: [10, 20, 30, 40]
           },
           {
             label: "Data Two",
             backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            barPercentage: 0.5,
+            barThickness: 6,
+            maxBarThickness: 8,
+            minBarLength: 2,
             data: [10, 90, 10, 40]
           },
           {
             label: "Data Three",
             backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            barPercentage: 0.5,
+            barThickness: 6,
+            maxBarThickness: 8,
+            minBarLength: 2,
             data: [15, 15, 70]
           },
           {
             label: "Data Four",
             backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            barPercentage: 0.5,
+            barThickness: 6,
+            maxBarThickness: 8,
+            minBarLength: 2,
             data: [5, 5, 90, 20]
           },
           {
             label: "Data Five",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            fillColor: "blue",
+            strokeColor: "green",
             data: [20, 70, 5, 50]
           }
         ]
