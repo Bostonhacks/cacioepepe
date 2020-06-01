@@ -11,6 +11,9 @@ const { Storage } = require("@google-cloud/storage");
 const storage = new Storage();
 
 module.exports.oneClickDownload = functions.https.onCall(async (_, context) => {
+  if (!context.auth) {
+    return { message: "Authentication Required!", code: 401 };
+  }
   // Gets list of resume pathfile in Firebase Storage
   const applications = db
     .collection("applications")

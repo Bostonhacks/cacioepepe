@@ -38,16 +38,6 @@
                               <v-radio label="Rejected" :value="2"></v-radio>
                             </td>
                           </tr>
-                          <tr>
-                            <td class="text-center">
-                              <svg height="30" width="50">
-                                <circle cx="20" cy="20" r="10" fill="yellow" />
-                              </svg>
-                            </td>
-                            <td class="text-center">
-                              <v-radio label="Waitlisted" :value="3"></v-radio>
-                            </td>
-                          </tr>
                         </v-radio-group>
                       </v-col>
                     </v-row>
@@ -98,14 +88,6 @@
                   multiple
                 ></v-select>
               </v-flex>
-              <v-flex mx-1>
-                <v-select
-                  v-model="hackathonCount"
-                  label="Number of Hackathons"
-                  :items="['0', '1', '2', '3+']"
-                  multiple
-                ></v-select>
-              </v-flex>
             </v-row>
             <v-data-table
               v-if="data != null"
@@ -124,46 +106,6 @@
                 <button v-if="item.resume[0]">
                   <a :href="item.resume[0]" target="_blank">Open</a>
                 </button>
-              </template>
-              <template v-slot:item.githubURL="{ item }">
-                <button v-if="item.githubURL && isLinkValid(item.githubURL)">
-                  <a :href="item.githubURL" target="_blank">Open</a>
-                </button>
-                <button v-else-if="item.githubURL">
-                  <a :href="'http://' + item.githubURL" target="_blank">Open</a>
-                </button>
-              </template>
-              <template v-slot:item.linkedinURL="{ item }">
-                <button
-                  v-if="item.linkedinURL && isLinkValid(item.linkedinURL)"
-                >
-                  <a :href="item.linkedinURL" target="_blank">Open</a>
-                </button>
-                <button v-else-if="item.linkedinURL">
-                  <a :href="'http://' + item.linkedinURL" target="_blank"
-                    >Open</a
-                  >
-                </button>
-              </template>
-              <template v-slot:item.otherURL="{ item }">
-                <button v-if="item.otherURL && isLinkValid(item.otherURL)">
-                  <a :href="item.otherURL" target="_blank">Open</a>
-                </button>
-                <button v-else-if="item.otherURL">
-                  <a :href="'http://' + item.otherURL" target="_blank">Open</a>
-                </button>
-              </template>
-              <template v-slot:item.attendedBHacks="{ item }">
-                <v-checkbox v-model="item.attendedBHacks" disabled></v-checkbox>
-              </template>
-              <template v-slot:item.marketingData="{ item }">
-                <v-checkbox v-model="item.marketingData" disabled></v-checkbox>
-              </template>
-              <template v-slot:item.tAndC1="{ item }">
-                <v-checkbox v-model="item.tAndC1" disabled></v-checkbox>
-              </template>
-              <template v-slot:item.tAndC2="{ item }">
-                <v-checkbox v-model="item.tAndC2" disabled></v-checkbox>
               </template>
               <template v-slot:item.status="{ item }">
                 <button
@@ -210,41 +152,6 @@
                 >
               </div>
             </template>
-            <template>
-              <div class="text-center">
-                <v-btn
-                  v-if="selected.length > 0 && user.role == 'admin'"
-                  class="ma-2"
-                  outlined
-                  color="indigo"
-                  @click="waitlistApplicants"
-                  >Waitlist Selected</v-btn
-                >
-              </div>
-            </template>
-            <template>
-              <div class="text-center">
-                <v-btn
-                  v-if="selected.length > 0"
-                  class="ma-2"
-                  outlined
-                  color="indigo"
-                  @click="downloadSelectedResumes"
-                  >Download Selected Resumes</v-btn
-                >
-              </div>
-            </template>
-            <template>
-              <div class="text-center">
-                <v-btn
-                  class="ma-2"
-                  outlined
-                  color="indigo"
-                  @click="downloadResumes"
-                  >Download All Resumes</v-btn
-                >
-              </div>
-            </template>
           </v-row>
         </v-flex>
       </v-layout>
@@ -256,7 +163,7 @@
 import { functions } from "@/firebase/init";
 
 export default {
-  name: "HackerTable",
+  name: "MentorTable",
   props: ["data"],
   computed: {
     user() {
@@ -296,67 +203,33 @@ export default {
       this.editItem = null;
       this.editIndex = null;
     },
-    isLinkValid(item) {
-      return item.includes("http");
-    },
-    async downloadResumes() {
-      var res = await functions.httpsCallable("oneClickDownload")();
-      var url = res["data"].URL;
-      window.open(url, "_blank");
-    },
     async acceptApplicants() {
       var UIDList = [];
       this.selected.forEach(entry => {
         UIDList.push(entry.uid);
       });
-      await functions.httpsCallable("massAcceptEmail")({
+      await functions.httpsCallable("massAcceptMentor")({
         UIDList: UIDList
       });
-    },
-    async downloadSelectedResumes() {
-      var resumeList = [];
-      this.selected.forEach(entry => {
-        resumeList.push(entry.resume);
-      });
-      var res = await functions.httpsCallable("oneClickSelectDownload")({
-        resumeList: resumeList
-      });
-      var url = res["data"].URL;
-      window.open(url, "_blank");
     },
     async rejectApplicants() {
       var UIDList = [];
       this.selected.forEach(entry => {
         UIDList.push(entry.uid);
       });
-      await functions.httpsCallable("massRejectEmail")({
-        UIDList: UIDList
-      });
-    },
-    async waitlistApplicants() {
-      var UIDList = [];
-      this.selected.forEach(entry => {
-        UIDList.push(entry.uid);
-      });
-      await functions.httpsCallable("massWaitlistEmail")({
+      await functions.httpsCallable("massRejectMentor")({
         UIDList: UIDList
       });
     },
     async save() {
       if (this.editItem.status == 2) {
-        await functions.httpsCallable("rejectApplicant")({
-          uid: this.editItem.uid
-        });
-        Object.assign(this.data[this.editIndex], this.editItem);
-        this.close();
-      } else if (this.editItem.status == 3) {
-        await functions.httpsCallable("waitlistApplicant")({
+        await functions.httpsCallable("rejectMentor")({
           uid: this.editItem.uid
         });
         Object.assign(this.data[this.editIndex], this.editItem);
         this.close();
       } else if (this.editItem.status == 4) {
-        await functions.httpsCallable("acceptApplicant")({
+        await functions.httpsCallable("acceptMentor")({
           uid: this.editItem.uid
         });
         Object.assign(this.data[this.editIndex], this.editItem);
@@ -530,40 +403,8 @@ export default {
           }
         },
         {
-          text: "Minor",
-          value: "minor"
-        },
-        {
           text: "Resume",
           value: "resume[0]"
-        },
-        {
-          text: "Github",
-          value: "githubURL"
-        },
-        {
-          text: "LinkedIn",
-          value: "linkedinURL"
-        },
-        {
-          text: "Other",
-          value: "otherURL"
-        },
-        {
-          text: "Been to Hackathon?",
-          value: "beenToHackathon",
-          filter: value => {
-            if (this.hackathonCount.length == 0) return true;
-            return this.hackathonCount.includes(value);
-          }
-        },
-        {
-          text: "Attended BostonHacks?",
-          value: "attendedBHacks"
-        },
-        {
-          text: "Marketing",
-          value: "marketingData"
         },
         {
           text: "Status?",

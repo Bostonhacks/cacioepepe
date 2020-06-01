@@ -9,6 +9,9 @@ const storage = new Storage();
 
 module.exports.oneClickSelectDownload = functions.https.onCall(
   async (data, context) => {
+    if (!context.auth) {
+      return { message: "Authentication Required!", code: 401 };
+    }
     // Gets list of resume pathfile in Firebase Storage
     var resumeList = data.resumeList;
     var paths = [];
