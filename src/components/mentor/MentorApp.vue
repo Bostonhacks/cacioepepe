@@ -77,24 +77,36 @@
           ></v-select>
         </v-col>
       </v-row>
-      <div v-if="resume">
-        <v-btn color="primary" class="mr-4" :href="resume[0]"
-          >View Uploaded Resume</v-btn
-        >
-        <v-btn color="primary" class="mr-4" @click="deleteResume"
-          >Delete Resume</v-btn
-        >
-      </div>
-      <div v-else>
-        <v-file-input
-          chips
-          multiple
-          label="Resume Upload (PDF Only)"
-          accept="application/pdf"
-          @change="uploadResume"
-          v-model="uploadedResume"
-        ></v-file-input>
-      </div>
+      <v-row>
+        <v-col class="d-flex" cols="12" sm="6">
+          <v-select
+            v-model="major"
+            :items="courseList"
+            label="Major"
+            outlined
+          ></v-select>
+        </v-col>
+        <v-col class="d-flex" cols="12" sm="6">
+          <v-flex v-if="resume">
+            <v-btn color="primary" class="mr-4" :href="resume[0]"
+              >View Uploaded Resume</v-btn
+            >
+            <v-btn color="primary" class="mr-4" @click="deleteResume"
+              >Delete Resume</v-btn
+            >
+          </v-flex>
+          <v-flex v-else>
+            <v-file-input
+              chips
+              multiple
+              label="Resume Upload (PDF Only)"
+              accept="application/pdf"
+              @change="uploadResume"
+              v-model="uploadedResume"
+            ></v-file-input>
+          </v-flex>
+        </v-col>
+      </v-row>
       <v-switch
         v-model="picturePermission"
         label="Do you consent to us taking a picture or video during the event?"
@@ -129,7 +141,7 @@
 <script>
 import { functions } from "@/firebase/init";
 export default {
-  name: "volunteer",
+  name: "mentor",
   data() {
     return {
       first: null,
@@ -138,11 +150,104 @@ export default {
       gender: null,
       phone: null,
       educationLevel: null,
+      major: null,
       pronoun: null,
-      preEvent: null,
-      postEvent: null,
-      tablingEvent: null,
-      eventVolunteer: null,
+      uploadedResume: null,
+      resume: null,
+      courseList: [
+        "Accounting",
+        "Aerospace Engineering",
+        "Agricultural Engineering",
+        "Applied Mathematics",
+        "Architecture",
+        "Biochemistry",
+        "Bioengineering",
+        "Bioinformatics",
+        "Biological Sciences",
+        "Biology",
+        "Biomedical Engineering",
+        "Biotechnology",
+        "Building Construction Management",
+        "Business",
+        "Business Administration",
+        "Business Analytics",
+        "Chemical Engineering",
+        "Chemistry",
+        "Civil Engineering",
+        "Cognitive Science",
+        "Communications",
+        "Computational Biology",
+        "Computational Media",
+        "Computer Engineering",
+        "Computer Science",
+        "Computer Information Systems",
+        "Computer Technologies",
+        "Computing Security",
+        "Culinary Arts",
+        "Cyber Operations",
+        "Data Science",
+        "Design",
+        "Economics",
+        "Electrical Engineering",
+        "Engineering",
+        "Engineering Management",
+        "Engineering Physics",
+        "Engineering Science",
+        "English",
+        "Film",
+        "Finance",
+        "Game Design and Development",
+        "Geophysics",
+        "Graphic Design",
+        "Human Centered Design",
+        "Human Computer Interaction",
+        "Humanities",
+        "Individualized Major",
+        "Industrial and Systems Engineering",
+        "Industrial and Operations Engineering",
+        "Industrial Engineering",
+        "Informatics",
+        "Information Science",
+        "Information Systems",
+        "Information Technology",
+        "Interaction Design",
+        "Interactive Multimedia",
+        "Interactive Telecommunications Program (ITP)",
+        "International Relations",
+        "Journalism",
+        "Linguistics",
+        "Management",
+        "Management Information Systems",
+        "Marketing",
+        "Materials Science",
+        "Mathematics",
+        "Mechanical Engineering",
+        "Mechatronics",
+        "Mechatronics Engineering",
+        "Media Arts and Sciences",
+        "Music Computing",
+        "Nanoengineering",
+        "Network Security",
+        "Neurobiology/Cognitive Science",
+        "Neuroscience",
+        "New Media Design",
+        "Operations Research Management Science",
+        "Organizational",
+        "Philosophy",
+        "Physics",
+        "Political Science",
+        "Poultry Science",
+        "Product Design",
+        "Psych",
+        "Psychology",
+        "Robotics Engineering",
+        "Robotics",
+        "Software Engineering",
+        "Statistics",
+        "Systems Design Engineering",
+        "Technology Management",
+        "Theatre and Linguistics"
+      ],
       university: null,
       picturePermission: null,
       universityList: null,
@@ -180,6 +285,7 @@ export default {
         gender: this.gender,
         pronoun: this.pronoun,
         educationLevel: this.educationLevel,
+        major: this.major,
         university: this.university,
         email: this.email,
         resume: this.resume,
