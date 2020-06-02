@@ -1,0 +1,5 @@
+User clicks on the row, status indicator, alters status. 
+The status indicator modal must have the entire user entry/only uid.
+Don't alter state locally. When you click a radio button, it should run a cloud function that modifies the
+user's status db side (cloud function).
+If the cloud function returns successfully, modify local state.

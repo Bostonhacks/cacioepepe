@@ -40,7 +40,9 @@
 
             <v-tab-item key="tabs[2]">
               <v-card flat tile>
-                <v-card-text>{{ text }}</v-card-text>
+                <v-card-text>
+                  <Timeline />
+                </v-card-text>
               </v-card>
             </v-tab-item>
           </v-tabs>
@@ -53,13 +55,15 @@
 <script>
 import HackerTable from "@/components/common/HackerTable";
 import AdminStats from "@/components/admin/AdminStats";
+import Timeline from "@/components/common/Timeline";
 import { functions } from "@/firebase/init";
 
 export default {
   name: "Admin",
   components: {
     HackerTable,
-    AdminStats
+    AdminStats,
+    Timeline
   },
   methods: {
     async filterStatus() {
