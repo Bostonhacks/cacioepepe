@@ -1,13 +1,13 @@
 <template>
-  <LoginUI />
+  <mentor />
 </template>
 
 <script>
-import LoginUI from "@/components/login/LoginUI";
+import mentor from "@/components/mentor/MentorApp";
 
 export default {
   components: {
-    LoginUI
+    mentor
   }
 };
 </script>
