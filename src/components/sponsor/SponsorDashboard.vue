@@ -9,35 +9,35 @@
           </h1>
           <v-card flat tile>
             <v-card-text>
-              <HackerTable :data="currentData" />
+              <HackerTable :data="data" />
             </v-card-text>
           </v-card>
           <v-card>
             <v-row>
               <v-col class="col-3">
                 <PieChart
-                  v-if="this.hackathonsChartData != null"
+                  v-if="this.hackathonsChartData.datasets[0].data"
                   :chartData="hackathonsChartData"
                   id="hackathonChart"
                 />
               </v-col>
               <v-col class="col-3">
                 <PieChart
-                  v-if="this.genderChartData != null"
+                  v-if="this.genderChartData.datasets[0].data"
                   :chartData="genderChartData"
                   id="genderChart"
                 />
               </v-col>
               <v-col class="col-3">
                 <PieChart
-                  v-if="this.majorChartData != null"
+                  v-if="this.majorChartData.datasets[0].data"
                   :chartData="majorChartData"
                   id="majorChart"
                 />
               </v-col>
               <v-col class="col-3">
                 <PieChart
-                  v-if="this.educationChartData != null"
+                  v-if="this.educationChartData.datasets[0].data"
                   :chartData="educationChartData"
                   id="educationChart"
                 />
@@ -62,133 +62,8 @@ export default {
   },
   data() {
     return {
-      gender: [0, 0, 0],
-      educationLevel: [0, 0, 0],
-      //"High School", "College Freshman", "College Sophomore", "College Junior",
-      // "College Senior", "Masters", "PhD"
-      hackathon: [0, 0, 0, 0],
-      //genderList: ["Female", "Male", "Other"],
-      major: [0, 0, 0, 0],
       data: null,
-      currentData: null,
-      itemStatus: ["Accepted", "Confirmed", "Checked In"],
-      statusList: [
-        "Started",
-        "Submitted",
-        "Rejected",
-        "Waitlisted",
-        "Accepted",
-        "Confirmed",
-        "Declined",
-        "Checked In"
-      ],
-      majorChartData: null,
-      educationChartData: null,
-      hackathonsChartData: null
-    };
-  },
-
-  methods: {
-    getGender() {
-      for (let i = 0; i < this.currentData.length; i++) {
-        let curr = this.currentData[i].gender;
-        if (curr == "Male") curr = 0;
-        else if (curr == "Female") curr = 1;
-        else curr = 2;
-        this.gender[curr]++;
-      }
-
-      this.genderChartData = {
-        labels: ["Male", "Female", "Other"],
-        datasets: [
-          {
-            label: "2020",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: this.gender
-          }
-        ]
-      };
-    },
-
-    getMajor() {
-      for (let i = 0; i < this.currentData.length; i++) {
-        let curr = this.currentData[i].major;
-        if (curr == "Computer Science") curr = 0;
-        else if (curr == "Electrical Engineering") curr = 1;
-        else if (curr == "Computer Engineering") curr = 2;
-        else curr = 3;
-        this.major[curr]++;
-      }
-
-      this.majorChartData = {
-        labels: [
-          "Computer Science",
-          "Electrical Engineering",
-          "Computer Engineering",
-          "Others"
-        ],
-        datasets: [
-          {
-            label: "2020",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
-            data: this.major
-          }
-        ]
-      };
-    },
-
-    getEducation() {
-      //"High School", "College Freshman", "College Sophomore", "College Junior",
-      // "College Senior", "Masters", "PhD"
-      console.log("current data is: ", this.currentData);
-      for (let i = 0; i < this.currentData.length; i++) {
-        let curr = this.currentData[i].educationLevel;
-        if (curr == "High School") {
-          curr = 0;
-        } else if (
-          curr == "College Freshman" ||
-          curr == "College Sophomore" ||
-          curr == "College Junior" ||
-          curr == "College Senior"
-        ) {
-          curr = 1;
-        } else {
-          curr = 2;
-        }
-        this.educationLevel[curr]++;
-      }
-
-      this.educationChartData = {
-        options: {
-          title: {
-            display: true,
-            text: "Education Levels"
-          }
-        },
-        labels: ["High School", "Undergraduate", "Graduate"],
-        datasets: [
-          {
-            label: "2020",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: this.educationLevel
-          }
-        ]
-      };
-    },
-
-    getHackathons() {
-      //0, 1, 2, 3+
-      for (let i = 0; i < this.currentData.length; i++) {
-        let curr = this.currentData[i].beenToHackathon;
-        // console.log("hackathon count is: ", curr);
-        if (curr == "3+") {
-          curr = 3;
-        }
-        curr = Number(curr);
-        this.hackathon[curr]++;
-      }
-      console.log(this.hackathon);
-      this.hackathonsChartData = {
+      hackathonsChartData: {
         options: {
           title: {
             display: true,
@@ -200,21 +75,139 @@ export default {
           {
             label: "2020",
             backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
-            data: this.hackathon
+            data: null
           }
         ]
-      };
-      console.log(this.hackathonsChartData);
+      },
+      genderChartData: {
+        labels: ["Male", "Female", "Other"],
+        datasets: [
+          {
+            label: "2020",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: null
+          }
+        ]
+      },
+      majorChartData: {
+        labels: [
+          "Computer Science",
+          "Electrical Engineering",
+          "Computer Engineering",
+          "Others"
+        ],
+        datasets: [
+          {
+            label: "2020",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            data: null
+          }
+        ]
+      },
+      educationChartData: {
+        options: {
+          title: {
+            display: true,
+            text: "Education Levels"
+          }
+        },
+        labels: ["High School", "Undergraduate", "Graduate"],
+        datasets: [
+          {
+            label: "2020",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: null
+          }
+        ]
+      }
+    };
+  },
+
+  methods: {
+    async getData() {
+      const applicantStatus = ["Accepted", "Confirmed", "Checked In"];
+      const statusList = [
+        "Started",
+        "Submitted",
+        "Rejected",
+        "Waitlisted",
+        "Accepted",
+        "Confirmed",
+        "Declined",
+        "Checked In"
+      ];
+      const out = await functions.httpsCallable("retrieveAllApplications")({});
+      const applicants = out.data;
+      this.data = applicants.filter(applicant =>
+        applicantStatus.includes(statusList[applicant.status])
+      );
+    },
+    getGender() {
+      const genders = ["Male", "Female", "Other"];
+      let genderData = [0, 0, 0];
+      let index = 0;
+      this.data.map(applicant => {
+        index = genders.indexOf(applicant.gender);
+        genderData[index]++;
+      });
+      this.genderChartData.datasets[0].data = genderData;
+    },
+
+    getMajor() {
+      const majors = [
+        "Computer Science",
+        "Electrical Engineering",
+        "Computer Engineering"
+      ];
+      let majorData = [0, 0, 0, 0];
+      let index = 0;
+      this.data.map(applicant => {
+        index = majors.indexOf(applicant.major);
+        if (index == -1) {
+          //indexOf() returns -1 if item not found in array
+          index = 3;
+        }
+        majorData[index]++;
+      });
+      this.majorChartData.datasets[0].data = majorData;
+    },
+
+    getEducation() {
+      const educationLevels = [
+        "High School",
+        "College Freshman",
+        "College Sophomore",
+        "College Junior",
+        "College Senior"
+      ];
+      let educationData = [0, 0, 0];
+      let index = 0;
+      this.data.map(applicant => {
+        index = educationLevels.indexOf(applicant.educationLevel);
+        if (index == -1) {
+          index = 2;
+        } else if (index != 0) {
+          index = 1;
+        }
+        educationData[index]++;
+      });
+      this.educationChartData.datasets[0].data = educationData;
+    },
+
+    getHackathons() {
+      const hackathonNumbers = ["0", "1", "2", "3+"];
+      let hackathonData = [0, 0, 0, 0];
+      let index = 0;
+      this.data.map(applicant => {
+        index = hackathonNumbers.indexOf(applicant.beenToHackathon);
+        hackathonData[index]++;
+      });
+      this.hackathonsChartData.datasets[0].data = hackathonData;
     }
   },
 
   async mounted() {
-    var out = await functions.httpsCallable("retrieveAllApplications")({});
-    this.data = out.data;
-    this.currentData = this.data.filter(item =>
-      this.itemStatus.includes(this.statusList[item.status])
-    );
-    // console.log("the size of the data is: ", this.currentData.length);
+    await this.getData();
     this.getGender();
     this.getMajor();
     this.getEducation();
