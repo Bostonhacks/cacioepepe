@@ -13,7 +13,7 @@ module.exports.submitVolunteerApplication = functions.https.onCall(
       applicationStatus: 1
     });
     const mydb = db.collection("volunteers").doc(context.auth.uid);
-    await mydb.add({
+    await mydb.set({
       status: 1,
       first: data.first,
       last: data.last,

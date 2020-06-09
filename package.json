@@ -10,6 +10,7 @@
   "dependencies": {
     "@firebase/auth": "^0.13.5",
     "@firebase/firestore": "^1.14.5",
+    "@slack/web-api": "^5.10.0",
     "@syncfusion/ej2-vue-grids": "^18.1.52",
     "chart.js": "^2.9.3",
     "core-js": "^3.6.4",

@@ -152,6 +152,7 @@ export default {
       educationLevel: null,
       major: null,
       pronoun: null,
+      uploadResume: null,
       uploadedResume: null,
       resume: null,
       courseList: [
@@ -294,6 +295,30 @@ export default {
       });
       this.$router.push("/");
     }
+  },
+  async uploadResume() {
+    const reader = new FileReader();
+    reader.readAsDataURL(this.uploadedResume[0]);
+    reader.onload = async () => {
+      functions
+        .httpsCallable("uploadResume")({
+          file: reader.result.split(",")[1],
+          displayName: this.user.displayName,
+          type: this.uploadedResume[0].type,
+          uid: this.user.uid
+        })
+        .then(async data => {
+          this.resume = [data.data.URL, data.data.location];
+          this.uploadedResume = null;
+        });
+    };
+  },
+  async deleteResume() {
+    await functions.httpsCallable("deleteResume")({
+      uid: this.user.uid,
+      location: this.resume[1]
+    });
+    this.resume = null;
   },
   async mounted() {
     fetch(
