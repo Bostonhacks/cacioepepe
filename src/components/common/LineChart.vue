@@ -20,12 +20,6 @@ export default {
 
     options: {
       display: true
-      // title: {
-      //   display: true,
-      //   text: "Number of Applicants"
-      // },
-      // responsive: true,
-      // maintainAspectRatio: false
     },
     year: {
       default: "4"
