@@ -7,7 +7,9 @@
           <h1 class="display-2 font-weight-bold mb-3">
             Welcome to the Volunteer Dashboard
           </h1>
-          <v-card flat tile></v-card>
+          <v-card flat tile>
+            <SlackComponent :channels="channels" />
+          </v-card>
         </v-flex>
       </v-layout>
     </v-container>
@@ -15,7 +17,16 @@
 </template>
 
 <script>
+import SlackComponent from "@/components/common/SlackComponent";
 export default {
-  name: "VolunteerDashboard"
+  name: "VolunteerDashboard",
+  components: {
+    SlackComponent
+  },
+  data() {
+    return {
+      channels: ["general", "volunteer"]
+    };
+  }
 };
 </script>

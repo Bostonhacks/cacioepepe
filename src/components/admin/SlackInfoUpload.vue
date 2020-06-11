@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-form>
       <v-row>
-        <v-col cols="12" sm="6">
+        <v-col cols="12" sm="5">
           <v-text-field
             v-model="token"
             label="Slack API Token"
@@ -10,18 +10,20 @@
             outlined
           ></v-text-field>
         </v-col>
-        <v-col cols="12" sm="6">
+        <v-col cols="12" sm="5">
           <v-text-field
-            v-model="inviteLink"
+            v-model="invitelink"
             label="Slack Workspace Invite link"
             single-line
             outlined
           ></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="1">
           <v-btn
             color="primary"
             class="mr-4"
             @click="submitToken"
-            :disabled="token == null || inviteLink == null"
+            :disabled="token == null || invitelink == null"
           >
             Submit
           </v-btn>
@@ -38,14 +40,14 @@ export default {
   data() {
     return {
       token: null,
-      inviteLink: null
+      invitelink: null
     };
   },
   methods: {
     async submitToken() {
       await functions.httpsCallable("uploadSlackInfo")({
         token: this.token,
-        inviteLink: this.inviteLink
+        invitelink: this.invitelink
       });
     }
   }

@@ -1,20 +1,20 @@
 <template>
   <v-container>
-    <v-card>
-      <v-list-item-content v-if="checkUser == false && retrieveLinks()">
+    <v-card v-if="links">
+      <v-list-item-content v-if="!userExists">
         <v-list-item-title class="headline mb-1">
           You didn't join our slack yet!
         </v-list-item-title>
         <v-list-item-subtitle>
-          <a :href="links[0]"> Join Our Slack! </a>
+          <a :href="links[0]" target="_blank"> Join Our Slack! </a>
         </v-list-item-subtitle>
       </v-list-item-content>
       <v-list-item-content v-else>
         <v-list-item-title class="headline mb-1">
           Check out our channels
         </v-list-item-title>
-        <v-list-item-subtitle v-for="link in links" :key="link">
-          <a :href="link[0]"> View the {{ link[1] }} channel</a>
+        <v-list-item-subtitle v-for="link in links" :key="link.id">
+          <a :href="link[0]" target="_blank"> View the {{ link[1] }} channel</a>
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-card>
@@ -25,27 +25,23 @@
 import { functions } from "@/firebase/init";
 export default {
   name: "SlackComponent",
-  props: ["uid", "channels"],
+  props: ["channels"],
   data() {
     return {
       userExists: null,
-      links: null,
-      test: false
+      links: null
     };
   },
-  methods: {
-    async checkUser() {
-      this.userExists = await functions.httpsCallable("checkSlackUser")(
-        this.uid
-      );
-      return this.userExists;
-    },
-    async retrieveLinks() {
-      this.links = await functions.httpsCallable("populateSlackComponent")({
-        userAdded: this.userExists,
-        channel: this.channels
-      });
-    }
+  async mounted() {
+    var slackUserData = await functions.httpsCallable("checkSlackUser")({});
+    this.userExists = slackUserData.data;
+    var slackComponentData = await functions.httpsCallable(
+      "populateSlackComponent"
+    )({
+      userAdded: this.userExists,
+      channels: this.channels
+    });
+    this.links = slackComponentData.data;
   }
 };
 </script>

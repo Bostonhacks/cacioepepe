@@ -1,14 +1,13 @@
 <template>
-  <SlackComponent />
+  <Volunteer />
 </template>
 
 <script>
-//import volunteer from "@/components/volunteer/VolunteerApp";
-import SlackComponent from "@/components/common/SlackComponent";
+import Volunteer from "@/components/volunteer/VolunteerApp";
 
 export default {
   components: {
-    SlackComponent
+    Volunteer
   }
 };
 </script>

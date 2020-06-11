@@ -6,6 +6,7 @@
         <v-flex mb-4>
           <h1 class="display-2 font-weight-bold mb-3">Welcome to God Mode!</h1>
           <AdminStats :data="hackerData" />
+          <SlackInfoUpload />
           <v-tabs
             v-model="tab"
             background-color="deep-purple accent-4"
@@ -92,6 +93,7 @@ import HackerTable from "@/components/common/HackerTable";
 import AdminStats from "@/components/admin/AdminStats";
 import VolunteerTable from "@/components/admin/VolunteerTable";
 import MentorTable from "@/components/admin/MentorTable";
+import SlackInfoUpload from "@/components/admin/SlackInfoUpload";
 import { functions } from "@/firebase/init";
 
 export default {
@@ -100,7 +102,8 @@ export default {
     HackerTable,
     AdminStats,
     VolunteerTable,
-    MentorTable
+    MentorTable,
+    SlackInfoUpload
   },
   methods: {
     async filterStatus(currentData, data) {
