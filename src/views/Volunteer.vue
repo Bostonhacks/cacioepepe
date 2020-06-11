@@ -1,13 +1,13 @@
 <template>
-  <volunteer />
+  <Volunteer />
 </template>
 
 <script>
-import volunteer from "@/components/volunteer/VolunteerApp";
+import Volunteer from "@/components/volunteer/VolunteerApp";
 
 export default {
   components: {
-    volunteer
+    Volunteer
   }
 };
 </script>
