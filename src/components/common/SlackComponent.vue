@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card v-if="links">
+    <v-card v-if="links && typeof userExists == 'string'">
       <v-list-item-content v-if="!userExists">
         <v-list-item-title class="headline mb-1">
           You didn't join our slack yet!
@@ -17,6 +17,9 @@
           <a :href="link[0]" target="_blank"> View the {{ link[1] }} channel</a>
         </v-list-item-subtitle>
       </v-list-item-content>
+    </v-card>
+    <v-card v-else>
+      Error Code {{ qrCode["code"] + " " + qrCode["message"] }}
     </v-card>
   </v-container>
 </template>
