@@ -138,7 +138,7 @@ export default {
       ];
       const out = await functions.httpsCallable("retrieveAllApplications")({});
       const applicants = out.data;
-      this.data = applicants.filter(applicant =>
+      this.data = await applicants.filter(applicant =>
         applicantStatus.includes(statusList[applicant.status])
       );
     },

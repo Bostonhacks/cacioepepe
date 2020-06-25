@@ -245,6 +245,17 @@
                 >
               </div>
             </template>
+            <template>
+              <div class="text-center">
+                <v-btn
+                  class="ma-2"
+                  outlined
+                  color="indigo"
+                  @click="downloadEntries"
+                  >Download All Entries</v-btn
+                >
+              </div>
+            </template>
           </v-row>
         </v-flex>
       </v-layout>
@@ -262,6 +273,9 @@ export default {
     user() {
       return this.$store.state.user;
     }
+  },
+  mounted() {
+    console.log(this.data);
   },
   methods: {
     getColor(status) {
@@ -301,6 +315,11 @@ export default {
     },
     async downloadResumes() {
       var res = await functions.httpsCallable("oneClickDownload")();
+      var url = res["data"].URL;
+      window.open(url, "_blank");
+    },
+    async downloadEntries() {
+      var res = await functions.httpsCallable("entryDownload")();
       var url = res["data"].URL;
       window.open(url, "_blank");
     },
