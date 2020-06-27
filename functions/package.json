@@ -20,7 +20,6 @@
     "firebase-functions": "^3.6.2",
     "fs-extra": "8.1.0",
     "glob": "^7.1.6",
-    "qrcode": "^1.4.4",
     "uuid-v4": "^0.1.0"
   },
   "devDependencies": {
