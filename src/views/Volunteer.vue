@@ -1,13 +1,12 @@
 <template>
-  <volunteer />
+  <QRCode />
 </template>
 
 <script>
-import volunteer from "@/components/volunteer/VolunteerApp";
-
+import QRCode from "@/components/common/QRCode";
 export default {
   components: {
-    volunteer
+    QRCode
   }
 };
 </script>
