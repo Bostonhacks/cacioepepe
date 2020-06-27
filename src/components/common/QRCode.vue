@@ -1,26 +1,22 @@
 <template>
   <v-container>
-    <v-card v-if="qrCode">
-      <div v-if="typeof qrCode == 'string'" v-html="qrCode"></div>
-      <div v-else>
-        Error Code {{ qrCode["code"] + " " + qrCode["message"] }}
-      </div>
+    <v-card>
+      <v-img
+        :src="
+          `https://chart.apis.google.com/chart?chs=200x200&cht=qr&chld=|1&chl=${user.uid}`
+        "
+      ></v-img>
     </v-card>
   </v-container>
 </template>
 
 <script>
-import { functions } from "@/firebase/init";
 export default {
   name: "QRCode",
-  data() {
-    return {
-      qrCode: null
-    };
-  },
-  async mounted() {
-    var qr = await functions.httpsCallable("generateQRCode")({});
-    this.qrCode = qr.data;
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
   }
 };
 </script>
