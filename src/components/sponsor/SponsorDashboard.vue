@@ -18,6 +18,7 @@
                 <PieChart
                   v-if="this.hackathonsChartData.datasets[0].data"
                   :chartData="hackathonsChartData"
+                  :options="hackathonsChartData.options"
                   id="hackathonChart"
                 />
               </v-col>
@@ -25,6 +26,7 @@
                 <PieChart
                   v-if="this.genderChartData.datasets[0].data"
                   :chartData="genderChartData"
+                  :options="genderChartData.options"
                   id="genderChart"
                 />
               </v-col>
@@ -32,6 +34,7 @@
                 <PieChart
                   v-if="this.majorChartData.datasets[0].data"
                   :chartData="majorChartData"
+                  :options="majorChartData.options"
                   id="majorChart"
                 />
               </v-col>
@@ -39,6 +42,7 @@
                 <PieChart
                   v-if="this.educationChartData.datasets[0].data"
                   :chartData="educationChartData"
+                  :options="educationChartData.options"
                   id="educationChart"
                 />
               </v-col>
@@ -80,6 +84,12 @@ export default {
         ]
       },
       genderChartData: {
+        options: {
+          title: {
+            display: true,
+            text: "Genders"
+          }
+        },
         labels: ["Male", "Female", "Other"],
         datasets: [
           {
@@ -90,6 +100,12 @@ export default {
         ]
       },
       majorChartData: {
+        options: {
+          title: {
+            display: true,
+            text: "Majors"
+          }
+        },
         labels: [
           "Computer Science",
           "Electrical Engineering",
