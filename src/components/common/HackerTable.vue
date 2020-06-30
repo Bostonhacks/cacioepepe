@@ -251,6 +251,17 @@
                   class="ma-2"
                   outlined
                   color="indigo"
+                  @click="downloadSelectedEntries"
+                  >Download Selected Entries</v-btn
+                >
+              </div>
+            </template>
+            <template>
+              <div class="text-center">
+                <v-btn
+                  class="ma-2"
+                  outlined
+                  color="indigo"
                   @click="downloadEntries"
                   >Download All Entries</v-btn
                 >
@@ -273,9 +284,6 @@ export default {
     user() {
       return this.$store.state.user;
     }
-  },
-  mounted() {
-    console.log(this.data);
   },
   methods: {
     getColor(status) {
@@ -320,6 +328,17 @@ export default {
     },
     async downloadEntries() {
       var res = await functions.httpsCallable("entryDownload")();
+      var url = res["data"].URL;
+      window.open(url, "_blank");
+    },
+    async downloadSelectedEntries() {
+      var entryList = [];
+      this.selected.forEach(entry => {
+        entryList.push(entry);
+      });
+      var res = await functions.httpsCallable("selectEntryDownload")({
+        entryList: entryList
+      });
       var url = res["data"].URL;
       window.open(url, "_blank");
     },
