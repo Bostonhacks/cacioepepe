@@ -9,40 +9,8 @@
           </h1>
           <v-card flat tile>
             <v-card-text>
-              <HackerTable :data="data" />
+              <HackerTable :data="currentData" />
             </v-card-text>
-          </v-card>
-          <v-card>
-            <v-row>
-              <v-col class="col-3">
-                <PieChart
-                  v-if="this.hackathonsChartData.datasets[0].data"
-                  :chartData="hackathonsChartData"
-                  id="hackathonChart"
-                />
-              </v-col>
-              <v-col class="col-3">
-                <PieChart
-                  v-if="this.genderChartData.datasets[0].data"
-                  :chartData="genderChartData"
-                  id="genderChart"
-                />
-              </v-col>
-              <v-col class="col-3">
-                <PieChart
-                  v-if="this.majorChartData.datasets[0].data"
-                  :chartData="majorChartData"
-                  id="majorChart"
-                />
-              </v-col>
-              <v-col class="col-3">
-                <PieChart
-                  v-if="this.educationChartData.datasets[0].data"
-                  :chartData="educationChartData"
-                  id="educationChart"
-                />
-              </v-col>
-            </v-row>
           </v-card>
         </v-flex>
       </v-layout>
@@ -52,81 +20,18 @@
 
 <script>
 import HackerTable from "@/components/common/HackerTable";
-import PieChart from "@/components/common/PieChart";
 import { functions } from "@/firebase/init";
 export default {
   name: "SponsorDashboard",
   components: {
-    HackerTable,
-    PieChart
+    HackerTable
   },
   data() {
     return {
       data: null,
-      hackathonsChartData: {
-        options: {
-          title: {
-            display: true,
-            text: "Hackathons Attended"
-          }
-        },
-        labels: ["0", "1", "2", "3+"],
-        datasets: [
-          {
-            label: "2020",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
-            data: null
-          }
-        ]
-      },
-      genderChartData: {
-        labels: ["Male", "Female", "Other"],
-        datasets: [
-          {
-            label: "2020",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: null
-          }
-        ]
-      },
-      majorChartData: {
-        labels: [
-          "Computer Science",
-          "Electrical Engineering",
-          "Computer Engineering",
-          "Others"
-        ],
-        datasets: [
-          {
-            label: "2020",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
-            data: null
-          }
-        ]
-      },
-      educationChartData: {
-        options: {
-          title: {
-            display: true,
-            text: "Education Levels"
-          }
-        },
-        labels: ["High School", "Undergraduate", "Graduate"],
-        datasets: [
-          {
-            label: "2020",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: null
-          }
-        ]
-      }
-    };
-  },
-
-  methods: {
-    async getData() {
-      const applicantStatus = ["Accepted", "Confirmed", "Checked In"];
-      const statusList = [
+      currentData: null,
+      itemStatus: ["Accepted", "Confirmed", "Checked In"],
+      statusList: [
         "Started",
         "Submitted",
         "Rejected",
@@ -204,14 +109,16 @@ export default {
       });
       this.hackathonsChartData.datasets[0].data = hackathonData;
     }
+      ]
+    };
   },
 
   async mounted() {
-    await this.getData();
-    this.getGender();
-    this.getMajor();
-    this.getEducation();
-    this.getHackathons();
+    var out = await functions.httpsCallable("retrieveAllApplications")({});
+    this.data = out.data;
+    this.currentData = this.data.filter(item =>
+      this.itemStatus.includes(this.statusList[item.status])
+    );
   }
 };
 </script>
