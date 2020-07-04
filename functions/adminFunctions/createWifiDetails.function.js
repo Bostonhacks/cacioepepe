@@ -1,20 +1,22 @@
 const admin = require("firebase-admin");
 const functions = require("firebase-functions");
+const { v4: uuidv4 } = require("uuid");
 
 const db = admin.firestore();
 
-module.exports.updateWifiDetails = functions.https.onCall(
+module.exports.createWifiDetails = functions.https.onCall(
   async (data, context) => {
     if (!context.auth) {
       return { message: "Authentication Required!", code: 401 };
     }
-    var name, password;
-    name = data.name;
-    password = data.password;
-    const wifiDoc = db.collection("wifiDetails").doc(data.uid);
-    await wifiDoc.update({
-      wifiName: name,
-      wifiPassword: password
+
+    var uid = uuidv4();
+    const file = db.collection("wifiDetails").doc(uid);
+
+    await file.set({
+      uid: uid,
+      name: data.name,
+      password: data.password
     });
 
     return "Completed!";
