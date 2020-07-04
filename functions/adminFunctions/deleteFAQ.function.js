@@ -8,7 +8,7 @@ module.exports.deleteFAQ = functions.https.onCall(async (data, context) => {
     return { message: "Authentication Required!", code: 401 };
   }
 
-  const events = db.collection("FAQ").doc(data.uid);
-  await events.delete();
+  const file = db.collection("FAQ").doc(data.uid);
+  await file.delete();
   return;
 });

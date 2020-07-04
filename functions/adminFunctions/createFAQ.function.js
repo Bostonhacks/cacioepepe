@@ -12,7 +12,6 @@ module.exports.createFAQ = functions.https.onCall(async (data, context) => {
   var uid = uuidv4();
   const faq = db.collection("FAQ").doc(uid);
 
-  // createFAQ({questions: "What's your name?", answers: "BostonHacks"})
   await faq.set({
     uid: uid,
     questions: data.questions,
