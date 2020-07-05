@@ -28,13 +28,18 @@
 </template>
 
 <script>
-//import { functions } from "@/firebase/init";
+import { functions } from "@/firebase/init";
 export default {
   name: "CalendarEvent",
   data() {
     return {};
   },
-  methods: {}
+  methods: {},
+  async mounted() {
+    var out = await functions.httpsCallable("retrieveAllApplications")({});
+    this.data = out.data;
+    this.currentData = this.data;
+  }
 };
 </script>
 
