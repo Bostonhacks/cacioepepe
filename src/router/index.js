@@ -1,112 +1,112 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import store from '@/store/index.js';
+import Vue from "vue";
+import VueRouter from "vue-router";
+import store from "@/store/index.js";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: () => import('@/views/Home.vue'),
+    path: "/",
+    name: "home",
+    component: () => import("@/views/Home.vue")
   },
   {
-    path: '/admin',
-    name: 'admin',
-    component: () => import('@/views/Admin.vue'),
+    path: "/admin",
+    name: "admin",
+    component: () => import("@/views/Admin.vue"),
     meta: {
       requiresAuth: true,
-      isAdmin: true,
-    },
+      isAdmin: true
+    }
   },
   {
-    path: '/application',
-    name: 'application',
-    component: () => import('@/views/Application.vue'),
+    path: "/application",
+    name: "application",
+    component: () => import("@/views/Application.vue"),
     meta: {
-      requiresAuth: true,
-    },
+      requiresAuth: true
+    }
   },
   {
-    path: '/login',
-    name: 'login',
-    component: () => import('@/views/Login.vue'),
+    path: "/login",
+    name: "login",
+    component: () => import("@/views/Login.vue"),
     meta: {
-      requiresAuth: false,
-    },
+      requiresAuth: false
+    }
   },
 
   {
-    path: '/sponsor',
-    name: 'sponsor',
-    component: () => import('@/views/Sponsor.vue'),
+    path: "/sponsor",
+    name: "sponsor",
+    component: () => import("@/views/Sponsor.vue"),
     meta: {
-      requiresAuth: false,
-    },
+      requiresAuth: false
+    }
   },
   {
-    path: '/sponsorlogin',
-    name: 'sponsorlogin',
-    component: () => import('@/views/Login.vue'),
+    path: "/sponsorlogin",
+    name: "sponsorlogin",
+    component: () => import("@/views/Login.vue"),
     meta: {
-      requiresAuth: false,
-    },
+      requiresAuth: false
+    }
   },
   {
-    path: '/mentor',
-    name: 'mentor',
-    component: () => import('@/views/Mentor.vue'),
+    path: "/mentor",
+    name: "mentor",
+    component: () => import("@/views/Mentor.vue"),
     meta: {
-      requiresAuth: false,
-    },
+      requiresAuth: false
+    }
   },
   {
-    path: '/hacker',
-    name: 'hacker',
-    component: () => import('@/views/Hacker.vue'),
+    path: "/hacker",
+    name: "hacker",
+    component: () => import("@/views/Hacker.vue"),
     meta: {
-      requiresAuth: false,
-    },
+      requiresAuth: false
+    }
   },
   {
-    path: '/volunteer',
-    name: 'volunteer',
-    component: () => import('@/views/Volunteer.vue'),
+    path: "/volunteer",
+    name: "volunteer",
+    component: () => import("@/views/Volunteer.vue"),
     meta: {
-      requiresAuth: false,
-    },
+      requiresAuth: false
+    }
   },
   {
-    path: '/live',
-    name: 'live',
-    component: () => import('@/views/Live.vue'),
+    path: "/live",
+    name: "live",
+    component: () => import("@/views/Live.vue"),
     meta: {
-      requiresAuth: false,
-    },
+      requiresAuth: false
+    }
   },
   {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: () => import('@/views/Dashboard.vue'),
+    path: "/dashboard",
+    name: "dashboard",
+    component: () => import("@/views/Dashboard.vue"),
     meta: {
-      requiresAuth: false,
-    },
-  },
+      requiresAuth: false
+    }
+  }
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes,
+  routes
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some((rec) => rec.meta.requiresAuth)) {
+  if (to.matched.some(rec => rec.meta.requiresAuth)) {
     let user = store.state.user;
     if (user) {
       next();
     } else {
-      next({ name: 'login' });
+      next({ name: "login" });
     }
   } else {
     next();
@@ -114,12 +114,12 @@ router.beforeEach((to, from, next) => {
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some((rec) => rec.meta.isAdmin)) {
+  if (to.matched.some(rec => rec.meta.isAdmin)) {
     let user = store.state.user;
-    if (user.role == 'admin') {
+    if (user.role == "admin") {
       next();
     } else {
-      next({ name: 'home' });
+      next({ name: "home" });
     }
   } else {
     next();

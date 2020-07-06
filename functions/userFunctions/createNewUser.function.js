@@ -9,7 +9,7 @@ module.exports.createNewUser = functions.https.onCall(async data => {
     displayName: data.displayName,
     email: data.email,
     uid: data.uid,
-    role: "user",
+    role: "user"
   });
   return;
 });
