@@ -211,10 +211,11 @@
       <div class="container">
         <h2
           class="display-1"
-          style="color: white; text-align: center; font-weight: bold; margin: 1rem 0"
+          style="color: white; text-align: center; font-weight: bold; margin: 0;"
         >
           Schedule
         </h2>
+        <br />
         <div class="schedulec">
           <div class="sevent" style="color: white">7:00AM Event Starts</div>
           <div class="sevent" style="color: white">8:00AM Event Continues</div>
@@ -382,6 +383,7 @@ html {
 
 .container {
   max-width: 1400px !important;
+  margin: auto !important;
 }
 
 #home {
