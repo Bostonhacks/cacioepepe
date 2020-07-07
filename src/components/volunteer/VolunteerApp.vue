@@ -78,7 +78,7 @@
         </v-col>
       </v-row>
       <div v-if="resume">
-        <v-btn color="primary" class="mr-4" :href="resume[0]"
+        <v-btn color="primary" class="mr-4" :href="resume[0]" target="_blank"
           >View Uploaded Resume</v-btn
         >
         <v-btn color="primary" class="mr-4" @click="deleteResume"
@@ -203,6 +203,11 @@ export default {
       ]
     };
   },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
+  },
   methods: {
     async submitApplication() {
       await functions.httpsCallable("submitVolunteerApplication")({
@@ -223,6 +228,30 @@ export default {
         tAandC: this.tAandC
       });
       this.$router.push("/");
+    },
+    async uploadResume() {
+      const reader = new FileReader();
+      reader.readAsDataURL(this.uploadedResume[0]);
+      reader.onload = async () => {
+        functions
+          .httpsCallable("uploadResume")({
+            file: reader.result.split(",")[1],
+            displayName: this.user.displayName,
+            type: this.uploadedResume[0].type,
+            uid: this.user.uid
+          })
+          .then(async data => {
+            this.resume = [data.data.URL, data.data.location];
+            this.uploadedResume = null;
+          });
+      };
+    },
+    async deleteResume() {
+      await functions.httpsCallable("deleteResume")({
+        uid: this.user.uid,
+        location: this.resume[1]
+      });
+      this.resume = null;
     }
   },
   async mounted() {
