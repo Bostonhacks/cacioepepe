@@ -6,6 +6,7 @@
         <v-flex mb-4>
           <h1 class="display-2 font-weight-bold mb-3">Welcome to God Mode!</h1>
           <AdminStats :data="data" />
+          <CalendarEvent />
           <v-tabs
             v-model="tab"
             background-color="deep-purple accent-4"
@@ -52,6 +53,7 @@
 
 <script>
 import HackerTable from "@/components/common/HackerTable";
+import CalendarEvent from "@/components/admin/CalendarEvent";
 import AdminStats from "@/components/admin/AdminStats";
 import { functions } from "@/firebase/init";
 
@@ -59,7 +61,8 @@ export default {
   name: "Admin",
   components: {
     HackerTable,
-    AdminStats
+    AdminStats,
+    CalendarEvent
   },
   methods: {
     async filterStatus() {
