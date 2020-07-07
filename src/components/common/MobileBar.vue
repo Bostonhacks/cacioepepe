@@ -16,7 +16,7 @@
           <a class="link-style" text @click="home()">
             <v-list-item>
               <!-- <v-list-item-icon>
-                <v-icon>mdi-home</v-icon>r
+                <v-icon>mdi-home</v-icon>
               </v-list-item-icon>-->
 
               <v-list-item-title>Home</v-list-item-title>
@@ -68,26 +68,18 @@
             </v-list-item>
           </a>
 
-          <a text @click="application()" class="link-style">
+          <!-- <a text @click="application()" class="link-style">
             <v-list-item>
-              <!-- <v-list-item-icon>
-                <v-icon>mdi-home</v-icon>
-              </v-list-item-icon>-->
-
               <v-list-item-title>Applications</v-list-item-title>
             </v-list-item>
           </a>
 
           <a icon class="link-style">
             <v-list-item>
-              <!-- <v-list-item-icon>
-                <v-icon>mdi-home</v-icon>
-              </v-list-item-icon>-->
-
               <v-icon v-if="user" @click="signOut()">mdi-export-variant</v-icon>
               <v-icon v-else @click="signIn()">mdi-arrow-right</v-icon>
             </v-list-item>
-          </a>
+          </a> -->
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>

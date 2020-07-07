@@ -28,11 +28,11 @@
           href="#FAQ"
           >FAQ</v-btn
         >
-        <v-btn text @click="application()">Application</v-btn>
+        <!-- <v-btn text @click="application()">Application</v-btn>
         <v-btn icon>
           <v-icon v-if="user" @click="signOut()">mdi-export-variant</v-icon>
           <v-icon v-else @click="signIn()">mdi-arrow-right</v-icon>
-        </v-btn>
+        </v-btn> -->
       </v-toolbar-items>
     </v-toolbar>
   </div>
