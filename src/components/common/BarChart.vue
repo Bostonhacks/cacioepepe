@@ -14,7 +14,7 @@ export default {
       default: 400
     },
     type: {
-      default: "doughnut"
+      default: "bar"
     },
     chartData: {},
 

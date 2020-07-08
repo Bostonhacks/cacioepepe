@@ -19,12 +19,7 @@ export default {
     chartData: {},
 
     options: {
-      // title: {
-      //   display: true,
-      //   text: "Number of Applicants"
-      // },
-      // responsive: true,
-      // maintainAspectRatio: false
+      display: true
     },
     year: {
       default: "4"
