@@ -248,6 +248,7 @@
             <template>
               <div class="text-center">
                 <v-btn
+                  v-if="selected.length > 0"
                   class="ma-2"
                   outlined
                   color="indigo"
