@@ -9,8 +9,44 @@
           </h1>
           <v-card flat tile>
             <v-card-text>
-              <HackerTable :data="currentData" />
+              <HackerTable :data="data" />
             </v-card-text>
+          </v-card>
+          <v-card>
+            <v-row>
+              <v-col class="col-3">
+                <PieChart
+                  v-if="this.hackathonsChartData.datasets[0].data"
+                  :chartData="hackathonsChartData"
+                  :options="hackathonsChartData.options"
+                  id="hackathonChart"
+                />
+              </v-col>
+              <v-col class="col-3">
+                <PieChart
+                  v-if="this.genderChartData.datasets[0].data"
+                  :chartData="genderChartData"
+                  :options="genderChartData.options"
+                  id="genderChart"
+                />
+              </v-col>
+              <v-col class="col-3">
+                <PieChart
+                  v-if="this.majorChartData.datasets[0].data"
+                  :chartData="majorChartData"
+                  :options="majorChartData.options"
+                  id="majorChart"
+                />
+              </v-col>
+              <v-col class="col-3">
+                <PieChart
+                  v-if="this.educationChartData.datasets[0].data"
+                  :chartData="educationChartData"
+                  :options="educationChartData.options"
+                  id="educationChart"
+                />
+              </v-col>
+            </v-row>
           </v-card>
         </v-flex>
       </v-layout>
@@ -20,18 +56,93 @@
 
 <script>
 import HackerTable from "@/components/common/HackerTable";
+import PieChart from "@/components/common/PieChart";
 import { functions } from "@/firebase/init";
 export default {
   name: "SponsorDashboard",
   components: {
-    HackerTable
+    HackerTable,
+    PieChart
   },
   data() {
     return {
       data: null,
-      currentData: null,
-      itemStatus: ["Accepted", "Confirmed", "Checked In"],
-      statusList: [
+      hackathonsChartData: {
+        options: {
+          title: {
+            display: true,
+            text: "Hackathons Attended"
+          }
+        },
+        labels: ["0", "1", "2", "3+"],
+        datasets: [
+          {
+            label: "2020",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            data: null
+          }
+        ]
+      },
+      genderChartData: {
+        options: {
+          title: {
+            display: true,
+            text: "Genders"
+          }
+        },
+        labels: ["Male", "Female", "Other"],
+        datasets: [
+          {
+            label: "2020",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: null
+          }
+        ]
+      },
+      majorChartData: {
+        options: {
+          title: {
+            display: true,
+            text: "Majors"
+          }
+        },
+        labels: [
+          "Computer Science",
+          "Electrical Engineering",
+          "Computer Engineering",
+          "Others"
+        ],
+        datasets: [
+          {
+            label: "2020",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            data: null
+          }
+        ]
+      },
+      educationChartData: {
+        options: {
+          title: {
+            display: true,
+            text: "Education Levels"
+          }
+        },
+        labels: ["High School", "Undergraduate", "Graduate"],
+        datasets: [
+          {
+            label: "2020",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            data: null
+          }
+        ]
+      }
+    };
+  },
+
+  methods: {
+    async getData() {
+      const applicantStatus = ["Accepted", "Confirmed", "Checked In"];
+      const statusList = [
         "Started",
         "Submitted",
         "Rejected",
@@ -43,7 +154,7 @@ export default {
       ];
       const out = await functions.httpsCallable("retrieveAllApplications")({});
       const applicants = out.data;
-      this.data = await applicants.filter(applicant =>
+      this.data = applicants.filter(applicant =>
         applicantStatus.includes(statusList[applicant.status])
       );
     },
@@ -109,16 +220,14 @@ export default {
       });
       this.hackathonsChartData.datasets[0].data = hackathonData;
     }
-      ]
-    };
   },
 
   async mounted() {
-    var out = await functions.httpsCallable("retrieveAllApplications")({});
-    this.data = out.data;
-    this.currentData = this.data.filter(item =>
-      this.itemStatus.includes(this.statusList[item.status])
-    );
+    await this.getData();
+    this.getGender();
+    this.getMajor();
+    this.getEducation();
+    this.getHackathons();
   }
 };
 </script>
