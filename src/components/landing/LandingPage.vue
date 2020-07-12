@@ -41,6 +41,7 @@
         <div class="flexc" style="justify-content: center">
           <h2
             style="font-size: 2rem; text-align: center; color: white; font-weight: bold; margin-top: -3rem"
+            class="header-title"
           >
             We're turning 6.
             <br />And you're invited <br />to our virtual hackathon!
@@ -384,6 +385,7 @@ html {
 .container {
   max-width: 1400px !important;
   margin: auto !important;
+  padding: 12px !important;
 }
 
 #home {
@@ -606,6 +608,9 @@ html {
   }
   #t4 {
     top: 2rem !important;
+  }
+  .header-title {
+    margin-top: 0 !important;
   }
 }
 

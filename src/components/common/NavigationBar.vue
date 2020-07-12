@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar>
+    <v-toolbar style="background: #80d2ff !important" elevation="0">
       <img
         class="mr-3"
         :src="require('@/assets/BostonHacksMark.png')"
