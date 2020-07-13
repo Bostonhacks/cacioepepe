@@ -48,7 +48,9 @@
           </h2>
         </div>
         <div class="flexc" style="justify-content: center">
-          <v-btn rounded depressed @click="login()">Login</v-btn>
+          <v-btn rounded depressed disabled @click="login()"
+            >Login (Coming Soon)</v-btn
+          >
         </div>
       </div>
       <div class="container">
@@ -78,7 +80,9 @@
                 sponsor@bostonhacks.io or check out our sponsor document!
               </h2>
               <div class="flexc" style="justify-content: center">
-                <v-btn depressed rounded @click="sponsor()">Learn more</v-btn>
+                <v-btn depressed rounded disabled @click="sponsor()"
+                  >Learn More (Coming Soon)</v-btn
+                >
               </div>
             </div>
           </div>
