@@ -214,20 +214,21 @@
           class="display-1"
           style="color: white; text-align: center; font-weight: bold; margin: 0;"
         >
+          <br />
           Schedule
         </h2>
         <br />
         <div class="schedulec">
-          <div class="sevent" style="color: white">7:00AM Event Starts</div>
-          <div class="sevent" style="color: white">8:00AM Event Continues</div>
-          <div class="sevent" style="color: white">9:00AM Still Continues!</div>
-          <div class="sevent" style="color: white">
-            10:00AM Still Continues!
-          </div>
-          <div class="sevent" style="color: white">
-            11:00AM Still Continues!
-          </div>
-          <div class="sevent" style="color: white">12:00PM End!</div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <div class="sevent" style="color: white">To Be Decided!</div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
         </div>
       </div>
       <div class="flexc" style="justify-content: space-between">
