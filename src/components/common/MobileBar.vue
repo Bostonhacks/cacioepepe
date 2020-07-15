@@ -34,7 +34,7 @@
                 <v-icon>mdi-home</v-icon>
               </v-list-item-icon>-->
 
-              <v-list-item-title>Tracks and Workshops</v-list-item-title>
+              <v-list-item-title>Tracks</v-list-item-title>
             </v-list-item>
           </a>
 

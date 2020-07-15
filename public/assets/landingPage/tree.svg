@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 611 537">
+  <defs>
+    <style>
+      .cls-1{fill:#306e6e}
+    </style>
+     
+  </defs>
+    <path id="stumpShadow" d="M298 452l37-49 115-1-37 49-115 1z" class="cls-1" data-name="Rectangle 8"/>
+    <path id="treeShadow" d="M263 537l166-220-185 69 28-37-144 54 22-28L0 433l67 51 18-23 66 48 27-35z" class="cls-1" data-name="Path 31"/>
+    <path id="stump" fill="#e6c8bc" d="M394 331h79v120h-79z" data-name="Rectangle 8"/>
+    <path id="tree" fill="#209d8c" d="M257 362h354L503 221h59l-85-109h45L432 0l-86 112h38l-79 109h56z" data-name="Path 31"/>
+    
+</svg>
