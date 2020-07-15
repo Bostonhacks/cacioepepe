@@ -3,6 +3,9 @@ module.exports = {
   productionSourceMap: false,
   lintOnSave: false,
   pwa: {
+    workboxOptions: {
+      skipWaiting: true
+    },
     name: "BostonHacks",
     themeColor: "#282561"
   },
