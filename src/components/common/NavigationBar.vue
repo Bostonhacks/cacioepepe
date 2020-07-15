@@ -13,14 +13,14 @@
         <v-btn
           v-if="this.getRoutePath && this.getRoutePath == '/'"
           text
-          href="#schedule"
-          >Schedule</v-btn
+          href="#tracks"
+          >Tracks</v-btn
         >
         <v-btn
           v-if="this.getRoutePath && this.getRoutePath == '/'"
           text
-          href="#tracks"
-          >Tracks</v-btn
+          href="#schedule"
+          >Schedule</v-btn
         >
         <v-btn
           v-if="this.getRoutePath && this.getRoutePath == '/'"
