@@ -41,10 +41,12 @@
       <v-container>
         <v-row justify="center">
           <h2 class="header-title">
-            We're turning 6.
-            <br />And you're invited <br />to our virtual hackathon!
+            You’re invited to our <br />
+            virtual hackathon! <br />
+            November 14-15th, 2020
           </h2>
         </v-row>
+        <br />
         <v-row justify="center">
           <v-btn rounded depressed disabled @click="login()"
             >Login (Coming Soon)</v-btn
@@ -85,6 +87,7 @@
                   >
                   or check out our sponsor document!
                 </h2>
+                <br />
                 <v-row justify="center">
                   <v-btn depressed rounded disabled @click="sponsor()"
                     >Learn More (Coming Soon)</v-btn
