@@ -20,7 +20,7 @@
           v-if="this.getRoutePath && this.getRoutePath == '/'"
           text
           href="#tracks"
-          >Tracks and Workshops</v-btn
+          >Tracks</v-btn
         >
         <v-btn
           v-if="this.getRoutePath && this.getRoutePath == '/'"
