@@ -1,196 +1,181 @@
 <template>
-  <v-container>
+  <v-container
+    class="mr-0 ml-0 d-flex flex-column align-center align-self-center"
+  >
     <v-container>
       <v-layout text-center wrap>
         <v-flex xs12></v-flex>
         <v-flex mb-4>
-          <h1 class="display-2 font-weight-bold mb-3">Welcome Sponsor!</h1>
-
           <template>
-            <h3>About BostonHacks</h3>
-            <v-row>
-              <v-col>
-                <v-card>
-                  <h4
-                    class="display-1 indigo--text text--darken-4 font-weight-bold"
-                  >
-                    Who Are We?
+            <v-row
+              class="d-flex flex-column-reverse flex-md-row justify-center"
+            >
+              <v-col cols="12" md="5">
+                <object
+                  data="/assets/landingPage/feliz.svg"
+                  alt="pinata"
+                  class="mt-0 mt-sm-n16"
+                  style="max-height: 80vh"
+                  z-index="100"
+                />
+              </v-col>
+              <v-col cols="12" md="5" class="d-flex flex-column justify-center">
+                <div>
+                  <h4 class="display-3 text-left header font-weight-bold">
+                    WHO ARE WE?
                   </h4>
-                  <p
-                    class="display-1 indigo--text text--darken-4 font-weight-light body-1"
-                  >
+                  <p class="display-1 text-left body-1 pt-4">
                     BostonHacks brings together over 500 students for an
                     exhilarating 24 hours to build awesome projects. In our past
                     two events, students had meaningful interactions with
                     mentors, peers, and sponsors. A hackathon would be
                     incomplete without the new technology, advice, and ideas our
                     sponsors offer, and we’d be eager to have you join us this
-                    coming Fall!
+                    coming Fall! <br />
+                    <br />
+                    BostonHacks Fall 2020 will run from November 14th to Sunday,
+                    November 15th on Boston University’s Charles River campus.
+                    At BostonHacks, we strive to provide a comprehensive
+                    recruiting and branding experience to our sponsors. Here’s
+                    what your company can do at our event.
                   </p>
-                </v-card>
+                </div>
               </v-col>
-              <v-col>
-                <v-card>
-                  <h4
-                    class="display-1 indigo--text text--darken-4 font-weight-bold"
-                  >
-                    Why Us?
-                  </h4>
-                  <p
-                    class="display-1 indigo--text text--darken-4 font-weight-light body-1"
-                  >
-                    Resumes are two-dimensional (literally). Interviews give
-                    only a small snapshot of an individual’s abilities. By
-                    watching a project evolve over a hackathon, you can get a
-                    much better picture of a candidate. Plus, you’ll have access
-                    to a group of students that are extraordinarily passionate
-                    about what they do, and a friendly environment to interact
-                    with them in.
-                  </p>
-                </v-card>
+            </v-row>
+            <v-row class="d-flex justify-center">
+              <v-col cols="12" md="10" class="text-left">
+                <h4 class="display-3 header font-weight-bold">
+                  WHY US?
+                </h4>
+                <h4 class="recruit">Recruit</h4>
+                <p>
+                  Reach out to future customers, leaders and innovators. Test
+                  waters and get a sense of emergent technologies. Collaborate
+                  with students on a more intimate level at our comfortably
+                  mid-sized hackathon. Offer students advice and/or tech to help
+                  them through their projects. Whether you’re looking for brand
+                  awareness, technical expertise or personal development, you’ll
+                  find it here—with 500 motivated hackers and dozens of skilled
+                  mentors.
+                </p>
+                <h4 class="connect">Connect</h4>
+                <p>
+                  Resumes are two-dimensional (literally). Interviews give only
+                  a small snapshot of an individual’s abilities. By watching a
+                  project evolve over a hackathon, you can get a much better
+                  picture of a candidate. Plus, you’ll have access to a group of
+                  students that are extraordinarily passionate about what they
+                  do, and a friendly environment to interact with them in.
+                </p>
+                <h4 class="live-feedback">Get Live Feedback</h4>
+                <p>
+                  Give your API or product a test run before sending it out into
+                  the world. Show off a great framework or platform before it
+                  hits the market. Students are the ideal target for new tech.
+                  They will eagerly push your product to its limits, as well as
+                  offer suggestions on it and look to you for support.
+                </p>
               </v-col>
             </v-row>
           </template>
         </v-flex>
       </v-layout>
     </v-container>
-
-    <v-container>
-      <v-row>
-        <h1 class="display-1 pb-10">
-          Recap
-          <v-btn
-            class="display-1"
-            text
-            @click="toggleYearSelect = !toggleYearSelect"
-            >{{ years[yearIndex] }}</v-btn
-          >
-        </h1>
-      </v-row>
-      <v-card v-if="toggleYearSelect">
-        <v-subheader>Select a Year</v-subheader>
-        <v-list-item-group v-model="yearIndex" color="primary">
-          <v-list-item v-for="(year, i) in years" :key="i">
-            <v-list-item-content>
-              <v-list-item-title>{{ year }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-card>
-
-      <v-row>
-        <v-col>
-          <v-row justify="center">
-            <h4 class="display-1 indigo--text text--darken-4 font-weight-bold">
-              {{ this.totalApplicants[this.yearIndex] }}
+    <object
+      data="/assets/sponsor/blueSkyTop.svg"
+      z-index="-1"
+      class="bg pt-10 mb-n1"
+    ></object>
+    <v-layout class="sky-background d-flex justify-center flex-wrap">
+      <v-col cols="10">
+        <v-row class="d-flex justify-center pt-0 mt-0">
+          <v-col cols="12" md="10" class="stats-text">
+            <h4 class="display-3 white--text font-weight-bold">STATISTICS</h4>
+            <h4 class="display-1 white--text pl-8 pt-8">
+              Last year we had...
             </h4>
-          </v-row>
-          <v-row
-            justify="center"
-            class="indigo--text text--darken-4 font-weight-bold"
-            >Total Applicants</v-row
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="5" class="d-flex test">
+            <svg
+              svg
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+              class="circles"
+            >
+              <circle
+                cx="30"
+                cy="40"
+                :r="this.applicantRadius()"
+                fill="#4ABB79"
+                stroke="#A4DDBB"
+                stroke-width="0.5"
+              />
+              <text x="12" y="42" class="applicant-num">
+                {{ applicants[year] }}
+              </text>
+              <text x="20" y="50" class="small">applicants</text>
+              <circle
+                cx="85"
+                cy="20"
+                :r="this.attendeeRadius()"
+                fill="#E6C7BB"
+                stroke="#F2E3DD"
+                stroke-width="0.5"
+              />
+              <text x="75" y="21" class="attendee-num">
+                {{ attendees[year] }}
+              </text>
+              <text x="74" y="27" class="small">attendees</text>
+            </svg>
+          </v-col>
+          <v-col
+            cols="10"
+            md="5"
+            class="d-flex flex-column justify-center align-center rename"
           >
-        </v-col>
-        <v-col>
-          <v-row justify="center">
-            <h4 class="display-1 indigo--text text--darken-4 font-weight-bold">
-              {{ this.newToBHacks[this.yearIndex] }}
-            </h4>
-          </v-row>
-          <v-row
-            justify="center"
-            class="indigo--text text--darken-4 font-weight-bold"
-            >New to BostonHacks</v-row
-          >
-        </v-col>
-        <v-col>
-          <v-row></v-row>
-          <v-row justify="center">
-            <h4 class="display-1 indigo--text text--darken-4 font-weight-bold">
-              500+
-            </h4>
-          </v-row>
-          <v-row
-            justify="center"
-            class="indigo--text text--darken-4 font-weight-bold"
-            >Education Level</v-row
-          >
-        </v-col>
-      </v-row>
-
-      <v-row>
-        <v-col class="col-4">
-          <PieChart
-            :year="yearIndex"
-            :chartData="majorChartData"
-            :options="majorChartData.options"
-            id="majorChart"
-          />
-        </v-col>
-        <v-col class="col-4">
-          <PieChart
-            :year="yearIndex"
-            :chartData="genderChartData"
-            :options="genderChartData.options"
-            id="genderChart"
-          />
-        </v-col>
-        <v-col class="col-4">
-          <BarChart
-            :year="yearIndex"
-            :chartData="hackathonsChartData"
-            :options="hackathonsChartData.options"
-            id="hackathonsChart"
-          />
-        </v-col>
-      </v-row>
-    </v-container>
+            <v-btn-toggle v-model="year" class="test">
+              <v-btn>0</v-btn>
+              <v-btn>1</v-btn>
+              <v-btn>2</v-btn>
+              <v-btn>3</v-btn>
+            </v-btn-toggle>
+            <span>{{ year }}</span>
+            <div class="chart-container d-flex flex-column justify-center">
+              <PieChart
+                :chartData="genderChartData"
+                :options="genderChartOptions"
+                :id="1"
+                :index="year"
+              />
+            </div>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center">
+          <v-col cols="12" md="8" class="d-flex">
+            <v-col cols="12" md="6">
+              <object
+                data="/assets/sponsor/usa.svg"
+                alt="usa"
+                style="max-height: 80vh"
+                z-index="100"
+            /></v-col>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-layout>
+    <object
+      data="/assets/sponsor/blueSkyBottom.svg"
+      z-index="-1"
+      class="bg mt-n1"
+    ></object>
 
     <v-container>
       <h2>Sponsor Benefits</h2>
       <GeneralSponsorTable />
       <RecruitingSponsorTable />
       <BrandingSponsorTable />
-    </v-container>
-
-    <v-container>
-      <h2>Sponsor Companies</h2>
-
-      <v-row align="center" justify="center">
-        <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/az.jpg"></v-img>
-        </v-col>
-        <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/bose.png"></v-img>
-        </v-col>
-        <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/CapitalOne.png"></v-img>
-        </v-col>
-      </v-row>
-
-      <v-row align="center" justify="center">
-        <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/GoogleCloud.png"></v-img>
-        </v-col>
-        <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/kind.jpg"></v-img>
-        </v-col>
-        <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/Manulife_JohnHancock.png"></v-img>
-        </v-col>
-      </v-row>
-
-      <v-row align="center" justify="center">
-        <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/Raytheon.jpg"></v-img>
-        </v-col>
-        <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/spark.png"></v-img>
-        </v-col>
-        <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/twilio.png"></v-img>
-        </v-col>
-      </v-row>
     </v-container>
   </v-container>
 </template>
@@ -200,198 +185,63 @@ import GeneralSponsorTable from "@/components/sponsor/GeneralSponsorTable";
 import RecruitingSponsorTable from "@/components/sponsor/RecruitingSponsorTable";
 import BrandingSponsorTable from "@/components/sponsor/BrandingSponsorTable";
 import PieChart from "@/components/common/PieChart";
-import BarChart from "@/components/common/BarChart";
 
 export default {
   components: {
     PieChart,
     GeneralSponsorTable,
     RecruitingSponsorTable,
-    BrandingSponsorTable,
-    BarChart
+    BrandingSponsorTable
   },
-  watch: {
-    yearIndex: {
-      handler: function() {
-        if (this.yearIndex === undefined) {
-          this.yearIndex = this.lastYearIndex;
-        } else {
-          this.lastYearIndex = this.yearIndex;
-        }
-      },
-      deep: true
+  methods: {
+    applicantRadius() {
+      return "30%";
+    },
+
+    attendeeRadius() {
+      return "15%";
     }
   },
   data() {
     return {
       data: null,
       currentData: null,
-      itemStatus: ["Accepted", "Confirmed", "Checked In"],
-      statusList: [
-        "Started",
-        "Submitted",
-        "Rejected",
-        "Waitlisted",
-        "Accepted",
-        "Confirmed",
-        "Declined",
-        "Checked In"
-      ],
-      toggleYearSelect: false,
-      totalApplicants: [200, 300, 400, 500],
-      newToBHacks: [50, 100, 150, 20],
-      highSchool: [10, 20, 30, 40],
-      undergrad: [20, 30, 40, 50],
-      grad: [30, 40, 50, 60],
-      yearIndex: "3",
-      lastYearIndex: "3",
-      years: ["2016", "2017", "2018", "2019"],
-      lineChartData: {
-        options: {
-          title: {
-            display: true,
-            text: "Number of Applicants"
-          }
-        },
-        labels: ["2016", "2017", "2018", "2019"],
-        datasets: [
-          {
-            backgroundColor: "#f87979",
-            borderColor: "#f87979",
-            radius: 5,
-            borderWidth: 5,
-            data: [1024, 1223, 1480, 1657],
-            fill: false,
-            showLines: false
-          }
-        ]
-      },
-      majorChartData: {
-        options: {
-          title: {
-            display: true,
-            text: "Majors"
-          }
-        },
-        labels: [
-          "Computer Science",
-          "Electrical Engineering",
-          "Computer Engineering"
-        ],
-        datasets: [
-          {
-            label: "Data One",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: [40, 20, 10]
-          },
-          {
-            label: "Data Two",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: [10, 90, 10]
-          },
-          {
-            label: "Data Three",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: [15, 15, 70]
-          },
-          {
-            label: "Data Four",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: [5, 5, 90]
-          },
-          {
-            label: "Data Five",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: [20, 70, 5]
-          }
-        ]
+      year: 3,
+      applicants: [1000, 2000, 3000, 4000],
+      attendees: [500, 1000, 1500, 2000],
+      genderChartOptions: {
+        legend: {},
+        tooltips: {
+          enabled: false
+        }
+        // responsiveAnimationDuration: 0,
       },
       genderChartData: {
-        options: {
-          title: {
-            display: true,
-            text: "Genders"
-          }
-        },
         labels: ["Male", "Female", "Other"],
         datasets: [
           {
-            label: "2016",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: [40, 20, 10]
-          },
-          {
             label: "2017",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: [10, 90, 10]
+            backgroundColor: ["#4bbc79", "#219E8C", "#E6C7BB"],
+            borderWidth: 0,
+            data: [60, 16, 24]
           },
           {
             label: "2018",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: [15, 15, 70]
+            backgroundColor: ["#4bbc79", "#E6C7BB", "#219E8C"],
+            borderWidth: 0,
+            data: [56, 24, 20]
           },
           {
             label: "2019",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: [5, 5, 90]
+            backgroundColor: ["#4bbc79", "#E6C7BB", "#219E8C"],
+            borderWidth: 0,
+            data: [54, 25, 21]
           },
           {
             label: "2020",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-            data: [20, 70, 5]
-          }
-        ]
-      },
-      hackathonsChartData: {
-        options: {
-          title: {
-            display: true,
-            text: "Hackathons Attended"
-          }
-        },
-        labels: ["0", "1", "2", "3+"],
-        datasets: [
-          {
-            label: "Data One",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
-            barPercentage: 0.5,
-            barThickness: 6,
-            maxBarThickness: 8,
-            minBarLength: 2,
-            data: [10, 20, 30, 40]
-          },
-          {
-            label: "Data Two",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
-            barPercentage: 0.5,
-            barThickness: 6,
-            maxBarThickness: 8,
-            minBarLength: 2,
-            data: [10, 90, 10, 40]
-          },
-          {
-            label: "Data Three",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
-            barPercentage: 0.5,
-            barThickness: 6,
-            maxBarThickness: 8,
-            minBarLength: 2,
-            data: [15, 15, 70]
-          },
-          {
-            label: "Data Four",
-            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
-            barPercentage: 0.5,
-            barThickness: 6,
-            maxBarThickness: 8,
-            minBarLength: 2,
-            data: [5, 5, 90, 20]
-          },
-          {
-            label: "Data Five",
-            fillColor: "blue",
-            strokeColor: "green",
-            data: [20, 70, 5, 50]
+            backgroundColor: ["#4bbc79", "#E6C7BB", "#219E8C"],
+            borderWidth: 0,
+            data: [52, 26, 22]
           }
         ]
       }
@@ -400,4 +250,74 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.header {
+  color: #4bbc79;
+}
+
+.recruit {
+  padding-top: 2vw;
+  color: #f6d374;
+}
+
+.connect {
+  padding-top: 2vw;
+  color: #fe745f;
+}
+
+.live-feedback {
+  padding-top: 2vw;
+  color: #0098ff;
+}
+
+.circles {
+  width: 100%;
+  height: 100%;
+}
+
+.chart-container {
+  width: 60%;
+  height: 60%;
+}
+
+.small {
+  font-size: 5px;
+  font-weight: bold;
+  color: white;
+}
+
+.applicant-num {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.attendee-num {
+  font-size: 9px;
+  font-weight: bold;
+  color: white;
+}
+
+.rename {
+  position: relative;
+}
+
+.test {
+  z-index: 1000;
+}
+
+.stats-text {
+  top: 10%;
+  left: 0px;
+  width: 100vw;
+}
+
+.bg {
+  min-width: 100vw;
+}
+
+.sky-background {
+  background-color: #80d2ff;
+  width: 100vw;
+}
+</style>
