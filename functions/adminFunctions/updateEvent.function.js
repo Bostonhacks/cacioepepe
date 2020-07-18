@@ -7,6 +7,7 @@ module.exports.updateEvent = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     return { message: "Authentication Required!", code: 401 };
   }
+
   const mydb = db
     .collection("admin")
     .doc("schedules")
@@ -19,5 +20,6 @@ module.exports.updateEvent = functions.https.onCall(async (data, context) => {
     description: data.description,
     type: data.type
   });
-  return;
+
+  return { message: "Schedule updated", code: 200 };
 });

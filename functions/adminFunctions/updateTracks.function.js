@@ -34,5 +34,5 @@ module.exports.updatePrize = functions.https.onCall(async (data, context) => {
       console.error("Error: ", error);
     });
 
-  return "Track updated";
+  return { message: "Track updated", code: 200 };
 });

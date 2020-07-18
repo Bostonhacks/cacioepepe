@@ -34,5 +34,5 @@ module.exports.updateFAQ = functions.https.onCall(async (data, context) => {
       console.error("Error: ", error);
     });
 
-  return "FAQ updated";
+  return { message: "FAQ updated", code: 200 };
 });
