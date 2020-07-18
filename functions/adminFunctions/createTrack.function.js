@@ -5,21 +5,18 @@ const db = admin.firestore();
 
 const arrayUnion = admin.firestore.FieldValue.arrayUnion;
 
-module.exports.addTrack = functions.https.onCall(async (data, context) => {
+module.exports.createTrack = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     return { message: "Authentication Required!", code: 401 };
   }
-  var track, description;
-  track = data.track;
-  description = data.description;
 
   var newTrack = {
-    track: track,
-    description: description
+    track: data.track,
+    description: data.description
   };
 
-  const tracksDoc = db.collection("admin").doc("tracksDoc");
-  await tracksDoc
+  const tracksDb = db.collection("admin").doc("tracksDoc");
+  await tracksDb
     .update({
       tracks: arrayUnion(newTrack)
     })
@@ -27,5 +24,5 @@ module.exports.addTrack = functions.https.onCall(async (data, context) => {
       console.error("Error: ", error);
     });
 
-  return "Completed!";
+  return { message: "New track created", code: 201 };
 });

@@ -5,7 +5,7 @@ const db = admin.firestore();
 
 const arrayUnion = admin.firestore.FieldValue.arrayUnion;
 
-module.exports.addEventSchedule = functions.https.onCall(
+module.exports.createSchedule = functions.https.onCall(
   async (data, context) => {
     if (!context.auth) {
       return { message: "Authentication Required!", code: 401 };
@@ -56,6 +56,6 @@ module.exports.addEventSchedule = functions.https.onCall(
     // await eventSchedule.update({
     //   schedule: events
     // });
-    return;
+    return { message: "New schedule created", code: 201 };
   }
 );

@@ -3,20 +3,18 @@ const functions = require("firebase-functions");
 
 const db = admin.firestore();
 
-module.exports.removeEventSchedule = functions.https.onCall(
+module.exports.deleteSchedule = functions.https.onCall(
   async (data, context) => {
     if (!context.auth) {
       return { message: "Authentication Required!", code: 401 };
     }
-    var title;
-    title = data.title;
-    const eventSched = db.collection("admin").doc("schedules");
 
-    let dataa = await eventSched.get();
-    this.events = dataa
+    const schedsDb = db.collection("admin").doc("schedules");
+    let info = await schedsDb.get();
+    this.events = info
       .data()
-      .events.filter(schedule => schedule.title != title);
-    await eventSched
+      .events.filter(schedule => schedule.title != data.title);
+    await schedsDb
       .update({
         events: this.events
       })
@@ -24,6 +22,6 @@ module.exports.removeEventSchedule = functions.https.onCall(
         console.error("Error: ", error);
       });
 
-    return "Completed!";
+    return { message: "Schedule deleted", code: 200 };
   }
 );

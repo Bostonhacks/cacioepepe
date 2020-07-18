@@ -3,17 +3,15 @@ const functions = require("firebase-functions");
 
 const db = admin.firestore();
 
-module.exports.removePrize = functions.https.onCall(async (data, context) => {
+module.exports.deletePrize = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     return { message: "Authentication Required!", code: 401 };
   }
-  var name;
-  name = data.name;
-  const prizeDoc = db.collection("admin").doc("prizesDoc");
 
-  let dataa = await prizeDoc.get();
-  this.prizes = dataa.data().prizes.filter(prize => prize.name != name);
-  await prizeDoc
+  const prizeDb = db.collection("admin").doc("prizesDoc");
+  let info = await prizeDb.get();
+  this.prizes = info.data().prizes.filter(prize => prize.name != data.name);
+  await prizeDb
     .update({
       prizes: this.prizes
     })
@@ -21,5 +19,5 @@ module.exports.removePrize = functions.https.onCall(async (data, context) => {
       console.error("Error: ", error);
     });
 
-  return "Completed!";
+  return { message: "Prize deleted", code: 200 };
 });

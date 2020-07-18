@@ -3,16 +3,14 @@ const functions = require("firebase-functions");
 
 const db = admin.firestore();
 
-module.exports.removeTrack = functions.https.onCall(async (data, context) => {
+module.exports.deleteTrack = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     return { message: "Authentication Required!", code: 401 };
   }
-  var track;
-  track = data.track;
 
   const tracksDoc = db.collection("admin").doc("tracksDoc");
-  let dataa = await tracksDoc.get();
-  this.tracks = dataa.data().tracks.filter(atrack => atrack.track != track);
+  let info = await tracksDoc.get();
+  this.tracks = info.data().tracks.filter(atrack => atrack.track != data.track);
   await tracksDoc
     .update({
       tracks: this.tracks
@@ -21,5 +19,5 @@ module.exports.removeTrack = functions.https.onCall(async (data, context) => {
       console.error("Error: ", error);
     });
 
-  return "Completed!";
+  return { message: "Track deleted", code: 200 };
 });

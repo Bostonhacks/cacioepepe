@@ -3,14 +3,15 @@ const functions = require("firebase-functions");
 
 const db = admin.firestore();
 
-module.exports.retrieveEvents = functions.https.onCall(async (_, context) => {
+module.exports.readTracks = functions.https.onCall(async (_, context) => {
   if (!context.auth) {
     return { message: "Authentication Required!", code: 401 };
   }
-  const eventsDb = db.collection("events");
-  var allEvents = await eventsDb.get();
+
+  const trackDb = db.collection("admin").doc("trackDoc");
+  var allTracks = await trackDb.get();
   var res = [];
-  allEvents.forEach(element => {
+  allTracks.forEach(element => {
     res.push(element.data());
   });
   return res;

@@ -5,25 +5,20 @@ const db = admin.firestore();
 
 const arrayUnion = admin.firestore.FieldValue.arrayUnion;
 
-module.exports.addPrize = functions.https.onCall(async (data, context) => {
+module.exports.createPrize = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     return { message: "Authentication Required!", code: 401 };
   }
 
   // add image
-  var name, prize, description;
-  name = data.name;
-  prize = data.prize;
-  description = data.description;
-
   var newPrize = {
-    name: name,
-    prize: prize,
-    description: description
+    name: data.name,
+    prize: data.prize,
+    description: data.description
   };
 
-  const prizeDoc = db.collection("admin").doc("prizesDoc");
-  await prizeDoc
+  const prizesDb = db.collection("admin").doc("prizesDoc");
+  await prizesDb
     .update({
       prizes: arrayUnion(newPrize)
     })
@@ -31,5 +26,5 @@ module.exports.addPrize = functions.https.onCall(async (data, context) => {
       console.error("Error: ", error);
     });
 
-  return "Completed!";
+  return { message: "New prize created", code: 201 };
 });
