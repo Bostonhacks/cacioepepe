@@ -117,6 +117,8 @@
               :items-per-page="5"
               class="elevation-1"
               :search="search"
+              :loading="data == null"
+              loading-text="Loading please wait ..."
             >
               <template v-slot:item.resume[0]="{ item }">
                 <button v-if="item.resume[0]">
@@ -243,6 +245,29 @@
                 >
               </div>
             </template>
+            <template>
+              <div class="text-center">
+                <v-btn
+                  v-if="selected.length > 0"
+                  class="ma-2"
+                  outlined
+                  color="indigo"
+                  @click="downloadSelectedEntries"
+                  >Download Selected Entries</v-btn
+                >
+              </div>
+            </template>
+            <template>
+              <div class="text-center">
+                <v-btn
+                  class="ma-2"
+                  outlined
+                  color="indigo"
+                  @click="downloadEntries"
+                  >Download All Entries</v-btn
+                >
+              </div>
+            </template>
           </v-row>
         </v-flex>
       </v-layout>
@@ -299,6 +324,22 @@ export default {
     },
     async downloadResumes() {
       var res = await functions.httpsCallable("oneClickDownload")();
+      var url = res["data"].URL;
+      window.open(url, "_blank");
+    },
+    async downloadEntries() {
+      var res = await functions.httpsCallable("entryDownload")();
+      var url = res["data"].URL;
+      window.open(url, "_blank");
+    },
+    async downloadSelectedEntries() {
+      var entryList = [];
+      this.selected.forEach(entry => {
+        entryList.push(entry);
+      });
+      var res = await functions.httpsCallable("selectEntryDownload")({
+        entryList: entryList
+      });
       var url = res["data"].URL;
       window.open(url, "_blank");
     },

@@ -36,7 +36,7 @@
       <v-select v-model="major" :items="courseList" label="Major"></v-select>
       <v-select v-model="minor" :items="courseList" label="Minor"></v-select>
       <div v-if="resume">
-        <v-btn color="primary" class="mr-4" :href="resume[0]"
+        <v-btn color="primary" class="mr-4" :href="resume[0]" target="_blank"
           >View Uploaded Resume</v-btn
         >
         <v-btn color="primary" class="mr-4" @click="deleteResume"

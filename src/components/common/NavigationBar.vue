@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar>
+    <v-toolbar style="background: #80d2ff !important" elevation="0">
       <img
         class="mr-3"
         :src="require('@/assets/BostonHacksMark.png')"
@@ -13,14 +13,14 @@
         <v-btn
           v-if="this.getRoutePath && this.getRoutePath == '/'"
           text
-          href="#schedule"
-          >Schedule</v-btn
+          href="#tracks"
+          >Tracks</v-btn
         >
         <v-btn
           v-if="this.getRoutePath && this.getRoutePath == '/'"
           text
-          href="#tracks"
-          >Tracks and Workshops</v-btn
+          href="#schedule"
+          >Schedule</v-btn
         >
         <v-btn
           v-if="this.getRoutePath && this.getRoutePath == '/'"
