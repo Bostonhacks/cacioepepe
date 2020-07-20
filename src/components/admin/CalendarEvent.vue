@@ -1,5 +1,5 @@
 <template>
-  <v-row class="fill-height">
+  <v-row>
     <v-col>
       <v-sheet height="64">
         <v-toolbar flat color="white">
@@ -125,7 +125,8 @@ export default {
     ]
   }),
   async mounted() {
-    var out = await functions.httpsCallable("retrieveEvents")({});
+    var out = await functions.httpsCallable("readEvents")({});
+    console.log(out.data);
     this.events = out.data;
   },
   methods: {
