@@ -43,39 +43,21 @@
               </v-row>
               <v-row>
                 <v-col cols="12" sm="6" md="6">
-                  <!-- <v-menu
-                    lazy
-                    :close-on-content-click="false"
-                    transition="scale-transition"
-                    offset-y
-                    v-model="menu"
-                    full-width
-                    :nudge-right="40"
-                    max-width="290px"
-                    min-width="290px"
-                  > -->
-                  <!-- <template v-slot:activator="{ on, attrs }">
-                      <v-text-field
-                        v-on="on"
-                        v-bind="attrs"
-                        label="Picker in menu"
-                        v-model="date"
-                        prepend-icon="event"
-                        readonly
-                      ></v-text-field>
-                    </template> -->
-                  <!-- <v-date-picker v-model="date" no-title scrollable actions> -->
                   <v-datetime-picker
                     label="Start Time"
+                    ref="startTimePicker"
                     v-model="start"
                     required
                   >
                   </v-datetime-picker>
                 </v-col>
                 <v-col cols="12" sm="6" md="6">
-                  <!-- </v-date-picker> -->
-                  <!-- </v-menu> -->
-                  <v-datetime-picker label="End Time" v-model="end" required>
+                  <v-datetime-picker
+                    label="End Time"
+                    ref="endTimePicker"
+                    v-model="end"
+                    required
+                  >
                   </v-datetime-picker>
                 </v-col>
               </v-row>
@@ -214,7 +196,7 @@ export default {
   data: () => ({
     location: null,
     scheduleType: null,
-    start: null,
+    start: new Date(),
     end: null,
     name: "",
     description: "",
@@ -255,9 +237,9 @@ export default {
     ]
   }),
   async mounted() {
-    // var out = await functions.httpsCallable("readEvents")({});
-    // console.log(out.data);
-    //this.events = out.data;
+    var out = await functions.httpsCallable("readEvents")({});
+    console.log(out.data);
+    this.events = out.data;
   },
   methods: {
     async saveEvent() {
@@ -267,8 +249,16 @@ export default {
         description: this.description,
         location: this.location,
         type: this.scheduleType,
-        start: this.start,
-        end: this.end
+        start: this.$refs.startTimePicker.formattedDatetime,
+        end: this.$refs.endTimePicker.formattedDatetime
+      });
+      this.events.append({
+        name: this.name,
+        description: this.description,
+        location: this.location,
+        type: this.scheduleType,
+        start: this.$refs.startTimePicker.formattedDatetime,
+        end: this.$refs.endTimePicker.formattedDatetime
       });
     },
     viewDay({ date }) {
