@@ -19,10 +19,12 @@ export default {
     chartData: {},
 
     options: {
-      // default:""
+      display: true,
+      required: false
     },
     year: {
-      default: "4"
+      default: "4",
+      required: false
     },
     id: {
       required: true
@@ -49,7 +51,9 @@ export default {
           data: this.chartData,
           options: this.options
         });
-        this.toggleYearData();
+        if (this.chart.data.datasets.length > 1) {
+          this.toggleYearData();
+        }
       }
     },
     toggleYearData() {

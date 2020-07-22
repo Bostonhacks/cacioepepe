@@ -77,6 +77,24 @@
           ></v-select>
         </v-col>
       </v-row>
+      <div v-if="resume">
+        <v-btn color="primary" class="mr-4" :href="resume[0]" target="_blank"
+          >View Uploaded Resume</v-btn
+        >
+        <v-btn color="primary" class="mr-4" @click="deleteResume"
+          >Delete Resume</v-btn
+        >
+      </div>
+      <div v-else>
+        <v-file-input
+          chips
+          multiple
+          label="Resume Upload (PDF Only)"
+          accept="application/pdf"
+          @change="uploadResume"
+          v-model="uploadedResume"
+        ></v-file-input>
+      </div>
       <div class="inline">Choose as many interests as you want</div>
       <v-row>
         <v-col class="d-flex" cols="12" sm="6">
@@ -158,6 +176,8 @@ export default {
       university: null,
       picturePermission: null,
       universityList: null,
+      uploadedResume: null,
+      resume: null,
       tAandC: null,
       emailRules: [
         v =>
@@ -183,6 +203,11 @@ export default {
       ]
     };
   },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
+  },
   methods: {
     async submitApplication() {
       await functions.httpsCallable("submitVolunteerApplication")({
@@ -194,6 +219,7 @@ export default {
         educationLevel: this.educationLevel,
         university: this.university,
         email: this.email,
+        resume: this.resume,
         preEvent: this.preEvent,
         postEvent: this.postEvent,
         tablingEvent: this.tablingEvent,
@@ -202,6 +228,30 @@ export default {
         tAandC: this.tAandC
       });
       this.$router.push("/");
+    },
+    async uploadResume() {
+      const reader = new FileReader();
+      reader.readAsDataURL(this.uploadedResume[0]);
+      reader.onload = async () => {
+        functions
+          .httpsCallable("uploadResume")({
+            file: reader.result.split(",")[1],
+            displayName: this.user.displayName,
+            type: this.uploadedResume[0].type,
+            uid: this.user.uid
+          })
+          .then(async data => {
+            this.resume = [data.data.URL, data.data.location];
+            this.uploadedResume = null;
+          });
+      };
+    },
+    async deleteResume() {
+      await functions.httpsCallable("deleteResume")({
+        uid: this.user.uid,
+        location: this.resume[1]
+      });
+      this.resume = null;
     }
   },
   async mounted() {
