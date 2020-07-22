@@ -252,7 +252,7 @@ export default {
         start: this.$refs.startTimePicker.formattedDatetime,
         end: this.$refs.endTimePicker.formattedDatetime
       });
-      this.events.append({
+      this.events.push({
         name: this.name,
         description: this.description,
         location: this.location,
