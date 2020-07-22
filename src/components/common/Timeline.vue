@@ -79,6 +79,16 @@ export default {
     menu1: false,
     menu2: false
   }),
+  // data(){
+  //   return {
+  //     date: new Date().toISOString().substr(0, 10),
+  //     date2: new Date().toISOString().substr(0, 10),
+  //     dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
+  //     dateFormatted2: vm.formatDate(new Date().toISOString().substr(0, 10)),
+  //     menu1: false,
+  //     menu2: false
+  //   }
+  // },
 
   computed: {
     computedDateFormatted() {
