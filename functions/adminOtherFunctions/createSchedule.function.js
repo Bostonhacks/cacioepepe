@@ -10,6 +10,13 @@ module.exports.createSchedule = functions.https.onCall(
     if (!context.auth) {
       return { message: "Authentication Required!", code: 401 };
     }
+    let userData = await db.collection("users").get();
+    if (userData.data().role != "admin") {
+      return {
+        message: "You are not authorized to perform this action",
+        code: 401
+      };
+    }
 
     // https://firebase.google.com/docs/database/ios/lists-of-data#append_to_a_list_of_data
     // Will consider rewriting function utilizing above

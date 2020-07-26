@@ -10,9 +10,5 @@ module.exports.readFAQs = functions.https.onCall(async (_, context) => {
 
   const faqsDb = db.collection("admin").doc("FAQs");
   var allFaqs = await faqsDb.get();
-  var res = [];
-  allFaqs.forEach(element => {
-    res.push(element.data());
-  });
-  return res;
+  return allFaqs.data().faqs;
 });

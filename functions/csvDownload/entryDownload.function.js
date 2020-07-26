@@ -11,19 +11,27 @@ const db = admin.firestore();
 const { Storage } = require("@google-cloud/storage");
 const storage = new Storage();
 
-module.exports.entryDownload = functions.https.onCall(async (_, context) => {
+module.exports.entryDownload = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     return { message: "Authentication Required!", code: 401 };
   }
+  let userData = await db.collection("users").get();
+  if (userData.data().role != "admin" || userData.data().role != "sponsor") {
+    return {
+      message: "You are not authorized to perform this action",
+      code: 401
+    };
+  }
+
   const applications = db
     .collection("applications")
     .where("status", "in", [4, 5, 7]);
-  var userData = await applications.get();
+  var appData = await applications.get();
   var uuid = UUID();
   //   var paths = [];
   var info = []; // initializing csv
 
-  userData.forEach(element => {
+  appData.forEach(element => {
     var toPush = element.data();
     toPush.resume = element.data().resume[0];
     info.push(toPush);

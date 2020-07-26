@@ -10,9 +10,5 @@ module.exports.readTracks = functions.https.onCall(async (_, context) => {
 
   const trackDb = db.collection("admin").doc("trackDoc");
   var allTracks = await trackDb.get();
-  var res = [];
-  allTracks.forEach(element => {
-    res.push(element.data());
-  });
-  return res;
+  return allTracks.data().tracks;
 });

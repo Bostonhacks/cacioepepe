@@ -10,9 +10,5 @@ module.exports.readPrizes = functions.https.onCall(async (_, context) => {
 
   const prizeDb = db.collection("admin").doc("prizesDoc");
   var allPrizes = await prizeDb.get();
-  var res = [];
-  allPrizes.forEach(element => {
-    res.push(element.data());
-  });
-  return res;
+  return allPrizes.data().prizes;
 });

@@ -8,6 +8,13 @@ module.exports.deleteSchedule = functions.https.onCall(
     if (!context.auth) {
       return { message: "Authentication Required!", code: 401 };
     }
+    let userData = await db.collection("users").get();
+    if (userData.data().role != "admin") {
+      return {
+        message: "You are not authorized to perform this action",
+        code: 401
+      };
+    }
 
     const schedsDb = db.collection("admin").doc("schedules");
     let info = await schedsDb.get();

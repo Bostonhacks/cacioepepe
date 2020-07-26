@@ -8,15 +8,20 @@ module.exports.updateWifiDetails = functions.https.onCall(
     if (!context.auth) {
       return { message: "Authentication Required!", code: 401 };
     }
-    var name, password;
-    name = data.name;
-    password = data.password;
+    let userData = await db.collection("users").get();
+    if (userData.data().role != "admin") {
+      return {
+        message: "You are not authorized to perform this action",
+        code: 401
+      };
+    }
+
     const wifiDoc = db.collection("admin").doc("wifiDetails");
     await wifiDoc.update({
-      wifiName: name,
-      wifiPassword: password
+      wifiName: data.name,
+      wifiPassword: data.password
     });
 
-    return "Completed!";
+    return { message: "Wifi details updated", code: 200 };
   }
 );

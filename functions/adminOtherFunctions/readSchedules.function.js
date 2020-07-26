@@ -3,12 +3,12 @@ const functions = require("firebase-functions");
 
 const db = admin.firestore();
 
-module.exports.deleteEvent = functions.https.onCall(async (data, context) => {
+module.exports.readSchedules = functions.https.onCall(async (_, context) => {
   if (!context.auth) {
     return { message: "Authentication Required!", code: 401 };
   }
 
-  const events = db.collection("events").doc(data.uid);
-  await events.delete();
-  return;
+  const eventsDb = db.collection("admin").doc("schedules");
+  var allEvents = await eventsDb.get();
+  return allEvents.data().schedules;
 });

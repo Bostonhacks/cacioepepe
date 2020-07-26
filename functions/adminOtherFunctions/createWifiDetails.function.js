@@ -1,6 +1,5 @@
 const admin = require("firebase-admin");
 const functions = require("firebase-functions");
-const { v4: uuidv4 } = require("uuid");
 
 const db = admin.firestore();
 
@@ -9,16 +8,20 @@ module.exports.createWifiDetails = functions.https.onCall(
     if (!context.auth) {
       return { message: "Authentication Required!", code: 401 };
     }
+    let userData = await db.collection("users").get();
+    if (userData.data().role != "admin") {
+      return {
+        message: "You are not authorized to perform this action",
+        code: 401
+      };
+    }
 
-    var uid = uuidv4();
-    const file = db.collection("wifiDetails").doc(uid);
-
-    await file.set({
-      uid: uid,
-      name: data.name,
-      password: data.password
+    const wifiDoc = db.collection("admin").doc("wifiDetails");
+    await wifiDoc.set({
+      wifiName: data.name,
+      wifiPassword: data.password
     });
 
-    return "Completed!";
+    return { message: "Wifi details created", code: 201 };
   }
 );
