@@ -22,10 +22,10 @@ module.exports.createSchedule = functions.https.onCall(
     // Will consider rewriting function utilizing above
 
     // Front End should send the data needed --> Backend parses data and reorganizes as an event object
-    var title = data.title;
+    var name = data.name;
     var location = data.location;
-    var startTime = data.startTime;
-    var finishTime = data.finishTime;
+    var start = data.start;
+    var end = data.end;
     var description = data.description;
     var type = data.type;
     // I think there should be a unique key for an event so we can edit or remove events easily.
@@ -33,10 +33,10 @@ module.exports.createSchedule = functions.https.onCall(
 
     // Creating new Event object
     var newEvent = {
-      title: title,
+      name: name,
       location: location,
-      startTime: startTime,
-      finishTime: finishTime,
+      start: start,
+      end: end,
       description: description,
       type: type
       // key: key

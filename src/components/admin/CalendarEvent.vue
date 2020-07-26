@@ -1,5 +1,94 @@
 <template>
-  <v-row class="fill-height">
+  <v-layout>
+    <template>
+      <v-dialog v-model="dialog" max-width="500">
+        <v-card>
+          <v-card-title class="headline">Add a new event</v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    label="Name"
+                    required
+                    v-model="name"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-textarea
+                    label="Description"
+                    required
+                    v-model="description"
+                  ></v-textarea>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" sm="6" md="6">
+                  <v-text-field
+                    label="Location"
+                    required
+                    v-model="location"
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" sm="6" md="6">
+                  <v-text-field
+                    label="Type"
+                    required
+                    v-model="scheduleType"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" sm="6" md="6">
+                  <v-datetime-picker
+                    label="Start Time"
+                    ref="startTimePicker"
+                    v-model="start"
+                    required
+                  >
+                  </v-datetime-picker>
+                </v-col>
+                <v-col cols="12" sm="6" md="6">
+                  <v-datetime-picker
+                    label="End Time"
+                    ref="endTimePicker"
+                    v-model="end"
+                    required
+                  >
+                  </v-datetime-picker>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn color="green darken-1" text @click="dialog = false">
+              Cancel
+            </v-btn>
+
+            <v-btn
+              color="green darken-1"
+              text
+              @click="saveEvent"
+              :disabled="
+                start == null ||
+                  end == null ||
+                  name == null ||
+                  location == null ||
+                  scheduleType == null
+              "
+            >
+              Save
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </template>
     <v-col>
       <v-sheet height="64">
         <v-toolbar flat color="white">
@@ -46,12 +135,25 @@
           v-model="focus"
           color="primary"
           :events="events"
-          :event-color="blue"
+          event-color="blue"
           :type="type"
           @click:event="showEvent"
           @click:more="viewDay"
           @click:date="viewDay"
         ></v-calendar>
+        <v-card-text style="height: 100px; position: relative">
+          <v-btn
+            absolute
+            dark
+            fab
+            top
+            right
+            color="blue"
+            @click="dialog = true"
+          >
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </v-card-text>
         <v-menu
           v-model="selectedOpen"
           :close-on-content-click="false"
@@ -84,7 +186,7 @@
         </v-menu>
       </v-sheet>
     </v-col>
-  </v-row>
+  </v-layout>
 </template>
 
 <script>
@@ -92,6 +194,14 @@ import { functions } from "@/firebase/init";
 export default {
   name: "CalendarEvent",
   data: () => ({
+    location: null,
+    scheduleType: null,
+    start: new Date(),
+    end: null,
+    name: "",
+    description: "",
+    menu: false,
+    dialog: false,
     focus: "",
     type: "week",
     typeToLabel: {
@@ -103,7 +213,9 @@ export default {
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
-    events: [],
+    events: [
+      { start: "2020-07-06 01:35", end: "2020-07-06 02:23", name: "Test" }
+    ],
     colors: [
       "blue",
       "indigo",
@@ -125,10 +237,30 @@ export default {
     ]
   }),
   async mounted() {
-    var out = await functions.httpsCallable("retrieveEvents")({});
+    var out = await functions.httpsCallable("readEvents")({});
+    console.log(out.data);
     this.events = out.data;
   },
   methods: {
+    async saveEvent() {
+      this.dialog = false;
+      await functions.httpsCallable("createSchedule")({
+        name: this.name,
+        description: this.description,
+        location: this.location,
+        type: this.scheduleType,
+        start: this.$refs.startTimePicker.formattedDatetime,
+        end: this.$refs.endTimePicker.formattedDatetime
+      });
+      this.events.push({
+        name: this.name,
+        description: this.description,
+        location: this.location,
+        type: this.scheduleType,
+        start: this.$refs.startTimePicker.formattedDatetime,
+        end: this.$refs.endTimePicker.formattedDatetime
+      });
+    },
     viewDay({ date }) {
       this.focus = date;
       this.type = "day";
