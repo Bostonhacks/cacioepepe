@@ -142,15 +142,7 @@
           @click:date="viewDay"
         ></v-calendar>
         <v-card-text style="height: 100px; position: relative">
-          <v-btn
-            absolute
-            dark
-            fab
-            top
-            right
-            color="blue"
-            @click="dialog = true"
-          >
+          <v-btn absolute dark fab top right color="blue" @click="addEvent">
             <v-icon>mdi-plus</v-icon>
           </v-btn>
         </v-card-text>
@@ -162,20 +154,30 @@
         >
           <v-card color="grey lighten-4" min-width="350px" flat>
             <v-toolbar :color="selectedEvent.color" dark>
-              <v-btn icon>
+              <v-btn icon @click="editEvent(selectedEvent)">
                 <v-icon>mdi-pencil</v-icon>
               </v-btn>
               <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
               <v-spacer></v-spacer>
-              <v-btn icon>
-                <v-icon>mdi-heart</v-icon>
+              <v-btn icon @click="deleteEvent">
+                <v-icon>mdi-delete</v-icon>
               </v-btn>
               <v-btn icon>
                 <v-icon>mdi-dots-vertical</v-icon>
               </v-btn>
             </v-toolbar>
             <v-card-text>
-              <span v-html="selectedEvent.details"></span>
+              <span v-html="selectedEvent.description"></span>
+            </v-card-text>
+            <v-card-text>
+              Time:
+              <span v-html="selectedEvent.start"></span>
+              to
+              <span v-html="selectedEvent.end"></span>
+            </v-card-text>
+            <v-card-text
+              >Location:
+              <span v-html="selectedEvent.location"></span>
             </v-card-text>
             <v-card-actions>
               <v-btn text color="secondary" @click="selectedOpen = false">
@@ -211,11 +213,10 @@ export default {
       "4day": "4 Days"
     },
     selectedEvent: {},
+    selectedEventIndex: null,
     selectedElement: null,
     selectedOpen: false,
-    events: [
-      { start: "2020-07-06 01:35", end: "2020-07-06 02:23", name: "Test" }
-    ],
+    events: [],
     colors: [
       "blue",
       "indigo",
@@ -237,29 +238,73 @@ export default {
     ]
   }),
   async mounted() {
-    var out = await functions.httpsCallable("readEvents")({});
-    console.log(out.data);
-    this.events = out.data;
+    this.getEvents();
   },
   methods: {
+    async getEvents() {
+      var out = await functions.httpsCallable("readEvents")({});
+      if (out.data) {
+        this.events = out.data;
+      } else {
+        this.events = [];
+      }
+    },
     async saveEvent() {
       this.dialog = false;
-      await functions.httpsCallable("createSchedule")({
+      if (Object.keys(this.selectedEvent).length > 0) {
+        this.updateEvent();
+        console.log("update");
+      } else {
+        await functions.httpsCallable("createSchedule")({
+          name: this.name,
+          description: this.description,
+          location: this.location,
+          type: this.scheduleType,
+          start: this.$refs.startTimePicker.formattedDatetime,
+          end: this.$refs.endTimePicker.formattedDatetime
+        });
+        this.events.push({
+          name: this.name,
+          description: this.description,
+          location: this.location,
+          type: this.scheduleType,
+          start: this.$refs.startTimePicker.formattedDatetime,
+          end: this.$refs.endTimePicker.formattedDatetime
+        });
+      }
+      this.clearForm();
+    },
+    addEvent() {
+      this.clearForm();
+      this.dialog = true;
+    },
+    async updateEvent() {
+      await functions.httpsCallable("updateEvent")({
         name: this.name,
         description: this.description,
         location: this.location,
         type: this.scheduleType,
         start: this.$refs.startTimePicker.formattedDatetime,
-        end: this.$refs.endTimePicker.formattedDatetime
+        end: this.$refs.endTimePicker.formattedDatetime,
+        index: this.selectedEventIndex
       });
-      this.events.push({
-        name: this.name,
-        description: this.description,
-        location: this.location,
-        type: this.scheduleType,
-        start: this.$refs.startTimePicker.formattedDatetime,
-        end: this.$refs.endTimePicker.formattedDatetime
-      });
+      // this.events[this.selectedEventIndex] = {
+      //   name: this.name,
+      //   description: this.description,
+      //   location: this.location,
+      //   type: this.scheduleType,
+      //   start: this.$refs.startTimePicker.formattedDatetime,
+      //   end: this.$refs.endTimePicker.formattedDatetime
+      // };
+      this.getEvents();
+    },
+    clearForm() {
+      this.name = "";
+      this.description = "";
+      this.location = "";
+      this.scheduleType = "";
+      this.start = "";
+      this.end = "";
     },
     viewDay({ date }) {
       this.focus = date;
@@ -277,7 +322,34 @@ export default {
     next() {
       this.$refs.calendar.next();
     },
+    async deleteEvent() {
+      await functions.httpsCallable("deleteSchedule")({
+        name: this.selectedEvent.name,
+        description: this.selectedEvent.description,
+        location: this.selectedEvent.location,
+        type: this.selectedEvent.scheduleType,
+        start: this.selectedEvent.start,
+        end: this.selectedEvent.end
+      });
+      this.events.splice(this.selectedEventIndex, 1);
+      this.selectedOpen = false;
+    },
+    editEvent(event) {
+      this.name = event.name;
+      this.start = event.start;
+      this.end = event.end;
+      this.location = event.location;
+      this.scheduleType = event.type;
+      this.description = event.description;
+      this.dialog = true;
+    },
     showEvent({ nativeEvent, event }) {
+      this.selectedEventIndex = this.events.findIndex(
+        current =>
+          current.name == event.name &&
+          current.start == event.start &&
+          current.end == event.end
+      );
       const open = () => {
         this.selectedEvent = event;
         this.selectedElement = nativeEvent.target;

@@ -7,7 +7,10 @@ module.exports.updateEvent = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     return { message: "Authentication Required!", code: 401 };
   }
-  let userData = await db.collection("users").get();
+  let userData = await db
+    .collection("users")
+    .doc(context.auth.uid)
+    .get();
   if (userData.data().role != "admin") {
     return {
       message: "You are not authorized to perform this action",
@@ -15,17 +18,19 @@ module.exports.updateEvent = functions.https.onCall(async (data, context) => {
     };
   }
 
-  const mydb = db
-    .collection("admin")
-    .doc("schedules")
-    .doc(data.uid);
-  await mydb.update({
-    title: data.title,
+  const mydb = db.collection("admin").doc("schedules");
+  const info = await mydb.get();
+  this.events = info.data().events;
+  this.events[data.index] = {
+    name: data.name,
     location: data.location,
-    start: data.startTime,
-    end: data.finishTime,
+    start: data.start,
+    end: data.end,
     description: data.description,
     type: data.type
+  };
+  await mydb.update({
+    events: this.events
   });
 
   return { message: "Schedule updated", code: 200 };

@@ -8,7 +8,10 @@ module.exports.deleteSchedule = functions.https.onCall(
     if (!context.auth) {
       return { message: "Authentication Required!", code: 401 };
     }
-    let userData = await db.collection("users").get();
+    let userData = await db
+      .collection("users")
+      .doc(context.auth.uid)
+      .get();
     if (userData.data().role != "admin") {
       return {
         message: "You are not authorized to perform this action",
@@ -20,7 +23,12 @@ module.exports.deleteSchedule = functions.https.onCall(
     let info = await schedsDb.get();
     this.events = info
       .data()
-      .events.filter(schedule => schedule.title != data.title);
+      .events.filter(
+        schedule =>
+          schedule.name != data.name &&
+          schedule.start != data.start &&
+          schedule.end != data.end
+      );
     await schedsDb
       .update({
         events: this.events
