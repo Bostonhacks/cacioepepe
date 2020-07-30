@@ -17,7 +17,7 @@ module.exports.createDeadline = functions.https.onCall(
       finishTime: finishTime
     };
 
-    const deadlineDoc = db.collection("admin").doc("resigstrationDeadline");
+    const deadlineDoc = db.collection("admin").doc("regDeadline");
 
     // Append new event into the array
     await deadlineDoc

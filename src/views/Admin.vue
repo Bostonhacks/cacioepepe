@@ -130,11 +130,13 @@ import AdminStats from "@/components/admin/AdminStats";
 import VolunteerTable from "@/components/admin/VolunteerTable";
 import MentorTable from "@/components/admin/MentorTable";
 import PieChart from "@/components/common/PieChart";
+import Timeline from "@/components/common/Timeline";
 import { functions } from "@/firebase/init";
 
 export default {
   name: "Admin",
   components: {
+    Timeline,
     HackerTable,
     AdminStats,
     // CalendarEvent,

@@ -3,16 +3,16 @@ const functions = require("firebase-functions");
 
 const db = admin.firestore();
 
-module.exports.updateWifiDetails = functions.https.onCall(
+module.exports.updateDeadline = functions.https.onCall(
   async (data, context) => {
     if (!context.auth) {
       return { message: "Authentication Required!", code: 401 };
     }
 
-    const wifiDoc = db.collection("admin").doc("wifiDetails");
-    await wifiDoc.update({
-      wifiName: data.name,
-      wifiPassword: data.password
+    const deadlineDb = db.collection("admin").doc("regDeadline");
+    await deadlineDb.update({
+      startTime: data.startTime,
+      finishTime: data.finishTime
     });
 
     return "Completed!";

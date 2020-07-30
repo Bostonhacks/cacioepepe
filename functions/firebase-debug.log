@@ -1,0 +1,201 @@
+[debug] [2020-07-22T01:53:22.037Z] ----------------------------------------------------------------------
+[debug] [2020-07-22T01:53:22.044Z] Command:       /usr/local/bin/firebase /Users/yuanmingchai/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase functions:shell
+[debug] [2020-07-22T01:53:22.046Z] CLI Version:   8.5.0
+[debug] [2020-07-22T01:53:22.046Z] Platform:      darwin
+[debug] [2020-07-22T01:53:22.047Z] Node Version:  v12.18.1
+[debug] [2020-07-22T01:53:22.112Z] Time:          Tue Jul 21 2020 21:53:22 GMT-0400 (Eastern Daylight Time)
+[debug] [2020-07-22T01:53:22.113Z] ----------------------------------------------------------------------
+[debug] [2020-07-22T01:53:22.114Z] 
+[debug] [2020-07-22T01:53:22.207Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-07-22T01:53:22.208Z] > authorizing via signed-in user
+[debug] [2020-07-22T01:53:22.210Z] [iam] checking project bostonhacks-cacioepepe for permissions ["firebase.projects.get"]
+[debug] [2020-07-22T01:53:22.259Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/bostonhacks-cacioepepe:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2020-07-22T01:53:22.680Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 22 Jul 2020 01:53:22 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=151","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[warn] ⚠  Your requested "node" version "10" doesn't match your global version "12" {"metadata":{"emulator":{"name":"functions"},"message":"Your requested \"node\" version \"10\" doesn't match your global version \"12\""}}
+[debug] [2020-07-22T01:53:22.747Z] [functions] Watching "/Users/yuanmingchai/cacioepepe/functions" for Cloud Functions...
+[debug] [2020-07-22T01:53:22.780Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-07-22T01:53:22.793Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-07-22T01:53:22.794Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2020-07-22T01:53:22.795Z] DEBUG: [worker-~diagnostic~-c7a21561-47ba-4907-beb6-8184ebabd8a2]: Assigning socketPath: /var/folders/b3/sb_hj3ts4mb049_pjbw436nc0000gn/T/fire_emu_83655.sock
+[debug] [2020-07-22T01:53:22.796Z] DEBUG: [worker-~diagnostic~-c7a21561-47ba-4907-beb6-8184ebabd8a2]: BUSY
+[debug] [2020-07-22T01:53:23.731Z] DEBUG: [runtime-status] [83655] Functions runtime initialized. {"cwd":"/Users/yuanmingchai/cacioepepe/functions","node_version":"12.18.1"}
+[debug] [2020-07-22T01:53:23.733Z] DEBUG: [runtime-status] [83655] Disabled runtime features: undefined
+[debug] [2020-07-22T01:53:23.736Z] DEBUG: [runtime-status] [83655] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-07-22T01:53:23.740Z] DEBUG: [runtime-status] [83655] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-07-22T01:53:23.742Z] DEBUG: [runtime-status] [83655] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2020-07-22T01:53:23.742Z] DEBUG: [runtime-status] [83655] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-07-22T01:53:23.928Z] DEBUG: [runtime-status] [83655] Checked functions.config() {"config":{}}
+[debug] [2020-07-22T01:53:23.928Z] DEBUG: [runtime-status] [83655] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2020-07-22T01:53:23.928Z] DEBUG: [runtime-status] [83655] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-07-22T01:53:23.929Z] DEBUG: [runtime-status] [83655] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-07-22T01:53:23.929Z] DEBUG: [runtime-status] [83655] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-07-22T01:53:23.930Z] DEBUG: [runtime-status] [83655] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-07-22T01:53:24.195Z] DEBUG: [runtime-status] [83655] initializeApp(DEFAULT) {"databaseURL":"https://bostonhacks-cacioepepe.firebaseio.com","storageBucket":"bostonhacks-cacioepepe.appspot.com","projectId":"bostonhacks-cacioepepe"}
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production. {"metadata":{"emulator":{"name":"functions"},"message":"The Cloud Firestore emulator is not running, so calls to Firestore will affect production."}}
+[debug] [2020-07-22T01:53:24.980Z] [functions[acceptApplicant]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/acceptApplicant).
+[debug] [2020-07-22T01:53:24.980Z] [functions[acceptVolunteer]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/acceptVolunteer).
+[debug] [2020-07-22T01:53:24.980Z] [functions[createDeadline]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/createDeadline).
+[debug] [2020-07-22T01:53:24.980Z] [functions[massAcceptEmail]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/massAcceptEmail).
+[debug] [2020-07-22T01:53:24.980Z] [functions[massRejectEmail]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/massRejectEmail).
+[debug] [2020-07-22T01:53:24.980Z] [functions[massWaitlistEmail]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/massWaitlistEmail).
+[debug] [2020-07-22T01:53:24.980Z] [functions[readDeadline]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/readDeadline).
+[debug] [2020-07-22T01:53:24.980Z] [functions[rejectApplicant]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/rejectApplicant).
+[debug] [2020-07-22T01:53:24.981Z] [functions[retrieveSubmittedApplications]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/retrieveSubmittedApplications).
+[debug] [2020-07-22T01:53:24.981Z] [functions[retrieveAcceptedApplications]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/retrieveAcceptedApplications).
+[debug] [2020-07-22T01:53:24.981Z] [functions[retrieveAllApplications]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/retrieveAllApplications).
+[debug] [2020-07-22T01:53:24.981Z] [functions[retrieveConfirmedApplications]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/retrieveConfirmedApplications).
+[debug] [2020-07-22T01:53:24.981Z] [functions[retrieveDeclinedApplications]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/retrieveDeclinedApplications).
+[debug] [2020-07-22T01:53:24.981Z] [functions[retrieveRejectedApplications]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/retrieveRejectedApplications).
+[debug] [2020-07-22T01:53:24.981Z] [functions[retrieveWaitlistedApplications]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/retrieveWaitlistedApplications).
+[debug] [2020-07-22T01:53:24.981Z] [functions[waitlistApplicant]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/waitlistApplicant).
+[debug] [2020-07-22T01:53:24.981Z] [functions[changeConfirmationSchedule]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/changeConfirmationSchedule).
+[debug] [2020-07-22T01:53:24.982Z] [functions[changeRegistrationSchedule]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/changeRegistrationSchedule).
+[debug] [2020-07-22T01:53:24.982Z] [functions[createEvent]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/createEvent).
+[debug] [2020-07-22T01:53:24.982Z] [functions[createFAQ]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/createFAQ).
+[debug] [2020-07-22T01:53:24.982Z] [functions[createPrize]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/createPrize).
+[debug] [2020-07-22T01:53:24.982Z] [functions[createSchedule]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/createSchedule).
+[debug] [2020-07-22T01:53:24.983Z] [functions[createTrack]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/createTrack).
+[debug] [2020-07-22T01:53:24.983Z] [functions[createWifiDetails]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/createWifiDetails).
+[debug] [2020-07-22T01:53:24.983Z] [functions[deleteEvent]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/deleteEvent).
+[debug] [2020-07-22T01:53:24.983Z] [functions[deleteFAQ]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/deleteFAQ).
+[debug] [2020-07-22T01:53:24.983Z] [functions[deletePrize]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/deletePrize).
+[debug] [2020-07-22T01:53:24.983Z] [functions[deleteSchedule]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/deleteSchedule).
+[debug] [2020-07-22T01:53:24.983Z] [functions[deleteTrack]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/deleteTrack).
+[debug] [2020-07-22T01:53:24.983Z] [functions[deleteWifi]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/deleteWifi).
+[debug] [2020-07-22T01:53:24.983Z] [functions[massAcceptMentor]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/massAcceptMentor).
+[debug] [2020-07-22T01:53:24.983Z] [functions[massAcceptVolunteer]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/massAcceptVolunteer).
+[debug] [2020-07-22T01:53:24.983Z] [functions[massRejectMentor]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/massRejectMentor).
+[debug] [2020-07-22T01:53:24.983Z] [functions[massRejectVolunteer]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/massRejectVolunteer).
+[debug] [2020-07-22T01:53:24.983Z] [functions[readEvents]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/readEvents).
+[debug] [2020-07-22T01:53:24.983Z] [functions[readFAQs]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/readFAQs).
+[debug] [2020-07-22T01:53:24.984Z] [functions[readPrizes]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/readPrizes).
+[debug] [2020-07-22T01:53:24.984Z] [functions[readTracks]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/readTracks).
+[debug] [2020-07-22T01:53:24.984Z] [functions[readWifiDetails]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/readWifiDetails).
+[debug] [2020-07-22T01:53:24.984Z] [functions[rejectMentor]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/rejectMentor).
+[debug] [2020-07-22T01:53:24.984Z] [functions[rejectVolunteer]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/rejectVolunteer).
+[debug] [2020-07-22T01:53:24.984Z] [functions[retrieveAllMentors]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/retrieveAllMentors).
+[debug] [2020-07-22T01:53:24.984Z] [functions[retrieveAllVolunteers]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/retrieveAllVolunteers).
+[debug] [2020-07-22T01:53:24.984Z] [functions[updateWifiDetails]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/updateWifiDetails).
+[debug] [2020-07-22T01:53:24.984Z] [functions[updateEvent]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/updateEvent).
+[debug] [2020-07-22T01:53:24.984Z] [functions[updateFAQ]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/updateFAQ).
+[debug] [2020-07-22T01:53:24.984Z] [functions[updatePrize]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/updatePrize).
+[debug] [2020-07-22T01:53:24.984Z] [functions[uploadSlackInfo]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/uploadSlackInfo).
+[debug] [2020-07-22T01:53:24.984Z] [functions[createApplication]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/createApplication).
+[debug] [2020-07-22T01:53:24.984Z] [functions[deleteResume]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/deleteResume).
+[debug] [2020-07-22T01:53:24.984Z] [functions[loadApplication]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/loadApplication).
+[debug] [2020-07-22T01:53:24.985Z] [functions[saveApplication]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/saveApplication).
+[debug] [2020-07-22T01:53:24.985Z] [functions[submitApplication]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/submitApplication).
+[debug] [2020-07-22T01:53:24.985Z] [functions[uploadResume]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/uploadResume).
+[debug] [2020-07-22T01:53:24.985Z] [functions[checkinApplicant]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/checkinApplicant).
+[debug] [2020-07-22T01:53:24.985Z] [functions[entryDownload]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/entryDownload).
+[debug] [2020-07-22T01:53:24.985Z] [functions[selectEntryDownload]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/selectEntryDownload).
+[debug] [2020-07-22T01:53:24.985Z] [functions[createNewMentor]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/createNewMentor).
+[debug] [2020-07-22T01:53:24.985Z] [functions[submitMentorApplication]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/submitMentorApplication).
+[debug] [2020-07-22T01:53:24.985Z] [functions[checkSlackUser]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/checkSlackUser).
+[debug] [2020-07-22T01:53:24.985Z] [functions[populateSlackComponent]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/populateSlackComponent).
+[debug] [2020-07-22T01:53:24.985Z] [functions[createNewSponsor]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/createNewSponsor).
+[debug] [2020-07-22T01:53:24.985Z] [functions[oneClickDownload]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/oneClickDownload).
+[debug] [2020-07-22T01:53:24.985Z] [functions[oneClickSelectDownload]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/oneClickSelectDownload).
+[debug] [2020-07-22T01:53:24.986Z] [functions[createNewUser]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/createNewUser).
+[debug] [2020-07-22T01:53:24.986Z] [functions[generateApplePass]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/generateApplePass).
+[debug] [2020-07-22T01:53:24.986Z] [functions[getUserData]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/getUserData).
+[debug] [2020-07-22T01:53:24.986Z] [functions[createNewVolunteer]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/createNewVolunteer).
+[debug] [2020-07-22T01:53:24.986Z] [functions[submitVolunteerApplication]] http function initialized (http://localhost:5000/bostonhacks-cacioepepe/us-central1/submitVolunteerApplication).
+[info] i  functions: Loaded functions: acceptApplicant, acceptVolunteer, createDeadline, massAcceptEmail, massRejectEmail, massWaitlistEmail, readDeadline, rejectApplicant, retrieveSubmittedApplications, retrieveAcceptedApplications, retrieveAllApplications, retrieveConfirmedApplications, retrieveDeclinedApplications, retrieveRejectedApplications, retrieveWaitlistedApplications, waitlistApplicant, changeConfirmationSchedule, changeRegistrationSchedule, createEvent, createFAQ, createPrize, createSchedule, createTrack, createWifiDetails, deleteEvent, deleteFAQ, deletePrize, deleteSchedule, deleteTrack, deleteWifi, massAcceptMentor, massAcceptVolunteer, massRejectMentor, massRejectVolunteer, readEvents, readFAQs, readPrizes, readTracks, readWifiDetails, rejectMentor, rejectVolunteer, retrieveAllMentors, retrieveAllVolunteers, updateWifiDetails, updateEvent, updateFAQ, updatePrize, uploadSlackInfo, createApplication, deleteResume, loadApplication, saveApplication, submitApplication, uploadResume, checkinApplicant, entryDownload, selectEntryDownload, createNewMentor, submitMentorApplication, checkSlackUser, populateSlackComponent, createNewSponsor, oneClickDownload, oneClickSelectDownload, createNewUser, generateApplePass, getUserData, createNewVolunteer, submitVolunteerApplication 
+[warn] ⚠  functions: The following emulators are not running, calls to these services will affect production: firestore, database, pubsub 
+[debug] [2020-07-22T01:53:25.010Z] DEBUG: [worker-~diagnostic~-c7a21561-47ba-4907-beb6-8184ebabd8a2]: IDLE
+[debug] [2020-07-22T01:53:41.826Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-07-22T01:53:41.828Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-07-22T01:53:41.830Z] Accepted request POST /bostonhacks-cacioepepe/us-central1/updateWifiDetails --> updateWifiDetails
+[debug] [2020-07-22T01:53:41.837Z] DEBUG: [worker-pool] addWorker(updateWifiDetails)
+[debug] [2020-07-22T01:53:41.837Z] DEBUG: [worker-pool] Adding worker with key updateWifiDetails, total=1
+[debug] [2020-07-22T01:53:41.838Z] DEBUG: [worker-pool] submitWork(triggerId=updateWifiDetails)
+[debug] [2020-07-22T01:53:41.838Z] DEBUG: [worker-updateWifiDetails-cadff1ec-8572-4a49-8f1b-787f3bcb83f0]: Assigning socketPath: /var/folders/b3/sb_hj3ts4mb049_pjbw436nc0000gn/T/fire_emu_83668.sock
+[debug] [2020-07-22T01:53:41.838Z] DEBUG: [worker-updateWifiDetails-cadff1ec-8572-4a49-8f1b-787f3bcb83f0]: BUSY
+[debug] [2020-07-22T01:53:42.118Z] DEBUG: [runtime-status] [83668] Functions runtime initialized. {"cwd":"/Users/yuanmingchai/cacioepepe/functions","node_version":"12.18.1"}
+[debug] [2020-07-22T01:53:42.119Z] DEBUG: [runtime-status] [83668] Disabled runtime features: undefined
+[debug] [2020-07-22T01:53:42.121Z] DEBUG: [runtime-status] [83668] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-07-22T01:53:42.121Z] DEBUG: [runtime-status] [83668] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-07-22T01:53:42.123Z] DEBUG: [runtime-status] [83668] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2020-07-22T01:53:42.123Z] DEBUG: [runtime-status] [83668] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-07-22T01:53:42.147Z] DEBUG: [runtime-status] [83668] Checked functions.config() {"config":{}}
+[debug] [2020-07-22T01:53:42.147Z] DEBUG: [runtime-status] [83668] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2020-07-22T01:53:42.148Z] DEBUG: [runtime-status] [83668] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-07-22T01:53:42.148Z] DEBUG: [runtime-status] [83668] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-07-22T01:53:42.149Z] DEBUG: [runtime-status] [83668] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-07-22T01:53:42.149Z] DEBUG: [runtime-status] [83668] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-07-22T01:53:42.191Z] DEBUG: [runtime-status] [83668] initializeApp(DEFAULT) {"databaseURL":"https://bostonhacks-cacioepepe.firebaseio.com","storageBucket":"bostonhacks-cacioepepe.appspot.com","projectId":"bostonhacks-cacioepepe"}
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"updateWifiDetails"},"message":"The Cloud Firestore emulator is not running, so calls to Firestore will affect production."}}
+[debug] [2020-07-22T01:53:42.516Z] DEBUG: [runtime-status] [83668] Trigger "updateWifiDetails" has been found, beginning invocation!
+[debug] [2020-07-22T01:53:42.516Z] [functions] Beginning execution of "updateWifiDetails"
+[debug] [2020-07-22T01:53:42.516Z] DEBUG: [runtime-status] [83668] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"updateWifiDetails","entryPoint":"updateWifiDetails"}
+[debug] [2020-07-22T01:53:42.516Z] DEBUG: [runtime-status] [83668] Running updateWifiDetails in mode HTTPS
+[debug] [2020-07-22T01:53:42.517Z] DEBUG: [runtime-status] [83668] Attempting to listen to socketPath: /var/folders/b3/sb_hj3ts4mb049_pjbw436nc0000gn/T/fire_emu_83668.sock
+[debug] [2020-07-22T01:53:42.521Z] DEBUG: [functions] Runtime ready! Sending request!
+[debug] [2020-07-22T01:53:42.541Z] DEBUG: [runtime-status] [83668] Ephemeral server handling POST request
+[debug] [2020-07-22T01:53:42.542Z] DEBUG: [runtime-status] [83668] No callable functions auth found
+[debug] [2020-07-22T01:53:42.617Z] DEBUG: [runtime-status] [83668] Ephemeral server survived.
+[warn] ⚠  Google API requested!
+   - URL: "https://www.googleapis.com/oauth2/v4/token"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"updateWifiDetails"},"message":"Google API requested!\n   - URL: \"https://www.googleapis.com/oauth2/v4/token\"\n   - Be careful, this may be a production service."}}
+[debug] [2020-07-22T01:53:43.142Z] [functions] Finished "updateWifiDetails" in ~1s
+[debug] [2020-07-22T01:53:43.142Z] DEBUG: [worker-updateWifiDetails-cadff1ec-8572-4a49-8f1b-787f3bcb83f0]: IDLE
+[debug] [2020-07-22T01:53:43.142Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2020-07-26T16:32:07.501Z] DEBUG: File /Users/yuanmingchai/cacioepepe/functions/adminFunctions/updateDeadline.function.js changed, reloading triggers
+[debug] [2020-07-26T16:32:08.684Z] DEBUG: [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2020-07-26T16:32:08.687Z] DEBUG: [worker-~diagnostic~-c7a21561-47ba-4907-beb6-8184ebabd8a2]: FINISHING
+[debug] [2020-07-26T16:32:08.717Z] DEBUG: [worker-pool] Shutting down IDLE worker (updateWifiDetails)
+[debug] [2020-07-26T16:32:08.717Z] DEBUG: [worker-updateWifiDetails-cadff1ec-8572-4a49-8f1b-787f3bcb83f0]: FINISHING
+[debug] [2020-07-26T16:32:09.018Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-07-26T16:32:09.019Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2020-07-26T16:32:09.020Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2020-07-26T16:32:09.025Z] DEBUG: [worker-~diagnostic~-daea6cab-3631-4895-b8d1-b0eebaff1dfd]: Assigning socketPath: /var/folders/b3/sb_hj3ts4mb049_pjbw436nc0000gn/T/fire_emu_4022.sock
+[debug] [2020-07-26T16:32:09.028Z] DEBUG: [worker-~diagnostic~-daea6cab-3631-4895-b8d1-b0eebaff1dfd]: BUSY
+[debug] [2020-07-26T16:32:09.070Z] DEBUG: [worker-~diagnostic~-c7a21561-47ba-4907-beb6-8184ebabd8a2]: exited
+[debug] [2020-07-26T16:32:09.071Z] DEBUG: [worker-~diagnostic~-c7a21561-47ba-4907-beb6-8184ebabd8a2]: FINISHED
+[debug] [2020-07-26T16:32:09.074Z] DEBUG: [worker-updateWifiDetails-cadff1ec-8572-4a49-8f1b-787f3bcb83f0]: exited
+[debug] [2020-07-26T16:32:09.074Z] DEBUG: [worker-updateWifiDetails-cadff1ec-8572-4a49-8f1b-787f3bcb83f0]: FINISHED
+[debug] [2020-07-26T16:32:10.510Z] DEBUG: File /Users/yuanmingchai/cacioepepe/functions/adminFunctions/adminApplicationFunctions/createDeadline.function.js changed, reloading triggers
+[debug] [2020-07-26T16:32:10.610Z] DEBUG: File /Users/yuanmingchai/cacioepepe/functions/adminFunctions/adminApplicationFunctions/createDeadline.function.js changed, reloading triggers
+[debug] [2020-07-26T16:32:11.616Z] DEBUG: [worker-pool] Marking BUSY worker to finish (~diagnostic~)
+[debug] [2020-07-26T16:32:11.617Z] DEBUG: [worker-~diagnostic~-daea6cab-3631-4895-b8d1-b0eebaff1dfd]: FINISHING
+[debug] [2020-07-26T16:32:11.618Z] DEBUG: [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2020-07-26T16:32:11.619Z] DEBUG: [worker-pool] Cleaned up workers for updateWifiDetails: 1 --> 0
+[debug] [2020-07-26T16:32:11.644Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-07-26T16:32:11.645Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2020-07-26T16:32:11.645Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2020-07-26T16:32:11.646Z] DEBUG: [worker-~diagnostic~-94d03b21-a27d-4532-9077-207dd1730230]: Assigning socketPath: /var/folders/b3/sb_hj3ts4mb049_pjbw436nc0000gn/T/fire_emu_4028.sock
+[debug] [2020-07-26T16:32:11.647Z] DEBUG: [worker-~diagnostic~-94d03b21-a27d-4532-9077-207dd1730230]: BUSY
+[debug] [2020-07-26T16:32:13.036Z] DEBUG: [runtime-status] [4028] Functions runtime initialized. {"cwd":"/Users/yuanmingchai/cacioepepe/functions","node_version":"12.18.1"}
+[debug] [2020-07-26T16:32:13.039Z] DEBUG: [runtime-status] [4028] Disabled runtime features: undefined
+[debug] [2020-07-26T16:32:13.068Z] DEBUG: [runtime-status] [4022] Functions runtime initialized. {"cwd":"/Users/yuanmingchai/cacioepepe/functions","node_version":"12.18.1"}
+[debug] [2020-07-26T16:32:13.079Z] DEBUG: [runtime-status] [4022] Disabled runtime features: undefined
+[debug] [2020-07-26T16:32:13.102Z] DEBUG: [runtime-status] [4022] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-07-26T16:32:13.103Z] DEBUG: [runtime-status] [4028] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-07-26T16:32:13.113Z] DEBUG: [runtime-status] [4022] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-07-26T16:32:13.114Z] DEBUG: [runtime-status] [4028] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-07-26T16:32:13.133Z] DEBUG: [runtime-status] [4022] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2020-07-26T16:32:13.133Z] DEBUG: [runtime-status] [4022] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-07-26T16:32:13.133Z] DEBUG: [runtime-status] [4028] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2020-07-26T16:32:13.134Z] DEBUG: [runtime-status] [4028] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-07-26T16:32:13.349Z] DEBUG: [runtime-status] [4022] Checked functions.config() {"config":{}}
+[debug] [2020-07-26T16:32:13.351Z] DEBUG: [runtime-status] [4022] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2020-07-26T16:32:13.352Z] DEBUG: [runtime-status] [4022] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-07-26T16:32:13.354Z] DEBUG: [runtime-status] [4028] Checked functions.config() {"config":{}}
+[debug] [2020-07-26T16:32:13.354Z] DEBUG: [runtime-status] [4028] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}}
+[debug] [2020-07-26T16:32:13.354Z] DEBUG: [runtime-status] [4028] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-07-26T16:32:13.354Z] DEBUG: [runtime-status] [4028] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-07-26T16:32:13.354Z] DEBUG: [runtime-status] [4028] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-07-26T16:32:13.355Z] DEBUG: [runtime-status] [4022] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-07-26T16:32:13.356Z] DEBUG: [runtime-status] [4022] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.6.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-07-26T16:32:13.356Z] DEBUG: [runtime-status] [4022] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-07-26T16:32:13.356Z] DEBUG: [runtime-status] [4028] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/yuanmingchai/cacioepepe/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-07-26T16:32:13.625Z] DEBUG: [runtime-status] [4022] initializeApp(DEFAULT) {"databaseURL":"https://bostonhacks-cacioepepe.firebaseio.com","storageBucket":"bostonhacks-cacioepepe.appspot.com","projectId":"bostonhacks-cacioepepe"}
+[debug] [2020-07-26T16:32:13.627Z] DEBUG: [runtime-status] [4028] initializeApp(DEFAULT) {"databaseURL":"https://bostonhacks-cacioepepe.firebaseio.com","storageBucket":"bostonhacks-cacioepepe.appspot.com","projectId":"bostonhacks-cacioepepe"}
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production. {"metadata":{"emulator":{"name":"functions"},"message":"The Cloud Firestore emulator is not running, so calls to Firestore will affect production."}}
+[warn] ⚠  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production. {"metadata":{"emulator":{"name":"functions"},"message":"The Cloud Firestore emulator is not running, so calls to Firestore will affect production."}}
+[debug] [2020-07-26T16:32:20.669Z] DEBUG: [worker-~diagnostic~-94d03b21-a27d-4532-9077-207dd1730230]: IDLE
+[debug] [2020-07-26T16:32:20.682Z] DEBUG: [worker-~diagnostic~-daea6cab-3631-4895-b8d1-b0eebaff1dfd]: IDLE --> FINISHING
+[debug] [2020-07-26T16:32:20.708Z] DEBUG: [worker-~diagnostic~-daea6cab-3631-4895-b8d1-b0eebaff1dfd]: exited
+[debug] [2020-07-26T16:32:20.709Z] DEBUG: [worker-~diagnostic~-daea6cab-3631-4895-b8d1-b0eebaff1dfd]: FINISHED

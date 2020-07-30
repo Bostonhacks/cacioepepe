@@ -8,8 +8,8 @@
         <v-row>
           <v-col cols="12" lg="6">
             <p>
-              Open Date: <strong>{{ date }}</strong> Close Date:
-              <strong>{{ date2 }}</strong>
+              Open Date: <strong>{{ start }}</strong> Close Date:
+              <strong>{{ end }}</strong>
             </p>
             <v-menu
               ref="menu1"
@@ -22,18 +22,19 @@
             >
               <template v-slot:activator="{ on }">
                 <v-text-field
-                  v-model="dateFormatted"
+                  v-model="start"
                   label="Open Date"
-                  hint="MM/DD/YYYY format"
+                  hint="MM-DD-YYYY format"
                   persistent-hint
-                  @blur="date = parseDate(dateFormatted)"
                   v-on="on"
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="date"
+                v-model="start"
+                ref="starttime"
                 no-title
-                @input="menu1 = false"
+                @input="menu1"
+                required
               ></v-date-picker>
             </v-menu>
 
@@ -48,48 +49,48 @@
             >
               <template v-slot:activator="{ on }">
                 <v-text-field
-                  v-model="dateFormatted2"
+                  v-model="end"
                   label="Close Date"
-                  hint="MM/DD/YYYY format"
+                  hint="MM-DD-YYYY format"
                   persistent-hint
-                  @blur="date2 = parseDate(dateFormatted2)"
                   v-on="on"
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="date2"
+                v-model="end"
+                ref="dealine"
                 no-title
-                @input="menu2 = false"
+                @input="menu2"
+                required
               ></v-date-picker>
             </v-menu>
           </v-col>
         </v-row>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn color="green darken-1" text @click="dialog = false">
+            Cancel
+          </v-btn>
+
+          <v-btn color="green darken-1" text @click="saveDate">
+            Save
+          </v-btn>
+        </v-card-actions>
       </v-container>
     </v-layout>
   </v-card>
 </template>
 
 <script>
-export default {
-  data: vm => ({
-    date: new Date().toISOString().substr(0, 10),
-    date2: new Date().toISOString().substr(0, 10),
-    dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
-    dateFormatted2: vm.formatDate(new Date().toISOString().substr(0, 10)),
-    menu1: false,
-    menu2: false
-  }),
-  // data(){
-  //   return {
-  //     date: new Date().toISOString().substr(0, 10),
-  //     date2: new Date().toISOString().substr(0, 10),
-  //     dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
-  //     dateFormatted2: vm.formatDate(new Date().toISOString().substr(0, 10)),
-  //     menu1: false,
-  //     menu2: false
-  //   }
-  // },
+import { functions } from "@/firebase/init";
 
+export default {
+  data: () => ({
+    start: "",
+    end: "",
+    firstInput: true
+  }),
   computed: {
     computedDateFormatted() {
       return this.formatDate(this.date);
@@ -97,15 +98,43 @@ export default {
   },
 
   watch: {
-    date() {
-      this.dateFormatted = this.formatDate(this.date);
+    start() {
+      this.dateFormatted = this.formatDate(this.start);
     },
-    date2() {
-      this.dateFormatted2 = this.formatDate(this.date2);
+    end() {
+      this.dateFormatted2 = this.formatDate(this.end);
     }
   },
-
+  async mounted() {
+    this.getDate();
+  },
   methods: {
+    async getDate() {
+      var out = await functions.httpsCallable("readDeadline")({});
+      if (out.data[0].length > 0 && out.data[1].length > 0) {
+        console.log(out.data);
+        this.firstInput = false;
+        this.start = out.data[0];
+        this.end = out.data[1];
+      }
+    },
+    async saveDate() {
+      await functions.httpsCallable("createDeadline")({
+        startTime: this.$refs.starttime.formattedDatetime,
+        finishTime: this.$refs.dealine.formattedDatetime
+      });
+      this.push({
+        startTime: this.$refs.starttime.formattedDatetime,
+        finishTime: this.$refs.dealine.formattedDatetime
+      });
+    },
+    async updateDate() {
+      await functions.httpsCallable("updateDeadline")({
+        startTime: this.$refs.starttime.formattedDatetime,
+        finishTime: this.$refs.dealine.formattedDatetime
+      });
+      this.getDate();
+    },
     formatDate(date) {
       if (!date) return null;
 
