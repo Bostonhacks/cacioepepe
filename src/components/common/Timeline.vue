@@ -13,7 +13,6 @@
             </p>
             <v-menu
               ref="menu1"
-              v-model="menu1"
               :close-on-content-click="false"
               transition="scale-transition"
               offset-y
@@ -33,14 +32,12 @@
                 v-model="start"
                 ref="starttime"
                 no-title
-                @input="menu1"
                 required
               ></v-date-picker>
             </v-menu>
 
             <v-menu
               ref="menu2"
-              v-model="menu2"
               :close-on-content-click="false"
               transition="scale-transition"
               offset-y
@@ -60,7 +57,6 @@
                 v-model="end"
                 ref="dealine"
                 no-title
-                @input="menu2"
                 required
               ></v-date-picker>
             </v-menu>
@@ -89,7 +85,9 @@ export default {
   data: () => ({
     start: "",
     end: "",
-    firstInput: true
+    firstInput: true,
+    menu1: false,
+    menu2: false
   }),
   computed: {
     computedDateFormatted() {
@@ -111,27 +109,36 @@ export default {
   methods: {
     async getDate() {
       var out = await functions.httpsCallable("readDeadline")({});
-      if (out.data[0].length > 0 && out.data[1].length > 0) {
+
+      if (out.data["startTime"] != null && out.data["startTime"] != null) {
         console.log(out.data);
         this.firstInput = false;
-        this.start = out.data[0];
-        this.end = out.data[1];
+        this.start = out.data["startTime"];
+        this.end = out.data["finishTime"];
       }
+      console.log(this.start);
     },
     async saveDate() {
-      await functions.httpsCallable("createDeadline")({
-        startTime: this.$refs.starttime.formattedDatetime,
-        finishTime: this.$refs.dealine.formattedDatetime
-      });
-      this.push({
-        startTime: this.$refs.starttime.formattedDatetime,
-        finishTime: this.$refs.dealine.formattedDatetime
-      });
+      this.dialog = false;
+      if (this.start != "" && this.end != "") {
+        this.updateDate();
+        console.log("update");
+      } else {
+        await functions.httpsCallable("createDeadline")({
+          startTime: this.start,
+          finishTime: this.end
+        });
+        this.push({
+          start: this.start,
+          end: this.end
+        });
+      }
     },
     async updateDate() {
+      console.log(this.start);
       await functions.httpsCallable("updateDeadline")({
-        startTime: this.$refs.starttime.formattedDatetime,
-        finishTime: this.$refs.dealine.formattedDatetime
+        startTime: this.start,
+        finishTime: this.end
       });
       this.getDate();
     },
