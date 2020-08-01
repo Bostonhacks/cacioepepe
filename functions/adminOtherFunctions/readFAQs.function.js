@@ -3,11 +3,7 @@ const functions = require("firebase-functions");
 
 const db = admin.firestore();
 
-module.exports.readFAQs = functions.https.onCall(async (_, context) => {
-  if (!context.auth) {
-    return { message: "Authentication Required!", code: 401 };
-  }
-
+module.exports.readFAQs = functions.https.onCall(async _ => {
   const faqsDb = db.collection("admin").doc("FAQs");
   var allFaqs = await faqsDb.get();
   return allFaqs.data().faqs;

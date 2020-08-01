@@ -3,11 +3,7 @@ const functions = require("firebase-functions");
 
 const db = admin.firestore();
 
-module.exports.readPrizes = functions.https.onCall(async (_, context) => {
-  if (!context.auth) {
-    return { message: "Authentication Required!", code: 401 };
-  }
-
+module.exports.readPrizes = functions.https.onCall(async _ => {
   const prizeDb = db.collection("admin").doc("prizesDoc");
   var allPrizes = await prizeDb.get();
   return allPrizes.data().prizes;

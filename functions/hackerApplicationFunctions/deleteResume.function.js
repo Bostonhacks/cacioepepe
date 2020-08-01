@@ -4,10 +4,10 @@ const { Storage } = require("@google-cloud/storage");
 
 const db = admin.firestore();
 
-module.exports.deleteResume = functions.https.onCall(async data => {
+module.exports.deleteResume = functions.https.onCall(async (data, context) => {
   const storage = new Storage();
   const bucket = storage.bucket("bostonhacks-cacioepepe.appspot.com");
-  const application = db.collection("applications").doc(data.uid);
+  const application = db.collection("applications").doc(context.auth.uid);
   var file = bucket.file(data.location);
   await file.delete();
   await application.update({
