@@ -23,7 +23,12 @@ module.exports.deleteSchedule = functions.https.onCall(
     let info = await schedsDb.get();
     this.events = info
       .data()
-      .events.filter(schedule => schedule.title != data.title);
+      .events.filter(
+        schedule =>
+          schedule.name != data.name &&
+          schedule.start != data.start &&
+          schedule.end != data.end
+      );
     await schedsDb
       .update({
         events: this.events
