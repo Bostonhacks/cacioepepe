@@ -17,10 +17,10 @@
         </a>
       </v-row>
       <v-container>
-        <v-row justify="space-between" class="mx-md-n8">
+        <v-row justify="space-between" class="mx-md-n8 mb-n16">
           <v-col cols="3">
             <img
-              src="/assets/landingPage/cloud1.svg"
+              src="/assets/landingPage/cloud9Light.svg"
               alt="cloud1"
               width="275rem"
               style=" top: -5rem; position: relative"
@@ -29,7 +29,7 @@
           </v-col>
           <v-col cols="3">
             <img
-              src="/assets/landingPage/cloud1.svg"
+              src="/assets/landingPage/cloud9Light.svg"
               alt="cloud1"
               width="275rem"
               class="d-none d-md-flex"
@@ -38,34 +38,55 @@
           </v-col>
         </v-row>
       </v-container>
-      <v-container>
-        <v-row justify="center">
-          <h2 class="header-title">
-            We're turning 6.
-            <br />And you're invited <br />to our virtual hackathon!
-          </h2>
-        </v-row>
-        <v-row justify="center">
-          <v-btn rounded depressed @click="login()">Login</v-btn>
+      <v-container class="mt-n16">
+        <v-row class="mt-n16 switchOnSmall">
+          <v-col
+            cols="5"
+            offset="3"
+            sm="3"
+            offset-sm="2"
+            class="mt-n16 d-flex align-content-end flex-column"
+          >
+            <object
+              data="/assets/landingPage/feliz.svg"
+              alt="pinata"
+              class="mt-5"
+              style="max-height: 80vh; z-index: 100"
+              :z-index="1000"
+            />
+          </v-col>
+          <v-col
+            cols="8"
+            offset="2"
+            sm="4"
+            offset-sm="0"
+            class="text-center white--text"
+          >
+            <object
+              class="mb-5"
+              data="/assets/landingPage/bHacksWhite.svg"
+              alt="BostonHacks Logo"
+            />
+            <h2>Come hack with us!</h2>
+            <h2 class="mb-5">November 14-15th, 2020</h2>
+            <v-btn
+              rounded
+              depressed
+              x-large
+              @click="login()"
+              class="text-center ma-7"
+              >Login</v-btn
+            >
+          </v-col>
         </v-row>
       </v-container>
       <v-container>
         <v-row
-          class="mt-0 mt-md-n16 mb-n1 switchOnSmall"
+          class="mt-0 mb-15 switchOnSmall"
           no-gutters
           justify="center"
           align="center"
         >
-          <v-col cols="12" sm="4" class="mt-0">
-            <object
-              data="/assets/landingPage/feliz.svg"
-              alt="pinata"
-              class="mt-0 mt-sm-n16"
-              style="max-height: 80vh"
-              z-index="100"
-            />
-          </v-col>
-
           <v-col cols="10" offset-sm="0" sm="5">
             <div>
               <div>
@@ -104,7 +125,7 @@
         <v-row style="height: 0">
           <v-col cols="3">
             <img
-              src="/assets/landingPage/cloud2.svg"
+              src="/assets/landingPage/cloud9Dark.svg"
               alt="Blue Cloud"
               style="position: relative; top: -4rem;"
             />
@@ -129,7 +150,7 @@
         <v-row justify="center">
           <v-col>
             <h2
-              style="color: black; text-align: center; font-weight: bold; font-size: 2rem; margin-bottom: 4em"
+              style="text-align: center; font-weight: bold; font-size: 2rem; margin-bottom: 4em"
             >
               Tracks
             </h2>
@@ -175,14 +196,14 @@
         <v-row justify="space-between">
           <v-col cols="3">
             <img
-              src="/assets/landingPage/cloud2.svg"
+              src="/assets/landingPage/cloud9Dark.svg"
               alt="cloud2"
               style="position: relative; top: 0rem; "
             />
           </v-col>
           <v-col cols="3">
             <img
-              src="/assets/landingPage/cloud2.svg"
+              src="/assets/landingPage/cloud9Dark.svg"
               alt="cloud2"
               style=" position: relative; top: -20rem; "
               class="d-none d-md-block"
@@ -410,6 +431,7 @@ html {
 
 #tracks {
   background: #aee2ff;
+  color: #1e75af;
 }
 
 #schedule {
@@ -425,7 +447,6 @@ html {
   text-align: center;
   color: white;
   font-weight: bold;
-  margin-top: -3rem;
 }
 
 .qna {
@@ -446,5 +467,9 @@ html {
   .switchOnSmall {
     flex-direction: column-reverse;
   }
+}
+
+.mt-n20em {
+  margin-top: -20em;
 }
 </style>
