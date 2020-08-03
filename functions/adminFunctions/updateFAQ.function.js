@@ -8,10 +8,31 @@ module.exports.updateFAQ = functions.https.onCall(async (data, context) => {
     return { message: "Authentication Required!", code: 401 };
   }
 
-  const mydb = db.collection("FAQ").doc(data.uid);
-  await mydb.update({
-    questions: data.questions,
-    answers: data.answers
-  });
-  return "completed";
+  const faqDb = db.collection("admin").doc("FAQs");
+  let info = await faqDb.get();
+  this.faqs = info.data().faqs;
+
+  var found = false;
+  for (var i = 0; i < this.faqs.length; i++) {
+    if (this.faqs[i].q == data.oldQ) {
+      found = true;
+      this.faqs[i] = {
+        q: data.newQ,
+        a: data.newA
+      };
+    }
+  }
+  if (found == false) {
+    return "Question not found. No changes made.";
+  }
+
+  await faqDb
+    .update({
+      faqs: this.faqs
+    })
+    .catch(function(error) {
+      console.error("Error: ", error);
+    });
+
+  return { message: "FAQ updated", code: 200 };
 });

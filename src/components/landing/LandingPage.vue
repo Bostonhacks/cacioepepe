@@ -104,6 +104,7 @@
                   >
                   or check out our sponsor document!
                 </h2>
+                <br />
                 <v-row justify="center">
                   <v-btn depressed rounded @click="sponsor()">Learn more</v-btn>
                 </v-row>

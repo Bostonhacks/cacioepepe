@@ -11,7 +11,7 @@ module.exports.updateWifiDetails = functions.https.onCall(
     var name, password;
     name = data.name;
     password = data.password;
-    const wifiDoc = db.collection("wifiDetails").doc(data.uid);
+    const wifiDoc = db.collection("admin").doc("wifiDetails");
     await wifiDoc.update({
       wifiName: name,
       wifiPassword: password
