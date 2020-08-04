@@ -73,9 +73,10 @@
               rounded
               depressed
               x-large
+              disabled
               @click="login()"
               class="text-center ma-7"
-              >Login</v-btn
+              >Login (Coming Soon)</v-btn
             >
           </v-col>
         </v-row>
