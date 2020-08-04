@@ -8,7 +8,9 @@
       v-if="this.getRoutePath && this.getRoutePath !== '/live'"
       class="forMob"
     />
+
     <router-view />
+    <footerRow />
   </v-app>
 </template>
 
@@ -16,12 +18,14 @@
 import store from "@/store/index.js";
 import navigationBar from "@/components/common/NavigationBar.vue";
 import mobileBar from "@/components/common/MobileBar.vue";
+import footerRow from "@/components/common/Footer.vue";
 export default {
   name: "App",
   store,
   components: {
     navigationBar,
-    mobileBar
+    mobileBar,
+    footerRow
   },
   data() {
     return {};
@@ -29,6 +33,11 @@ export default {
   computed: {
     getRoutePath() {
       return this.$route.path;
+    }
+  },
+  methods: {
+    home() {
+      this.$router.push("/");
     }
   }
 };
