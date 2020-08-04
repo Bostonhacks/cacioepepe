@@ -5,24 +5,24 @@ const db = admin.firestore();
 
 const arrayUnion = admin.firestore.FieldValue.arrayUnion;
 
-module.exports.createFAQ = functions.https.onCall(async (data, context) => {
+module.exports.createTrack = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     return { message: "Authentication Required!", code: 401 };
   }
 
-  var newFAQ = {
-    q: data.question,
-    a: data.answer
+  var newTrack = {
+    track: data.track,
+    description: data.description
   };
 
-  const faqDb = db.collection("admin").doc("FAQs");
-  await faqDb
+  const tracksDb = db.collection("admin").doc("tracksDoc");
+  await tracksDb
     .update({
-      faqs: arrayUnion(newFAQ)
+      tracks: arrayUnion(newTrack)
     })
     .catch(function(error) {
       console.error("Error: ", error);
     });
 
-  return { message: "New FAQ created", code: 201 };
+  return { message: "New track created", code: 201 };
 });

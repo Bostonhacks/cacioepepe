@@ -8,14 +8,18 @@ module.exports.updateEvent = functions.https.onCall(async (data, context) => {
     return { message: "Authentication Required!", code: 401 };
   }
 
-  const mydb = db.collection("events").doc(data.uid);
+  const mydb = db
+    .collection("admin")
+    .doc("schedules")
+    .doc(data.uid);
   await mydb.update({
     title: data.title,
     location: data.location,
-    startTime: data.startTime,
-    finishTime: data.finishTime,
+    start: data.startTime,
+    end: data.finishTime,
     description: data.description,
     type: data.type
   });
-  return;
+
+  return { message: "Schedule updated", code: 200 };
 });
