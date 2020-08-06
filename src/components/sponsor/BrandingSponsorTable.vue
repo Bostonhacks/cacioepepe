@@ -1,12 +1,26 @@
 <template>
-  <div>
-    <v-data-table
-      :headers="headers"
-      :items="brandings"
-      hide-default-footer
-      class="elevation-1"
-    ></v-data-table>
-  </div>
+  <v-simple-table dense fixed-header>
+    <template v-slot:default>
+      <thead>
+        <tr>
+          <th class="text-left">Branding</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in brandings" :key="item.general">
+          <td>{{ item.branding }}</td>
+          <td class="text-center">{{ item.twoPointFive }}</td>
+          <td class="text-center">{{ item.five }}</td>
+          <td class="text-center">{{ item.sevenPointFive }}</td>
+          <td class="text-center">{{ item.fifteen }}</td>
+        </tr>
+      </tbody>
+    </template>
+  </v-simple-table>
 </template>
 <script>
 export default {

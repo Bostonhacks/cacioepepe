@@ -1,5 +1,5 @@
 <template>
-  <canvas :id="id" :width="width" :height="height"></canvas>
+  <canvas :id="id"></canvas>
 </template>
 
 <script>
@@ -13,14 +13,7 @@ export default {
       default: "doughnut"
     },
     chartData: {},
-
     options: {},
-    height: {
-      default: 200
-    },
-    width: {
-      default: 200
-    },
     index: {
       default: 0
     }
