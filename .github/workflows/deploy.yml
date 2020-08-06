@@ -3,8 +3,6 @@ name: Deploy Hosting
 on:
   push:
     branches: [ prod ]
-  pull_request:
-    branches: [ prod ]
     
 jobs:
   deploy:
