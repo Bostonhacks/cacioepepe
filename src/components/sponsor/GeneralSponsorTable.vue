@@ -208,7 +208,7 @@ tbody > tr:nth-child(14) > td:nth-child(1) {
 
 th {
   color: black !important;
-  font-size: 3em !important;
-  font-weight: normal !important;
+  font-size: 1.5em !important;
+  font-weight: bold !important;
 }
 </style>

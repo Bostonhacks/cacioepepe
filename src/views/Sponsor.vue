@@ -317,17 +317,28 @@
       style="width: 100vw; flex-direction: row-reverse"
       class="mt-10 mb-10"
     >
-      <!-- Everything below here needs to be fixed -->
+      <!-- fixed! -->
       <v-col class="align-self-end col-12 col-md-5">
         <object data="/assets/sponsor/bee.svg"></object>
       </v-col>
     </v-row>
-    <h4 class="display-2 header">
+    <h4 class="display-2 header text-center green--text">
       Check out our museum site for more information!
     </h4>
-    <v-btn class="mt-10" x-large depressed rounded color="#f6d374"
-      >Learn More</v-btn
-    >
+    <v-row class="justify-center">
+      <v-btn
+        class="mt-10 mb-10 white--text justify-center"
+        x-large
+        depressed
+        rounded
+        color="#f6d374"
+        >Learn More</v-btn
+      >
+    </v-row>
+    <object
+      data="/assets/sponsor/waveBottom.svg"
+      class=" align-self-start mb-n2"
+    ></object>
   </div>
 </template>
 
