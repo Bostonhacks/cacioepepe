@@ -123,10 +123,10 @@
 
 <script>
 import HackerTable from "@/components/common/HackerTable";
+// import CalendarEvent from "@/components/admin/CalendarEvent";
 import AdminStats from "@/components/admin/AdminStats";
 import VolunteerTable from "@/components/admin/VolunteerTable";
 import MentorTable from "@/components/admin/MentorTable";
-import SlackInfoUpload from "@/components/admin/SlackInfoUpload";
 import PieChart from "@/components/common/PieChart";
 import { functions } from "@/firebase/init";
 
@@ -135,9 +135,9 @@ export default {
   components: {
     HackerTable,
     AdminStats,
+    // CalendarEvent,
     VolunteerTable,
     MentorTable,
-    SlackInfoUpload,
     PieChart
   },
   data() {
@@ -235,13 +235,12 @@ export default {
       }
     };
   },
-
   methods: {
-    async filterStatus(currentData, data) {
+    async filterStatus() {
       if (this.itemStatus.length == 0) {
-        currentData = data;
+        this.currentData = this.data;
       } else {
-        currentData = data.filter(item =>
+        this.currentData = this.data.filter(item =>
           this.itemStatus.includes(this.statusList[item.status])
         );
       }
