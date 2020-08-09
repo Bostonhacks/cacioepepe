@@ -1,42 +1,125 @@
 <template>
-  <v-data-table
-    disable-pagination
-    disable-sort=""
-    :headers="headers"
-    :items="testData"
-  ></v-data-table>
+  <div>
+    <v-data-table
+      class="my-table"
+      disable-pagination
+      disable-sort
+      hide-default-footer
+      :headers="generalHeader"
+      :items="generalData"
+    ></v-data-table>
+    <v-container>
+      <v-text> </v-text>
+    </v-container>
+    <v-data-table
+      class="my-table"
+      disable-pagination
+      disable-sort
+      hide-default-footer
+      :headers="recruitingHeader"
+      :items="recruitingData"
+    >
+    </v-data-table>
+    <v-container>
+      <v-text> </v-text>
+    </v-container>
+    <v-data-table
+      class="my-table"
+      disable-pagination
+      disable-sort
+      hide-default-footer
+      :headers="brandingHeader"
+      :items="brandingData"
+    ></v-data-table>
+  </div>
 </template>
 <script>
 export default {
   name: "GeneralSponsorTable",
   data() {
     return {
-      headers: [
+      generalHeader: [
         {
-          text: "Sponsorship Benefits",
-          value: "name"
+          text: "General",
+          value: "name",
+          width: "28%"
         },
         {
           text: "$1.5k",
-          value: "onePointFive"
+          value: "onePointFive",
+          width: "18%"
         },
         {
           text: "$3k",
-          value: "three"
+          value: "three",
+          width: "18%"
         },
         {
           text: "$5k",
-          value: "five"
+          value: "five",
+          width: "18%"
         },
         {
           text: "$7.5k",
-          value: "sevenPointFive"
+          value: "sevenPointFive",
+          width: "18%"
         }
       ],
-      testData: [
+      recruitingHeader: [
         {
-          name: "General"
+          text: "Recruit",
+          value: "name",
+          width: "28%"
         },
+        {
+          text: "$1.5k",
+          value: "onePointFive",
+          width: "18%"
+        },
+        {
+          text: "$3k",
+          value: "three",
+          width: "18%"
+        },
+        {
+          text: "$5k",
+          value: "five",
+          width: "18%"
+        },
+        {
+          text: "$7.5k",
+          value: "sevenPointFive",
+          width: "18%"
+        }
+      ],
+      brandingHeader: [
+        {
+          text: "Branding",
+          value: "name",
+          width: "28%"
+        },
+        {
+          text: "$1.5k",
+          value: "onePointFive",
+          width: "18%"
+        },
+        {
+          text: "$3k",
+          value: "three",
+          width: "18%"
+        },
+        {
+          text: "$5k",
+          value: "five",
+          width: "18%"
+        },
+        {
+          text: "$7.5k",
+          value: "sevenPointFive",
+          width: "18%"
+        }
+      ],
+      generalData: [
         {
           name: "Table Space",
           onePointFive: "✓",
@@ -85,8 +168,9 @@ export default {
           three: "2 min",
           five: "4 min",
           sevenPointFive: "8 min"
-        },
-        { name: "Recruiting" },
+        }
+      ],
+      recruitingData: [
         {
           name: "Distribute Recruiting Materials",
           onePointFive: "✓",
@@ -114,10 +198,9 @@ export default {
           three: "",
           five: "✓",
           sevenPointFive: "✓"
-        },
-        {
-          name: "Branding"
-        },
+        }
+      ],
+      brandingData: [
         {
           name: "Distribute Swag",
           onePointFive: "✓",
@@ -153,12 +236,26 @@ export default {
           five: "",
           sevenPointFive: "✓"
         }
+      ],
+      testData: [
+        {
+          name: "General"
+        },
+
+        { name: "Recruiting" },
+
+        {
+          name: "Branding"
+        }
       ]
     };
   }
 };
 </script>
 <style>
+.my-table {
+  table-layout: fixed;
+}
 td:nth-child(odd) {
   background-color: #ecd5cc;
   color: black;
@@ -180,30 +277,6 @@ td:first-child {
   color: white !important;
   text-align: left;
   font-size: 1em !important;
-}
-
-tbody > tr:nth-child(1) > td:nth-child(1) {
-  background-color: #4abb79;
-  color: white !important;
-  text-align: left;
-  font-weight: bold;
-  font-size: 2em !important;
-}
-
-tbody > tr:nth-child(9) > td:nth-child(1) {
-  background-color: #4abb79;
-  color: white !important;
-  text-align: left;
-  font-weight: bold;
-  font-size: 2em !important;
-}
-
-tbody > tr:nth-child(14) > td:nth-child(1) {
-  background-color: #4abb79;
-  color: white !important;
-  text-align: left;
-  font-weight: bold;
-  font-size: 2em !important;
 }
 
 th {

@@ -90,6 +90,7 @@
               <div>
                 In {{ years[selectedYear] }}
                 <v-btn
+                  v-if="!renderYearSelect"
                   v-on:click="renderYearSelect = !renderYearSelect"
                   fab
                   x-small
@@ -100,13 +101,30 @@
                 >
                   <v-icon>mdi-menu-down</v-icon>
                 </v-btn>
+                <v-btn
+                  v-else
+                  v-on:click="renderYearSelect = !renderYearSelect"
+                  fab
+                  x-small
+                  depressed
+                  color="#80d2ff"
+                  dark
+                  class="mt-n2 ml-n1"
+                >
+                  <v-icon>mdi-menu-up</v-icon>
+                </v-btn>
+
                 we had...
               </div>
             </v-row>
             <!-- Not entirely sure how this broke, but the div below that contains the buttons for all the years should only render
             if "renderYearSelect" is set to tre, which the button above should trigger. -->
+
             <transition name="fade">
-              <div class="pt-4" :v-if="renderYearSelect">
+              <div
+                class="pt-4 d-flex justify-center justify-md-start"
+                v-if="renderYearSelect"
+              >
                 <v-btn
                   outlined
                   class="ml-1 mr-1"
@@ -120,6 +138,7 @@
                   >{{ item }}</v-btn
                 >
               </div>
+              <div v-else style="height: 52px;"></div>
             </transition>
           </v-col>
           <object
@@ -129,74 +148,74 @@
           ></object>
         </v-row>
         <v-row class="justify-center flex-wrap-reverse flex-md-wrap">
-          <v-col cols="12" md="4">
-            <v-row>
-              <svg
-                svg
-                viewBox="0 0 100 100"
-                xmlns="http://www.w3.org/2000/svg"
-                class="pl-10 pr-10"
-              >
-                <circle
-                  cx="30"
-                  cy="40"
-                  :r="this.applicantRadius()"
-                  fill="#4ABB79"
-                  stroke="#A4DDBB"
-                  stroke-width="0.5"
-                />
-                <text x="12" y="42" class="applicant-num font-weight-bold">
-                  {{ applicants[selectedYear] }}
-                </text>
-                <text x="20" y="50" class="small white--text">applicants</text>
-                <circle
-                  cx="75"
-                  cy="20"
-                  :r="this.attendeeRadius()"
-                  fill="#E6C7BB"
-                  stroke="#F2E3DD"
-                  stroke-width="0.5"
-                />
-                <text x="65" y="21" class="attendee-num font-weight-bold">
-                  {{ attendees[selectedYear] }}
-                </text>
-                <text x="64" y="27" class="small">attendees</text>
-              </svg> </v-row
-            ><v-row>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 831 515.7"
-                class="pl-10 pr-10"
-              >
-                <path
-                  fill="#49bc77"
-                  d="M828 64c-3 0-3 2-5 0 0-3-2-4-1-7-3 0-6 1-7-1l-8-27c-3 0-5-2-8-3-2 2-4 5-8 6-2 0-1-4-4-4-4 9-11 24-6 35-2 4-5 8-5 14-3-1-4 2-6 0-1 3-1 7-4 8-10 1-21 6-31 8-5 1-10 0-14 3-5 3-6 10-10 14-2 3-6 4-5 9 4 1 3 6 4 9-9 13-26 7-40 13 0 5 3 6 5 10-12 16-30 27-49 36-3-4-13-1-14-6 5-5 4-18 11-17-1-13-2-24-10-29-6 0-6 8-11 10-3 1-2-4-3-7 11-2 4-19 6-24-2 0-2-2-3-4-10 0-18-11-24-1-1 3 3 1 3 4-4-1-4 1-6 2-1 6 3 9-3 10-1-4 4-8 0-9-8 9-9 19-10 36 10 10 7 35-7 39-19-18-8-54-4-74-3 4-7 14-12 15 3-9 9-16 12-26 8 2 12-4 22-6 9 1 16 0 22-1-4-1-6-5-5-11-5 1-9 4-13 2v-5c-14 1-21 10-33 8-2-7-12-9-15-5 1-7 6-9 9-14-9 0-12 7-17 12-6 3-14 6-19 10-1-4-6 0-7-2 1-2 3-3 3-6-5-1-11 8-18 4 7-4 10-12 16-17 5-4 13-3 17-9-6-1-14-1-18-4-5 5-15 5-16-2-8 3-15-9-23-2-3-1-6-4-12-3-4-3 0-14-7-14-2 1 0 7-2 8C295 52 178 27 72 0c4 7 0 15 1 21-4-4-2-7-1-10-4 0-3 4-6 4-10-2-15-8-23-11 0 9-1 23 3 30a5 5 0 00-4 1c-1 3 3 3 2 5-4 3-5 8-1 10-3-1-2 2-3 3-7 21-15 41-27 57l-2 14c6 15-7 26-11 37 11 7 1 19 2 28 0 4 7 10 7 16 1 6 1 8 5 11-5 9 0 19 6 22-1 3-5 3-5 7 0 12 12 22 13 33 1 5-4 8-1 13 17-1 19 14 30 18v4c11 3 15 13 15 27 11 4 27 4 40 6 0 2-3 2-2 4 15 7 29 17 42 25 18 11 39 13 65 16l2-9 29 4c6 8 11 18 21 22 5 6 4 12 6 20 2 11 16 13 24 19 7-4 6-16 16-17 20 2 30 15 33 34 7 4 9 12 15 16-4 24 23 29 39 33-3-13-2-25-1-39 16-10 35-18 48-32 13-11 37-3 51-3-1-5-7 0-8-3 6-6 11 3 16 4l-1 4c4 2 6 4 11 4 2-2 3-5 7-5 3 2-2 4 0 5 8-2 2-7 8-9 1 4 14 10 15 3-3-3-11-2-13-6 3-3 7-4 5-11-4 0-2 6-7 4 4-11 14-10 27-10 2-2 0-7 4-7 2 2 4 7 1 9 15-5 38-10 46 5 8 0 16-4 17-9 16-2 15 14 28 15 8 6-1 24 7 30 2-3-1-6 0-7l3 1c1 5-3 5-3 9a80 80 0 0112 19c2 0 2-2 4-1l5 10c8-2 12 7 14 14l13-4c-2 6-11 9-11 13 7-5 13-10 14-20-3-2 0 3-3 3 8-25-6-42-15-57 0-2 3-1 2-3-14-13-29-39-20-64 2-5 8-8 8-15 9-3 11-12 19-17-1-12 6-17 17-18-1-19 23-15 23-28 0 2-8 3-9 0 4 4 7-5 3-6 6 2 12-1 13-8-2-2-6 2-8-1 4 1 6 0 7-3v-1l1 1-10-20h-6c3-3-5-6-3-9l2 1c-1-7-3-12-8-15 3 1 2-2 3-3-6-4-7-21-1-22-4 4 3 8-2 13 5 0 2 1 2 7 5 0 4 6 8 8 1-3-3-6-1-7 10 4-2 18 6 23 1-12 10-24 5-37-6-2-7-9-11-14a14 14 0 0012 7c1 2-2 2-1 4a35 35 0 0010-32c-1-3-4 1-5-1 2-1 2-3 4-3l-1-3 2-2c6-13 26-14 37-22 1-3 0-5 4-6 1 3 0 5-2 6 4-3 6-7 12-8 0-5-1-9-6-8 0 3 5 2 5 5-9 7-10-9-16-6 0-9-1-20 3-32 6 0 9-5 13-8v-9c2 1 4 1 4 3-2 2-3 2-2 5 5-1 3-7 6-10 0 2 0 4 3 3 2-5-1-2-2-5 7 3 21-11 12-18"
-                />
-                <text x="100" y="170" class="us-num">
-                  {{ universities[selectedYear] }}
-                </text>
-                <text x="220" y="170" class="us-small">Universities</text>
-                <text x="270" y="300" class="us-num">
-                  {{ states[selectedYear] }}
-                </text>
-                <text x="330" y="300" class="us-small">
-                  States (and Canada)
-                </text>
-              </svg>
-            </v-row>
+          <v-col cols="12" md="6">
+            <svg
+              svg
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+              class="pl-2 pl-md-10 pr-10"
+            >
+              <circle
+                cx="30"
+                cy="40"
+                :r="this.applicantRadius()"
+                fill="#4ABB79"
+                stroke="#A4DDBB"
+                stroke-width="0.5"
+              />
+              <text x="12" y="42" class="applicant-num font-weight-bold">
+                {{ applicants[selectedYear] }}
+              </text>
+              <text x="20" y="50" class="small white--text">applicants</text>
+              <circle
+                cx="75"
+                cy="20"
+                :r="this.attendeeRadius()"
+                fill="#E6C7BB"
+                stroke="#F2E3DD"
+                stroke-width="0.5"
+              />
+              <text x="65" y="21" class="attendee-num font-weight-bold">
+                {{ attendees[selectedYear] }}
+              </text>
+              <text x="64" y="27" class="small">attendees</text>
+            </svg>
           </v-col>
           <v-col
             cols="12"
-            md="4"
+            md="6"
             class="d-flex justify-center justify-md-end align-start mb-12 mt-12 mb-md-0 mt-md-0"
           >
-            <!-- The pie chart becomes too small on mobile -->
             <PieChart
               :chartData="genderChartData"
               :options="genderChartOptions"
               id="genderChart"
               :index="selectedYear"
             />
+          </v-col>
+        </v-row>
+        <v-row class="justify-center flex-wrap-reverse flex-md-wrap">
+          <v-col cols="12" md="6">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 831 515.7"
+              class="justify-center pl-n5 pl-md-10 pr-10"
+            >
+              <path
+                fill="#49bc77"
+                d="M828 64c-3 0-3 2-5 0 0-3-2-4-1-7-3 0-6 1-7-1l-8-27c-3 0-5-2-8-3-2 2-4 5-8 6-2 0-1-4-4-4-4 9-11 24-6 35-2 4-5 8-5 14-3-1-4 2-6 0-1 3-1 7-4 8-10 1-21 6-31 8-5 1-10 0-14 3-5 3-6 10-10 14-2 3-6 4-5 9 4 1 3 6 4 9-9 13-26 7-40 13 0 5 3 6 5 10-12 16-30 27-49 36-3-4-13-1-14-6 5-5 4-18 11-17-1-13-2-24-10-29-6 0-6 8-11 10-3 1-2-4-3-7 11-2 4-19 6-24-2 0-2-2-3-4-10 0-18-11-24-1-1 3 3 1 3 4-4-1-4 1-6 2-1 6 3 9-3 10-1-4 4-8 0-9-8 9-9 19-10 36 10 10 7 35-7 39-19-18-8-54-4-74-3 4-7 14-12 15 3-9 9-16 12-26 8 2 12-4 22-6 9 1 16 0 22-1-4-1-6-5-5-11-5 1-9 4-13 2v-5c-14 1-21 10-33 8-2-7-12-9-15-5 1-7 6-9 9-14-9 0-12 7-17 12-6 3-14 6-19 10-1-4-6 0-7-2 1-2 3-3 3-6-5-1-11 8-18 4 7-4 10-12 16-17 5-4 13-3 17-9-6-1-14-1-18-4-5 5-15 5-16-2-8 3-15-9-23-2-3-1-6-4-12-3-4-3 0-14-7-14-2 1 0 7-2 8C295 52 178 27 72 0c4 7 0 15 1 21-4-4-2-7-1-10-4 0-3 4-6 4-10-2-15-8-23-11 0 9-1 23 3 30a5 5 0 00-4 1c-1 3 3 3 2 5-4 3-5 8-1 10-3-1-2 2-3 3-7 21-15 41-27 57l-2 14c6 15-7 26-11 37 11 7 1 19 2 28 0 4 7 10 7 16 1 6 1 8 5 11-5 9 0 19 6 22-1 3-5 3-5 7 0 12 12 22 13 33 1 5-4 8-1 13 17-1 19 14 30 18v4c11 3 15 13 15 27 11 4 27 4 40 6 0 2-3 2-2 4 15 7 29 17 42 25 18 11 39 13 65 16l2-9 29 4c6 8 11 18 21 22 5 6 4 12 6 20 2 11 16 13 24 19 7-4 6-16 16-17 20 2 30 15 33 34 7 4 9 12 15 16-4 24 23 29 39 33-3-13-2-25-1-39 16-10 35-18 48-32 13-11 37-3 51-3-1-5-7 0-8-3 6-6 11 3 16 4l-1 4c4 2 6 4 11 4 2-2 3-5 7-5 3 2-2 4 0 5 8-2 2-7 8-9 1 4 14 10 15 3-3-3-11-2-13-6 3-3 7-4 5-11-4 0-2 6-7 4 4-11 14-10 27-10 2-2 0-7 4-7 2 2 4 7 1 9 15-5 38-10 46 5 8 0 16-4 17-9 16-2 15 14 28 15 8 6-1 24 7 30 2-3-1-6 0-7l3 1c1 5-3 5-3 9a80 80 0 0112 19c2 0 2-2 4-1l5 10c8-2 12 7 14 14l13-4c-2 6-11 9-11 13 7-5 13-10 14-20-3-2 0 3-3 3 8-25-6-42-15-57 0-2 3-1 2-3-14-13-29-39-20-64 2-5 8-8 8-15 9-3 11-12 19-17-1-12 6-17 17-18-1-19 23-15 23-28 0 2-8 3-9 0 4 4 7-5 3-6 6 2 12-1 13-8-2-2-6 2-8-1 4 1 6 0 7-3v-1l1 1-10-20h-6c3-3-5-6-3-9l2 1c-1-7-3-12-8-15 3 1 2-2 3-3-6-4-7-21-1-22-4 4 3 8-2 13 5 0 2 1 2 7 5 0 4 6 8 8 1-3-3-6-1-7 10 4-2 18 6 23 1-12 10-24 5-37-6-2-7-9-11-14a14 14 0 0012 7c1 2-2 2-1 4a35 35 0 0010-32c-1-3-4 1-5-1 2-1 2-3 4-3l-1-3 2-2c6-13 26-14 37-22 1-3 0-5 4-6 1 3 0 5-2 6 4-3 6-7 12-8 0-5-1-9-6-8 0 3 5 2 5 5-9 7-10-9-16-6 0-9-1-20 3-32 6 0 9-5 13-8v-9c2 1 4 1 4 3-2 2-3 2-2 5 5-1 3-7 6-10 0 2 0 4 3 3 2-5-1-2-2-5 7 3 21-11 12-18"
+              />
+              <text x="100" y="170" class="us-num">
+                {{ universities[selectedYear] }}
+              </text>
+              <text x="220" y="170" class="us-small">Universities</text>
+              <text x="270" y="300" class="us-num">
+                {{ states[selectedYear] }}
+              </text>
+              <text x="330" y="300" class="us-small">
+                States (and Canada)
+              </text>
+            </svg>
           </v-col>
         </v-row>
       </v-container>
@@ -258,8 +277,11 @@
         ></object
       ></v-col>
     </v-row>
-    <object data="/assets/sponsor/grassTop.svg" class=" mb-n2"></object>
-    <div class="grass-background ">
+    <object
+      data="/assets/sponsor/grassTop.svg"
+      class="ml-n1 mr-n1 mb-n2"
+    ></object>
+    <div class="grass-background ml-0 mr-0">
       <v-row class="justify-center pr-3 pl-3 pb-12 pt-12">
         <v-col cols="12" md="8">
           <v-row class="d-flex flex-column-reverse">
@@ -312,7 +334,10 @@
         </v-col>
       </v-row>
     </div>
-    <object data="/assets/sponsor/grassBottom.svg" class=" mt-n1"></object>
+    <object
+      data="/assets/sponsor/grassBottom.svg"
+      class="ml-n1 mr-n1 mt-n1"
+    ></object>
     <v-row
       style="width: 100vw; flex-direction: row-reverse"
       class="mt-10 mb-10"
