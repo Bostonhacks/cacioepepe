@@ -1,0 +1,73 @@
+[debug] [2020-08-10T01:21:20.028Z] ----------------------------------------------------------------------
+[debug] [2020-08-10T01:21:20.030Z] Command:       /usr/local/bin/firebase /Users/jane/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase deploy --only functions:acceptApplicant,functions:acceptVolunteer,functions:massAcceptEmail,functions:massRejectEmail,functions:massWaitlistEmail,functions:rejectApplicant,functions:retrieveSubmittedApplications,functions:retrieveAcceptedApplications,functions:retrieveAllApplications,functions:retrieveConfirmedApplications,functions:retrieveDeclinedApplications,functions:retrieveRejectedApplications,functions:retrieveWaitlistedApplications,functions:waitlistApplicant,functions:changeConfirmationSchedule,functions:changeRegistrationSchedule,functions:createEvent,functions:createFAQ,functions:createPrize,functions:createSchedule,functions:createTrack,functions:createWifiDetails,functions:deleteEvent,functions:deleteFAQ,functions:deletePrize,functions:deleteSchedule,functions:deleteTrack,functions:deleteWifi,functions:massAcceptMentor,functions:massAcceptVolunteer --force
+[debug] [2020-08-10T01:21:20.030Z] CLI Version:   7.16.1
+[debug] [2020-08-10T01:21:20.030Z] Platform:      darwin
+[debug] [2020-08-10T01:21:20.030Z] Node Version:  v12.13.1
+[debug] [2020-08-10T01:21:20.031Z] Time:          Sun Aug 09 2020 21:21:20 GMT-0400 (Eastern Daylight Time)
+[debug] [2020-08-10T01:21:20.031Z] ----------------------------------------------------------------------
+[debug] [2020-08-10T01:21:20.031Z] 
+[debug] [2020-08-10T01:21:20.038Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-08-10T01:21:20.039Z] > authorizing via signed-in user
+[debug] [2020-08-10T01:21:20.039Z] [iam] checking project bostonhacks-cacioepepe for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2020-08-10T01:21:20.041Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/bostonhacks-cacioepepe:testIamPermissions  
+
+[debug] [2020-08-10T01:21:20.260Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'bostonhacks-cacioepepe'...
+[info] 
+[info] i  deploying functions
+[info] Running command: node predeployFunction.js
+[info] ✔  functions: Finished running predeploy script.
+[debug] [2020-08-10T01:21:22.596Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase serve --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "node functionDeploy.js",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "10"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^4.5.0",
+    "@slack/web-api": "^5.10.0",
+    "archiver": "^3.1.1",
+    "async-openssl": "^1.0.3",
+    "firebase-admin": "^8.6.0",
+    "firebase-functions": "^3.6.2",
+    "fs-extra": "8.1.0",
+    "glob": "^7.1.6",
+    "uuid-v4": "^0.1.0",
+    "shelljs": "^0.8.4",
+    "json-2-csv": "3.7.1",
+    "colors": "^1.4.0"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.1.6"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2020-08-10T01:21:22.597Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/bostonhacks-cacioepepe/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2020-08-10T01:21:22.598Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/bostonhacks-cacioepepe/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2020-08-10T01:21:22.911Z] <<< HTTP RESPONSE 200
+[debug] [2020-08-10T01:21:22.932Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2020-08-10T01:21:22.933Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/bostonhacks-cacioepepe/adminSdkConfig  
+ 
+[debug] [2020-08-10T01:21:23.194Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2020-08-10T01:21:23.197Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/bostonhacks-cacioepepe/configs  
+ 
+[debug] [2020-08-10T01:21:23.461Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (1.16 MB) for uploading
+[debug] [2020-08-10T01:21:24.370Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/bostonhacks-cacioepepe/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2020-08-10T01:21:25.060Z] <<< HTTP RESPONSE 200
+[debug] [2020-08-10T01:21:25.061Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-cc0cccae-a0cb-4df5-810d-346983b36bb4/c84d9467-1b67-401f-a541-5f816a171046.zip?GoogleAccessId=service-1038640085828@gcf-admin-robot.iam.gserviceaccount.com&Expires=1597024284&Signature=pmDHfmATezq75B9eKTjlBp%2FiDLGoz%2Fb2b%2BPUsTE8IP%2FOo5sb%2FG33S6K02YaoR8d9tDxesjla0l2SMFKVQNAY2kCYNjUuhbn98TC0zvZZ7b%2FQXCXbnGryXC6yz%2Fyhc9ZMG4v4WDgeHu1DkhxBCaKsMUYlX7e1P7FMT9bwYq0qXg8j0Z2ACtBaFhjTlgNyhRkOSLNM28tvB1tfUWTrCZC3ulV8qr%2FhWnrR6V%2FHepnNz1EZBg83nmcaWuXXEGe7%2FNkd9Yb%2BlISqgrv3Zy%2Fqg6YWwIOFc4FotBkkcMRuS2St0Bh3dygu5jguJJ0xsScDHBU6kmBfA22iAehM07lUXDN7fQ%3D%3D  
+ <request body omitted>
