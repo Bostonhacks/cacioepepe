@@ -1,4 +1,8 @@
 <template>
+  <!-- TODO
+Update Sponsor Table
+
+ -->
   <div>
     <v-container>
       <v-row
@@ -229,8 +233,7 @@
     ></object>
     <v-row class="table-container justify-center pl-3 pr-3">
       <v-col cols="12" md="8">
-        <!-- This table is a mess on mobile. Also pretty sure the info needs updating as it still mentions table space -->
-        <GeneralSponsorTable />
+        <SponsorBenefitsTable />
         <v-row class="justify-space-between">
           <v-col cols="12" md="3">
             <h4 class="yellow--text">*General Email</h4>
@@ -342,7 +345,6 @@
       style="width: 100vw; flex-direction: row-reverse"
       class="mt-10 mb-10"
     >
-      <!-- fixed! -->
       <v-col class="align-self-end col-12 col-md-5">
         <object data="/assets/sponsor/bee.svg"></object>
       </v-col>
@@ -354,10 +356,11 @@
       <v-btn
         class="mt-10 mb-10 white--text justify-center"
         x-large
-        depressed
+        elevation="5"
         rounded
+        disabled
         color="#f6d374"
-        >Learn More</v-btn
+        >Coming Soon!</v-btn
       >
     </v-row>
     <object
@@ -368,13 +371,13 @@
 </template>
 
 <script>
-import GeneralSponsorTable from "@/components/sponsor/GeneralSponsorTable";
+import SponsorBenefitsTable from "@/components/sponsor/SponsorBenefitsTable";
 import PieChart from "@/components/common/PieChart";
 
 export default {
   components: {
     PieChart,
-    GeneralSponsorTable
+    SponsorBenefitsTable
   },
   methods: {
     applicantRadius() {

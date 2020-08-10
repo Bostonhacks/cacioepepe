@@ -121,49 +121,35 @@ export default {
       ],
       generalData: [
         {
-          name: "Table Space",
+          name: "General email*",
           onePointFive: "✓",
           three: "✓",
           five: "✓",
           sevenPointFive: "✓"
         },
         {
-          name: "General Email",
+          name: "Bring API",
           onePointFive: "✓",
           three: "✓",
           five: "✓",
           sevenPointFive: "✓"
         },
         {
-          name: "Bring API/Hardware",
-          onePointFive: "✓",
-          three: "✓",
-          five: "✓",
-          sevenPointFive: "✓"
-        },
-        {
-          name: "Bring Mentors",
+          name: "Bring mentors",
           onePointFive: "2",
           three: "4",
           five: "∞",
           sevenPointFive: "∞"
         },
         {
-          name: "Give a Workshop",
-          onePointFive: "",
-          three: "✓",
-          five: "✓",
-          sevenPointFive: "✓"
-        },
-        {
-          name: "Host a Special Side Event",
+          name: "Host special side challenge**",
           onePointFive: "",
           three: "",
           five: "✓",
           sevenPointFive: "✓"
         },
         {
-          name: "Speak at Opening Ceremony",
+          name: "Speak at opening ceremony (can be pre-recorded or live)",
           onePointFive: "",
           three: "2 min",
           five: "4 min",
@@ -172,11 +158,11 @@ export default {
       ],
       recruitingData: [
         {
-          name: "Distribute Recruiting Materials",
-          onePointFive: "✓",
-          three: "✓",
-          five: "✓",
-          sevenPointFive: "✓"
+          name: "Access to emails to distribute recruiting materials",
+          onePointFive: "Post-event",
+          three: "Post-event",
+          five: "Pre-event",
+          sevenPointFive: "Pre-event"
         },
         {
           name: "Access to resumes",
@@ -186,14 +172,21 @@ export default {
           sevenPointFive: "Pre-event"
         },
         {
-          name: "Send Recruiters",
+          name: "Bring recruiters",
           onePointFive: "",
           three: "1",
           five: "2",
           sevenPointFive: "4"
         },
         {
-          name: "Email Hackathon Attendees",
+          name: "Virtual interview Rooms",
+          onePointFive: "",
+          three: "",
+          five: "✓",
+          sevenPointFive: "✓"
+        },
+        {
+          name: "Email hackathon attendees",
           onePointFive: "",
           three: "",
           five: "✓",
@@ -202,28 +195,28 @@ export default {
       ],
       brandingData: [
         {
-          name: "Distribute Swag",
+          name: "Distribute swag",
           onePointFive: "✓",
           three: "✓",
           five: "✓",
           sevenPointFive: "✓"
         },
         {
-          name: "Give Branded/API Prize",
+          name: "Give branded/API prize",
           onePointFive: "✓",
           three: "✓",
           five: "✓",
           sevenPointFive: "✓"
         },
         {
-          name: "Logo on Website & T-Shirt",
+          name: "Logo on website & T-Shirt",
           onePointFive: "✓",
           three: "✓",
           five: "✓",
           sevenPointFive: "✓"
         },
         {
-          name: "Branded Meal/Event",
+          name: "Branded virtual event",
           onePointFive: "",
           three: "",
           five: "✓",
@@ -235,17 +228,6 @@ export default {
           three: "",
           five: "",
           sevenPointFive: "✓"
-        }
-      ],
-      testData: [
-        {
-          name: "General"
-        },
-
-        { name: "Recruiting" },
-
-        {
-          name: "Branding"
         }
       ]
     };
