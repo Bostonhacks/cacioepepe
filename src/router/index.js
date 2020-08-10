@@ -1,6 +1,9 @@
+import store from "@/store/index.js";
+// we want to NOT import Home dynamically because we will always
+// want it on first render, so dont code-split it!
+import Home from "@/views/Home";
 import Vue from "vue";
 import VueRouter from "vue-router";
-import store from "@/store/index.js";
 
 Vue.use(VueRouter);
 
@@ -8,7 +11,7 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: () => import("@/views/Home.vue")
+    component: Home
   },
   {
     path: "/admin",
@@ -99,13 +102,53 @@ const routes = [
     meta: {
       requiresAuth: false
     }
+  },
+  // PLEASE MAKE SURE THAT THIS IS ALWAYS THE LAST ROUTE!!!
+  {
+    path: "*",
+    name: "notFound",
+    component: () => import("@/views/NotFound.vue"),
+    meta: {
+      requiresAuth: false
+    }
   }
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      // simulating the scroll to anchor
+      // behavior with router-links
+      const position = {};
+      if (to.hash) {
+        position.selector = to.hash;
+        if (document.querySelector(to.hash)) {
+          // this is a hack to change the router URL...
+          // otherwise if you click something like #tracks
+          // scroll and click again, Router will simply not respond
+          // so we need to reset the url :/
+          this.push("/");
+          // return actual position of hash link
+          return position;
+        }
+        return new Promise(resolve => {
+          setTimeout(() => {
+            if (document.querySelector(to.hash)) {
+              // anchor hack as mentioned above
+              this.push("/");
+              resolve(position);
+            }
+            resolve(false);
+          }, 1200);
+        });
+      }
+    }
+  }
 });
 
 router.beforeEach((to, from, next) => {

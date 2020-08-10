@@ -1,15 +1,14 @@
 <template>
   <v-app>
-    <navigationBar
-      v-if="this.getRoutePath && this.getRoutePath !== '/live'"
-      class="forDesk"
-    />
-    <mobileBar
+    <!-- <navigationBar v-if="this.getRoutePath && this.getRoutePath !== '/live'" /> -->
+    <!-- <mobileBar
       v-if="this.getRoutePath && this.getRoutePath !== '/live'"
       class="forMob"
-    />
-
-    <router-view />
+    />-->
+    <navigationBar />
+    <transition name="slide" mode="out-in">
+      <router-view />
+    </transition>
     <footerRow />
   </v-app>
 </template>
@@ -17,14 +16,14 @@
 <script>
 import store from "@/store/index.js";
 import navigationBar from "@/components/common/NavigationBar.vue";
-import mobileBar from "@/components/common/MobileBar.vue";
+// import mobileBar from "@/components/common/MobileBar.vue";
 import footerRow from "@/components/common/Footer.vue";
 export default {
   name: "App",
   store,
   components: {
     navigationBar,
-    mobileBar,
+    // mobileBar,
     footerRow
   },
   data() {
@@ -44,7 +43,7 @@ export default {
 </script>
 
 <style>
-.forDesk {
+/* .forDesk {
   display: block;
 }
 
@@ -60,5 +59,15 @@ export default {
   .forMob {
     display: block;
   }
+} */
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: opacity 0.5s, transform 0.5s;
+}
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+  transform: scale(0.97);
 }
 </style>
