@@ -56,15 +56,6 @@
     </v-container>
 
     <v-container>
-      <v-subheader>Sponsor Companies</v-subheader>
-      <v-list-item two-line v-for="(company, i) in companyData" :key="i">
-        <v-list-item-content>
-          <v-list-item-title>{{ company.name }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-container>
-
-    <v-container>
       <v-row>
         <h1 class="display-1 pb-10">
           Recap
@@ -88,13 +79,51 @@
       </v-card>
 
       <v-row>
-        <v-col class="col-4">
-          <LineChart :chartData="lineChartData" />
+        <v-col>
+          <v-row justify="center">
+            <h4 class="display-1 indigo--text text--darken-4 font-weight-bold">
+              {{ this.totalApplicants[this.yearIndex] }}
+            </h4>
+          </v-row>
+          <v-row
+            justify="center"
+            class="indigo--text text--darken-4 font-weight-bold"
+            >Total Applicants</v-row
+          >
         </v-col>
+        <v-col>
+          <v-row justify="center">
+            <h4 class="display-1 indigo--text text--darken-4 font-weight-bold">
+              {{ this.newToBHacks[this.yearIndex] }}
+            </h4>
+          </v-row>
+          <v-row
+            justify="center"
+            class="indigo--text text--darken-4 font-weight-bold"
+            >New to BostonHacks</v-row
+          >
+        </v-col>
+        <v-col>
+          <v-row></v-row>
+          <v-row justify="center">
+            <h4 class="display-1 indigo--text text--darken-4 font-weight-bold">
+              500+
+            </h4>
+          </v-row>
+          <v-row
+            justify="center"
+            class="indigo--text text--darken-4 font-weight-bold"
+            >Education Level</v-row
+          >
+        </v-col>
+      </v-row>
+
+      <v-row>
         <v-col class="col-4">
           <PieChart
             :year="yearIndex"
             :chartData="majorChartData"
+            :options="majorChartData.options"
             id="majorChart"
           />
         </v-col>
@@ -102,7 +131,16 @@
           <PieChart
             :year="yearIndex"
             :chartData="genderChartData"
+            :options="genderChartData.options"
             id="genderChart"
+          />
+        </v-col>
+        <v-col class="col-4">
+          <BarChart
+            :year="yearIndex"
+            :chartData="hackathonsChartData"
+            :options="hackathonsChartData.options"
+            id="hackathonsChart"
           />
         </v-col>
       </v-row>
@@ -114,23 +152,63 @@
       <RecruitingSponsorTable />
       <BrandingSponsorTable />
     </v-container>
+
+    <v-container>
+      <h2>Sponsor Companies</h2>
+
+      <v-row align="center" justify="center">
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/az.jpg"></v-img>
+        </v-col>
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/bose.png"></v-img>
+        </v-col>
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/CapitalOne.png"></v-img>
+        </v-col>
+      </v-row>
+
+      <v-row align="center" justify="center">
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/GoogleCloud.png"></v-img>
+        </v-col>
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/kind.jpg"></v-img>
+        </v-col>
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/Manulife_JohnHancock.png"></v-img>
+        </v-col>
+      </v-row>
+
+      <v-row align="center" justify="center">
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/Raytheon.jpg"></v-img>
+        </v-col>
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/spark.png"></v-img>
+        </v-col>
+        <v-col class="col-4">
+          <v-img src="@/assets/sponsorlogos/twilio.png"></v-img>
+        </v-col>
+      </v-row>
+    </v-container>
   </v-container>
 </template>
 
 <script>
-import LineChart from "@/components/common/LineChart";
 import GeneralSponsorTable from "@/components/sponsor/GeneralSponsorTable";
 import RecruitingSponsorTable from "@/components/sponsor/RecruitingSponsorTable";
 import BrandingSponsorTable from "@/components/sponsor/BrandingSponsorTable";
 import PieChart from "@/components/common/PieChart";
+import BarChart from "@/components/common/BarChart";
 
 export default {
   components: {
-    LineChart,
     PieChart,
     GeneralSponsorTable,
     RecruitingSponsorTable,
-    BrandingSponsorTable
+    BrandingSponsorTable,
+    BarChart
   },
   watch: {
     yearIndex: {
@@ -160,28 +238,21 @@ export default {
         "Checked In"
       ],
       toggleYearSelect: false,
-      companyData: [
-        {
-          name: "Company 1",
-          image: null
-        },
-        {
-          name: "Company 2",
-          image: null
-        },
-        {
-          name: "Company 3",
-          image: null
-        },
-        {
-          name: "Company 4",
-          image: null
-        }
-      ],
+      totalApplicants: [200, 300, 400, 500],
+      newToBHacks: [50, 100, 150, 20],
+      highSchool: [10, 20, 30, 40],
+      undergrad: [20, 30, 40, 50],
+      grad: [30, 40, 50, 60],
       yearIndex: "3",
       lastYearIndex: "3",
       years: ["2016", "2017", "2018", "2019"],
       lineChartData: {
+        options: {
+          title: {
+            display: true,
+            text: "Number of Applicants"
+          }
+        },
         labels: ["2016", "2017", "2018", "2019"],
         datasets: [
           {
@@ -196,6 +267,12 @@ export default {
         ]
       },
       majorChartData: {
+        options: {
+          title: {
+            display: true,
+            text: "Majors"
+          }
+        },
         labels: [
           "Computer Science",
           "Electrical Engineering",
@@ -230,6 +307,12 @@ export default {
         ]
       },
       genderChartData: {
+        options: {
+          title: {
+            display: true,
+            text: "Genders"
+          }
+        },
         labels: ["Male", "Female", "Other"],
         datasets: [
           {
@@ -256,6 +339,59 @@ export default {
             label: "2020",
             backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
             data: [20, 70, 5]
+          }
+        ]
+      },
+      hackathonsChartData: {
+        options: {
+          title: {
+            display: true,
+            text: "Hackathons Attended"
+          }
+        },
+        labels: ["0", "1", "2", "3+"],
+        datasets: [
+          {
+            label: "Data One",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            barPercentage: 0.5,
+            barThickness: 6,
+            maxBarThickness: 8,
+            minBarLength: 2,
+            data: [10, 20, 30, 40]
+          },
+          {
+            label: "Data Two",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            barPercentage: 0.5,
+            barThickness: 6,
+            maxBarThickness: 8,
+            minBarLength: 2,
+            data: [10, 90, 10, 40]
+          },
+          {
+            label: "Data Three",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            barPercentage: 0.5,
+            barThickness: 6,
+            maxBarThickness: 8,
+            minBarLength: 2,
+            data: [15, 15, 70]
+          },
+          {
+            label: "Data Four",
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1"],
+            barPercentage: 0.5,
+            barThickness: 6,
+            maxBarThickness: 8,
+            minBarLength: 2,
+            data: [5, 5, 90, 20]
+          },
+          {
+            label: "Data Five",
+            fillColor: "blue",
+            strokeColor: "green",
+            data: [20, 70, 5, 50]
           }
         ]
       }

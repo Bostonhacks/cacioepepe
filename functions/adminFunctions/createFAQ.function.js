@@ -1,22 +1,28 @@
 const admin = require("firebase-admin");
 const functions = require("firebase-functions");
-const { v4: uuidv4 } = require("uuid");
 
 const db = admin.firestore();
+
+const arrayUnion = admin.firestore.FieldValue.arrayUnion;
 
 module.exports.createFAQ = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     return { message: "Authentication Required!", code: 401 };
   }
 
-  var uid = uuidv4();
-  const faq = db.collection("FAQ").doc(uid);
+  var newFAQ = {
+    q: data.question,
+    a: data.answer
+  };
 
-  await faq.set({
-    uid: uid,
-    questions: data.questions,
-    answers: data.answers
-  });
+  const faqDb = db.collection("admin").doc("FAQs");
+  await faqDb
+    .update({
+      faqs: arrayUnion(newFAQ)
+    })
+    .catch(function(error) {
+      console.error("Error: ", error);
+    });
 
-  return "Completed!";
+  return { message: "New FAQ created", code: 201 };
 });

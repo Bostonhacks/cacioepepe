@@ -8,14 +8,32 @@ module.exports.updatePrize = functions.https.onCall(async (data, context) => {
     return { message: "Authentication Required!", code: 401 };
   }
 
-  var name, details;
-  name = data.name;
-  details = data.details;
-  const prizeDoc = db.collection("prizes").doc(data.uid);
-  await prizeDoc.update({
-    prizeName: name,
-    prizeDetail: details
-  });
+  const prizesDb = db.collection("admin").doc("prizeDoc");
+  let info = await prizesDb.get();
+  this.prizes = info.data().prizes;
 
-  return "complete";
+  var found = false;
+  for (var i = 0; i < this.prizes.length; i++) {
+    if (this.prizes[i].name == data.oldName) {
+      found = true;
+      this.prizes[i] = {
+        name: data.newName,
+        prize: data.newPrize,
+        description: data.newDesc
+      };
+    }
+  }
+  if (found == false) {
+    return "Name not found. No changes made.";
+  }
+
+  await prizesDb
+    .update({
+      prizes: this.prizes
+    })
+    .catch(function(error) {
+      console.error("Error: ", error);
+    });
+
+  return { message: "Prize updated", code: 200 };
 });
