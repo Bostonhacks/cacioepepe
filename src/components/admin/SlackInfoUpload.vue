@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-form>
       <v-row>
-        <v-col cols="12" sm="5">
+        <v-col cols="6" sm="6">
           <v-text-field
             v-model="token"
             label="Slack API Token"
@@ -10,7 +10,7 @@
             outlined
           ></v-text-field>
         </v-col>
-        <v-col cols="12" sm="5">
+        <v-col cols="6" sm="6">
           <v-text-field
             v-model="invitelink"
             label="Slack Workspace Invite link"
