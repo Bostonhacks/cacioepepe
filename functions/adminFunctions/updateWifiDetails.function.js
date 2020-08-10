@@ -8,15 +8,33 @@ module.exports.updateWifiDetails = functions.https.onCall(
     if (!context.auth) {
       return { message: "Authentication Required!", code: 401 };
     }
-    var name, password;
-    name = data.name;
-    password = data.password;
-    const wifiDoc = db.collection("wifiDetails").doc(data.uid);
-    await wifiDoc.update({
-      wifiName: name,
-      wifiPassword: password
-    });
 
-    return "Completed!";
+    const wifiDb = db.collection("admin").doc("wifiDetails");
+    let info = await wifiDb.get();
+    this.wifis = info.data().wifis;
+
+    var found = false;
+    for (var i = 0; i < this.wifis.length; i++) {
+      if (this.wifis[i].name == data.oldName) {
+        found = true;
+        this.wifis[i] = {
+          name: data.newName,
+          password: data.newPassword
+        };
+      }
+    }
+    if (found == false) {
+      return "Wifi not found. No changes made.";
+    }
+
+    await wifiDb
+      .update({
+        wifis: this.wifis
+      })
+      .catch(function(error) {
+        console.error("Error: ", error);
+      });
+
+    return { message: "Wifi updated", code: 200 };
   }
 );
