@@ -8,7 +8,16 @@ module.exports.deleteWifi = functions.https.onCall(async (data, context) => {
     return { message: "Authentication Required!", code: 401 };
   }
 
-  const file = db.collection("wifiDetails").doc(data.uid);
-  await file.delete();
-  return;
+  const wifiDb = db.collection("admin").doc("wifiDetails");
+  let info = await wifiDb.get();
+  this.wifis = info.data().wifis.filter(wifi => wifi.name != data.name);
+  await wifiDb
+    .update({
+      wifis: this.wifis
+    })
+    .catch(function(error) {
+      console.error("Error: ", error);
+    });
+
+  return { message: "Wifi deleted", code: 200 };
 });
