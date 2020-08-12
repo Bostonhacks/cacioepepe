@@ -107,7 +107,7 @@
                 </h2>
                 <br />
                 <v-row justify="center">
-                  <v-btn depressed rounded disabled @click="sponsor()"
+                  <v-btn depressed rounded @click="sponsor()"
                     >Learn More (Coming Soon)</v-btn
                   >
                 </v-row>
