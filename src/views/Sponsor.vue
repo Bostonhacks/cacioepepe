@@ -280,10 +280,7 @@ Update Sponsor Table
         ></object
       ></v-col>
     </v-row>
-    <object
-      data="/assets/sponsor/grassTop.svg"
-      class="ml-n1 mr-n1 mb-n2"
-    ></object>
+    <object data="/assets/sponsor/grassTop.svg" class="mb-n2"></object>
     <div class="grass-background ml-0 mr-0">
       <v-row class="justify-center pr-3 pl-3 pb-12 pt-12">
         <v-col cols="12" md="8">
@@ -337,10 +334,7 @@ Update Sponsor Table
         </v-col>
       </v-row>
     </div>
-    <object
-      data="/assets/sponsor/grassBottom.svg"
-      class="ml-n1 mr-n1 mt-n1"
-    ></object>
+    <object data="/assets/sponsor/grassBottom.svg" class="mt-n1"></object>
     <v-row
       style="width: 100vw; flex-direction: row-reverse"
       class="mt-10 mb-10"
