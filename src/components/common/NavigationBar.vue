@@ -1,21 +1,8 @@
 <template>
   <nav>
     <ul>
-      <!-- <li v-for="bannerLink in BannerLinks" :key="bannerLink.text">
+      <li v-for="bannerLink in BannerLinks" :key="bannerLink.text">
         <Banner :bannerLink="bannerLink" />
-      </li>-->
-      <li>
-        <router-link to="/">home</router-link>
-      </li>
-      <li>
-        <router-link to="/application">application</router-link>
-      </li>
-      <li>
-        <router-link
-          @click="() => this.$router.push('/')"
-          :to="{ name: 'home', hash: '#tracks' }"
-          >tracks</router-link
-        >
       </li>
     </ul>
     <!-- <v-toolbar style="background: rgba(0,0,0,0) !important" elevation="0">
@@ -47,54 +34,55 @@
           >FAQ</v-btn
         >
         <v-btn text @click="application()">Application</v-btn>
-        <v-btn icon>
-          <v-icon v-if="user" @click="signOut()">mdi-export-variant</v-icon>
-          <v-icon v-else @click="signIn()">mdi-arrow-right</v-icon>
-        </v-btn>
       </v-toolbar-items>
     </v-toolbar>-->
+    <v-btn icon>
+      <div v-if="user" @click="signOut()">Sign Out</div>
+      <div v-else @click="signIn()">Sign In</div>
+    </v-btn>
   </nav>
 </template>
 
 <script>
-// import Banner from "./Banner";
+import Banner from "./Banner";
 
 export default {
-  // components: { Banner: Banner },
+  components: { Banner: Banner },
   name: "NavigationBar",
   data() {
     return {
       BannerLinks: [
         {
-          action: () => this.$router.push("/").catch(() => {}),
+          path: "/",
           text: "Home",
           direction: "right",
           color: "#fe735f"
         },
         {
-          action: () => this.$router.push("#tracks").catch(() => {}),
-          text: "Tracks",
+          path: "/sponsor",
+          text: "Sponsors",
           direction: "left",
           color: "#F6D374"
         },
         {
-          action: () => this.$router.push("#schedule").catch(() => {}),
-          text: "Schedule",
+          path: "/dashboard",
+          text: "Dashboard",
           direction: "right",
-          color: "#4BBC79"
-        },
-        {
-          action: () => this.$router.push("#faq").catch(() => {}),
-          text: "FAQ",
-          direction: "left",
           color: "#0098FF"
         },
         {
-          action: () => this.$router.push("/application").catch(() => {}),
-          text: "Application",
-          direction: "right",
-          color: "#21998A"
+          path: "/login",
+          text: "Login",
+          direction: "left",
+          color: "#4BBC79"
         }
+        // {
+        //   path: "/",
+        //   hash: "#FAQ",
+        //   text: "FAQ",
+        //   direction: "left",
+        //   color: "#21998A"
+        // },
       ]
     };
   },

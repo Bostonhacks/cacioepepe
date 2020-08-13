@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app id="app">
     <!-- <navigationBar v-if="this.getRoutePath && this.getRoutePath !== '/live'" /> -->
     <!-- <mobileBar
       v-if="this.getRoutePath && this.getRoutePath !== '/live'"
@@ -35,9 +35,9 @@ export default {
     }
   },
   methods: {
-    home() {
-      this.$router.push("/");
-    }
+    // home() {
+    //   this.$router.push("/");
+    // }
   }
 };
 </script>
@@ -60,6 +60,10 @@ export default {
     display: block;
   }
 } */
+
+#app {
+  overflow-x: hidden;
+}
 
 .slide-enter-active,
 .slide-leave-active {

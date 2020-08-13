@@ -158,37 +158,37 @@
 
       <v-row align="center" justify="center">
         <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/az.jpg"></v-img>
+          <!-- <v-img src="@/assets/sponsorlogos/az.jpg"></v-img> -->
         </v-col>
         <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/bose.png"></v-img>
+          <!-- <v-img src="@/assets/sponsorlogos/bose.png"></v-img> -->
         </v-col>
         <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/CapitalOne.png"></v-img>
-        </v-col>
-      </v-row>
-
-      <v-row align="center" justify="center">
-        <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/GoogleCloud.png"></v-img>
-        </v-col>
-        <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/kind.jpg"></v-img>
-        </v-col>
-        <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/Manulife_JohnHancock.png"></v-img>
+          <!-- <v-img src="@/assets/sponsorlogos/CapitalOne.png"></v-img> -->
         </v-col>
       </v-row>
 
       <v-row align="center" justify="center">
         <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/Raytheon.jpg"></v-img>
+          <!-- <v-img src="@/assets/sponsorlogos/GoogleCloud.png"></v-img> -->
         </v-col>
         <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/spark.png"></v-img>
+          <!-- <v-img src="@/assets/sponsorlogos/kind.jpg"></v-img> -->
         </v-col>
         <v-col class="col-4">
-          <v-img src="@/assets/sponsorlogos/twilio.png"></v-img>
+          <!-- <v-img src="@/assets/sponsorlogos/Manulife_JohnHancock.png"></v-img> -->
+        </v-col>
+      </v-row>
+
+      <v-row align="center" justify="center">
+        <v-col class="col-4">
+          <!-- <v-img src="@/assets/sponsorlogos/Raytheon.jpg"></v-img> -->
+        </v-col>
+        <v-col class="col-4">
+          <!-- <v-img src="@/assets/sponsorlogos/spark.png"></v-img> -->
+        </v-col>
+        <v-col class="col-4">
+          <!-- <v-img src="@/assets/sponsorlogos/twilio.png"></v-img> -->
         </v-col>
       </v-row>
     </v-container>

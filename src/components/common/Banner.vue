@@ -1,8 +1,8 @@
 <template>
-  <a
-    :href="bannerLink.link"
-    @click="() => bannerLink.action()"
-    alt="navigation link to"
+  <router-link
+    :to="{ path: bannerLink.path, hash: bannerLink.hash }"
+    :alt="bannerLink.text"
+    style="text-decoration: none;"
   >
     <svg
       class="banner"
@@ -29,15 +29,13 @@
         v-if="bannerLink.direction == 'right'"
         style="filter:url(#dropshadow)"
         :fill="bannerLink.color"
-        d="M0 0s9 98 0 127c50-15 75-25 75-25l69 25c8-42 0-127 0-127z"
-        transform="scale(1 .7)"
+        d="M0 0s9 68.6 0 88.9c50 -10.5 75 -17.5 75 -17.5l69 17.5c8 -29.4 0 -88.9 0 -88.9z"
       />
       <path
         v-if="bannerLink.direction == 'left'"
         style="filter:url(#dropshadow)"
         :fill="bannerLink.color"
-        d="M0 0s9 98 0 127c50-15 75-25 75-25l69 25c8-42 0-127 0-127z"
-        transform="scale(1 .7)"
+        d="M151 0s-9 68.6 0 88.9c-50 -10.5 -75 -17.5 -75 -17.5l-69 17.5c-8 -29.4 0 -88.9 0 -88.9z"
       />
       <text
         class="textSVG"
@@ -51,12 +49,12 @@
         {{ bannerLink.text }}
       </text>
     </svg>
-  </a>
+  </router-link>
 </template>
 
 <script>
 export default {
-  props: ["bannerLink"]
+  props: { bannerLink: Object }
 };
 </script>
 

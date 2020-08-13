@@ -1,0 +1,31 @@
+<template>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="-7 -7 67 67"
+  >
+    <defs>
+      <filter id="basicBlurInstagram">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
+      </filter>
+      <path
+        d="M28.5 13.9a14.6 14.6 0 1014.7 14.6A14.6 14.6 0 0028.5 14zm0 24.1a9.5 9.5 0 119.5-9.5 9.5 9.5 0 01-9.5 9.5zm18.7-24.7a3.4 3.4 0 11-3.4-3.4 3.4 3.4 0 013.4 3.4zm9.7 3.5c-.3-4.6-1.3-8.7-4.7-12S45 .4 40.4.2c-4.7-.3-18.8-.3-23.5 0-4.6.2-8.6 1.3-12 4.6S.4 12.2.2 16.8c-.3 4.7-.3 18.8 0 23.5.2 4.6 1.3 8.6 4.6 12s7.4 4.3 12 4.5c4.7.3 18.8.3 23.5 0 4.6-.2 8.6-1.2 12-4.6s4.3-7.3 4.6-12c.2-4.6.2-18.7 0-23.4zm-6.1 28.5a9.6 9.6 0 01-5.4 5.5c-3.8 1.5-12.7 1.1-16.9 1.1s-13 .3-16.8-1.1a9.6 9.6 0 01-5.4-5.5c-1.5-3.7-1.1-12.6-1.1-16.8s-.4-13 1.1-16.8a9.6 9.6 0 015.4-5.4C15.5 4.8 24.4 5 28.5 5s13.1-.3 16.9 1.2a9.6 9.6 0 015.4 5.4c1.5 3.8 1.1 12.7 1.1 16.8s.4 13.1-1.1 16.8z"
+        id="instagramLogo"
+      />
+    </defs>
+    <use
+      href="#instagramLogo"
+      fill="black"
+      transform="translate(2 2)"
+      filter="url(#basicBlurInstagram)"
+      opacity="0.5"
+    />
+    <use href="#instagramLogo" fill="white" />
+  </svg>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style></style>
