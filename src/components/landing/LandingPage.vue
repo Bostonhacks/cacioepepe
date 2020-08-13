@@ -1,7 +1,7 @@
 <template>
   <main>
     <div id="home" z-index="100" class="mb-n1 pt-16">
-      <v-row class="py-10"></v-row>
+      <v-row class="py-9"></v-row>
       <v-container class="mt-5">
         <v-row justify="space-between" class="mx-md-n8 mb-n16">
           <v-col cols="3" class="pa-0">
@@ -224,7 +224,7 @@
 
       <Wave3 z-index="10" class="d-block mt-n16 mb-n1" />
     </div>
-
+    <River />
     <div id="FAQ" class="pb-16">
       <h2
         class="display-1 pt-15"
@@ -340,7 +340,8 @@ import Tree from "@/components/common/SVG/Tree";
 import Windmill from "@/components/common/SVG/Windmill";
 import RedHotAirBalloon from "@/components/common/SVG/RedHotAirBalloon";
 import GreenHotAirBalloon from "@/components/common/SVG/GreenHotAirBalloon";
-import BostonHacksLogoTextShadowed from "../common/SVG/BostonHacksLogoTextShadowed";
+import BostonHacksLogoTextShadowed from "@/components/common/SVG/BostonHacksLogoTextShadowed";
+import River from "@/components/common/SVG/River";
 
 export default {
   computed: {
@@ -365,7 +366,8 @@ export default {
     Windmill: Windmill,
     RedHotAirBalloon: RedHotAirBalloon,
     GreenHotAirBalloon: GreenHotAirBalloon,
-    BostonHacksLogoTextShadowed: BostonHacksLogoTextShadowed
+    BostonHacksLogoTextShadowed: BostonHacksLogoTextShadowed,
+    River: River
   }
 };
 </script>
@@ -399,9 +401,6 @@ html {
   font-weight: bold;
 }
 
-.qna {
-  padding: 1.5rem;
-}
 .qna h2 {
   font-size: 1.5rem;
   color: black;
