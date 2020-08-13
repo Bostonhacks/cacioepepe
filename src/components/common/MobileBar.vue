@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <v-app-bar style="background: #80d2ff !important" elevation="0">
+    <v-app-bar class="backgroundColor" elevation="0">
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <img
         class="mr-3"
@@ -109,6 +109,11 @@ export default {
     },
     getRoutePath() {
       return this.$route.path;
+    },
+    backgroundColor() {
+      return this.$route.path == "/sponsor"
+        ? "sponsor-background"
+        : "landing-background";
     }
   },
   methods: {

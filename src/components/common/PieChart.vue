@@ -1,42 +1,30 @@
 <template>
-  <canvas :id="id" :width="width" :height="height"></canvas>
+  <canvas :id="id"></canvas>
 </template>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 <script>
 import Chart from "chart.js";
 export default {
   props: {
-    width: {
-      default: 400
-    },
-    height: {
-      default: 400
+    id: {
+      required: true
     },
     type: {
       default: "doughnut"
     },
     chartData: {},
-
-    options: {
-      // default:""
-    },
-    year: {
-      default: "4"
-    },
-    id: {
-      required: true
+    options: {},
+    index: {
+      default: 0
     }
   },
   mounted() {
     this.generateChart();
+    this.toggleData();
   },
   watch: {
-    year: {
-      handler: function() {
-        this.toggleYearData();
-      },
-      deep: true
+    index: function() {
+      this.toggleData();
     }
   },
 
@@ -49,12 +37,11 @@ export default {
           data: this.chartData,
           options: this.options
         });
-        this.toggleYearData();
       }
     },
-    toggleYearData() {
-      for (let i = 0; i < 5; i++) {
-        if (i == this.year) {
+    toggleData() {
+      for (let i = 0; i < this.chartData.datasets.length; i++) {
+        if (i == this.index) {
           this.chart.data.datasets[i].hidden = false;
         } else {
           this.chart.data.datasets[i].hidden = true;
@@ -62,11 +49,6 @@ export default {
       }
       this.chart.update();
     }
-  },
-  data() {
-    return {
-      chart: null
-    };
   }
 };
 </script>
