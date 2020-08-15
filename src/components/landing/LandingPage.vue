@@ -7,15 +7,15 @@
           <v-col cols="3" class="pa-0">
             <Cloud9
               type="light"
-              style=" top: -5rem; position: relative"
-              class="d-none d-sm-flex ml-sm-4"
+              style=" position: relative"
+              class="d-none d-sm-flex ml-sm-4 mt-n16"
             />
           </v-col>
           <v-col cols="3">
             <Cloud9
               type="light"
-              style="top: 10rem; position: relative"
-              class="d-none d-sm-flex ml-sm-4"
+              style=" position: relative"
+              class="d-none d-sm-flex ml-sm-4 mt-16 pt-16"
             />
           </v-col>
         </v-row>
@@ -109,17 +109,20 @@
         </v-row>
         <v-row no-gutters justify="space-between" style="height: 0">
           <v-col cols="2" sm="4" lg="3" xl="2">
-            <RedHotAirBalloon style="top: 5rem; position: relative;" />
+            <RedHotAirBalloon
+              class="mt-0 mt-15-sm"
+              style="position: relative;"
+            />
           </v-col>
-          <v-col cols="3" lg="2">
-            <GreenHotAirBalloon style="position: relative; top: -10rem" />
+          <v-col cols="3" lg="2" style="position: relative;" class="mt-n16">
+            <div class="mt-n16" style="position: relative">
+              <GreenHotAirBalloon class="mt-n16" style="position: relative; " />
+            </div>
           </v-col>
         </v-row>
         <v-row justify="center">
           <v-col>
-            <h2
-              style="text-align: center; font-weight: bold; font-size: 2rem; margin-bottom: 4em"
-            >
+            <h2 class="text-center mb-4 mb-sm-16 pb-xl-16 pt-xl-4 sectionTitle">
               Tracks
             </h2>
           </v-col>
@@ -222,9 +225,9 @@
         </v-row>
       </v-container>
 
-      <Wave3 z-index="10" class="d-block mt-n16 mb-n1" />
+      <Wave4 z-index="10" class="d-block mt-n16 mb-n1" />
     </div>
-    <River />
+
     <div id="FAQ" class="pb-16">
       <h2
         class="display-1 pt-15"
@@ -327,6 +330,9 @@
           </v-col>
         </v-row>
       </v-container>
+      <River />
+
+      <Wave3 z-index="10" class="d-block mt-n16 mb-n1" />
     </div>
   </main>
 </template>
@@ -335,6 +341,7 @@
 import Wave from "@/components/common/SVG/Wave";
 import Wave2 from "@/components/common/SVG/Wave2";
 import Wave3 from "@/components/common/SVG/Wave3";
+import Wave4 from "@/components/common/SVG/Wave4";
 import Cloud9 from "@/components/common/SVG/Cloud9";
 import Tree from "@/components/common/SVG/Tree";
 import Windmill from "@/components/common/SVG/Windmill";
@@ -360,9 +367,10 @@ export default {
   components: {
     Wave: Wave,
     Wave2: Wave2,
+    Wave3: Wave3,
+    Wave4: Wave4,
     Cloud9: Cloud9,
     Tree: Tree,
-    Wave3: Wave3,
     Windmill: Windmill,
     RedHotAirBalloon: RedHotAirBalloon,
     GreenHotAirBalloon: GreenHotAirBalloon,
@@ -391,7 +399,7 @@ html {
 }
 
 #FAQ {
-  background: #e6c8bc;
+  background: #4cc07a;
 }
 
 .header-title {
@@ -424,5 +432,10 @@ html {
 
 .basicTextShadow {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.sectionTitle {
+  font-weight: bold;
+  font-size: 2.5rem;
 }
 </style>

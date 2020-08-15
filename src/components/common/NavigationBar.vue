@@ -1,45 +1,15 @@
 <template>
   <nav>
     <ul>
-      <li v-for="bannerLink in BannerLinks" :key="bannerLink.text">
-        <Banner :bannerLink="bannerLink" />
+      <li
+        v-for="bannerLink in filteredBannerLinks"
+        :key="bannerLink.text + bannerLink.path"
+      >
+        <button :alt="bannerLink.text" @click="bannerLink.action">
+          <Banner :bannerLink="bannerLink" />
+        </button>
       </li>
     </ul>
-    <!-- <v-toolbar style="background: rgba(0,0,0,0) !important" elevation="0">
-      <img
-        class="mr-3"
-        :src="require('@/assets/BostonHacksMark.png')"
-        height="30"
-      />
-      <v-toolbar-title>BostonHacks</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn text @click="home()">Home</v-btn>
-        <v-btn
-          v-if="this.getRoutePath && this.getRoutePath == '/'"
-          text
-          href="#tracks"
-          >Tracks</v-btn
-        >
-        <v-btn
-          v-if="this.getRoutePath && this.getRoutePath == '/'"
-          text
-          href="#schedule"
-          >Schedule</v-btn
-        >
-        <v-btn
-          v-if="this.getRoutePath && this.getRoutePath == '/'"
-          text
-          href="#FAQ"
-          >FAQ</v-btn
-        >
-        <v-btn text @click="application()">Application</v-btn>
-      </v-toolbar-items>
-    </v-toolbar>-->
-    <v-btn icon>
-      <div v-if="user" @click="signOut()">Sign Out</div>
-      <div v-else @click="signIn()">Sign In</div>
-    </v-btn>
   </nav>
 </template>
 
@@ -53,36 +23,46 @@ export default {
     return {
       BannerLinks: [
         {
-          path: "/",
+          // specify a condition to conditionally render a flag!
+          condition: () => true,
           text: "Home",
           direction: "right",
-          color: "#fe735f"
+          color: "#fe735f",
+          action: () => this.navigate("/")
         },
         {
-          path: "/sponsor",
+          condition: () => true,
           text: "Sponsors",
           direction: "left",
-          color: "#F6D374"
+          color: "#F6D374",
+          action: () => this.navigate("/sponsor")
         },
         {
-          path: "/dashboard",
+          condition: () => true,
           text: "Dashboard",
           direction: "right",
-          color: "#0098FF"
+          color: "#0098FF",
+          action: () => this.navigate("/dashboard")
         },
         {
-          path: "/login",
-          text: "Login",
+          condition: () => !this.user,
+          text: "Log In",
           direction: "left",
-          color: "#4BBC79"
+          color: "#4BBC79",
+          action: () => {
+            this.navigate("/login");
+          }
+        },
+        {
+          condition: () => this.user,
+          text: "Log Out",
+          direction: "left",
+          color: "#4BBC79",
+          action: async () => {
+            await this.signOut();
+            this.navigate("/");
+          }
         }
-        // {
-        //   path: "/",
-        //   hash: "#FAQ",
-        //   text: "FAQ",
-        //   direction: "left",
-        //   color: "#21998A"
-        // },
       ]
     };
   },
@@ -92,12 +72,18 @@ export default {
     },
     getRoutePath() {
       return this.$route.path;
+    },
+    filteredBannerLinks() {
+      return this.BannerLinks.filter(BannerLink => BannerLink.condition());
     }
   },
   methods: {
     async signOut() {
       await this.$store.dispatch("logOut");
-      this.$router.push("/");
+      // this.navigate("/");
+    },
+    navigate(url) {
+      this.$router.push(`${url}`).catch(() => {});
     }
     // ,
     // signIn() {
