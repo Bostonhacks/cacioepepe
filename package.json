@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy": "node functions/functionDeploy.js"
   },
   "dependencies": {
     "chart.js": "^2.9.3",
@@ -35,6 +36,7 @@
     "@vue/cli-service": "^4.4.6",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
+    "colors": "^1.4.0",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^6.2.2",
@@ -42,6 +44,7 @@
     "prettier": "^1.19.1",
     "sass": "^1.26.10",
     "sass-loader": "^8.0.0",
+    "shelljs": "^0.8.4",
     "vue-cli-plugin-vuetify": "^2.0.6",
     "vue-template-compiler": "^2.6.11",
     "vuetify-loader": "^1.5.0"

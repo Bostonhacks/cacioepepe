@@ -370,6 +370,7 @@ import PieChart from "@/components/common/PieChart";
 
 export default {
   components: {
+    LineChart,
     PieChart,
     SponsorBenefitsTable
   },

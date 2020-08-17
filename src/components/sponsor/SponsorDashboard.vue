@@ -9,7 +9,7 @@
           </h1>
           <v-card flat tile>
             <v-card-text>
-              <HackerTable :data="data" />
+              <HackerTable :data="currentData" />
             </v-card-text>
           </v-card>
           <v-card>
@@ -56,13 +56,11 @@
 
 <script>
 import HackerTable from "@/components/common/HackerTable";
-import PieChart from "@/components/common/PieChart";
 import { functions } from "@/firebase/init";
 export default {
   name: "SponsorDashboard",
   components: {
-    HackerTable,
-    PieChart
+    HackerTable
   },
   data() {
     return {
@@ -152,82 +150,15 @@ export default {
         "Declined",
         "Checked In"
       ];
-      const out = await functions.httpsCallable("retrieveAllApplications")({});
-      const applicants = out.data;
-      this.data = applicants.filter(applicant =>
-        applicantStatus.includes(statusList[applicant.status])
-      );
-    },
-    getGender() {
-      const genders = ["Male", "Female", "Other"];
-      let genderData = [0, 0, 0];
-      let index = 0;
-      this.data.map(applicant => {
-        index = genders.indexOf(applicant.gender);
-        genderData[index]++;
-      });
-      this.genderChartData.datasets[0].data = genderData;
-    },
-
-    getMajor() {
-      const majors = [
-        "Computer Science",
-        "Electrical Engineering",
-        "Computer Engineering"
-      ];
-      let majorData = [0, 0, 0, 0];
-      let index = 0;
-      this.data.map(applicant => {
-        index = majors.indexOf(applicant.major);
-        if (index == -1) {
-          //indexOf() returns -1 if item not found in array
-          index = 3;
-        }
-        majorData[index]++;
-      });
-      this.majorChartData.datasets[0].data = majorData;
-    },
-
-    getEducation() {
-      const educationLevels = [
-        "High School",
-        "College Freshman",
-        "College Sophomore",
-        "College Junior",
-        "College Senior"
-      ];
-      let educationData = [0, 0, 0];
-      let index = 0;
-      this.data.map(applicant => {
-        index = educationLevels.indexOf(applicant.educationLevel);
-        if (index == -1) {
-          index = 2;
-        } else if (index != 0) {
-          index = 1;
-        }
-        educationData[index]++;
-      });
-      this.educationChartData.datasets[0].data = educationData;
-    },
-
-    getHackathons() {
-      const hackathonNumbers = ["0", "1", "2", "3+"];
-      let hackathonData = [0, 0, 0, 0];
-      let index = 0;
-      this.data.map(applicant => {
-        index = hackathonNumbers.indexOf(applicant.beenToHackathon);
-        hackathonData[index]++;
-      });
-      this.hackathonsChartData.datasets[0].data = hackathonData;
     }
   },
 
   async mounted() {
-    await this.getData();
-    this.getGender();
-    this.getMajor();
-    this.getEducation();
-    this.getHackathons();
+    var out = await functions.httpsCallable("retrieveAllApplications")({});
+    this.data = out.data;
+    this.currentData = this.data.filter(item =>
+      this.itemStatus.includes(this.statusList[item.status])
+    );
   }
 };
 </script>

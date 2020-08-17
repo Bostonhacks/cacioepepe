@@ -3,7 +3,7 @@ const functions = require("firebase-functions");
 
 const db = admin.firestore();
 
-module.exports.readFAQs = functions.https.onCall(async _ => {
+module.exports.readFAQs = functions.https.onCall(async () => {
   const faqsDb = db.collection("admin").doc("FAQs");
   var allFaqs = await faqsDb.get();
   return allFaqs.data().faqs;

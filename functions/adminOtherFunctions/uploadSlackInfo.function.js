@@ -21,7 +21,12 @@ module.exports.uploadSlackInfo = functions.https.onCall(
     const slackdb = db.collection("admin").doc("slackInfo");
     await slackdb.set({
       slackToken: data.token,
-      slackInviteLink: data.invitelink
+      slackInviteLink: data.invitelink,
+      hackerChannels: data.hackerChannels,
+      sponsorChannels: data.sponsorChannels,
+      adminChannels: data.adminChannels,
+      volunteerChannels: data.volunteerChannels,
+      mentorChannels: data.mentorChannels
     });
     return;
   }
