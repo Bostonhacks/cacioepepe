@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="blue">
     <h2>404 Not Found</h2>
     <p>
       Oops, it looks like we could not find that page 😬... Try going

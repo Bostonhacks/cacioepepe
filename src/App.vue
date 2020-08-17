@@ -6,6 +6,7 @@
       class="forMob"
     />-->
     <navigationBar />
+
     <transition name="slide" mode="out-in">
       <router-view />
     </transition>
@@ -43,26 +44,12 @@ export default {
 </script>
 
 <style>
-/* .forDesk {
-  display: block;
-}
-
-.forMob {
-  display: none;
-}
-
-@media (max-width: 72rem) {
-  .forDesk {
-    display: none;
-  }
-
-  .forMob {
-    display: block;
-  }
-} */
-
 #app {
   overflow-x: hidden;
+  background-repeat: no-repeat;
+  background-image: url("/assets/landingPage/bostonHacksLoadingLogo.svg");
+  background-position: center calc(50vh - 75px);
+  background-size: 150px;
 }
 
 .slide-enter-active,

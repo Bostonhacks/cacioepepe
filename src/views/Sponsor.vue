@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="white">
     <v-container>
       <v-layout text-center wrap>
         <v-flex xs12></v-flex>
