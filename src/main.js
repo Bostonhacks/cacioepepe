@@ -6,6 +6,8 @@ import store from "./store";
 import firebase from "firebase/app";
 import "firebaseui/dist/firebaseui.css";
 import vuetify from "./plugins/vuetify";
+import DatetimePicker from "vuetify-datetime-picker";
+Vue.use(DatetimePicker);
 
 Vue.config.productionTip = false;
 

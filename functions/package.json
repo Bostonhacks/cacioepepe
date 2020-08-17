@@ -20,8 +20,8 @@
     "firebase-functions": "^3.6.2",
     "fs-extra": "8.1.0",
     "glob": "^7.1.6",
-    "uuid-v4": "^0.1.0",
-    "json-2-csv": "3.7.1"
+    "json-2-csv": "^3.7.1",
+    "uuid-v4": "^0.1.0"
   },
   "devDependencies": {
     "firebase-functions-test": "^0.1.6"

@@ -6,7 +6,7 @@
         <v-flex mb-4>
           <h1 class="display-2 font-weight-bold mb-3">Welcome to God Mode!</h1>
           <AdminStats :data="hackerData" />
-          <SlackInfoUpload />
+          <CalendarEvent />
           <v-tabs
             v-model="tab"
             background-color="deep-purple accent-4"
@@ -123,7 +123,7 @@
 
 <script>
 import HackerTable from "@/components/common/HackerTable";
-// import CalendarEvent from "@/components/admin/CalendarEvent";
+import CalendarEvent from "@/components/admin/CalendarEvent";
 import AdminStats from "@/components/admin/AdminStats";
 import VolunteerTable from "@/components/admin/VolunteerTable";
 import MentorTable from "@/components/admin/MentorTable";
@@ -135,7 +135,7 @@ export default {
   components: {
     HackerTable,
     AdminStats,
-    // CalendarEvent,
+    CalendarEvent,
     VolunteerTable,
     MentorTable,
     PieChart

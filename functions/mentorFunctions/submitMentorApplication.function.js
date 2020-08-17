@@ -5,9 +5,6 @@ const db = admin.firestore();
 
 module.exports.submitMentorApplication = functions.https.onCall(
   async (data, context) => {
-    if (!context.auth) {
-      return { message: "Authentication Required!", code: 401 };
-    }
     const userdb = db.collection("users").doc(context.auth.uid);
     await userdb.update({
       applicationStatus: 1
