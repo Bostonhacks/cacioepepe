@@ -14,6 +14,7 @@
     "firebase": "^7.15.5",
     "firebaseui": "^4.5.1",
     "jquery": "^3.5.1",
+    "json-2-csv": "^3.7.5",
     "popper.js": "^1.16.1",
     "portal-vue": "^2.1.7",
     "register-service-worker": "^1.7.1",
@@ -23,6 +24,7 @@
     "vue-pwa-asset-generator": "^1.1.2",
     "vue-router": "^3.3.4",
     "vuetify": "^2.3.3",
+    "vuetify-datetime-picker": "^2.1.1",
     "vuex": "^3.5.1"
   },
   "devDependencies": {

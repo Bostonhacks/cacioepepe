@@ -3,7 +3,7 @@ const functions = require("firebase-functions");
 
 const db = admin.firestore();
 
-module.exports.checkinApplicant = functions.https.onCall(
+module.exports.changeRegistrationSchedule = functions.https.onCall(
   async (data, context) => {
     if (!context.auth) {
       return { message: "Authentication Required!", code: 401 };
@@ -19,13 +19,12 @@ module.exports.checkinApplicant = functions.https.onCall(
       };
     }
 
-    const user = db.collection("users").doc(data.uid);
-    const application = db.collection("applications").doc(data.uid);
-    await user.update({
-      applicationStatus: 7
-    });
+    var startDate = data.startDate;
+    var closeDate = data.closeDate;
+    const application = db.collection("admin").doc("registrationSchedule");
     await application.update({
-      status: 7
+      open: startDate,
+      close: closeDate
     });
     return;
   }

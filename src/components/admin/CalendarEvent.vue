@@ -1,5 +1,94 @@
 <template>
-  <v-row class="fill-height">
+  <v-layout>
+    <template>
+      <v-dialog v-model="dialog" max-width="500">
+        <v-card>
+          <v-card-title class="headline">Add a new event</v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    label="Name"
+                    required
+                    v-model="name"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-textarea
+                    label="Description"
+                    required
+                    v-model="description"
+                  ></v-textarea>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" sm="6" md="6">
+                  <v-text-field
+                    label="Location"
+                    required
+                    v-model="location"
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12" sm="6" md="6">
+                  <v-text-field
+                    label="Type"
+                    required
+                    v-model="scheduleType"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" sm="6" md="6">
+                  <v-datetime-picker
+                    label="Start Time"
+                    ref="startTimePicker"
+                    v-model="start"
+                    required
+                  >
+                  </v-datetime-picker>
+                </v-col>
+                <v-col cols="12" sm="6" md="6">
+                  <v-datetime-picker
+                    label="End Time"
+                    ref="endTimePicker"
+                    v-model="end"
+                    required
+                  >
+                  </v-datetime-picker>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn color="green darken-1" text @click="dialog = false">
+              Cancel
+            </v-btn>
+
+            <v-btn
+              color="green darken-1"
+              text
+              @click="saveEvent"
+              :disabled="
+                start == null ||
+                  end == null ||
+                  name == null ||
+                  location == null ||
+                  scheduleType == null
+              "
+            >
+              Save
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </template>
     <v-col>
       <v-sheet height="64">
         <v-toolbar flat color="white">
@@ -46,12 +135,17 @@
           v-model="focus"
           color="primary"
           :events="events"
-          :event-color="blue"
+          event-color="blue"
           :type="type"
           @click:event="showEvent"
           @click:more="viewDay"
           @click:date="viewDay"
         ></v-calendar>
+        <v-card-text style="height: 100px; position: relative">
+          <v-btn absolute dark fab top right color="blue" @click="addEvent">
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </v-card-text>
         <v-menu
           v-model="selectedOpen"
           :close-on-content-click="false"
@@ -60,20 +154,30 @@
         >
           <v-card color="grey lighten-4" min-width="350px" flat>
             <v-toolbar :color="selectedEvent.color" dark>
-              <v-btn icon>
+              <v-btn icon @click="editEvent(selectedEvent)">
                 <v-icon>mdi-pencil</v-icon>
               </v-btn>
               <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
               <v-spacer></v-spacer>
-              <v-btn icon>
-                <v-icon>mdi-heart</v-icon>
+              <v-btn icon @click="deleteEvent">
+                <v-icon>mdi-delete</v-icon>
               </v-btn>
               <v-btn icon>
                 <v-icon>mdi-dots-vertical</v-icon>
               </v-btn>
             </v-toolbar>
             <v-card-text>
-              <span v-html="selectedEvent.details"></span>
+              <span v-html="selectedEvent.description"></span>
+            </v-card-text>
+            <v-card-text>
+              Time:
+              <span v-html="selectedEvent.start"></span>
+              to
+              <span v-html="selectedEvent.end"></span>
+            </v-card-text>
+            <v-card-text
+              >Location:
+              <span v-html="selectedEvent.location"></span>
             </v-card-text>
             <v-card-actions>
               <v-btn text color="secondary" @click="selectedOpen = false">
@@ -84,7 +188,7 @@
         </v-menu>
       </v-sheet>
     </v-col>
-  </v-row>
+  </v-layout>
 </template>
 
 <script>
@@ -92,6 +196,14 @@ import { functions } from "@/firebase/init";
 export default {
   name: "CalendarEvent",
   data: () => ({
+    location: null,
+    scheduleType: null,
+    start: new Date(),
+    end: null,
+    name: "",
+    description: "",
+    menu: false,
+    dialog: false,
     focus: "",
     type: "week",
     typeToLabel: {
@@ -101,6 +213,7 @@ export default {
       "4day": "4 Days"
     },
     selectedEvent: {},
+    selectedEventIndex: null,
     selectedElement: null,
     selectedOpen: false,
     events: [],
@@ -125,10 +238,74 @@ export default {
     ]
   }),
   async mounted() {
-    var out = await functions.httpsCallable("retrieveEvents")({});
-    this.events = out.data;
+    this.getEvents();
   },
   methods: {
+    async getEvents() {
+      var out = await functions.httpsCallable("readEvents")({});
+      if (out.data) {
+        this.events = out.data;
+      } else {
+        this.events = [];
+      }
+    },
+    async saveEvent() {
+      this.dialog = false;
+      if (Object.keys(this.selectedEvent).length > 0) {
+        this.updateEvent();
+        console.log("update");
+      } else {
+        await functions.httpsCallable("createSchedule")({
+          name: this.name,
+          description: this.description,
+          location: this.location,
+          type: this.scheduleType,
+          start: this.$refs.startTimePicker.formattedDatetime,
+          end: this.$refs.endTimePicker.formattedDatetime
+        });
+        this.events.push({
+          name: this.name,
+          description: this.description,
+          location: this.location,
+          type: this.scheduleType,
+          start: this.$refs.startTimePicker.formattedDatetime,
+          end: this.$refs.endTimePicker.formattedDatetime
+        });
+      }
+      this.clearForm();
+    },
+    addEvent() {
+      this.clearForm();
+      this.dialog = true;
+    },
+    async updateEvent() {
+      await functions.httpsCallable("updateEvent")({
+        name: this.name,
+        description: this.description,
+        location: this.location,
+        type: this.scheduleType,
+        start: this.$refs.startTimePicker.formattedDatetime,
+        end: this.$refs.endTimePicker.formattedDatetime,
+        index: this.selectedEventIndex
+      });
+      // this.events[this.selectedEventIndex] = {
+      //   name: this.name,
+      //   description: this.description,
+      //   location: this.location,
+      //   type: this.scheduleType,
+      //   start: this.$refs.startTimePicker.formattedDatetime,
+      //   end: this.$refs.endTimePicker.formattedDatetime
+      // };
+      this.getEvents();
+    },
+    clearForm() {
+      this.name = "";
+      this.description = "";
+      this.location = "";
+      this.scheduleType = "";
+      this.start = "";
+      this.end = "";
+    },
     viewDay({ date }) {
       this.focus = date;
       this.type = "day";
@@ -145,7 +322,34 @@ export default {
     next() {
       this.$refs.calendar.next();
     },
+    async deleteEvent() {
+      await functions.httpsCallable("deleteSchedule")({
+        name: this.selectedEvent.name,
+        description: this.selectedEvent.description,
+        location: this.selectedEvent.location,
+        type: this.selectedEvent.scheduleType,
+        start: this.selectedEvent.start,
+        end: this.selectedEvent.end
+      });
+      this.events.splice(this.selectedEventIndex, 1);
+      this.selectedOpen = false;
+    },
+    editEvent(event) {
+      this.name = event.name;
+      this.start = event.start;
+      this.end = event.end;
+      this.location = event.location;
+      this.scheduleType = event.type;
+      this.description = event.description;
+      this.dialog = true;
+    },
     showEvent({ nativeEvent, event }) {
+      this.selectedEventIndex = this.events.findIndex(
+        current =>
+          current.name == event.name &&
+          current.start == event.start &&
+          current.end == event.end
+      );
       const open = () => {
         this.selectedEvent = event;
         this.selectedElement = nativeEvent.target;

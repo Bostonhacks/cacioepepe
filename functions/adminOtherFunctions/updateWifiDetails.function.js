@@ -3,7 +3,7 @@ const functions = require("firebase-functions");
 
 const db = admin.firestore();
 
-module.exports.checkinApplicant = functions.https.onCall(
+module.exports.updateWifiDetails = functions.https.onCall(
   async (data, context) => {
     if (!context.auth) {
       return { message: "Authentication Required!", code: 401 };
@@ -19,14 +19,12 @@ module.exports.checkinApplicant = functions.https.onCall(
       };
     }
 
-    const user = db.collection("users").doc(data.uid);
-    const application = db.collection("applications").doc(data.uid);
-    await user.update({
-      applicationStatus: 7
+    const wifiDoc = db.collection("admin").doc("wifiDetails");
+    await wifiDoc.update({
+      wifiName: data.name,
+      wifiPassword: data.password
     });
-    await application.update({
-      status: 7
-    });
-    return;
+
+    return { message: "Wifi details updated", code: 200 };
   }
 );

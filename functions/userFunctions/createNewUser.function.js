@@ -3,13 +3,13 @@ const functions = require("firebase-functions");
 
 const db = admin.firestore();
 
-module.exports.createNewUser = functions.https.onCall(async data => {
-  const mydb = db.collection("users").doc(data.uid);
+module.exports.createNewUser = functions.https.onCall(async (data, context) => {
+  const mydb = db.collection("users").doc(context.auth.uid);
   await mydb.set({
     displayName: data.displayName,
     email: data.email,
-    uid: data.uid,
-    role: "user",
+    uid: context.auth.uid,
+    role: "user"
   });
   return;
 });
