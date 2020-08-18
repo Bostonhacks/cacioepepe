@@ -186,5 +186,5 @@
           />
         </path>
       </g>
-      <text x="10" y="35" class="text" font ="arial" transform="translate(0,83)" >Loading 😊</text>
+      <text x="10" y="35" class="text" font ="arial" transform="translate(0,83)" >Loading...</text>
     </svg>
