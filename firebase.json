@@ -10,6 +10,9 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "predeploy": [
+      "node predeployCheck.js"
+    ],
     "rewrites": [
       {
         "source": "**",
@@ -19,5 +22,10 @@
   },
   "storage": {
     "rules": "storage.rules"
+  },
+  "functions":{
+    "predeploy":[
+      "node predeployFunction.js"
+    ]
   }
 }

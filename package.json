@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy": "node functions/functionDeploy.js"
   },
   "dependencies": {
     "chart.js": "^2.9.3",
@@ -13,6 +14,7 @@
     "firebase": "^7.15.5",
     "firebaseui": "^4.5.1",
     "jquery": "^3.5.1",
+    "json-2-csv": "^3.7.5",
     "popper.js": "^1.16.1",
     "portal-vue": "^2.1.7",
     "register-service-worker": "^1.7.1",
@@ -22,6 +24,7 @@
     "vue-pwa-asset-generator": "^1.1.2",
     "vue-router": "^3.3.4",
     "vuetify": "^2.3.3",
+    "vuetify-datetime-picker": "^2.1.1",
     "vuex": "^3.5.1"
   },
   "devDependencies": {
@@ -33,6 +36,7 @@
     "@vue/cli-service": "^4.4.6",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
+    "colors": "^1.4.0",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^6.2.2",
@@ -40,6 +44,7 @@
     "prettier": "^1.19.1",
     "sass": "^1.26.10",
     "sass-loader": "^8.0.0",
+    "shelljs": "^0.8.4",
     "vue-cli-plugin-vuetify": "^2.0.6",
     "vue-template-compiler": "^2.6.11",
     "vuetify-loader": "^1.5.0"
