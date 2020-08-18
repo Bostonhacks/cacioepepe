@@ -9,7 +9,7 @@ const routes = [
     path: "/",
     name: "home",
     component: () => import("@/views/Home.vue")
-  }
+  },
   // {
   //   path: "/admin",
   //   name: "admin",
@@ -35,15 +35,14 @@ const routes = [
   //     requiresAuth: false
   //   }
   // },
-
-  // {
-  //   path: "/sponsor",
-  //   name: "sponsor",
-  //   component: () => import("@/views/Sponsor.vue"),
-  //   meta: {
-  //     requiresAuth: false
-  //   }
-  // },
+  {
+    path: "/sponsor",
+    name: "sponsor",
+    component: () => import("@/views/Sponsor.vue"),
+    meta: {
+      requiresAuth: false
+    }
+  }
   // {
   //   path: "/sponsorlogin",
   //   name: "sponsorlogin",

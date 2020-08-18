@@ -272,57 +272,59 @@
       ></v-col>
     </v-row>
     <object data="/assets/sponsor/grassTop.svg" class="mb-n2"></object>
-    <v-row no-gutters justify="center" class="grass-background">
-      <v-col cols="12" md="8">
-        <v-row class="d-flex flex-column-reverse">
-          <v-col cols="12" md="6" style="padding: 0px;">
-            <h4 class="font-weight-bold">Twilio: Sam Agnew</h4>
-            <p class="font-italic">
-              “I go to a ton of hackathons and BostonHacks is consistently one
-              of the best that I continue to sponsor selectedYear after
-              selectedYear. At BostonHacks, you get the best hackers in both
-              Boston and the Northeast at large. Without fail, the projects that
-              come from these student developers are unique and awe-inspiring.
-              I’m not really sure how the organizers manage to attract such
-              talent, but it might be that good hackers flock to events that are
-              well-run. But never mind all of that. The great food is the real
-              reason to go to BostonHacks!”
-            </p>
-          </v-col>
-        </v-row>
-        <v-row class="justify-center">
-          <v-col cols="12" md="6">
-            <h4 class="font-weight-bold">ITG: Candace Mariso</h4>
-            <p class="font-italic">
-              “ITG’s technical mentors had a great time at BostonHacks 2017. The
-              organizers were responsive and accommodating, allowing us to focus
-              on what really mattered—exchanging ideas, providing guidance and
-              tackling challenges. We met dozens of talented students, resulting
-              in several intern hires and top prospects for future programs. The
-              high quality and innovative hacks made this a can’t-miss event for
-              us.”
-            </p>
-          </v-col>
-        </v-row>
-        <v-row class="justify-end flex-column-reverse flex-md-row">
-          <object
-            data="/assets/landingPage/tree.svg"
-            class="tree-bottom"
-          ></object>
-          <v-col cols="12" md="6">
-            <h4 class="font-weight-bold">
-              Cadence: Apurva Kalia
-            </h4>
-            <p class="font-italic">
-              “The energy was very infectious! It was great to see the young
-              kids wrapping their minds around the given problems and come up
-              with solutions by the end of the event. I was amazed at the
-              talent.”
-            </p>
-          </v-col>
-        </v-row>
-      </v-col>
-    </v-row>
+    <div class="grass-background ml-0 mr-0">
+      <v-row class="justify-center pr-3 pl-3 pb-12 pt-12">
+        <v-col cols="12" md="8">
+          <v-row class="d-flex flex-column-reverse">
+            <v-col cols="12" md="6">
+              <h4 class="font-weight-bold">Twilio: Sam Agnew</h4>
+              <p class="font-italic">
+                “I go to a ton of hackathons and BostonHacks is consistently one
+                of the best that I continue to sponsor selectedYear after
+                selectedYear. At BostonHacks, you get the best hackers in both
+                Boston and the Northeast at large. Without fail, the projects
+                that come from these student developers are unique and
+                awe-inspiring. I’m not really sure how the organizers manage to
+                attract such talent, but it might be that good hackers flock to
+                events that are well-run. But never mind all of that. The great
+                food is the real reason to go to BostonHacks!”
+              </p>
+            </v-col>
+          </v-row>
+          <v-row class="justify-center">
+            <v-col cols="12" md="6">
+              <h4 class="font-weight-bold">ITG: Candace Mariso</h4>
+              <p class="font-italic">
+                “ITG’s technical mentors had a great time at BostonHacks 2017.
+                The organizers were responsive and accommodating, allowing us to
+                focus on what really mattered—exchanging ideas, providing
+                guidance and tackling challenges. We met dozens of talented
+                students, resulting in several intern hires and top prospects
+                for future programs. The high quality and innovative hacks made
+                this a can’t-miss event for us.”
+              </p>
+            </v-col>
+          </v-row>
+          <v-row class="justify-end flex-column-reverse flex-md-row">
+            <object
+              data="/assets/landingPage/tree.svg"
+              class="tree-bottom"
+            ></object>
+            <v-col cols="12" md="6">
+              <h4 class="font-weight-bold">
+                Cadence: Apurva Kalia
+              </h4>
+              <p class="font-italic">
+                “The energy was very infectious! It was great to see the young
+                kids wrapping their minds around the given problems and come up
+                with solutions by the end of the event. I was amazed at the
+                talent.”
+              </p>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+    </div>
     <object data="/assets/sponsor/grassBottom.svg" class="mt-n1"></object>
     <v-row
       style="width: 100vw; flex-direction: row-reverse"
