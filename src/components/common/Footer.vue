@@ -1,31 +1,59 @@
 <template>
-  <v-footer style=" background: #e6c8bc;">
-    <v-container class="footerFlex">
-      <a class="bhacksLogo" @click="home()">
-        <img src="../../assets/footer.svg" alt />
-      </a>
-      <div class="socialMedia">
-        <a href="https://www.facebook.com/bostonhacks">
-          <img src="../../assets/fb.svg" alt class="icon" />
-        </a>
-        <a href="https://www.instagram.com/bostonhacks/">
-          <img
-            src="../../assets/insta.svg"
-            alt
-            class="icon"
-            style="margin-bottom: -.2rem"
-          />
-        </a>
-        <a href="https://twitter.com/boston_hacks">
-          <img src="../../assets/twitter.svg" alt class="icon" />
-        </a>
-      </div>
-      <a href="contact@bostonhacks.io" class="email">contact@bostonhacks.io</a>
+  <v-footer style="background: transparent">
+    <v-container>
+      <v-row>
+        <v-col cols="12" sm="4" md="1" class="pa-0 verticalCenter">
+          <router-link to="/" alt="Home Link" class="text-left">
+            <BostonHacksLogoTextShadowed class="max-height-75" />
+          </router-link>
+        </v-col>
+        <v-col cols="12" sm="3" md="2" offset-md="1">
+          <v-row class="logos">
+            <v-col cols="4">
+              <a
+                href="https://www.facebook.com/bostonhacks"
+                alt="Facebook Link"
+              >
+                <FaceBookLogo class="max-height-75" />
+              </a>
+            </v-col>
+            <v-col cols="4">
+              <a
+                href="https://www.instagram.com/bostonhacks/"
+                alt="Instagram Link"
+              >
+                <InstagramLogo class="max-height-75" />
+              </a>
+            </v-col>
+            <v-col cols="4">
+              <a href="https://twitter.com/boston_hacks" alt="Twitter Link">
+                <TwitterLogo class="max-height-75" />
+              </a>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col
+          cols="12"
+          sm="5"
+          offset-sm="0"
+          offset-md="3"
+          class="text-center text-md-right verticalCenter"
+        >
+          <a class="email basicTextShadow" href="mailto:contact@bostonhacks.io"
+            >contact@bostonhacks.io</a
+          >
+        </v-col>
+      </v-row>
     </v-container>
   </v-footer>
 </template>
 
 <script>
+import BostonHacksLogoTextShadowed from "@/components/common/SVG/BostonHacksLogoTextShadowed";
+import FaceBookLogo from "@/components/common/SVG/FaceBookLogo";
+import InstagramLogo from "@/components/common/SVG/InstagramLogo";
+import TwitterLogo from "@/components/common/SVG/TwitterLogo";
+
 export default {
   name: "Footer",
   data() {
@@ -35,41 +63,35 @@ export default {
     home() {
       this.$router.push("/");
     }
+  },
+  components: {
+    BostonHacksLogoTextShadowed: BostonHacksLogoTextShadowed,
+    FaceBookLogo: FaceBookLogo,
+    InstagramLogo: InstagramLogo,
+    TwitterLogo: TwitterLogo
   }
 };
 </script>
 
-<style>
-.footerFlex {
-  display: flex;
-}
-
-.socialMedia {
-  margin-left: 2rem;
-}
-
-.icon {
-  margin: 0 0.5rem;
-}
-
+<style scoped>
 .email {
-  margin-left: auto;
-  text-decoration: none;
-  color: white !important;
-  font-size: 1.5rem;
-  height: 2rem;
-  margin-top: 0.5rem;
+  color: white;
+  /* font-size: 1.5em; */
 }
-
-@media (max-width: 48rem) {
-  .footerFlex {
-    flex-direction: column;
-  }
-
-  .bhacksLogo,
-  .socialMedia,
-  .email {
-    margin: 0.25rem auto;
-  }
+.max-height-75 {
+  max-height: 45px;
+}
+.verticalCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.basicTextShadow {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
 }
 </style>

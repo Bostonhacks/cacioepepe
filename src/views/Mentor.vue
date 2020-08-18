@@ -1,5 +1,5 @@
 <template>
-  <mentor />
+  <mentor class="white" />
 </template>
 
 <script>

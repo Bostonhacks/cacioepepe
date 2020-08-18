@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <LiveNavBar />
+    <!-- <LiveNavBar />
     <div id="home">
       <div id="header" class="flex-container">
         <div class="half" style="padding-top: 3rem">
@@ -27,12 +27,12 @@
         <div class="third card">
           <h2>Slack</h2>
           <p>Click here to join our Slack channel!</p>
-          <!-- <p>Slack</p> -->
+          
         </div>
         <div class="third card">
           <h2>Devpost</h2>
           <p>Click here to submit your project!</p>
-          <!-- <p>Submit</p> -->
+          
         </div>
       </div>
     </div>
@@ -291,12 +291,12 @@
           <p>For the best overall hack made during the event!</p>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import LiveNavBar from "@/components/live/LiveNavBar";
+// import LiveNavBar from "@/components/live/LiveNavBar";
 export default {
   data() {
     return {
@@ -350,7 +350,7 @@ export default {
     };
   },
   components: {
-    LiveNavBar
+    // LiveNavBar
   },
   methods: {
     next() {
