@@ -259,10 +259,7 @@
         ></object>
       </v-col>
       <v-col>
-        <object
-          data="/assets/landingPage/windmill.svg"
-          class="windmill"
-        ></object>
+        <Windmill class="windmill" />
       </v-col>
     </v-row>
     <object data="/assets/sponsor/grassTop.svg" class="mb-n2"></object>
