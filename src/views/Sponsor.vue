@@ -259,10 +259,7 @@
         ></object>
       </v-col>
       <v-col>
-        <object
-          data="/assets/landingPage/windmill.svg"
-          class="windmill"
-        ></object>
+        <Windmill class="windmill" />
       </v-col>
     </v-row>
     <object data="/assets/sponsor/grassTop.svg" class="mb-n2"></object>
@@ -348,11 +345,13 @@
 <script>
 import SponsorBenefitsTable from "@/components/sponsor/SponsorBenefitsTable";
 import PieChart from "@/components/common/PieChart";
+import Windmill from "@/components/common/SVG/Windmill";
 
 export default {
   components: {
     PieChart,
-    SponsorBenefitsTable
+    SponsorBenefitsTable,
+    Windmill
   },
   methods: {
     applicantRadius() {
