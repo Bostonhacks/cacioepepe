@@ -59,10 +59,11 @@
               rounded
               depressed
               x-large
+              disabled
               @click="() => this.navigate('/login')"
               class="text-center ma-5"
               v-if="!this.user"
-              >Log In</v-btn
+              >Log In (Coming Soon)</v-btn
             >
             <v-btn
               rounded

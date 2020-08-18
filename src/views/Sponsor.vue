@@ -1,5 +1,5 @@
 <template>
-  <div class="white">
+  <div class="white" style="overflow-y: hidden">
     <v-container>
       <v-row
         class="flex-column-reverse flex-md-row"
