@@ -1,5 +1,5 @@
 <template>
-  <div class="white">
+  <div class="white" style="overflow-y: hidden">
     <v-container>
       <v-row
         class="flex-column-reverse flex-md-row"
@@ -259,7 +259,10 @@
         ></object>
       </v-col>
       <v-col>
-        <Windmill class="windmill" />
+        <object
+          data="/assets/landingPage/windmill.svg"
+          class="windmill"
+        ></object>
       </v-col>
     </v-row>
     <object data="/assets/sponsor/grassTop.svg" class="mb-n2"></object>
