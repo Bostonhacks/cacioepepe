@@ -38,13 +38,15 @@ export default {
           action: () => this.navigate("/sponsor")
         },
         {
-          condition: () => true,
+          // condition: () => false,
+          condition: () => this.user,
           text: "Dashboard",
           direction: "right",
           color: "#0098FF",
           action: () => this.navigate("/dashboard")
         },
         {
+          // condition: () => false,
           condition: () => !this.user,
           text: "Log In",
           direction: "left",
@@ -58,10 +60,7 @@ export default {
           text: "Log Out",
           direction: "left",
           color: "#4BBC79",
-          action: async () => {
-            await this.signOut();
-            this.navigate("/");
-          }
+          action: () => this.logOut()
         }
       ]
     };
@@ -78,23 +77,14 @@ export default {
     }
   },
   methods: {
-    async signOut() {
+    async logOut() {
       await this.$store.dispatch("logOut");
-      // this.navigate("/");
+      this.navigate("/");
     },
     navigate(url) {
+      window.scrollTo(0, 0);
       this.$router.push(`${url}`).catch(() => {});
     }
-    // ,
-    // signIn() {
-    //   this.$router.push("/login");
-    // },
-    // home() {
-    //   this.$router.push("/");
-    // },
-    // application() {
-    //   this.$router.push("/application");
-    // }
   }
 };
 </script>

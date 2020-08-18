@@ -1,7 +1,15 @@
 <template>
   <main>
     <div id="home" z-index="100" class="mb-n1 pt-16">
-      <v-row class="py-9"></v-row>
+      <!-- <v-row class="py-9">
+        <v-switch
+          v-model="$vuetify.theme.dark"
+          hint="This toggles the global state of the Vuetify theme"
+          inset
+          label="Vuetify Theme Dark"
+          persistent-hint
+        ></v-switch>
+      </v-row>-->
       <v-container class="mt-5">
         <v-row justify="space-between" class="mx-md-n8 mb-n16">
           <v-col cols="3" class="pa-0">
@@ -51,9 +59,19 @@
               rounded
               depressed
               x-large
-              @click="() => this.$router.push('/login')"
+              @click="() => this.navigate('/login')"
               class="text-center ma-5"
-              >Login</v-btn
+              v-if="!this.user"
+              >Log In</v-btn
+            >
+            <v-btn
+              rounded
+              depressed
+              x-large
+              @click="() => this.navigate('/dashboard')"
+              class="text-center ma-5"
+              v-if="this.user"
+              >Go To Dashboard</v-btn
             >
           </v-col>
         </v-row>
@@ -66,15 +84,12 @@
           align="center"
         >
           <v-col cols="12" offset-sm="0" sm="5">
-            <v-row justify="center" class="basicTextShadow">
-              <h2
-                style="font-size: 1.5rem; text-align: center; color: white; font-weight: bold"
-              >
-                Interested in Sponsoring?
-              </h2>
-              <p
-                style="font-size: 1.25rem; text-align: center; color: white; font-weight: normal"
-              >
+            <v-row
+              justify="center"
+              class="basicTextShadow white--text text-center font-weight-light"
+            >
+              <h2>Interested in Sponsoring?</h2>
+              <p class="size-1-25">
                 We’d love to have you on board. Contact us at
                 <a class="white--text" href="mailto:sponsor@bostonhacks.io"
                   >sponsor@bostonhacks.io</a
@@ -84,7 +99,13 @@
             </v-row>
             <br />
             <v-row justify="center">
-              <v-btn depressed rounded @click="sponsor()">Learn more</v-btn>
+              <v-btn
+                depressed
+                rounded
+                x-large
+                @click="() => this.navigate('/sponsor')"
+                >Learn more</v-btn
+              >
             </v-row>
           </v-col>
         </v-row>
@@ -95,7 +116,8 @@
 
     <div
       id="tracks"
-      style="margin-top: 0; padding-top: 0; text-shadow: 1px 1px 0.5px rgba(0,0,0,.2);"
+      class="pb-10"
+      style="text-shadow: 1px 1px 0.5px rgba(0,0,0,.2);"
     >
       <v-container>
         <v-row style="height: 0">
@@ -182,10 +204,10 @@
         </v-row>
       </v-container>
 
-      <Wave2 z-index="10" class="d-block mt-n16 mb-n1 pt-8" />
+      <Wave2 z-index="10" class="d-block mt-n16 mb-n11 pt-16" />
     </div>
 
-    <div id="schedule" class="basicTextShadow">
+    <div id="schedule" class="basicTextShadow white--text">
       <v-container>
         <v-row>
           <v-col>
@@ -201,15 +223,10 @@
 
         <v-row>
           <v-col>
-            <h2
-              class="display-1 text-center"
-              style="color: white; font-weight: bold; "
-            >
-              Schedule
-            </h2>
+            <h2 class="display-1 text-center font-weight-bold">Schedule</h2>
             <br />
             <div style="min-height: 20em">
-              <div class="text-center" style="color: white">To Be Decided!</div>
+              <div class="text-center">To Be Decided!</div>
             </div>
           </v-col>
         </v-row>
@@ -228,15 +245,12 @@
       <Wave4 z-index="10" class="d-block mt-n16 mb-n1" />
     </div>
 
-    <div id="FAQ" class="pb-16">
-      <h2
-        class="display-1 pt-15"
-        style="color: black; text-align: center; font-weight: bold"
-      >
+    <div id="FAQ" class="white--text basicTextShadow">
+      <h2 class="display-1 pt-15 text-center font-weight-bold">
         Frequently Asked Questions
       </h2>
       <v-container class="pb-16">
-        <v-row>
+        <v-row justify="start">
           <v-col cols="12" md="6" lg="4">
             <div class="qna">
               <h2>What is BostonHacks?</h2>
@@ -249,6 +263,11 @@
               </p>
             </div>
           </v-col>
+          <v-col cols="6" offset="2" md="4">
+            <Tree style="position: relative; margin-top: 0rem" />
+          </v-col>
+        </v-row>
+        <v-row justify="center">
           <v-col cols="12" md="6" lg="4">
             <div class="qna">
               <h2>When and where is BostonHacks?</h2>
@@ -258,7 +277,12 @@
               </p>
             </div>
           </v-col>
-          <v-col cols="12" md="6" lg="4">
+        </v-row>
+        <v-row justify="end">
+          <v-col cols="6" md="4">
+            <Tree style="position: relative; margin-top: 0rem" />
+          </v-col>
+          <v-col cols="12" offset-md="2" offset-lg="4" md="6" lg="4">
             <div class="qna">
               <h2>Who can attend?</h2>
               <p>
@@ -267,6 +291,8 @@
               </p>
             </div>
           </v-col>
+        </v-row>
+        <v-row justify="center">
           <v-col cols="12" md="6" lg="4">
             <div class="qna">
               <h2>Do I need experience?</h2>
@@ -278,6 +304,8 @@
               </p>
             </div>
           </v-col>
+        </v-row>
+        <v-row justify="start">
           <v-col cols="12" md="6" lg="4">
             <div class="qna">
               <h2>Does it cost anything?</h2>
@@ -288,6 +316,8 @@
               </p>
             </div>
           </v-col>
+        </v-row>
+        <v-row justify="center">
           <v-col cols="12" md="6" lg="4">
             <div class="qna">
               <h2>Can we form teams?</h2>
@@ -299,17 +329,29 @@
               </p>
             </div>
           </v-col>
+        </v-row>
+        <v-row justify="end">
           <v-col cols="12" md="6" lg="4">
             <div class="qna">
-              <h2 style="font-size: 1.5rem; color:  black; font-weight: bold">
-                Are there any rules?
-              </h2>
+              <h2>Are there any rules?</h2>
               <p>
                 We want to ensure a positive experience for all participants. We
-                encourage you to read the Code of Conduct.
+                encourage you to read the
+                <a
+                  href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
+                  alt="Our Code of Conduct"
+                  class="white--text"
+                  target="_blank"
+                  >Code of Conduct.</a
+                >
               </p>
             </div>
           </v-col>
+        </v-row>
+      </v-container>
+      <River />
+      <v-container>
+        <v-row justify="center">
           <v-col cols="12" md="6" lg="4">
             <div class="qna">
               <h2>What do I need to bring?</h2>
@@ -319,20 +361,32 @@
               </p>
             </div>
           </v-col>
+        </v-row>
+        <v-row justify="start">
           <v-col cols="12" md="6" lg="4">
             <div class="qna">
               <h2>What if I have a different question?</h2>
               <p>
-                We’re here for you! Shoot us an email at contact@bostonhacks.io,
-                or a message on any of our social media platforms.
+                We’re here for you! Shoot us an email at
+                <a href="mailto:contact@bostonhacks.io" class="white--text"
+                  >contact@bostonhacks.io</a
+                >, or a message on any of our social media platforms.
               </p>
             </div>
           </v-col>
         </v-row>
       </v-container>
-      <River />
 
-      <Wave3 z-index="10" class="d-block mt-n16 mb-n1" />
+      <Wave3 z-index="10" class="d-block" />
+    </div>
+
+    <div id="sponsors" class="pb-16 white--text basicTextShadow">
+      <h2 class="display-1 pt-15 text-center font-weight-bold">
+        Thank You To Our Sponsors!
+      </h2>
+
+      <!-- this is just a spacer placed here so the footer gets colored -->
+      <div class="my-16 py-16"></div>
     </div>
   </main>
 </template>
@@ -357,11 +411,9 @@ export default {
     }
   },
   methods: {
-    login() {
-      this.$router.push("/login");
-    },
-    sponsor() {
-      this.$router.push("/sponsor");
+    navigate(url) {
+      window.scrollTo(0, 0);
+      this.$router.push(`${url}`);
     }
   },
   components: {
@@ -401,22 +453,16 @@ html {
 #FAQ {
   background: #4cc07a;
 }
-
-.header-title {
-  font-size: 2rem;
-  text-align: center;
-  color: white;
-  font-weight: bold;
+#sponsors {
+  background: #e6c8bc;
 }
 
 .qna h2 {
   font-size: 1.5rem;
-  color: black;
   font-weight: bold;
 }
 .qna p {
   font-size: 1.25rem;
-  color: black;
   font-weight: normal;
 }
 
@@ -437,5 +483,8 @@ html {
 .sectionTitle {
   font-weight: bold;
   font-size: 2.5rem;
+}
+.size-1-25 {
+  font-size: 1.25em;
 }
 </style>
