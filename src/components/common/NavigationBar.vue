@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar style="background: #80d2ff !important" elevation="0">
+    <v-toolbar :class="backgroundColor" elevation="0">
       <img
         class="mr-3"
         :src="require('@/assets/BostonHacksMark.png')"
@@ -50,6 +50,11 @@ export default {
     },
     getRoutePath() {
       return this.$route.path;
+    },
+    backgroundColor() {
+      return this.$route.path == "/sponsor"
+        ? "sponsor-background"
+        : "landing-background";
     }
   },
   methods: {
@@ -69,3 +74,13 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.landing-background {
+  background-color: #80d2ff !important;
+}
+
+.sponsor-background {
+  background-color: white !important;
+}
+</style>

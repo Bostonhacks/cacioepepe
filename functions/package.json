@@ -5,7 +5,7 @@
     "serve": "firebase serve --only functions",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
+    "deploy": "node functionDeploy.js",
     "logs": "firebase functions:log"
   },
   "engines": {
@@ -21,7 +21,9 @@
     "fs-extra": "8.1.0",
     "glob": "^7.1.6",
     "uuid-v4": "^0.1.0",
-    "json-2-csv": "3.7.1"
+    "shelljs": "^0.8.4",
+    "json-2-csv": "3.7.1",
+    "colors": "^1.4.0"
   },
   "devDependencies": {
     "firebase-functions-test": "^0.1.6"
