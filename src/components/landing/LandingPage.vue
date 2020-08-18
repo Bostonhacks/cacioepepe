@@ -1,39 +1,29 @@
 <template>
-  <div>
-    <div id="home" z-index="100" class="mb-n1">
-      <v-row justify="end" no-gutters>
-        <a
-          id="mlh-trust-badge"
-          rel="noreferrer"
-          href="https://mlh.io/seasons/na-2020/events?utm_source=na-hackathon&amp;utm_medium=TrustBadge&amp;utm_campaign=2020-season&amp;utm_content=gray"
-          target="_blank"
-          class="pr-3"
-        >
-          <img
-            src="https://s3.amazonaws.com/logged-assets/trust-badge/2020/mlh-trust-badge-2020-gray.svg"
-            alt="Major League Hacking 2020 Hackathon Season"
-            width="90rem"
-          />
-        </a>
-      </v-row>
-      <v-container>
+  <main>
+    <div id="home" z-index="100" class="mb-n1 pt-16">
+      <!-- <v-row class="py-9">
+        <v-switch
+          v-model="$vuetify.theme.dark"
+          hint="This toggles the global state of the Vuetify theme"
+          inset
+          label="Vuetify Theme Dark"
+          persistent-hint
+        ></v-switch>
+      </v-row>-->
+      <v-container class="mt-5">
         <v-row justify="space-between" class="mx-md-n8 mb-n16">
-          <v-col cols="3">
-            <img
-              src="/assets/landingPage/cloud9Light.svg"
-              alt="cloud1"
-              width="275rem"
-              style=" top: -5rem; position: relative"
-              class="d-none d-sm-flex ml-sm-4"
+          <v-col cols="3" class="pa-0">
+            <Cloud9
+              type="light"
+              style=" position: relative"
+              class="d-none d-sm-flex ml-sm-4 mt-n16"
             />
           </v-col>
           <v-col cols="3">
-            <img
-              src="/assets/landingPage/cloud9Light.svg"
-              alt="cloud1"
-              width="275rem"
-              class="d-none d-md-flex"
-              style="top: 10rem; position: relative"
+            <Cloud9
+              type="light"
+              style=" position: relative"
+              class="d-none d-sm-flex ml-sm-4 mt-16 pt-16"
             />
           </v-col>
         </v-row>
@@ -60,23 +50,28 @@
             offset="2"
             sm="4"
             offset-sm="0"
-            class="text-center white--text"
+            class="text-center white--text basicTextShadow"
           >
-            <object
-              class="mb-5"
-              data="/assets/landingPage/bHacksWhite.svg"
-              alt="BostonHacks Logo"
-            />
+            <BostonHacksLogoTextShadowed class="mb-5" />
             <h2>Come hack with us!</h2>
             <h2 class="mb-5">November 14-15th, 2020</h2>
             <v-btn
               rounded
               depressed
               x-large
-              disabled
-              @click="login()"
-              class="text-center ma-7"
-              >Login (Coming Soon)</v-btn
+              @click="() => this.navigate('/login')"
+              class="text-center ma-5"
+              v-if="!this.user"
+              >Log In</v-btn
+            >
+            <v-btn
+              rounded
+              depressed
+              x-large
+              @click="() => this.navigate('/dashboard')"
+              class="text-center ma-5"
+              v-if="this.user"
+              >Go To Dashboard</v-btn
             >
           </v-col>
         </v-row>
@@ -88,72 +83,68 @@
           justify="center"
           align="center"
         >
-          <v-col cols="10" offset-sm="0" sm="5">
-            <div>
-              <div>
-                <h2
-                  style="font-size: 1.5rem; text-align: center; color: white; font-weight: bold"
+          <v-col cols="12" offset-sm="0" sm="5">
+            <v-row
+              justify="center"
+              class="basicTextShadow white--text text-center font-weight-light"
+            >
+              <h2>Interested in Sponsoring?</h2>
+              <p class="size-1-25">
+                We’d love to have you on board. Contact us at
+                <a class="white--text" href="mailto:sponsor@bostonhacks.io"
+                  >sponsor@bostonhacks.io</a
                 >
-                  Interested in Sponsoring?
-                </h2>
-                <h2
-                  style="font-size: 1.25rem; text-align: center; color: white; font-weight: normal"
-                >
-                  We’d love to have you on board. Contact us at
-                  <a href="mailto:sponsor@bostonhacks.io"
-                    >sponsor@bostonhacks.io</a
-                  >
-                  or check out our sponsor document!
-                </h2>
-                <br />
-                <v-row justify="center">
-                  <v-btn depressed rounded @click="sponsor()">Learn More</v-btn>
-                </v-row>
-              </div>
-            </div>
+                or check out our sponsor document!
+              </p>
+            </v-row>
+            <br />
+            <v-row justify="center">
+              <v-btn
+                depressed
+                rounded
+                x-large
+                @click="() => this.navigate('/sponsor')"
+                >Learn more</v-btn
+              >
+            </v-row>
           </v-col>
         </v-row>
       </v-container>
 
-      <object
-        data="/assets/landingPage/wave.svg"
-        z-index="10"
-        class="d-block mt-n16"
-      ></object>
+      <Wave z-index="10" class="d-block mt-n16" />
     </div>
 
-    <div id="tracks" style="margin-top: 0; padding-top: 0;">
+    <div
+      id="tracks"
+      class="pb-10"
+      style="text-shadow: 1px 1px 0.5px rgba(0,0,0,.2);"
+    >
       <v-container>
         <v-row style="height: 0">
-          <v-col cols="3">
-            <img
-              src="/assets/landingPage/cloud9Dark.svg"
+          <v-col cols="3" class="pa-0">
+            <Cloud9
               alt="Blue Cloud"
+              type="dark"
               style="position: relative; top: -4rem;"
             />
           </v-col>
         </v-row>
         <v-row no-gutters justify="space-between" style="height: 0">
           <v-col cols="2" sm="4" lg="3" xl="2">
-            <img
-              src="/assets/landingPage/hotair1.svg"
-              alt="Red Hot Air Balloon"
-              style="top: 5rem; position: relative;"
+            <RedHotAirBalloon
+              class="mt-0 mt-15-sm"
+              style="position: relative;"
             />
           </v-col>
-          <v-col cols="3" lg="2">
-            <img
-              src="/assets/landingPage/hotair2.svg"
-              alt="Green Hot Air Balloon"
-              style="position: relative; top: -10rem"
-            />
+          <v-col cols="3" lg="2" style="position: relative;" class="mt-n16">
+            <div class="mt-n16" style="position: relative">
+              <GreenHotAirBalloon class="mt-n16" style="position: relative; " />
+            </div>
           </v-col>
         </v-row>
         <v-row justify="center">
           <v-col>
-            <h2
-              style="text-align: center; font-weight: bold; font-size: 2rem; margin-bottom: 4em"
-            >
+            <h2 class="text-center mb-4 mb-sm-16 pb-xl-16 pt-xl-4 sectionTitle">
               Tracks
             </h2>
           </v-col>
@@ -196,117 +187,70 @@
         </v-row>
 
         <v-row justify="space-between">
-          <v-col cols="3">
-            <img
-              src="/assets/landingPage/cloud9Dark.svg"
-              alt="cloud2"
-              style="position: relative; top: 0rem; "
+          <v-col cols="3" class="pa-0">
+            <Cloud9
+              type="dark"
+              alt="Blue Cloud"
+              style="position: relative; top: 0rem;"
             />
           </v-col>
-          <v-col cols="3">
-            <img
-              src="/assets/landingPage/cloud9Dark.svg"
-              alt="cloud2"
+          <v-col cols="3" class="pa-0">
+            <Cloud9
+              type="dark"
               style=" position: relative; top: -20rem; "
               class="d-none d-md-block"
             />
           </v-col>
         </v-row>
       </v-container>
-      <object
-        data="/assets/landingPage/wave2.svg"
-        z-index="10"
-        class="d-block mt-n16 mb-n1 pt-8"
-      ></object>
+
+      <Wave2 z-index="10" class="d-block mt-n16 mb-n11 pt-16" />
     </div>
 
-    <div id="schedule">
+    <div id="schedule" class="basicTextShadow white--text">
       <v-container>
         <v-row>
           <v-col>
-            <img
-              src="/assets/landingPage/tree.svg"
-              alt="tree"
-              style="position: relative; margin-top: -13rem"
-            />
+            <Tree style="position: relative; margin-top: -13rem" />
           </v-col>
           <v-col>
-            <img
-              src="/assets/landingPage/tree.svg"
-              alt="tree"
-              style="position: relative; margin-top: -5rem; "
-            />
+            <Tree style="position: relative; margin-top: -5rem; " />
           </v-col>
           <v-col cols="5">
-            <img
-              src="/assets/landingPage/windmill.svg"
-              alt="windmill"
-              style="margin-top: -28rem"
-            />
+            <Windmill style="margin-top: -28rem" />
           </v-col>
         </v-row>
 
         <v-row>
           <v-col>
-            <h2
-              class="display-1 text-center"
-              style="color: white; font-weight: bold; "
-            >
-              Schedule
-            </h2>
+            <h2 class="display-1 text-center font-weight-bold">Schedule</h2>
             <br />
             <div style="min-height: 20em">
-              <div class="text-center" style="color: white">To Be Decided!</div>
+              <div class="text-center">To Be Decided!</div>
             </div>
           </v-col>
         </v-row>
 
         <v-row>
           <v-col>
-            <img
-              src="/assets/landingPage/tree.svg"
-              alt="tree"
-              style="position: relative;  top: -13rem;"
-              class="tree"
-              id="t3"
-            />
+            <Tree style="position: relative;  top: -13rem;" />
           </v-col>
           <v-col>
-            <img
-              src="/assets/landingPage/tree.svg"
-              alt="tree"
-              style="position: relative;  top: 1rem;"
-              class="tree"
-              id="t4"
-            />
+            <Tree style="position: relative;  top: 1rem;" />
           </v-col>
-          <v-col cols="5">
-            <img
-              src="/assets/landingPage/pond.svg"
-              alt="tree"
-              style=" margin-top: 2rem"
-              id="pond"
-            />
-          </v-col>
+          <v-col cols="5"></v-col>
         </v-row>
       </v-container>
 
-      <object
-        data="/assets/landingPage/wave3.svg"
-        z-index="10"
-        class="d-block mt-n16 mb-n1"
-      ></object>
+      <Wave4 z-index="10" class="d-block mt-n16 mb-n1" />
     </div>
 
-    <div id="FAQ" class="pb-16">
-      <h2
-        class="display-1 pt-15"
-        style="color: black; text-align: center; font-weight: bold"
-      >
+    <div id="FAQ" class="white--text basicTextShadow">
+      <h2 class="display-1 pt-15 text-center font-weight-bold">
         Frequently Asked Questions
       </h2>
       <v-container class="pb-16">
-        <v-row>
+        <v-row justify="start">
           <v-col cols="12" md="6" lg="4">
             <div class="qna">
               <h2>What is BostonHacks?</h2>
@@ -319,6 +263,11 @@
               </p>
             </div>
           </v-col>
+          <v-col cols="6" offset="2" md="4">
+            <Tree style="position: relative; margin-top: 0rem" />
+          </v-col>
+        </v-row>
+        <v-row justify="center">
           <v-col cols="12" md="6" lg="4">
             <div class="qna">
               <h2>When and where is BostonHacks?</h2>
@@ -328,7 +277,12 @@
               </p>
             </div>
           </v-col>
-          <v-col cols="12" md="6" lg="4">
+        </v-row>
+        <v-row justify="end">
+          <v-col cols="6" md="4">
+            <Tree style="position: relative; margin-top: 0rem" />
+          </v-col>
+          <v-col cols="12" offset-md="2" offset-lg="4" md="6" lg="4">
             <div class="qna">
               <h2>Who can attend?</h2>
               <p>
@@ -337,6 +291,8 @@
               </p>
             </div>
           </v-col>
+        </v-row>
+        <v-row justify="center">
           <v-col cols="12" md="6" lg="4">
             <div class="qna">
               <h2>Do I need experience?</h2>
@@ -348,6 +304,8 @@
               </p>
             </div>
           </v-col>
+        </v-row>
+        <v-row justify="start">
           <v-col cols="12" md="6" lg="4">
             <div class="qna">
               <h2>Does it cost anything?</h2>
@@ -358,6 +316,8 @@
               </p>
             </div>
           </v-col>
+        </v-row>
+        <v-row justify="center">
           <v-col cols="12" md="6" lg="4">
             <div class="qna">
               <h2>Can we form teams?</h2>
@@ -369,17 +329,29 @@
               </p>
             </div>
           </v-col>
+        </v-row>
+        <v-row justify="end">
           <v-col cols="12" md="6" lg="4">
             <div class="qna">
-              <h2 style="font-size: 1.5rem; color:  black; font-weight: bold">
-                Are there any rules?
-              </h2>
+              <h2>Are there any rules?</h2>
               <p>
                 We want to ensure a positive experience for all participants. We
-                encourage you to read the Code of Conduct.
+                encourage you to read the
+                <a
+                  href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
+                  alt="Our Code of Conduct"
+                  class="white--text"
+                  target="_blank"
+                  >Code of Conduct.</a
+                >
               </p>
             </div>
           </v-col>
+        </v-row>
+      </v-container>
+      <River />
+      <v-container>
+        <v-row justify="center">
           <v-col cols="12" md="6" lg="4">
             <div class="qna">
               <h2>What do I need to bring?</h2>
@@ -389,22 +361,49 @@
               </p>
             </div>
           </v-col>
+        </v-row>
+        <v-row justify="start">
           <v-col cols="12" md="6" lg="4">
             <div class="qna">
               <h2>What if I have a different question?</h2>
               <p>
-                We’re here for you! Shoot us an email at contact@bostonhacks.io,
-                or a message on any of our social media platforms.
+                We’re here for you! Shoot us an email at
+                <a href="mailto:contact@bostonhacks.io" class="white--text"
+                  >contact@bostonhacks.io</a
+                >, or a message on any of our social media platforms.
               </p>
             </div>
           </v-col>
         </v-row>
       </v-container>
+
+      <Wave3 z-index="10" class="d-block" />
     </div>
-  </div>
+
+    <div id="sponsors" class="pb-16 white--text basicTextShadow">
+      <h2 class="display-1 pt-15 text-center font-weight-bold">
+        Thank You To Our Sponsors!
+      </h2>
+
+      <!-- this is just a spacer placed here so the footer gets colored -->
+      <div class="my-16 py-16"></div>
+    </div>
+  </main>
 </template>
 
 <script>
+import Wave from "@/components/common/SVG/Wave";
+import Wave2 from "@/components/common/SVG/Wave2";
+import Wave3 from "@/components/common/SVG/Wave3";
+import Wave4 from "@/components/common/SVG/Wave4";
+import Cloud9 from "@/components/common/SVG/Cloud9";
+import Tree from "@/components/common/SVG/Tree";
+import Windmill from "@/components/common/SVG/Windmill";
+import RedHotAirBalloon from "@/components/common/SVG/RedHotAirBalloon";
+import GreenHotAirBalloon from "@/components/common/SVG/GreenHotAirBalloon";
+import BostonHacksLogoTextShadowed from "@/components/common/SVG/BostonHacksLogoTextShadowed";
+import River from "@/components/common/SVG/River";
+
 export default {
   computed: {
     user() {
@@ -412,12 +411,23 @@ export default {
     }
   },
   methods: {
-    login() {
-      this.$router.push("/login");
-    },
-    sponsor() {
-      this.$router.push("/sponsor");
+    navigate(url) {
+      window.scrollTo(0, 0);
+      this.$router.push(`${url}`);
     }
+  },
+  components: {
+    Wave: Wave,
+    Wave2: Wave2,
+    Wave3: Wave3,
+    Wave4: Wave4,
+    Cloud9: Cloud9,
+    Tree: Tree,
+    Windmill: Windmill,
+    RedHotAirBalloon: RedHotAirBalloon,
+    GreenHotAirBalloon: GreenHotAirBalloon,
+    BostonHacksLogoTextShadowed: BostonHacksLogoTextShadowed,
+    River: River
   }
 };
 </script>
@@ -441,27 +451,18 @@ html {
 }
 
 #FAQ {
+  background: #4cc07a;
+}
+#sponsors {
   background: #e6c8bc;
 }
 
-.header-title {
-  font-size: 2rem;
-  text-align: center;
-  color: white;
-  font-weight: bold;
-}
-
-.qna {
-  padding: 1.5rem;
-}
 .qna h2 {
   font-size: 1.5rem;
-  color: black;
   font-weight: bold;
 }
 .qna p {
   font-size: 1.25rem;
-  color: black;
   font-weight: normal;
 }
 
@@ -473,5 +474,17 @@ html {
 
 .mt-n20em {
   margin-top: -20em;
+}
+
+.basicTextShadow {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.sectionTitle {
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+.size-1-25 {
+  font-size: 1.25em;
 }
 </style>

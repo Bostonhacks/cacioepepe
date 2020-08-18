@@ -1,48 +1,69 @@
 <template>
-  <div>
-    <v-toolbar :class="backgroundColor" elevation="0">
-      <img
-        class="mr-3"
-        :src="require('@/assets/BostonHacksMark.png')"
-        height="30"
-      />
-      <v-toolbar-title>BostonHacks</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn text @click="home()">Home</v-btn>
-        <v-btn
-          v-if="this.getRoutePath && this.getRoutePath == '/'"
-          text
-          href="#tracks"
-          >Tracks</v-btn
-        >
-        <v-btn
-          v-if="this.getRoutePath && this.getRoutePath == '/'"
-          text
-          href="#schedule"
-          >Schedule</v-btn
-        >
-        <v-btn
-          v-if="this.getRoutePath && this.getRoutePath == '/'"
-          text
-          href="#FAQ"
-          >FAQ</v-btn
-        >
-        <!-- <v-btn text @click="application()">Application</v-btn>
-        <v-btn icon>
-          <v-icon v-if="user" @click="signOut()">mdi-export-variant</v-icon>
-          <v-icon v-else @click="signIn()">mdi-arrow-right</v-icon>
-        </v-btn> -->
-      </v-toolbar-items>
-    </v-toolbar>
-  </div>
+  <nav>
+    <ul>
+      <li
+        v-for="bannerLink in filteredBannerLinks"
+        :key="bannerLink.text + bannerLink.path"
+      >
+        <button :alt="bannerLink.text" @click="bannerLink.action">
+          <Banner :bannerLink="bannerLink" />
+        </button>
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <script>
+import Banner from "./Banner";
+
 export default {
+  components: { Banner: Banner },
   name: "NavigationBar",
   data() {
-    return {};
+    return {
+      BannerLinks: [
+        {
+          // specify a condition to conditionally render a flag!
+          condition: () => true,
+          text: "Home",
+          direction: "right",
+          color: "#fe735f",
+          action: () => this.navigate("/")
+        },
+        {
+          condition: () => true,
+          text: "Sponsors",
+          direction: "left",
+          color: "#F6D374",
+          action: () => this.navigate("/sponsor")
+        },
+        {
+          condition: () => false,
+          // condition: () => this.user,
+          text: "Dashboard",
+          direction: "right",
+          color: "#0098FF",
+          action: () => this.navigate("/dashboard")
+        },
+        {
+          condition: () => false,
+          // condition: () => !this.user,
+          text: "Log In",
+          direction: "left",
+          color: "#4BBC79",
+          action: () => {
+            this.navigate("/login");
+          }
+        },
+        {
+          condition: () => this.user,
+          text: "Log Out",
+          direction: "left",
+          color: "#4BBC79",
+          action: () => this.logOut()
+        }
+      ]
+    };
   },
   computed: {
     user() {
@@ -51,36 +72,40 @@ export default {
     getRoutePath() {
       return this.$route.path;
     },
-    backgroundColor() {
-      return this.$route.path == "/sponsor"
-        ? "sponsor-background"
-        : "landing-background";
+    filteredBannerLinks() {
+      return this.BannerLinks.filter(BannerLink => BannerLink.condition());
     }
   },
   methods: {
-    async signOut() {
+    async logOut() {
       await this.$store.dispatch("logOut");
-      this.$router.push("/");
+      this.navigate("/");
     },
-    signIn() {
-      this.$router.push("/login");
-    },
-    home() {
-      this.$router.push("/");
-    },
-    application() {
-      this.$router.push("/application");
+    navigate(url) {
+      window.scrollTo(0, 0);
+      this.$router.push(`${url}`).catch(() => {});
     }
   }
 };
 </script>
 
 <style scoped>
-.landing-background {
-  background-color: #80d2ff !important;
+nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  z-index: 10000;
 }
-
-.sponsor-background {
-  background-color: white !important;
+ul {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  padding-left: 0 !important;
 }
 </style>

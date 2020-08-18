@@ -11,7 +11,7 @@
       "**/node_modules/**"
     ],
     "predeploy": [
-      "node predeployCheck.js", "npm run build"
+      "node predeployCheck.js"
     ],
     "rewrites": [
       {
