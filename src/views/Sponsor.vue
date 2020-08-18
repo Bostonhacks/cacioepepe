@@ -1,5 +1,5 @@
 <template>
-  <v-container class="white">
+  <div class="white">
     <v-container>
       <v-row
         class="flex-column-reverse flex-md-row"
@@ -25,9 +25,9 @@
               students had meaningful interactions with mentors, peers, and
               sponsors. A hackathon would be incomplete without the new
               technology, advice, and ideas our sponsors offer, and we’d be
-              eager to have you join us this coming Fall! <br />
+              eager to have you join us this coming Fall!
               <br />
-              BostonHacks Fall 2020 will run from November 14th to Sunday,
+              <br />BostonHacks Fall 2020 will run from November 14th to Sunday,
               November 15th on Boston University’s Charles River campus. At
               BostonHacks, we strive to provide a comprehensive recruiting and
               branding experience to our sponsors. Here’s what your company can
@@ -80,9 +80,7 @@
         <v-row class="flex-column-reverse flex-md-row" justify="center">
           <v-col cols="12" md="6">
             <v-row class="justify-center justify-md-start">
-              <h4 class="display-3 font-weight-bold">
-                STATISTICS
-              </h4>
+              <h4 class="display-3 font-weight-bold">STATISTICS</h4>
             </v-row>
             <v-row
               class="display-1 pl-0 pl-md-8 justify-center justify-md-start"
@@ -111,14 +109,12 @@
                   dark
                   class="mt-n2 ml-n1"
                 >
-                  <v-icon>mdi-menu-up</v-icon>
-                </v-btn>
-
-                we had...
+                  <v-icon>mdi-menu-up</v-icon> </v-btn
+                >we had...
               </div>
             </v-row>
             <!-- Not entirely sure how this broke, but the div below that contains the buttons for all the years should only render
-            if "renderYearSelect" is set to tre, which the button above should trigger. -->
+            if "renderYearSelect" is set to tre, which the button above should trigger.-->
 
             <transition name="fade">
               <div
@@ -207,15 +203,13 @@
               <text x="270" y="300" class="us-num">
                 {{ states[selectedYear] }}
               </text>
-              <text x="330" y="300" class="us-small">
-                States (and Canada)
-              </text>
+              <text x="330" y="300" class="us-small">States (and Canada)</text>
             </svg>
           </v-col>
         </v-row>
       </v-container>
     </div>
-    <object data="/assets/sponsor/blueSkyBottom.svg" class=" mt-n1"></object>
+    <object data="/assets/sponsor/blueSkyBottom.svg" class="mt-n1"></object>
 
     <object
       data="/assets/landingPage/hotair2.svg"
@@ -262,14 +256,14 @@
           data="/assets/landingPage/tree.svg"
           class="tree-top"
           style="width: 100%; height: 100%;"
-        ></object
-      ></v-col>
+        ></object>
+      </v-col>
       <v-col>
         <object
           data="/assets/landingPage/windmill.svg"
           class="windmill"
-        ></object
-      ></v-col>
+        ></object>
+      </v-col>
     </v-row>
     <object data="/assets/sponsor/grassTop.svg" class="mb-n2"></object>
     <v-row no-gutters justify="center" class="grass-background">
@@ -310,9 +304,7 @@
             class="tree-bottom"
           ></object>
           <v-col cols="12" md="6">
-            <h4 class="font-weight-bold">
-              Cadence: Apurva Kalia
-            </h4>
+            <h4 class="font-weight-bold">Cadence: Apurva Kalia</h4>
             <p class="font-italic">
               “The energy was very infectious! It was great to see the young
               kids wrapping their minds around the given problems and come up
@@ -348,7 +340,7 @@
     </v-row>
     <object
       data="/assets/sponsor/waveBottom.svg"
-      class=" align-self-start mb-n2"
+      class="align-self-start mb-n2"
     ></object>
   </div>
 </template>
