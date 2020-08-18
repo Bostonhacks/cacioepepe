@@ -1,15 +1,15 @@
 <template>
   <main>
     <div id="home" z-index="100" class="mb-n1 pt-16">
-      <!-- <v-row class="py-9">
-        <v-switch
+      <v-row class="py-12 py-lg-0">
+        <!-- <v-switch
           v-model="$vuetify.theme.dark"
           hint="This toggles the global state of the Vuetify theme"
           inset
           label="Vuetify Theme Dark"
           persistent-hint
-        ></v-switch>
-      </v-row>-->
+        ></v-switch> -->
+      </v-row>
       <v-container class="mt-5">
         <v-row justify="space-between" class="mx-md-n8 mb-n16">
           <v-col cols="3" class="pa-0">
