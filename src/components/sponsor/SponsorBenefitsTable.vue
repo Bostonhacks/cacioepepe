@@ -9,7 +9,7 @@
       :items="generalData"
     ></v-data-table>
     <v-container>
-      <v-text> </v-text>
+      <br />
     </v-container>
     <v-data-table
       class="my-table"
@@ -21,7 +21,7 @@
     >
     </v-data-table>
     <v-container>
-      <v-text> </v-text>
+      <br />
     </v-container>
     <v-data-table
       class="my-table"
