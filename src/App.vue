@@ -1,5 +1,31 @@
 <template>
   <v-app id="app">
+    <!-- 
+      because "svg don't care", we can create a filter for 
+      drop shadows on SVG elements once, and use it by ID everywhere
+      as long as that filter exists in another SVG on the page
+    -->
+    <svg width="0" height="0">
+      <filter
+        id="basicDropShadow"
+        x="-20%"
+        y="-20%"
+        width="140%"
+        height="140%"
+        filterUnits="objectBoundingBox"
+        primitiveUnits="userSpaceOnUse"
+        color-interpolation-filters="linearRGB"
+      >
+        <feOffset dx="2" dy="2" in="SourceAlpha" result="offset" />
+        <feGaussianBlur stdDeviation="2 2" in="offset" result="blur" />
+        <feFlood flood-color="#172841" flood-opacity="0.7" result="flood" />
+        <feComposite in="flood" in2="blur" operator="in" result="composite" />
+        <feMerge result="merge">
+          <feMergeNode in="composite" result="mergeNode" />
+          <feMergeNode in="SourceGraphic" result="mergeNode1" />
+        </feMerge>
+      </filter>
+    </svg>
     <!-- <navigationBar v-if="this.getRoutePath && this.getRoutePath !== '/live'" /> -->
     <!-- <mobileBar
       v-if="this.getRoutePath && this.getRoutePath !== '/live'"
@@ -43,7 +69,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   overflow-x: hidden;
   background-repeat: no-repeat;

@@ -8,7 +8,7 @@
           inset
           label="Vuetify Theme Dark"
           persistent-hint
-        ></v-switch> -->
+        ></v-switch>-->
       </v-row>
       <v-container class="mt-5">
         <v-row justify="space-between" class="mx-md-n8 mb-n16">
@@ -382,7 +382,7 @@
 
     <div id="sponsors" class="pb-16 white--text basicTextShadow">
       <h2 class="display-1 pt-15 text-center font-weight-bold">
-        Thank You To Our Sponsors!
+        <!-- Thank You To Our Sponsors! -->
       </h2>
 
       <!-- this is just a spacer placed here so the footer gets colored -->
@@ -454,7 +454,7 @@ html {
   background: #4cc07a;
 }
 #sponsors {
-  background: #e6c8bc;
+  background: #683614;
 }
 
 .qna h2 {
