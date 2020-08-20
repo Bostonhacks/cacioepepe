@@ -4,7 +4,7 @@
     data-name="cloud 1"
     viewBox="0 0 300 85"
   >
-    <g :fill="fillColor">
+    <g :style="cloudStyles">
       <path
         d="M47 62s-1-22 24-24 32 0 32 0 2-37 46-38 42 38 42 38h33s27 4 28 24"
         data-name="bumpyBois"
@@ -25,11 +25,20 @@ export default {
     }
   },
   computed: {
-    fillColor: function() {
-      return this.type === "light" ? "#aee2ff" : "#7fd2ff";
+    cloudStyles() {
+      return {
+        fill:
+          this.type == "light"
+            ? "var(--v-lightBlue-base)"
+            : "var(--v-blue-base)"
+      };
     }
   }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.cloudGroup {
+  fill: var(--v-lightBlue-base);
+}
+</style>

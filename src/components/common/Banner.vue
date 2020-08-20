@@ -37,8 +37,6 @@
       text-anchor="middle"
       fill="white"
     >
-      <!-- <div v-if="user" @click="signOut()">Sign Out</div>
-      <div v-else @click="signIn()">Sign In</div>-->
       {{ bannerLink.text }}
     </text>
   </svg>
@@ -46,17 +44,7 @@
 
 <script>
 export default {
-  props: { bannerLink: Object },
-  computed: {
-    user() {
-      return this.$store.state.user;
-    }
-  },
-  methods: {
-    goHome() {
-      return this.$router.push("/");
-    }
-  }
+  props: { bannerLink: Object }
 };
 </script>
 

@@ -26,12 +26,15 @@
         <circle cx="476" cy="250" r="20" />
       </g>
     </defs>
+    <!-- fill="#306e6e" -->
+
     <use
       xlink:href="#windmill"
-      fill="#306e6e"
+      class="windmillShadow"
       transform="rotate(-90 469 752) translate(310 385) scale(0.35 0.65) skewY(-20) "
     />
-    <use xlink:href="#windmill" fill="#e5d7d1" stroke="#707070" />
+    <!-- fill="#e5d7d1" stroke="#707070" -->
+    <use xlink:href="#windmill" class="windmill" />
   </svg>
 </template>
 
@@ -39,4 +42,13 @@
 export default {};
 </script>
 
-<style></style>
+<style>
+.windmill {
+  fill: var(--v-tan-lighten1);
+  stroke: var(--v-tan-darken2);
+}
+
+.windmillShadow {
+  fill: var(--v-aqua-darken2);
+}
+</style>

@@ -1,11 +1,11 @@
 <template>
-  <main class="blue">
+  <div class="blue notFound">
     <h2>404 Not Found</h2>
     <p>
       Oops, it looks like we could not find that page 😬... Try going
       <router-link to="/">home 🏠</router-link>
     </p>
-  </main>
+  </div>
 </template>
 
 <script>
@@ -19,7 +19,10 @@ h2 {
 p {
   font-size: 2em;
 }
-main {
+a {
+  color: white;
+}
+.notFound {
   min-height: calc(100vh - 100px);
   background: white;
   display: flex;

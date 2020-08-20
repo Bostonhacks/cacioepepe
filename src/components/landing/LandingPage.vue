@@ -1,14 +1,16 @@
 <template>
-  <main>
-    <div id="home" z-index="100" class="mb-n1 pt-16">
-      <v-row class="py-12 py-lg-0">
-        <!-- <v-switch
-          v-model="$vuetify.theme.dark"
-          hint="This toggles the global state of the Vuetify theme"
-          inset
-          label="Vuetify Theme Dark"
-          persistent-hint
-        ></v-switch>-->
+  <div>
+    <div id="home" z-index="100" class="mb-n1 pt-16 blue">
+      <v-row class="py-12 py-lg-0 justify-center">
+        <v-col cols="4">
+          <v-switch
+            v-model="$vuetify.theme.dark"
+            hint="This toggles the global state of the Vuetify theme"
+            inset
+            label="Vuetify Theme Dark"
+            persistent-hint
+          ></v-switch>
+        </v-col>
       </v-row>
       <v-container class="mt-5">
         <v-row justify="space-between" class="mx-md-n8 mb-n16">
@@ -37,8 +39,14 @@
             offset-sm="2"
             class="mt-n16 d-flex align-content-end flex-column"
           >
-            <object
+            <!-- <object
               data="/assets/landingPage/feliz.svg"
+              alt="pinata"
+              class="mt-5"
+              style="max-height: 80vh; z-index: 100"
+              :z-index="1000"
+            />-->
+            <Feliz
               alt="pinata"
               class="mt-5"
               style="max-height: 80vh; z-index: 100"
@@ -110,13 +118,12 @@
           </v-col>
         </v-row>
       </v-container>
-
       <Wave z-index="10" class="d-block mt-n16" />
     </div>
 
     <div
       id="tracks"
-      class="pb-10"
+      class="pb-10 lightBlue"
       style="text-shadow: 1px 1px 0.5px rgba(0,0,0,.2);"
     >
       <v-container>
@@ -245,7 +252,7 @@
       <Wave4 z-index="10" class="d-block mt-n16 mb-n1" />
     </div>
 
-    <div id="FAQ" class="white--text basicTextShadow">
+    <div id="FAQ" class="white--text basicTextShadow green darken-1">
       <h2 class="display-1 pt-15 text-center font-weight-bold">
         Frequently Asked Questions
       </h2>
@@ -388,7 +395,7 @@
       <!-- this is just a spacer placed here so the footer gets colored -->
       <div class="my-16 py-16"></div>
     </div>
-  </main>
+  </div>
 </template>
 
 <script>
@@ -403,6 +410,7 @@ import RedHotAirBalloon from "@/components/common/SVG/RedHotAirBalloon";
 import GreenHotAirBalloon from "@/components/common/SVG/GreenHotAirBalloon";
 import BostonHacksLogoTextShadowed from "@/components/common/SVG/BostonHacksLogoTextShadowed";
 import River from "@/components/common/SVG/River";
+import Feliz from "@/components/common/SVG/Feliz";
 
 export default {
   computed: {
@@ -417,17 +425,18 @@ export default {
     }
   },
   components: {
-    Wave: Wave,
-    Wave2: Wave2,
-    Wave3: Wave3,
-    Wave4: Wave4,
-    Cloud9: Cloud9,
-    Tree: Tree,
-    Windmill: Windmill,
-    RedHotAirBalloon: RedHotAirBalloon,
-    GreenHotAirBalloon: GreenHotAirBalloon,
-    BostonHacksLogoTextShadowed: BostonHacksLogoTextShadowed,
-    River: River
+    Wave,
+    Wave2,
+    Wave3,
+    Wave4,
+    Cloud9,
+    Tree,
+    Windmill,
+    RedHotAirBalloon,
+    GreenHotAirBalloon,
+    BostonHacksLogoTextShadowed,
+    River,
+    Feliz
   }
 };
 </script>
@@ -437,21 +446,14 @@ html {
   scroll-behavior: smooth;
 }
 
-#home {
-  background: #80d2ff;
-}
-
 #tracks {
-  background: #aee2ff;
-  color: #1e75af;
+  /* background: #aee2ff; */
+  /* color: #1e75af; */
+  color: var(--v-darkBlue-base);
 }
 
 #schedule {
-  background: #53d186;
-}
-
-#FAQ {
-  background: #4cc07a;
+  background: var(--v-green-base);
 }
 #sponsors {
   background: #683614;

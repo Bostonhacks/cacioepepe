@@ -1,5 +1,12 @@
 <template>
   <v-app id="app">
+    <navigationBar />
+
+    <transition name="slide" mode="out-in">
+      <router-view />
+    </transition>
+    <Footer />
+
     <!-- 
       because "svg don't care", we can create a filter for 
       drop shadows on SVG elements once, and use it by ID everywhere
@@ -26,17 +33,6 @@
         </feMerge>
       </filter>
     </svg>
-    <!-- <navigationBar v-if="this.getRoutePath && this.getRoutePath !== '/live'" /> -->
-    <!-- <mobileBar
-      v-if="this.getRoutePath && this.getRoutePath !== '/live'"
-      class="forMob"
-    />-->
-    <navigationBar />
-
-    <transition name="slide" mode="out-in">
-      <router-view />
-    </transition>
-    <footerRow />
   </v-app>
 </template>
 
@@ -44,27 +40,13 @@
 import store from "@/store/index.js";
 import navigationBar from "@/components/common/NavigationBar.vue";
 // import mobileBar from "@/components/common/MobileBar.vue";
-import footerRow from "@/components/common/Footer.vue";
+import Footer from "@/components/common/Footer.vue";
 export default {
   name: "App",
   store,
   components: {
     navigationBar,
-    // mobileBar,
-    footerRow
-  },
-  data() {
-    return {};
-  },
-  computed: {
-    getRoutePath() {
-      return this.$route.path;
-    }
-  },
-  methods: {
-    // home() {
-    //   this.$router.push("/");
-    // }
+    Footer
   }
 };
 </script>
