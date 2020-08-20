@@ -269,7 +269,7 @@
       <v-row no-gutters justify="center" class="grass-background">
         <v-col cols="12" md="8">
           <v-row class="d-flex flex-column-reverse">
-            <v-col cols="12" md="6" style="padding: 0px;">
+            <v-col cols="12" md="6">
               <h4 class="font-weight-bold">Twilio: Sam Agnew</h4>
               <p class="font-italic">
                 “I go to a ton of hackathons and BostonHacks is consistently one
@@ -320,7 +320,7 @@
         style="width: 100vw; flex-direction: row-reverse"
         class="mt-10 mb-10"
       >
-        <v-col class="align-self-end col-12 col-md-5">
+        <v-col class="align-self-end col-12 col-md-5 pl-10">
           <object data="/assets/sponsor/bee.svg"></object>
         </v-col>
       </v-row>
