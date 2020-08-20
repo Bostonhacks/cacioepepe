@@ -1,18 +1,8 @@
 <template>
   <main class="pt-70px blue">
     <div id="home" z-index="100" class="mb-n1 blue pt-16 pt-sm-0">
+      <!-- spacing hack -->
       <v-row class="py-6 py-sm-0"></v-row>
-      <!-- <v-row class="py-12 py-lg-0 justify-center">
-        <v-col cols="4">
-          <v-switch
-            v-model="$vuetify.theme.dark"
-            hint="This toggles the global state of the Vuetify theme"
-            inset
-            label="Vuetify Theme Dark"
-            persistent-hint
-          ></v-switch>
-        </v-col>
-      </v-row> -->
       <v-container class="mt-5">
         <v-row justify="space-between" class="mx-md-n8 mb-n16">
           <v-col cols="3" class="pa-0">
@@ -40,13 +30,6 @@
             offset-sm="2"
             class="mt-n16 d-flex align-content-end flex-column"
           >
-            <!-- <object
-              data="/assets/landingPage/feliz.svg"
-              alt="pinata"
-              class="mt-5"
-              style="max-height: 80vh; z-index: 100"
-              :z-index="1000"
-            />-->
             <Feliz
               alt="pinata"
               class="mt-5"
