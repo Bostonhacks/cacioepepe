@@ -95,7 +95,9 @@
             >
               <template v-slot:item.resume[0]="{ item }">
                 <button v-if="item.resume[0]">
-                  <a :href="item.resume[0]" target="_blank">Open</a>
+                  <a :href="item.resume[0]" target="_blank" rel="noreferrer"
+                    >Open</a
+                  >
                 </button>
               </template>
               <template v-slot:item.preEvent="{ item }">

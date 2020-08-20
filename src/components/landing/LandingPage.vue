@@ -334,6 +334,7 @@
                   alt="Our Code of Conduct"
                   class="white--text"
                   target="_blank"
+                  rel="noreferrer"
                   >Code of Conduct.</a
                 >
               </p>
