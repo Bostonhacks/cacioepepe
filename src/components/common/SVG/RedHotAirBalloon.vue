@@ -1,7 +1,7 @@
 <template>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -50 415.6 640.7">
     <g id="redBalloon" data-name="redBalloon" transform="translate(0 -50)">
-      <g fill="#f9aba5">
+      <g class="lightRed">
         <path d="M203.3 479.6l-4.2 30h1.4l4.1-30z" />
         <path d="M225.7 479.6l4.6 30h-1.4l-4.5-30z" />
         <path
@@ -9,7 +9,7 @@
         />
         <path d="M205.2 508.7h26v32h-26z" />
       </g>
-      <g fill="#fc8377">
+      <g class="darkRed">
         <path
           d="M172.6 442c18.1 22.7 29.7 37.6 29.7 37.6h24.1c3-4.6 14.3-19.4 28.3-37.6z"
         />
@@ -38,4 +38,12 @@
 export default {};
 </script>
 
-<style></style>
+<style>
+.lightRed {
+  fill: var(--v-red-lighten1);
+}
+
+.darkRed {
+  fill: var(--v-red-darken1);
+}
+</style>

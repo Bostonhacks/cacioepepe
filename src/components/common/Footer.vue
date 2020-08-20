@@ -1,5 +1,5 @@
 <template>
-  <v-footer style="background: transparent">
+  <v-footer style="background: #683614">
     <v-container>
       <v-row>
         <v-col cols="12" sm="4" md="1" class="pa-0 verticalCenter">
@@ -79,7 +79,7 @@ export default {
   /* font-size: 1.5em; */
 }
 .max-height-75 {
-  max-height: 45px;
+  max-height: 65px;
 }
 .verticalCenter {
   display: flex;
@@ -90,7 +90,9 @@ export default {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 footer {
-  position: absolute;
+  /* #683614 */
+  /* position: absolute; */
+  background: #683614;
   bottom: 0;
   width: 100vw;
 }

@@ -1,14 +1,14 @@
 <template>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -50 415.6 640.7">
     <g transform="translate(0 50)">
-      <g fill="#b9df9b">
+      <g class="lightGreen">
         <path
           d="M202.3 479.6s-51.9-67-108.7-133.3S-2.2 209.9 0 151.4 60.5 3.4 188.4 0s231 50 227 151.1-85.7 195.2-85.7 195.2S236 464.7 226.4 479.6z"
           class="class1"
         />
         <path d="M205.2 508.7h26v32h-26z" class="class1" />
       </g>
-      <g fill="#a1d579">
+      <g class="darkGreen">
         <path d="M203.3 479.6l-4.2 30h1.4l4.1-30z" class="class3" />
         <path d="M225.7 479.6l4.6 30h-1.4l-4.5-30z" class="class3" />
         <path
@@ -36,3 +36,16 @@
     </g>
   </svg>
 </template>
+
+<script>
+export default {};
+</script>
+<style scoped>
+.lightGreen {
+  fill: var(--v-green-base);
+}
+
+.darkGreen {
+  fill: var(--v-green-darken1);
+}
+</style>

@@ -22,14 +22,14 @@
     </defs>
     <g
       transform="rotate(270 394 451) scale(0.35 0.65) skewY(-20) translate(735 685)"
-      fill="#306e6e"
+      class="shadow"
     >
       <use xlink:href="#stump" />
       <use xlink:href="#tree" />
     </g>
     <g>
-      <use xlink:href="#stump" fill="#e6c8bc" />
-      <use xlink:href="#tree" fill="#209d8c" />
+      <use xlink:href="#stump" class="stump" />
+      <use xlink:href="#tree" class="leaves" />
     </g>
   </svg>
 </template>
@@ -38,4 +38,14 @@
 export default {};
 </script>
 
-<style></style>
+<style>
+.stump {
+  fill: var(--v-brown-base);
+}
+.leaves {
+  fill: var(--v-green-darken2);
+}
+.shadow {
+  fill: var(--v-aqua-darken2);
+}
+</style>
