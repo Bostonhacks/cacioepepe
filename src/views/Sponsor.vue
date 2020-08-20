@@ -1,6 +1,6 @@
 <template>
   <main class="pt-70px">
-    <div class="white pt-8" style="overflow-y: hidden">
+    <div class="white pt-8">
       <v-container>
         <v-row
           class="flex-column-reverse flex-md-row"

@@ -39,7 +39,6 @@
 <script>
 import store from "@/store/index.js";
 import navigationBar from "@/components/common/NavigationBar.vue";
-// import mobileBar from "@/components/common/MobileBar.vue";
 import Footer from "@/components/common/Footer.vue";
 export default {
   name: "App",
