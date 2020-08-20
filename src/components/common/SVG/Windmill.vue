@@ -17,7 +17,7 @@
             attributeName="transform"
             attributeType="XML"
             begin="0s"
-            dur="15s"
+            dur="25s"
             repeatCount="indefinite"
             type="rotate"
             values="360 476 250; 0 476 250"
