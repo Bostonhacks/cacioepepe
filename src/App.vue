@@ -51,7 +51,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 #app {
   overflow-x: hidden;
   background-repeat: no-repeat;
@@ -68,5 +68,9 @@ export default {
 .slide-leave-to {
   opacity: 0;
   transform: scale(0.97);
+}
+
+.pt-70px {
+  padding-top: 70px;
 }
 </style>

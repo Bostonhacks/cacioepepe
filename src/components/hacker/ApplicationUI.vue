@@ -1,115 +1,123 @@
 <template>
-  <v-container>
-    <v-form>
-      <div>
-        <h2>Application</h2>
-      </div>
-      <v-text-field
-        v-model="name"
-        type="text"
-        label="Name"
-        placeholder="John Doe"
-      ></v-text-field>
-      <v-text-field
-        v-model="phone"
-        label="Phone Number"
-        placeholder="123-456-7890"
-        :rules="phoneRules"
-      ></v-text-field>
-      <v-text-field
-        v-model="age"
-        type="number"
-        label="Age"
-        :rules="ageRules"
-      ></v-text-field>
-      <v-select v-model="gender" :items="genderList" label="Gender"></v-select>
-      <v-select
-        v-model="pronouns"
-        :items="pronounList"
-        label="Pronouns"
-      ></v-select>
-      <v-select
-        v-model="university"
-        :items="universityList"
-        label="University"
-      ></v-select>
-      <v-select v-model="major" :items="courseList" label="Major"></v-select>
-      <v-select v-model="minor" :items="courseList" label="Minor"></v-select>
-      <div v-if="resume">
-        <v-btn color="primary" class="mr-4" :href="resume[0]" target="_blank"
-          >View Uploaded Resume</v-btn
+  <main class="pt-70px blue">
+    <v-container class="blue py-16">
+      <v-form>
+        <div>
+          <h2>Application</h2>
+        </div>
+        <v-text-field
+          v-model="name"
+          type="text"
+          label="Name"
+          placeholder="John Doe"
+        ></v-text-field>
+        <v-text-field
+          v-model="phone"
+          label="Phone Number"
+          placeholder="123-456-7890"
+          :rules="phoneRules"
+        ></v-text-field>
+        <v-text-field
+          v-model="age"
+          type="number"
+          label="Age"
+          :rules="ageRules"
+        ></v-text-field>
+        <v-select
+          v-model="gender"
+          :items="genderList"
+          label="Gender"
+        ></v-select>
+        <v-select
+          v-model="pronouns"
+          :items="pronounList"
+          label="Pronouns"
+        ></v-select>
+        <v-select
+          v-model="university"
+          :items="universityList"
+          label="University"
+        ></v-select>
+        <v-select v-model="major" :items="courseList" label="Major"></v-select>
+        <v-select v-model="minor" :items="courseList" label="Minor"></v-select>
+        <div v-if="resume">
+          <v-btn color="primary" class="mr-4" :href="resume[0]" target="_blank"
+            >View Uploaded Resume</v-btn
+          >
+          <v-btn color="primary" class="mr-4" @click="deleteResume"
+            >Delete Resume</v-btn
+          >
+        </div>
+        <div v-else>
+          <v-file-input
+            chips
+            multiple
+            label="Resume Upload (PDF Only)"
+            accept="application/pdf"
+            @change="uploadResume"
+            v-model="uploadedResume"
+          ></v-file-input>
+        </div>
+        <v-select
+          :items="educationLevels"
+          v-model="educationLevel"
+          label="Select your Level of Education (required)"
+        ></v-select>
+        <v-text-field v-model="githubURL" label="Github URL"></v-text-field>
+        <v-text-field v-model="linkedinURL" label="LinkedIn URL"></v-text-field>
+        <v-text-field v-model="otherURL" label="Other URL"></v-text-field>
+        <label>How many hackathons have you attended?</label>
+        <v-radio-group v-model="beenToHackathon">
+          <v-radio label="0" value="0"></v-radio>
+          <v-radio label="1" value="1"></v-radio>
+          <v-radio label="2" value="2"></v-radio>
+          <v-radio label="3+" value="3+"></v-radio>
+        </v-radio-group>
+        <v-switch
+          v-model="attendedBHacks"
+          label="Have you attended BostonHacks?"
+        ></v-switch>
+        <v-switch
+          v-model="marketingData"
+          label="Do you consent to us stealing your data?"
+        ></v-switch>
+        <v-switch
+          v-model="tAndC1"
+          label="Do you accept the terms and conditions?"
+        ></v-switch>
+        <v-switch
+          v-model="tAndC2"
+          label="Do you accept the terms and conditions?"
+        ></v-switch>
+        <v-btn color="primary" class="mr-4" @click="saveApplication"
+          >Save</v-btn
         >
-        <v-btn color="primary" class="mr-4" @click="deleteResume"
-          >Delete Resume</v-btn
+        <v-btn
+          color="primary"
+          class="mr-4"
+          @click="submitApplication"
+          :disabled="
+            name == null ||
+              phone == null ||
+              age == null ||
+              gender == null ||
+              pronouns == null ||
+              educationLevel == null ||
+              university == null ||
+              major == null ||
+              resume == null ||
+              marketingData == 0 ||
+              marketingData == null ||
+              tAndC1 == 0 ||
+              tAndC1 == null ||
+              tAndC2 == 0 ||
+              tAndC2 == null
+          "
+          >Submit</v-btn
         >
-      </div>
-      <div v-else>
-        <v-file-input
-          chips
-          multiple
-          label="Resume Upload (PDF Only)"
-          accept="application/pdf"
-          @change="uploadResume"
-          v-model="uploadedResume"
-        ></v-file-input>
-      </div>
-      <v-select
-        :items="educationLevels"
-        v-model="educationLevel"
-        label="Select your Level of Education (required)"
-      ></v-select>
-      <v-text-field v-model="githubURL" label="Github URL"></v-text-field>
-      <v-text-field v-model="linkedinURL" label="LinkedIn URL"></v-text-field>
-      <v-text-field v-model="otherURL" label="Other URL"></v-text-field>
-      <label>How many hackathons have you attended?</label>
-      <v-radio-group v-model="beenToHackathon">
-        <v-radio label="0" value="0"></v-radio>
-        <v-radio label="1" value="1"></v-radio>
-        <v-radio label="2" value="2"></v-radio>
-        <v-radio label="3+" value="3+"></v-radio>
-      </v-radio-group>
-      <v-switch
-        v-model="attendedBHacks"
-        label="Have you attended BostonHacks?"
-      ></v-switch>
-      <v-switch
-        v-model="marketingData"
-        label="Do you consent to us stealing your data?"
-      ></v-switch>
-      <v-switch
-        v-model="tAndC1"
-        label="Do you accept the terms and conditions?"
-      ></v-switch>
-      <v-switch
-        v-model="tAndC2"
-        label="Do you accept the terms and conditions?"
-      ></v-switch>
-      <v-btn color="primary" class="mr-4" @click="saveApplication">Save</v-btn>
-      <v-btn
-        color="primary"
-        class="mr-4"
-        @click="submitApplication"
-        :disabled="
-          name == null ||
-            phone == null ||
-            age == null ||
-            gender == null ||
-            pronouns == null ||
-            educationLevel == null ||
-            university == null ||
-            major == null ||
-            resume == null ||
-            marketingData == 0 ||
-            marketingData == null ||
-            tAndC1 == 0 ||
-            tAndC1 == null ||
-            tAndC2 == 0 ||
-            tAndC2 == null
-        "
-        >Submit</v-btn
-      >
-    </v-form>
-  </v-container>
+      </v-form>
+    </v-container>
+  </main>
 </template>
 <script>
 import { functions } from "@/firebase/init";

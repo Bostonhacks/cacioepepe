@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <div id="home" z-index="100" class="mb-n1 pt-16 blue">
-      <v-row class="py-12 py-lg-0 justify-center">
+  <main class="pt-70px blue">
+    <div id="home" z-index="100" class="mb-n1 blue pt-16">
+      <v-row class="py-6 py-lg-0"></v-row>
+      <!-- <v-row class="py-12 py-lg-0 justify-center">
         <v-col cols="4">
           <v-switch
             v-model="$vuetify.theme.dark"
@@ -11,7 +12,7 @@
             persistent-hint
           ></v-switch>
         </v-col>
-      </v-row>
+      </v-row>-->
       <v-container class="mt-5">
         <v-row justify="space-between" class="mx-md-n8 mb-n16">
           <v-col cols="3" class="pa-0">
@@ -395,7 +396,7 @@
       <!-- this is just a spacer placed here so the footer gets colored -->
       <div class="my-16 py-16"></div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
