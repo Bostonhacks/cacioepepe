@@ -1,7 +1,7 @@
 <template>
   <main class="pt-70px blue">
-    <div id="home" z-index="100" class="mb-n1 blue pt-16">
-      <v-row class="py-6 py-lg-0"></v-row>
+    <div id="home" z-index="100" class="mb-n1 blue pt-16 pt-sm-0">
+      <v-row class="py-6 py-sm-0"></v-row>
       <!-- <v-row class="py-12 py-lg-0 justify-center">
         <v-col cols="4">
           <v-switch
@@ -12,7 +12,7 @@
             persistent-hint
           ></v-switch>
         </v-col>
-      </v-row>-->
+      </v-row> -->
       <v-container class="mt-5">
         <v-row justify="space-between" class="mx-md-n8 mb-n16">
           <v-col cols="3" class="pa-0">
@@ -78,7 +78,7 @@
               depressed
               x-large
               @click="() => this.navigate('/dashboard')"
-              class="text-center ma-5"
+              class="text-center ma-0"
               v-if="this.user"
               >Go To Dashboard</v-btn
             >
@@ -124,7 +124,7 @@
 
     <div
       id="tracks"
-      class="pb-10 lightBlue"
+      class="pb-10 lightBlue darkBlue--text text--darken-2"
       style="text-shadow: 1px 1px 0.5px rgba(0,0,0,.2);"
     >
       <v-container>
@@ -450,7 +450,7 @@ html {
 #tracks {
   /* background: #aee2ff; */
   /* color: #1e75af; */
-  color: var(--v-darkBlue-base);
+  /* color: var(--v-darkBlue-darken1); */
 }
 
 #schedule {
