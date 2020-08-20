@@ -94,6 +94,7 @@
                 class="mr-4"
                 :href="resume[0]"
                 target="_blank"
+                rel="noreferrer"
                 >View Uploaded Resume</v-btn
               >
               <v-btn color="primary" class="mr-4" @click="deleteResume"
