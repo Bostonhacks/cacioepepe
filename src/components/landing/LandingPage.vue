@@ -1,15 +1,8 @@
 <template>
-  <main>
-    <div id="home" z-index="100" class="mb-n1 pt-16">
-      <!-- <v-row class="py-9">
-        <v-switch
-          v-model="$vuetify.theme.dark"
-          hint="This toggles the global state of the Vuetify theme"
-          inset
-          label="Vuetify Theme Dark"
-          persistent-hint
-        ></v-switch>
-      </v-row>-->
+  <main class="pt-70px blue">
+    <div id="home" z-index="100" class="mb-n1 blue pt-16 pt-sm-0">
+      <!-- spacing hack -->
+      <v-row class="py-6 py-sm-0"></v-row>
       <v-container class="mt-5">
         <v-row justify="space-between" class="mx-md-n8 mb-n16">
           <v-col cols="3" class="pa-0">
@@ -37,8 +30,7 @@
             offset-sm="2"
             class="mt-n16 d-flex align-content-end flex-column"
           >
-            <object
-              data="/assets/landingPage/feliz.svg"
+            <Feliz
               alt="pinata"
               class="mt-5"
               style="max-height: 80vh; z-index: 100"
@@ -70,7 +62,7 @@
               depressed
               x-large
               @click="() => this.navigate('/dashboard')"
-              class="text-center ma-5"
+              class="text-center ma-0"
               v-if="this.user"
               >Go To Dashboard</v-btn
             >
@@ -111,13 +103,12 @@
           </v-col>
         </v-row>
       </v-container>
-
       <Wave z-index="10" class="d-block mt-n16" />
     </div>
 
     <div
       id="tracks"
-      class="pb-10"
+      class="pb-10 lightBlue darkBlue--text text--darken-2"
       style="text-shadow: 1px 1px 0.5px rgba(0,0,0,.2);"
     >
       <v-container>
@@ -246,7 +237,7 @@
       <Wave4 z-index="10" class="d-block mt-n16 mb-n1" />
     </div>
 
-    <div id="FAQ" class="white--text basicTextShadow">
+    <div id="FAQ" class="white--text basicTextShadow green darken-1">
       <h2 class="display-1 pt-15 text-center font-weight-bold">
         Frequently Asked Questions
       </h2>
@@ -383,7 +374,7 @@
 
     <div id="sponsors" class="pb-16 white--text basicTextShadow">
       <h2 class="display-1 pt-15 text-center font-weight-bold">
-        Thank You To Our Sponsors!
+        <!-- Thank You To Our Sponsors! -->
       </h2>
 
       <!-- this is just a spacer placed here so the footer gets colored -->
@@ -404,6 +395,7 @@ import RedHotAirBalloon from "@/components/common/SVG/RedHotAirBalloon";
 import GreenHotAirBalloon from "@/components/common/SVG/GreenHotAirBalloon";
 import BostonHacksLogoTextShadowed from "@/components/common/SVG/BostonHacksLogoTextShadowed";
 import River from "@/components/common/SVG/River";
+import Feliz from "@/components/common/SVG/Feliz";
 
 export default {
   computed: {
@@ -418,17 +410,18 @@ export default {
     }
   },
   components: {
-    Wave: Wave,
-    Wave2: Wave2,
-    Wave3: Wave3,
-    Wave4: Wave4,
-    Cloud9: Cloud9,
-    Tree: Tree,
-    Windmill: Windmill,
-    RedHotAirBalloon: RedHotAirBalloon,
-    GreenHotAirBalloon: GreenHotAirBalloon,
-    BostonHacksLogoTextShadowed: BostonHacksLogoTextShadowed,
-    River: River
+    Wave,
+    Wave2,
+    Wave3,
+    Wave4,
+    Cloud9,
+    Tree,
+    Windmill,
+    RedHotAirBalloon,
+    GreenHotAirBalloon,
+    BostonHacksLogoTextShadowed,
+    River,
+    Feliz
   }
 };
 </script>
@@ -438,24 +431,17 @@ html {
   scroll-behavior: smooth;
 }
 
-#home {
-  background: #80d2ff;
-}
-
 #tracks {
-  background: #aee2ff;
-  color: #1e75af;
+  /* background: #aee2ff; */
+  /* color: #1e75af; */
+  /* color: var(--v-darkBlue-darken1); */
 }
 
 #schedule {
-  background: #53d186;
-}
-
-#FAQ {
-  background: #4cc07a;
+  background: var(--v-green-base);
 }
 #sponsors {
-  background: #e6c8bc;
+  background: #683614;
 }
 
 .qna h2 {
