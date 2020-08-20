@@ -46,6 +46,9 @@ export default {
   components: {
     navigationBar,
     Footer
+  },
+  metaInfo: {
+    title: "BostonHacks"
   }
 };
 </script>
