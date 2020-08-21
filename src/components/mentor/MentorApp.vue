@@ -1,145 +1,148 @@
 <template>
-  <v-form>
-    <v-container>
-      <h1>Sign up to be a BostonHacks Mentor!</h1>
-      <v-row>
-        <v-col cols="12" sm="6">
-          <v-text-field
-            v-model="first"
-            label="First Name"
-            outlined
-          ></v-text-field>
-        </v-col>
+  <main class="pt-70px">
+    <v-form class="py-12">
+      <v-container>
+        <h1>Sign up to be a BostonHacks Mentor!</h1>
+        <v-row>
+          <v-col cols="12" sm="6">
+            <v-text-field
+              v-model="first"
+              label="First Name"
+              outlined
+            ></v-text-field>
+          </v-col>
 
-        <v-col cols="12" sm="6">
-          <v-text-field
-            v-model="last"
-            label="Last Name"
-            outlined
-          ></v-text-field>
-        </v-col>
-      </v-row>
+          <v-col cols="12" sm="6">
+            <v-text-field
+              v-model="last"
+              label="Last Name"
+              outlined
+            ></v-text-field>
+          </v-col>
+        </v-row>
 
-      <v-row>
-        <v-col cols="12" sm="6">
-          <v-text-field
-            v-model="email"
-            label="Email"
-            outlined
-            :rules="emailRules"
-          ></v-text-field>
-        </v-col>
+        <v-row>
+          <v-col cols="12" sm="6">
+            <v-text-field
+              v-model="email"
+              label="Email"
+              outlined
+              :rules="emailRules"
+            ></v-text-field>
+          </v-col>
 
-        <v-col cols="12" sm="6">
-          <v-select
-            :items="genderList"
-            v-model="gender"
-            label="Gender"
-            outlined
-          ></v-select>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="d-flex" cols="12" sm="6">
-          <v-select
-            :items="pronounList"
-            v-model="pronoun"
-            label="Pronoun"
-            outlined
-          ></v-select>
-        </v-col>
+          <v-col cols="12" sm="6">
+            <v-select
+              :items="genderList"
+              v-model="gender"
+              label="Gender"
+              outlined
+            ></v-select>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col class="d-flex" cols="12" sm="6">
+            <v-select
+              :items="pronounList"
+              v-model="pronoun"
+              label="Pronoun"
+              outlined
+            ></v-select>
+          </v-col>
 
-        <v-col cols="12" sm="6">
-          <v-text-field
-            v-model="phone"
-            label="Phone Number"
-            :rules="phoneRules"
-            outlined
-          ></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="d-flex" cols="12" sm="6">
-          <v-select
-            :items="universityList"
-            v-model="university"
-            label="University"
-            outlined
-          ></v-select>
-        </v-col>
+          <v-col cols="12" sm="6">
+            <v-text-field
+              v-model="phone"
+              label="Phone Number"
+              :rules="phoneRules"
+              outlined
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col class="d-flex" cols="12" sm="6">
+            <v-select
+              :items="universityList"
+              v-model="university"
+              label="University"
+              outlined
+            ></v-select>
+          </v-col>
 
-        <v-col class="d-flex" cols="12" sm="6">
-          <v-select
-            :items="educationLevels"
-            v-model="educationLevel"
-            label="Select your Level of Education (required)"
-            outlined
-          ></v-select>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="d-flex" cols="12" sm="6">
-          <v-select
-            v-model="major"
-            :items="courseList"
-            label="Major"
-            outlined
-          ></v-select>
-        </v-col>
-        <v-col class="d-flex" cols="12" sm="6">
-          <v-flex v-if="resume">
-            <v-btn
-              color="primary"
-              class="mr-4"
-              :href="resume[0]"
-              target="_blank"
-              >View Uploaded Resume</v-btn
-            >
-            <v-btn color="primary" class="mr-4" @click="deleteResume"
-              >Delete Resume</v-btn
-            >
-          </v-flex>
-          <v-flex v-else>
-            <v-file-input
-              chips
-              multiple
-              label="Resume Upload (PDF Only)"
-              accept="application/pdf"
-              @change="uploadResume"
-              v-model="uploadedResume"
-            ></v-file-input>
-          </v-flex>
-        </v-col>
-      </v-row>
-      <v-switch
-        v-model="picturePermission"
-        label="Do you consent to us taking a picture or video during the event?"
-      ></v-switch>
-      <v-switch
-        v-model="tAandC"
-        label="Do you accept the terms and conditions?"
-      ></v-switch>
-      <v-btn
-        color="primary"
-        class="mr-4"
-        @click="submitApplication"
-        :disabled="
-          first == null ||
-            last == null ||
-            phone == null ||
-            gender == null ||
-            pronoun == null ||
-            educationLevel == null ||
-            resume == null ||
-            university == null ||
-            email == null ||
-            picturePermission == null ||
-            tAandC == null
-        "
-        >Submit</v-btn
-      >
-    </v-container>
-  </v-form>
+          <v-col class="d-flex" cols="12" sm="6">
+            <v-select
+              :items="educationLevels"
+              v-model="educationLevel"
+              label="Select your Level of Education (required)"
+              outlined
+            ></v-select>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col class="d-flex" cols="12" sm="6">
+            <v-select
+              v-model="major"
+              :items="courseList"
+              label="Major"
+              outlined
+            ></v-select>
+          </v-col>
+          <v-col class="d-flex" cols="12" sm="6">
+            <v-flex v-if="resume">
+              <v-btn
+                color="primary"
+                class="mr-4"
+                :href="resume[0]"
+                target="_blank"
+                rel="noreferrer"
+                >View Uploaded Resume</v-btn
+              >
+              <v-btn color="primary" class="mr-4" @click="deleteResume"
+                >Delete Resume</v-btn
+              >
+            </v-flex>
+            <v-flex v-else>
+              <v-file-input
+                chips
+                multiple
+                label="Resume Upload (PDF Only)"
+                accept="application/pdf"
+                @change="uploadResume"
+                v-model="uploadedResume"
+              ></v-file-input>
+            </v-flex>
+          </v-col>
+        </v-row>
+        <v-switch
+          v-model="picturePermission"
+          label="Do you consent to us taking a picture or video during the event?"
+        ></v-switch>
+        <v-switch
+          v-model="tAandC"
+          label="Do you accept the terms and conditions?"
+        ></v-switch>
+        <v-btn
+          color="primary"
+          class="mr-4"
+          @click="submitApplication"
+          :disabled="
+            first == null ||
+              last == null ||
+              phone == null ||
+              gender == null ||
+              pronoun == null ||
+              educationLevel == null ||
+              resume == null ||
+              university == null ||
+              email == null ||
+              picturePermission == null ||
+              tAandC == null
+          "
+          >Submit</v-btn
+        >
+      </v-container>
+    </v-form>
+  </main>
 </template>
 
 <script>

@@ -23,6 +23,12 @@ npm run serve
 npm run build
 ```
 
+#### Testing Build
+
+```bash
+serve -s dist
+```
+
 ### Lints and fixes files
 
 ```bash

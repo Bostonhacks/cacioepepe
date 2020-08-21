@@ -1,13 +1,13 @@
 <template>
-  <mentor />
+  <Mentor class="white" />
 </template>
 
 <script>
-import mentor from "@/components/mentor/MentorApp";
+import Mentor from "@/components/mentor/MentorApp";
 
 export default {
   components: {
-    mentor
+    Mentor
   }
 };
 </script>

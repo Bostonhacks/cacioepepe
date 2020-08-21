@@ -1,5 +1,5 @@
 <template>
-  <LoginUI />
+  <LoginUI class="blue" />
 </template>
 
 <script>

@@ -1,12 +1,12 @@
 <template>
-  <v-layout align-center justify-center>
+  <v-layout align-center justify-center class="white">
     <v-container>
       <v-layout text-center wrap>
         <v-flex xs12></v-flex>
         <v-flex mb-4>
           <h1 class="display-2 font-weight-bold mb-3">Welcome to God Mode!</h1>
           <AdminStats :data="hackerData" />
-          <SlackInfoUpload />
+          <CalendarEvent />
           <v-tabs
             v-model="tab"
             background-color="deep-purple accent-4"
@@ -113,6 +113,8 @@
               <v-card flat tile>
                 <v-card-text>
                   <Timeline />
+                  <v-card-title>Slack Channel Information</v-card-title>
+                  <SlackInfoUpload />
                 </v-card-text>
               </v-card>
             </v-tab-item>
@@ -125,12 +127,13 @@
 
 <script>
 import HackerTable from "@/components/common/HackerTable";
-// import CalendarEvent from "@/components/admin/CalendarEvent";
+import CalendarEvent from "@/components/admin/CalendarEvent";
 import AdminStats from "@/components/admin/AdminStats";
 import VolunteerTable from "@/components/admin/VolunteerTable";
 import MentorTable from "@/components/admin/MentorTable";
 import PieChart from "@/components/common/PieChart";
 import Timeline from "@/components/common/Timeline";
+import SlackInfoUpload from "@/components/admin/SlackInfoUpload";
 import { functions } from "@/firebase/init";
 
 export default {
@@ -139,10 +142,11 @@ export default {
     Timeline,
     HackerTable,
     AdminStats,
-    // CalendarEvent,
+    CalendarEvent,
     VolunteerTable,
     MentorTable,
-    PieChart
+    PieChart,
+    SlackInfoUpload
   },
   data() {
     return {

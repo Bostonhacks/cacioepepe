@@ -122,35 +122,56 @@
             >
               <template v-slot:item.resume[0]="{ item }">
                 <button v-if="item.resume[0]">
-                  <a :href="item.resume[0]" target="_blank">Open</a>
+                  <a :href="item.resume[0]" target="_blank" rel="noreferrer"
+                    >Open</a
+                  >
                 </button>
               </template>
               <template v-slot:item.githubURL="{ item }">
                 <button v-if="item.githubURL && isLinkValid(item.githubURL)">
-                  <a :href="item.githubURL" target="_blank">Open</a>
+                  <a :href="item.githubURL" target="_blank" rel="noreferrer"
+                    >Open</a
+                  >
                 </button>
                 <button v-else-if="item.githubURL">
-                  <a :href="'http://' + item.githubURL" target="_blank">Open</a>
+                  <a
+                    :href="'http://' + item.githubURL"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Open</a
+                  >
                 </button>
               </template>
               <template v-slot:item.linkedinURL="{ item }">
                 <button
                   v-if="item.linkedinURL && isLinkValid(item.linkedinURL)"
                 >
-                  <a :href="item.linkedinURL" target="_blank">Open</a>
+                  <a :href="item.linkedinURL" target="_blank" rel="noreferrer"
+                    >Open</a
+                  >
                 </button>
                 <button v-else-if="item.linkedinURL">
-                  <a :href="'http://' + item.linkedinURL" target="_blank"
+                  <a
+                    :href="'http://' + item.linkedinURL"
+                    target="_blank"
+                    rel="noreferrer"
                     >Open</a
                   >
                 </button>
               </template>
               <template v-slot:item.otherURL="{ item }">
                 <button v-if="item.otherURL && isLinkValid(item.otherURL)">
-                  <a :href="item.otherURL" target="_blank">Open</a>
+                  <a :href="item.otherURL" target="_blank" rel="noreferrer"
+                    >Open</a
+                  >
                 </button>
                 <button v-else-if="item.otherURL">
-                  <a :href="'http://' + item.otherURL" target="_blank">Open</a>
+                  <a
+                    :href="'http://' + item.otherURL"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Open</a
+                  >
                 </button>
               </template>
               <template v-slot:item.attendedBHacks="{ item }">

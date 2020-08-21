@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <SponsorDashboard />
-    <VolunteerDashboard />
-    <MentorDashboard />
-  </div>
+  <main class="pt-70px darkBlue">
+    <div class="darkBlue text--white white--text py-10">
+      <SponsorDashboard />
+      <VolunteerDashboard />
+      <MentorDashboard />
+    </div>
+  </main>
 </template>
 
 <script>

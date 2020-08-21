@@ -1,7 +1,7 @@
-import firebase from "firebase/app";
+import * as firebase from "firebase/app";
 const firebaseui = require("firebaseui");
+import "firebaseui/dist/firebaseui.css";
 import "firebase/auth";
-import "firebase/firestore";
 import "firebase/functions";
 
 const config = {

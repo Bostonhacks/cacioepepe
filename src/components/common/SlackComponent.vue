@@ -6,7 +6,9 @@
           You didn't join our slack yet!
         </v-list-item-title>
         <v-list-item-subtitle>
-          <a :href="links[0]" target="_blank"> Join Our Slack! </a>
+          <a :href="links[0]" target="_blank" rel="noreferrer">
+            Join Our Slack!
+          </a>
         </v-list-item-subtitle>
       </v-list-item-content>
       <v-list-item-content v-else>
@@ -14,7 +16,9 @@
           Check out our channels
         </v-list-item-title>
         <v-list-item-subtitle v-for="link in links" :key="link.id">
-          <a :href="link[0]" target="_blank"> View the {{ link[1] }} channel</a>
+          <a :href="link[0]" target="_blank" rel="noreferrer">
+            View the {{ link[1] }} channel</a
+          >
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-card>
