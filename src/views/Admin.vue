@@ -1,128 +1,135 @@
 <template>
-  <v-layout align-center justify-center class="white">
-    <v-container>
-      <v-layout text-center wrap>
-        <v-flex xs12></v-flex>
-        <v-flex mb-4>
-          <h1 class="display-2 font-weight-bold mb-3">Welcome to God Mode!</h1>
-          <AdminStats :data="hackerData" />
-          <CalendarEvent />
-          <v-tabs
-            v-model="tab"
-            background-color="deep-purple accent-4"
-            class="elevation-2"
-            dark
-            grow
-          >
-            <v-tab v-for="i in tabs" :key="i">{{ i }}</v-tab>
+  <main class="pt-70px blue">
+    <v-layout align-center justify-center class="blue">
+      <div class="loadingLogo" v-if="loading"><BostonHacksLoadingLogo /></div>
+      <v-container v-else>
+        <v-layout text-center wrap>
+          <v-flex xs12></v-flex>
+          <v-flex mb-4>
+            <h1 class="display-2 font-weight-bold mb-3">
+              Welcome to God Mode!
+            </h1>
+            <AdminStats :data="hackerData" />
+            <CalendarEvent :events="events" />
+            <v-tabs
+              v-model="tab"
+              background-color="deep-purple accent-4"
+              class="elevation-2"
+              dark
+              grow
+            >
+              <v-tab v-for="i in tabs" :key="i">{{ i }}</v-tab>
 
-            <v-tab-item key="tabs[0]">
-              <v-card flat tile>
-                <v-row>
-                  <v-col class="col-3">
-                    <PieChart
-                      v-if="this.hackathonsChartData.datasets[0].data"
-                      :chartData="hackathonsChartData"
-                      :options="hackathonsChartData.options"
-                      id="hackathonChart"
-                    />
-                  </v-col>
-                  <v-col class="col-3">
-                    <PieChart
-                      v-if="this.genderChartData.datasets[0].data"
-                      :chartData="genderChartData"
-                      :options="genderChartData.options"
-                      id="genderChart"
-                    />
-                  </v-col>
-                  <v-col class="col-3">
-                    <PieChart
-                      v-if="this.majorChartData.datasets[0].data"
-                      :chartData="majorChartData"
-                      :options="majorChartData.options"
-                      id="majorChart"
-                    />
-                  </v-col>
-                  <v-col class="col-3">
-                    <PieChart
-                      v-if="this.educationChartData.datasets[0].data"
-                      :chartData="educationChartData"
-                      :options="educationChartData.options"
-                      id="educationChart"
-                    />
-                  </v-col>
-                </v-row>
-              </v-card>
-            </v-tab-item>
+              <v-tab-item key="tabs[0]">
+                <v-card flat tile>
+                  <v-row>
+                    <v-col class="col-3">
+                      <PieChart
+                        v-if="this.hackathonsChartData.datasets[0].data"
+                        :chartData="hackathonsChartData"
+                        :options="hackathonsChartData.options"
+                        id="hackathonChart"
+                      />
+                    </v-col>
+                    <v-col class="col-3">
+                      <PieChart
+                        v-if="this.genderChartData.datasets[0].data"
+                        :chartData="genderChartData"
+                        :options="genderChartData.options"
+                        id="genderChart"
+                      />
+                    </v-col>
+                    <v-col class="col-3">
+                      <PieChart
+                        v-if="this.majorChartData.datasets[0].data"
+                        :chartData="majorChartData"
+                        :options="majorChartData.options"
+                        id="majorChart"
+                      />
+                    </v-col>
+                    <v-col class="col-3">
+                      <PieChart
+                        v-if="this.educationChartData.datasets[0].data"
+                        :chartData="educationChartData"
+                        :options="educationChartData.options"
+                        id="educationChart"
+                      />
+                    </v-col>
+                  </v-row>
+                </v-card>
+              </v-tab-item>
 
-            <v-tab-item key="tabs[1]">
-              <v-card flat tile>
-                <v-card-title>
-                  Hacker Table
-                </v-card-title>
-                <v-card-actions>
-                  <v-select
-                    :items="statusList"
-                    v-model="itemStatus"
-                    label="Status"
-                    multiple
-                    @change="filterStatus(hackerCurrentData, hackerData)"
-                  ></v-select>
-                </v-card-actions>
-                <v-card-text>
-                  <HackerTable :data="hackerCurrentData" />
-                </v-card-text>
-              </v-card>
-              <v-card flat tile>
-                <v-card-title>
-                  Mentor Table
-                </v-card-title>
-                <v-card-actions>
-                  <v-select
-                    :items="statusList"
-                    v-model="itemStatus"
-                    label="Status"
-                    multiple
-                    @change="filterStatus(mentorCurrentData, mentorData)"
-                  ></v-select>
-                </v-card-actions>
-                <v-card-text>
-                  <MentorTable :data="mentorCurrentData" />
-                </v-card-text>
-              </v-card>
-              <v-card flat tile>
-                <v-card-title>
-                  Volunteer Table
-                </v-card-title>
-                <v-card-actions>
-                  <v-select
-                    :items="statusList"
-                    v-model="itemStatus"
-                    label="Status"
-                    multiple
-                    @change="filterStatus(volunteerCurrentData, volunteerData)"
-                  ></v-select>
-                </v-card-actions>
-                <v-card-text>
-                  <VolunteerTable :data="volunteerCurrentData" />
-                </v-card-text>
-              </v-card>
-            </v-tab-item>
+              <v-tab-item key="tabs[1]">
+                <v-card flat tile>
+                  <v-card-title>
+                    Hacker Table
+                  </v-card-title>
+                  <v-card-actions>
+                    <v-select
+                      :items="statusList"
+                      v-model="itemStatus"
+                      label="Status"
+                      multiple
+                      @change="filterStatus(hackerCurrentData, hackerData)"
+                    ></v-select>
+                  </v-card-actions>
+                  <v-card-text>
+                    <HackerTable :data="hackerCurrentData" />
+                  </v-card-text>
+                </v-card>
+                <v-card flat tile>
+                  <v-card-title>
+                    Mentor Table
+                  </v-card-title>
+                  <v-card-actions>
+                    <v-select
+                      :items="statusList"
+                      v-model="itemStatus"
+                      label="Status"
+                      multiple
+                      @change="filterStatus(mentorCurrentData, mentorData)"
+                    ></v-select>
+                  </v-card-actions>
+                  <v-card-text>
+                    <MentorTable :data="mentorCurrentData" />
+                  </v-card-text>
+                </v-card>
+                <v-card flat tile>
+                  <v-card-title>
+                    Volunteer Table
+                  </v-card-title>
+                  <v-card-actions>
+                    <v-select
+                      :items="statusList"
+                      v-model="itemStatus"
+                      label="Status"
+                      multiple
+                      @change="
+                        filterStatus(volunteerCurrentData, volunteerData)
+                      "
+                    ></v-select>
+                  </v-card-actions>
+                  <v-card-text>
+                    <VolunteerTable :data="volunteerCurrentData" />
+                  </v-card-text>
+                </v-card>
+              </v-tab-item>
 
-            <v-tab-item key="tabs[2]">
-              <v-card flat tile>
-                <v-card-text>
-                  <Timeline />
-                  <v-card-title>Slack Channel Information</v-card-title>
-                  <SlackInfoUpload />
-                </v-card-text>
-              </v-card>
-            </v-tab-item>
-          </v-tabs>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </v-layout>
+              <v-tab-item key="tabs[2]">
+                <v-card flat tile>
+                  <v-card-text>
+                    <Timeline />
+                    <v-card-title>Slack Channel Information</v-card-title>
+                    <SlackInfoUpload />
+                  </v-card-text>
+                </v-card>
+              </v-tab-item>
+            </v-tabs>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-layout>
+  </main>
 </template>
 
 <script>
@@ -135,6 +142,7 @@ import PieChart from "@/components/common/PieChart";
 import Timeline from "@/components/common/Timeline";
 import SlackInfoUpload from "@/components/admin/SlackInfoUpload";
 import { functions } from "@/firebase/init";
+import BostonHacksLoadingLogo from "@/components/common/SVG/BostonHacksLoadingLogo.vue";
 
 export default {
   name: "Admin",
@@ -146,10 +154,13 @@ export default {
     VolunteerTable,
     MentorTable,
     PieChart,
-    SlackInfoUpload
+    SlackInfoUpload,
+    BostonHacksLoadingLogo
   },
   data() {
     return {
+      loading: true,
+      events: null,
       hackerData: null,
       hackerCurrentData: null,
       mentorData: null,
@@ -244,6 +255,15 @@ export default {
     };
   },
   methods: {
+    async getEvents() {
+      var out = await functions.httpsCallable("readSchedules")({});
+      if (out.data) {
+        console.log(out.data);
+        this.events = out.data;
+      } else {
+        this.events = [];
+      }
+    },
     async filterStatus() {
       if (this.itemStatus.length == 0) {
         this.currentData = this.data;
@@ -353,6 +373,14 @@ export default {
     this.getMajor();
     this.getEducation();
     this.getHackathons();
+    this.getEvents();
+    this.loading = false;
   }
 };
 </script>
+
+<style scoped>
+.loadingLogo {
+  height: 100vh;
+}
+</style>

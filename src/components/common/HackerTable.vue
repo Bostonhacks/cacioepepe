@@ -107,9 +107,7 @@
                 ></v-select>
               </v-flex>
             </v-row>
-            <BostonHacksLoadingLogo v-if="data == null" />
             <v-data-table
-              v-else
               v-model="selected"
               show-select
               item-key="name"
@@ -297,14 +295,10 @@
 
 <script>
 import { functions } from "@/firebase/init";
-import BostonHacksLoadingLogo from "@/components/common/SVG/BostonHacksLoadingLogo";
 
 export default {
   name: "HackerTable",
   props: ["data"],
-  components: {
-    BostonHacksLoadingLogo
-  },
   computed: {
     user() {
       return this.$store.state.user;

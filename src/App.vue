@@ -56,10 +56,10 @@ export default {
 <style>
 #app {
   overflow-x: hidden;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat;
   background-image: url("/assets/landingPage/bostonHacksLoadingLogo.svg");
   background-position: center calc(50vh - 75px);
-  background-size: 150px;
+  background-size: 150px; */
 }
 
 .slide-enter-active,
