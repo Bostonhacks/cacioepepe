@@ -3,8 +3,13 @@
     <v-container>
       <v-row>
         <v-col cols="12" sm="4" md="1" class="pa-0 verticalCenter">
-          <router-link to="/" alt="Home Link" class="text-left">
-            <BostonHacksLogoTextShadowed style="max-height: 75px;" />
+          <router-link
+            to="/"
+            aria-label="Home"
+            alt="Home Link"
+            class="text-left"
+          >
+            <BostonHacksLogoTextShadowed class="max-height-75" />
           </router-link>
         </v-col>
         <v-col cols="12" sm="3" md="3" offset-md="1">
@@ -12,6 +17,7 @@
             <v-col cols="4">
               <a
                 href="https://www.facebook.com/bostonhacks"
+                aria-label="Facebook"
                 alt="Facebook Link"
               >
                 <FaceBookLogo class="max-height-75" />
@@ -20,13 +26,18 @@
             <v-col cols="4">
               <a
                 href="https://www.instagram.com/bostonhacks/"
+                aria-label="Instagram"
                 alt="Instagram Link"
               >
                 <InstagramLogo class="max-height-75" />
               </a>
             </v-col>
             <v-col cols="4">
-              <a href="https://twitter.com/boston_hacks" alt="Twitter Link">
+              <a
+                href="https://twitter.com/boston_hacks"
+                aria-label="Twitter"
+                alt="Twitter Link"
+              >
                 <TwitterLogo class="max-height-75" />
               </a>
             </v-col>

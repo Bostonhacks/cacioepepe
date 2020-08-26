@@ -14,5 +14,10 @@ module.exports = {
       background_color: "#0098ff"
     }
   },
-  transpileDependencies: ["vuetify"]
+  transpileDependencies: ["vuetify"],
+  configureWebpack: {
+    externals: {
+      moment: "moment"
+    }
+  }
 };
