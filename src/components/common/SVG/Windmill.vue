@@ -3,6 +3,7 @@
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 674 831"
+    class="optimizeTransformWindmill"
   >
     <defs>
       <path id="rotor" d="M476,250 c0,-80 200,-20 190,0z" />
@@ -50,5 +51,8 @@ export default {};
 
 .windmillShadow {
   fill: var(--v-aqua-darken2);
+}
+.optimizeTransformWindmill {
+  transform: translateZ(0px);
 }
 </style>

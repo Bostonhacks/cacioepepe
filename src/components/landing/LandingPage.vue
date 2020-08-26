@@ -432,13 +432,6 @@ export default {
 html {
   scroll-behavior: smooth;
 }
-
-#tracks {
-  /* background: #aee2ff; */
-  /* color: #1e75af; */
-  /* color: var(--v-darkBlue-darken1); */
-}
-
 #schedule {
   background: var(--v-green-base);
 }

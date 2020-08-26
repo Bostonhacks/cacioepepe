@@ -1,9 +1,6 @@
 <template>
   <main class="pt-70px">
-    <v-row
-      class="pb-16 px-5 justify-center align-center"
-      style="min-height: calc(100vh - 180px)"
-    >
+    <v-row class="pb-16 px-5 justify-center align-center" style="min-height: calc(100vh - 180px)">
       <v-col cols="12" sm="6" md="4">
         <v-card>
           <v-card-title class="justify-center">
@@ -20,8 +17,13 @@
 
 <script>
 import { authUI, authUIConfig } from "@/firebase/init";
+import Tree from "@/components/common/SVG/Tree";
+
 export default {
   name: "AuthUI",
+  components: {
+    Tree
+  },
   computed: {
     user() {
       return this.$store.state.user;

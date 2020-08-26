@@ -55,7 +55,7 @@ export default {
 #app {
   overflow-x: hidden;
   background-repeat: no-repeat;
-  background-image: url("/assets/landingPage/bostonHacksLoadingLogo.svg");
+  /* background-image: url("/assets/landingPage/bostonHacksLoadingLogo.svg"); */
   background-position: center calc(50vh - 75px);
   background-size: 150px;
 }
