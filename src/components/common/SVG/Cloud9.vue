@@ -3,6 +3,7 @@
     xmlns="http://www.w3.org/2000/svg"
     data-name="cloud 1"
     viewBox="0 0 300 85"
+    class="cloud9"
   >
     <g :style="cloudStyles">
       <path
@@ -40,5 +41,9 @@ export default {
 <style scoped>
 .cloudGroup {
   fill: var(--v-lightBlue-base);
+}
+.cloud9 {
+  z-index: 0;
+  position: relative;
 }
 </style>
