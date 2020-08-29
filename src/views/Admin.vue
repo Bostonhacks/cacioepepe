@@ -111,8 +111,9 @@
 
             <v-tab-item key="tabs[2]">
               <v-card flat tile>
-                <v-card-title>Slack Channel Information</v-card-title>
                 <v-card-text>
+                  <Timeline />
+                  <v-card-title>Slack Channel Information</v-card-title>
                   <SlackInfoUpload />
                 </v-card-text>
               </v-card>
@@ -131,12 +132,14 @@ import AdminStats from "@/components/admin/AdminStats";
 import VolunteerTable from "@/components/admin/VolunteerTable";
 import MentorTable from "@/components/admin/MentorTable";
 import PieChart from "@/components/common/PieChart";
+import Timeline from "@/components/common/Timeline";
 import SlackInfoUpload from "@/components/admin/SlackInfoUpload";
 import { functions } from "@/firebase/init";
 
 export default {
   name: "Admin",
   components: {
+    Timeline,
     HackerTable,
     AdminStats,
     CalendarEvent,

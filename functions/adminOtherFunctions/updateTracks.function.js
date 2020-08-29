@@ -3,7 +3,7 @@ const functions = require("firebase-functions");
 
 const db = admin.firestore();
 
-module.exports.updatePrize = functions.https.onCall(async (data, context) => {
+module.exports.updateTrack = functions.https.onCall(async (data, context) => {
   if (!context.auth) {
     return { message: "Authentication Required!", code: 401 };
   }
