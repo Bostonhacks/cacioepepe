@@ -6,14 +6,12 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 		<link rel="icon" href="<%= BASE_URL %>favicon.ico" />
 		<title>BostonHacks</title>
-		<!-- //TODO: I need to see if this is necessary to import. 
-      So far, because of Vuetify, it seems like this is unecessary 
-      but we will see in production  -->
 		<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900"> -->
-		<!-- <link
+		<link
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css"
-		/> -->
+			prefetch="true"
+		/>
 	</head>
 	<body>
 		<noscript>
@@ -22,200 +20,78 @@
 				Please enable it to continue.</strong
 			>
 		</noscript>
-		<!-- <svg viewBox="0 0 120 124" xmlns="http://www.w3.org/2000/svg">
+		<svg id="initLoader" viewBox="-1 0 102 124" xmlns="http://www.w3.org/2000/svg">
 			<style>
+				#initLoader {
+					width: 100%;
+					height: 100%;
+					max-height: 100vh;
+					max-width: 100vw;
+					position: absolute;
+					z-index: 1;
+				}
 				.text {
-					font: 20px arial;
+					font: 20px 'Roboto', arial, sans-serif;
+				}
+				@keyframes example {
+					0% {
+						stroke: gray;
+					}
+					25% {
+						stroke: white;
+					}
+					50% {
+						stroke: gray;
+					}
+					75% {
+						stroke: white;
+					}
+					100% {
+						stroke: gray;
+					}
+				}
+				.grayLine {
+					stroke: gray;
+					animation-name: example;
+					animation-duration: 2s;
+					animation-iteration-count: infinite;
+				}
+				.hidden {
+					display: none;
 				}
 			</style>
-			<g stroke="gray">
-				<g stroke-dasharray="18" stroke-dashoffset="18">
-					<path
-						d="m51 10 8 14"
-						fill="none"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="9"
-						id="firstLine"
-					>
-						<animate
-							id="firstAnim"
-							attributeName="stroke-dashoffset"
-							values="18;0"
-							dur="0.5s"
-							begin="0s; thirdAnim.end"
-							fill="freeze"
-							repeatCount="1"
-						/>
-					</path>
-					<path
-						d="m73 48 8 14"
-						fill="none"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="9"
-					>
-						<animate
-							id="secondAnim"
-							attributeName="stroke-dashoffset"
-							values="18;0"
-							dur="0.5s"
-							begin="firstAnim.end"
-							fill="freeze"
-							repeatCount="1"
-						/>
-					</path>
+			<g transform="scale(0.5) translate(50 50)">
+				<g
+					class="grayLine"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="9"
+					stroke-width="9"
+					fill="none"
+				>
+					<path d="m51 10 8 14" />
+					<path d="m73 48 8 14" />
+					<path d="m87 72 9 16" />
+					<path d="m68 67 12.5 22" />
+					<path d="m31 40 17 -10" />
+					<path d="m49 46 17 -10" />
+					<path d="m18 63.5 20 -11.5" />
+					<path d="m4 88 57 -33" />
+					<path d="m30 89 27 -15.5" />
+					<path d="m58 89 5 -3" />
 				</g>
-				<path
-					d="m87 72 9 16"
-					fill="none"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="9"
-					stroke-dasharray="19"
-					stroke-dashoffset="19"
-				>
-					<animate
-						id="thirdAnim"
-						attributeName="stroke-dashoffset"
-						values="19;0"
-						dur="0.5s"
-						begin="secondAnim.end"
-						fill="freeze"
-						repeatCount="1"
-					/>
-				</path>
-				<path
-					d="m68 67 12.5 22"
-					fill="none"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="9"
-					stroke-dasharray="26"
-					stroke-dashoffset="26"
-				>
-					<animate
-						attributeName="stroke-dashoffset"
-						values="26;0"
-						dur="0.5s"
-						begin="secondAnim.end"
-						fill="freeze"
-						repeatCount="1"
-					/>
-				</path>
-
-				<g stroke-dasharray="20" stroke-dashoffset="20">
-					<path
-						d="m31 40 17 -10"
-						fill="none"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="9"
-					>
-						<animate
-							attributeName="stroke-dashoffset"
-							values="20;0"
-							dur="0.5s"
-							begin="0; thirdAnim.end"
-							fill="freeze"
-							repeatCount="1"
-						/>
-					</path>
-					<path
-						d="m49 46 17 -10"
-						fill="none"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="9"
-					>
-						<animate
-							attributeName="stroke-dashoffset"
-							values="20;0"
-							dur="0.5s"
-							begin="firstAnim.end"
-							fill="freeze"
-							repeatCount="1"
-						/>
-					</path>
-				</g>
-				<path
-					d="m18 63.5 20 -11.5"
-					fill="none"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="9"
-					stroke-dasharray="24"
-					stroke-dashoffset="24"
-				>
-					<animate
-						attributeName="stroke-dashoffset"
-						values="24;0"
-						dur="0.5s"
-						begin="firstAnim.end"
-						fill="freeze"
-						repeatCount="1"
-					/>
-				</path>
-
-				<path
-					d="m4 88 57 -33"
-					fill="none"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="9"
-					stroke-dasharray="66"
-					stroke-dashoffset="66"
-				>
-					<animate
-						attributeName="stroke-dashoffset"
-						values="66;0"
-						dur="0.5s"
-						begin="firstAnim.end"
-						fill="freeze"
-						repeatCount="1"
-					/>
-				</path>
-				<path
-					d="m30 89 27 -15.5"
-					fill="none"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="9"
-					stroke-dasharray="33"
-					stroke-dashoffset="33"
-				>
-					<animate
-						attributeName="stroke-dashoffset"
-						values="33;0"
-						dur="0.5s"
-						begin="secondAnim.end"
-						fill="freeze"
-						repeatCount="1"
-					/>
-				</path>
-				<path
-					d="m58 89 5 -3"
-					fill="none"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="9"
-					stroke-dasharray="7"
-					stroke-dashoffset="7"
-				>
-					<animate
-						attributeName="stroke-dashoffset"
-						values="7;0"
-						dur="0.5s"
-						begin="secondAnim.end"
-						fill="freeze"
-						repeatCount="1"
-					/>
-				</path>
+				<text x="10" y="35" class="text" font="arial" transform="translate(0,83)">
+					Loading...
+				</text>
 			</g>
-			<text x="10" y="35" class="text" font="arial" transform="translate(0,83)">
-				Loading...
-			</text>
-		</svg> -->
+		</svg>
+		<script>
+			window.addEventListener('load', function(event) {
+				// console.log('loaded!');
+				const svg = document.querySelector("#initLoader");
+				svg.classList.add('hidden');
+			});
+		</script>
 		<div id="app"></div>
 		<!-- built files will be auto injected -->
 	</body>
