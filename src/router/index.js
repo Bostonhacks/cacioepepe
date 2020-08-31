@@ -80,6 +80,14 @@ const routes = [
     }
   },
   {
+    path: "/hacker",
+    name: "hacker",
+    component: () => import("@/views/Hacker.vue"),
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
     path: "/volunteerlogin",
     name: "volunteerlogin",
     component: () => import("@/views/Login.vue"),
@@ -95,6 +103,7 @@ const routes = [
       requiresAuth: false
     }
   },
+
   {
     path: "/dashboard",
     name: "dashboard",
