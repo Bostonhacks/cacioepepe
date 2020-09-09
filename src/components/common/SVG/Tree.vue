@@ -3,6 +3,7 @@
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 611 537"
+    class="optimizeTransformTree"
   >
     <defs>
       <path id="stump" d="M394 331h79v120h-79z" />
@@ -47,5 +48,8 @@ export default {};
 }
 .shadow {
   fill: var(--v-aqua-darken2);
+}
+.optimizeTransformTree {
+  transform: translateZ(0px);
 }
 </style>

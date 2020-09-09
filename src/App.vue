@@ -38,13 +38,13 @@
 
 <script>
 import store from "@/store/index.js";
-import navigationBar from "@/components/common/NavigationBar.vue";
+// import navigationBar from ;
 import Footer from "@/components/common/Footer.vue";
 export default {
   name: "App",
   store,
   components: {
-    navigationBar,
+    navigationBar: () => import("@/components/common/NavigationBar.vue"),
     Footer
   },
   metaInfo: {
@@ -56,10 +56,10 @@ export default {
 <style>
 #app {
   overflow-x: hidden;
-  /* background-repeat: no-repeat;
-  background-image: url("/assets/landingPage/bostonHacksLoadingLogo.svg");
+  background-repeat: no-repeat;
+  /* background-image: url("/assets/landingPage/bostonHacksLoadingLogo.svg"); */
   background-position: center calc(50vh - 75px);
-  background-size: 150px; */
+  background-size: 150px;
 }
 
 .slide-enter-active,

@@ -1,5 +1,9 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -50 415.6 640.7">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 -50 415.6 640.7"
+    class="optimizeTransformRed"
+  >
     <g id="redBalloon" data-name="redBalloon" transform="translate(0 -50)">
       <g class="lightRed">
         <path d="M203.3 479.6l-4.2 30h1.4l4.1-30z" />
@@ -45,5 +49,8 @@ export default {};
 
 .darkRed {
   fill: var(--v-red-darken1);
+}
+.optimizeTransformRed {
+  transform: translateZ(0px);
 }
 </style>
