@@ -1,5 +1,5 @@
 <template>
-  <main class="pt-70px blue">
+  <!-- 
     <v-container class="blue py-16">
       <v-form>
         <div>
@@ -122,16 +122,270 @@
         >
       </v-form>
     </v-container>
+  </main>-->
+  <main class="pt-70px blue">
+    <v-container class="blue py-16">
+      <v-row style="height: 0">
+        <v-col cols="4" class="pa-0">
+          <Cloud9
+            alt="Blue Cloud"
+            type="light"
+            style="position: relative; top: -9rem;"
+          />
+        </v-col>
+      </v-row>
+      <h1 class="py-4 white--text basicTextShadow">Apply to BostonHacks!</h1>
+      <v-row style="height: 0">
+        <v-col cols="4" offset="8" class="pa-0">
+          <Cloud9
+            alt="Blue Cloud"
+            type="light"
+            style="position: relative; top: -8rem;"
+          />
+        </v-col>
+      </v-row>
+      <v-stepper v-model="e1">
+        <v-stepper-header>
+          <v-stepper-step :complete="e1 > 1" step="1" :editable="editable"
+            >Personal Information</v-stepper-step
+          >
+
+          <v-divider></v-divider>
+
+          <v-stepper-step :complete="e1 > 2" step="2" :editable="editable"
+            >Education</v-stepper-step
+          >
+
+          <v-divider></v-divider>
+
+          <v-stepper-step :complete="e1 > 3" step="3" :editable="editable"
+            >Application Questions</v-stepper-step
+          >
+
+          <v-divider></v-divider>
+
+          <v-stepper-step step="4" :editable="editable">Consent</v-stepper-step>
+        </v-stepper-header>
+
+        <v-stepper-items>
+          <v-stepper-content step="1">
+            <v-row class="smallVertical">
+              <v-col cols="12" sm="6">
+                <v-text-field
+                  v-model="first"
+                  label="First Name"
+                  outlined
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" sm="6">
+                <v-text-field
+                  v-model="last"
+                  label="Last Name"
+                  outlined
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6">
+                <v-text-field
+                  v-model="email"
+                  label="Email"
+                  outlined
+                  :rules="emailRules"
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" sm="6">
+                <v-select
+                  :items="genderList"
+                  v-model="gender"
+                  label="Gender"
+                  outlined
+                ></v-select>
+              </v-col>
+              <v-col cols="12" sm="6">
+                <v-select
+                  :items="pronounList"
+                  v-model="pronoun"
+                  label="Pronoun"
+                  outlined
+                ></v-select>
+              </v-col>
+
+              <v-col cols="12" sm="6">
+                <v-text-field
+                  v-model="phone"
+                  label="Phone Number"
+                  :rules="phoneRules"
+                  outlined
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6">
+                <v-select
+                  :items="timeZoneList"
+                  v-model="timeZone"
+                  label="Time Zone"
+                  outlined
+                ></v-select>
+              </v-col>
+
+              <v-col cols="12" sm="6">
+                <v-select
+                  v-model="country"
+                  label="Country"
+                  :items="countryList"
+                  outlined
+                ></v-select>
+              </v-col>
+            </v-row>
+            <v-btn color="primary" @click="e1 = 2">Continue</v-btn>
+
+            <v-btn text>Cancel</v-btn>
+          </v-stepper-content>
+
+          <v-stepper-content step="2">
+            <v-row class="smallVertical">
+              <v-col cols="12" sm="6">
+                <v-select
+                  v-model="university"
+                  :items="universityList"
+                  label="University"
+                  outlined
+                ></v-select>
+              </v-col>
+
+              <v-col cols="12" sm="6">
+                <v-select
+                  v-model="major"
+                  :items="courseList"
+                  label="Major"
+                  outlined
+                ></v-select>
+              </v-col>
+
+              <v-col cols="12" sm="6">
+                <v-select
+                  v-model="major"
+                  :items="courseList"
+                  label="Major"
+                  outlined
+                ></v-select>
+              </v-col>
+
+              <v-col cols="12" sm="6">
+                <v-select
+                  :items="educationLevels"
+                  v-model="educationLevel"
+                  label="Select your Level of Education (required)"
+                  outlined
+                ></v-select>
+              </v-col>
+            </v-row>
+
+            <v-btn color="primary" @click="e1 = 3">Continue</v-btn>
+
+            <v-btn text>Cancel</v-btn>
+          </v-stepper-content>
+
+          <v-stepper-content step="3">
+            <v-textarea
+              class="pt-3"
+              counter="200"
+              :counter-value="wordCounter"
+              label="Why do you want to participate in BostonHacks? (200 word max) "
+              :rules="rules"
+              v-model="essayAns"
+              outlined
+            ></v-textarea>
+            <div v-if="resume">
+              <v-btn
+                color="primary"
+                class="mr-4"
+                :href="resume[0]"
+                target="_blank"
+                rel="noreferrer"
+                >View Uploaded Resume</v-btn
+              >
+              <v-btn color="primary" class="mr-4" @click="deleteResume"
+                >Delete Resume</v-btn
+              >
+            </div>
+            <div v-else>
+              <v-file-input
+                chips
+                multiple
+                label="Resume Upload (PDF Only)"
+                accept="application/pdf"
+                @change="uploadResume"
+                v-model="uploadedResume"
+              ></v-file-input>
+            </div>
+            <v-text-field v-model="githubURL" label="Github URL"></v-text-field>
+            <v-text-field
+              v-model="linkedinURL"
+              label="LinkedIn URL"
+            ></v-text-field>
+            <v-text-field v-model="otherURL" label="Other URL"></v-text-field>
+            <v-switch
+              v-model="attendedBHacks"
+              label="Have you attended BostonHacks?"
+            ></v-switch>
+            <label>How many hackathons have you attended?</label>
+            <v-radio-group v-model="beenToHackathon">
+              <v-radio label="0" value="0"></v-radio>
+              <v-radio label="1" value="1"></v-radio>
+              <v-radio label="2" value="2"></v-radio>
+              <v-radio label="3+" value="3+"></v-radio>
+            </v-radio-group>
+
+            <v-btn color="primary" @click="e1 = 4">Continue</v-btn>
+
+            <v-btn text>Cancel</v-btn>
+          </v-stepper-content>
+
+          <v-stepper-content step="4">
+            <v-switch
+              class="pl-3"
+              v-model="marketingData"
+              label="Do you consent to us stealing your data?"
+            ></v-switch>
+            <v-switch
+              class="pl-3"
+              v-model="tAndC1"
+              label="Do you accept the terms and conditions?"
+            ></v-switch>
+            <v-switch
+              class="pl-3"
+              v-model="tAndC2"
+              label="Do you accept the terms and conditions?"
+            ></v-switch>
+
+            <v-btn color="primary" @click="e1 = 1">Continue</v-btn>
+
+            <v-btn text>Cancel</v-btn>
+          </v-stepper-content>
+        </v-stepper-items>
+      </v-stepper>
+    </v-container>
   </main>
 </template>
 <script>
 import { functions } from "@/firebase/init";
+import Cloud9 from "@/components/common/SVG/Cloud9";
 import store from "@/store/index";
 export default {
+  components: {
+    Cloud9
+  },
   name: "ApplicationUI",
   data() {
     return {
-      name: null,
+      rules: [v => v.split(" ").length <= 200 || "Max 200 words!"],
+      wordCounter: input => (input ? input.split(" ").length : 0),
+      e1: 1,
+      essayAns: null,
+      editable: true,
+      firstName: null,
+      lastName: null,
       phone: null,
       age: null,
       gender: null,
@@ -152,6 +406,246 @@ export default {
       universityList: null,
       major: null,
       minor: null,
+      country: null,
+      pronoun: null,
+      timeZone: null,
+      email: null,
+      emailRules: true,
+      timeZoneList: [
+        "GMT",
+        "GMT+1:00",
+        "GMT+2:00",
+        "GMT+3:00",
+        "GMT+3:30",
+        "GMT+4:00",
+        "GMT+5:00",
+        "GMT+5:30",
+        "GMT+6:00",
+        "GMT+7:00",
+        "GMT+8:00",
+        "GMT+9:00",
+        "GMT+9:30",
+        "GMT+10:00",
+        "GMT+11:00",
+        "GMT+12:00",
+        "GMT-11:00",
+        "GMT-10:00",
+        "GMT-9:00",
+        "GMT-8:00",
+        "GMT-7:00",
+        "GMT-6:00",
+        "GMT-5:00",
+        "GMT-4:00",
+        "GMT-3:30",
+        "GMT-3:00"
+      ],
+      countryList: [
+        "Afghanistan",
+        "Albania",
+        "Algeria",
+        "Andorra",
+        "Angola",
+        "Anguilla",
+        "Antigua &amp; Barbuda",
+        "Argentina",
+        "Armenia",
+        "Aruba",
+        "Australia",
+        "Austria",
+        "Azerbaijan",
+        "Bahamas",
+        "Bahrain",
+        "Bangladesh",
+        "Barbados",
+        "Belarus",
+        "Belgium",
+        "Belize",
+        "Benin",
+        "Bermuda",
+        "Bhutan",
+        "Bolivia",
+        "Bosnia &amp; Herzegovina",
+        "Botswana",
+        "Brazil",
+        "British Virgin Islands",
+        "Brunei",
+        "Bulgaria",
+        "Burkina Faso",
+        "Burundi",
+        "Cambodia",
+        "Cameroon",
+        "Cape Verde",
+        "Cayman Islands",
+        "Chad",
+        "Chile",
+        "China",
+        "Colombia",
+        "Congo",
+        "Cook Islands",
+        "Costa Rica",
+        "Cote D Ivoire",
+        "Croatia",
+        "Cruise Ship",
+        "Cuba",
+        "Cyprus",
+        "Czech Republic",
+        "Denmark",
+        "Djibouti",
+        "Dominica",
+        "Dominican Republic",
+        "Ecuador",
+        "Egypt",
+        "El Salvador",
+        "Equatorial Guinea",
+        "Estonia",
+        "Ethiopia",
+        "Falkland Islands",
+        "Faroe Islands",
+        "Fiji",
+        "Finland",
+        "France",
+        "French Polynesia",
+        "French West Indies",
+        "Gabon",
+        "Gambia",
+        "Georgia",
+        "Germany",
+        "Ghana",
+        "Gibraltar",
+        "Greece",
+        "Greenland",
+        "Grenada",
+        "Guam",
+        "Guatemala",
+        "Guernsey",
+        "Guinea",
+        "Guinea Bissau",
+        "Guyana",
+        "Haiti",
+        "Honduras",
+        "Hong Kong",
+        "Hungary",
+        "Iceland",
+        "India",
+        "Indonesia",
+        "Iran",
+        "Iraq",
+        "Ireland",
+        "Isle of Man",
+        "Israel",
+        "Italy",
+        "Jamaica",
+        "Japan",
+        "Jersey",
+        "Jordan",
+        "Kazakhstan",
+        "Kenya",
+        "Kuwait",
+        "Kyrgyz Republic",
+        "Laos",
+        "Latvia",
+        "Lebanon",
+        "Lesotho",
+        "Liberia",
+        "Libya",
+        "Liechtenstein",
+        "Lithuania",
+        "Luxembourg",
+        "Macau",
+        "Macedonia",
+        "Madagascar",
+        "Malawi",
+        "Malaysia",
+        "Maldives",
+        "Mali",
+        "Malta",
+        "Mauritania",
+        "Mauritius",
+        "Mexico",
+        "Moldova",
+        "Monaco",
+        "Mongolia",
+        "Montenegro",
+        "Montserrat",
+        "Morocco",
+        "Mozambique",
+        "Namibia",
+        "Nepal",
+        "Netherlands",
+        "Netherlands Antilles",
+        "New Caledonia",
+        "New Zealand",
+        "Nicaragua",
+        "Niger",
+        "Nigeria",
+        "Norway",
+        "Oman",
+        "Pakistan",
+        "Palestine",
+        "Panama",
+        "Papua New Guinea",
+        "Paraguay",
+        "Peru",
+        "Philippines",
+        "Poland",
+        "Portugal",
+        "Puerto Rico",
+        "Qatar",
+        "Reunion",
+        "Romania",
+        "Russia",
+        "Rwanda",
+        "Saint Pierre &amp; Miquelon",
+        "Samoa",
+        "San Marino",
+        "Satellite",
+        "Saudi Arabia",
+        "Senegal",
+        "Serbia",
+        "Seychelles",
+        "Sierra Leone",
+        "Singapore",
+        "Slovakia",
+        "Slovenia",
+        "South Africa",
+        "South Korea",
+        "Spain",
+        "Sri Lanka",
+        "St Kitts &amp; Nevis",
+        "St Lucia",
+        "St Vincent",
+        "St. Lucia",
+        "Sudan",
+        "Suriname",
+        "Swaziland",
+        "Sweden",
+        "Switzerland",
+        "Syria",
+        "Taiwan",
+        "Tajikistan",
+        "Tanzania",
+        "Thailand",
+        "Timor L'Este",
+        "Togo",
+        "Tonga",
+        "Trinidad &amp; Tobago",
+        "Tunisia",
+        "Turkey",
+        "Turkmenistan",
+        "Turks &amp; Caicos",
+        "Uganda",
+        "Ukraine",
+        "United Arab Emirates",
+        "United Kingdom",
+        "Uruguay",
+        "Uzbekistan",
+        "Venezuela",
+        "Vietnam",
+        "Virgin Islands (US)",
+        "Yemen",
+        "Zambia",
+        "Zimbabwe"
+      ],
       courseList: [
         "Accounting",
         "Aerospace Engineering",
@@ -244,7 +738,8 @@ export default {
         "Statistics",
         "Systems Design Engineering",
         "Technology Management",
-        "Theatre and Linguistics"
+        "Theatre and Linguistics",
+        "Other"
       ],
       uploadedResume: null,
       resume: null,
@@ -258,8 +753,10 @@ export default {
       tAndC2: 0,
       phoneRules: [
         v =>
-          (/\d/g.test(v) && v.length === 10) ||
-          "Phone Number must be a valid US phone number"
+          /^\+((?:9[679]|8[035789]|6[789]|5[90]|42|3[578]|2[1-689])|9[0-58]|8[1246]|6[0-6]|5[1-8]|4[013-9]|3[0-469]|2[70]|7|1)(?:\W*\d){0,13}\d$/.test(
+            v
+          ) ||
+          "Please enter phone numbers with the international access code identifier of '+'"
       ],
       ageRules: [v => v >= 18 || "You must be over 18 to come to BostonHacks!"]
     };
@@ -273,7 +770,11 @@ export default {
     async saveApplication() {
       await functions.httpsCallable("saveApplication")({
         uid: this.user.uid,
-        name: this.name,
+        essayAns: this.essayAns,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        timeZone: this.timeZone,
+        country: this.country,
         phone: this.phone,
         age: this.age,
         gender: this.gender,
@@ -296,7 +797,11 @@ export default {
     async submitApplication() {
       await functions.httpsCallable("submitApplication")({
         uid: this.user.uid,
-        name: this.name,
+        essayAns: this.essayAns,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        timeZone: this.timeZone,
+        country: this.country,
         phone: this.phone,
         age: this.age,
         gender: this.gender,
@@ -351,7 +856,11 @@ export default {
       var rawAppData = await functions.httpsCallable("loadApplication")({
         uid: this.user.uid
       });
-      (this.name = rawAppData.data.name),
+      (this.essayAns = rawAppData.data.essayAns),
+        (this.firstName = rawAppData.data.firstName),
+        (this.lastName = rawAppData.data.lastName),
+        (this.country = rawAppData.data.country),
+        (this.timeZone = rawAppData.data.timeZone),
         (this.phone = rawAppData.data.phone),
         (this.age = rawAppData.data.age),
         (this.gender = rawAppData.data.gender),
@@ -382,8 +891,16 @@ export default {
           return item;
         });
         schoolList.splice(0, 1);
+        schoolList.push("Other");
+        54;
         this.universityList = schoolList;
       });
   }
 };
 </script>
+
+<style scoped>
+.smallVertical .col-sm-6 {
+  margin-bottom: -2em;
+}
+</style>
