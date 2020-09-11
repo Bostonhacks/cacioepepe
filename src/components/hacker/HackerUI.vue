@@ -43,10 +43,16 @@
 <!-- Checked In
   EVERYTHING -->
 <template>
-  <div class="sky-background pt-16">
+  <div class="white--text sky-background pt-16">
     <CountdownTimer class="py-10" />
 
     <Timeline :applicationStatus="this.user.applicationStatus" />
+    <v-row class="justify-center">
+      <div class="display-3 font-weight-bold">
+        APPLICATION STATUS:
+        {{ messages[this.user.applicationStatus] }}
+      </div>
+    </v-row>
     <grasstop class="mb-n2" />
     <!-- <object data="/assets/hacker/grassTop.svg" class="mb-n2"></object> -->
     <div class="grass-background">
@@ -59,90 +65,15 @@
           <Tree id="tree3" />
         </v-col>
       </v-row>
-      <!-- Mentors-->
       <MentorList />
-
-      <!-- Schedule -->
       <v-row>
         <v-col>
-          <v-container class="justify-center pl-lg-10">
-            <v-card max-width="450" class="mx-auto">
-              <v-toolbar color="brown" dark>
-                <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-                <v-toolbar-title>Schedule</v-toolbar-title>
-
-                <v-spacer></v-spacer>
-              </v-toolbar>
-
-              <v-list subheader>
-                <v-subheader>Saturday</v-subheader>
-
-                <v-list-item v-for="daily in satschedule" :key="daily.title">
-                  <v-list-item-content>
-                    <v-list-item-title v-text="daily.title"></v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-
-              <v-divider></v-divider>
-
-              <v-list subheader>
-                <v-subheader>Sunday</v-subheader>
-
-                <v-list-item v-for="daily in sunschedule" :key="daily.title">
-                  <v-list-item-content>
-                    <v-list-item-title v-text="daily.title"></v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-            </v-card>
-          </v-container>
+          <Schedule />
         </v-col>
-        <!--Links-->
         <v-col>
           <v-row>
-            <v-container class="justify-center">
-              <v-card max-width="450" class="mx-auto">
-                <v-toolbar color="orange" dark>
-                  <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-                  <v-toolbar-title>Slack Channels</v-toolbar-title>
-
-                  <v-spacer></v-spacer>
-                </v-toolbar>
-                <v-list-item three-line>
-                  <v-list-item-content>
-                    <v-list-item-subtitle class="pd-10"
-                      >Communicate with hundreds of hackers! Reach out to learn
-                      about our workshops, update with
-                      announcements!</v-list-item-subtitle
-                    >
-                    <v-card-actions>
-                      <v-list>
-                        <v-list-item>
-                          <v-btn block color="secondary" dark
-                            >Open #general Channel</v-btn
-                          >
-                        </v-list-item>
-                        <v-list-item>
-                          <v-btn block color="secondary" dark
-                            >Open #sponsor Channel</v-btn
-                          >
-                        </v-list-item>
-                        <v-list-item>
-                          <v-btn block color="secondary" dark
-                            >Open #workshops Channel</v-btn
-                          >
-                        </v-list-item>
-                      </v-list>
-                    </v-card-actions>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-card>
-            </v-container>
+            <SlackChannels />
           </v-row>
-          <!-- Challenges -->
           <v-row>
             <Challenges />
           </v-row>
@@ -171,7 +102,9 @@ import Tree from "@/components/common/SVG/Tree.vue";
 import grasstop from "./grasstop.svg.vue";
 import grassbottom from "./grassbottom.svg.vue";
 import MentorList from "./MentorList.vue";
-// import Challenges from "./Challenges.vue";
+import Schedule from "./Schedule.vue";
+import SlackChannels from "./SlackChannels.vue";
+import Challenges from "./Challenges.vue";
 
 export default {
   name: "HackerUI",
@@ -181,7 +114,10 @@ export default {
     Tree,
     grasstop,
     grassbottom,
-    MentorList
+    MentorList,
+    Schedule,
+    SlackChannels,
+    Challenges
   },
   data: () => ({
     null: "No result",
@@ -189,18 +125,6 @@ export default {
     searchC: "",
     searchItemM: [],
     searchItemC: [],
-    satschedule: [
-      { title: "9:00 AM - Open Ceremony" },
-      { title: "10:00 AM - React Workshop" },
-      { title: "11:00 AM - Vue Workshop" },
-      { title: "12:00 PM - Ghidra Workshop" }
-    ],
-    sunschedule: [
-      { title: "9:00 AM - Open Ceremony" },
-      { title: "10:00 AM - React Workshop" },
-      { title: "11:00 AM - Vue Workshop" },
-      { title: "12:00 PM - Ghidra Workshop" }
-    ],
     mentorList: [
       { header: "Mentor List" },
       {
@@ -236,6 +160,16 @@ export default {
         description:
           "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
       }
+    ],
+    messages: [
+      "Started",
+      "Submitted",
+      "Rejected",
+      "Waitlisted",
+      "Accepted",
+      "Confirmed",
+      "Declined",
+      "Checked In"
     ]
   }),
   mounted() {
