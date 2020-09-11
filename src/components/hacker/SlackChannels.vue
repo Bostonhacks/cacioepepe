@@ -1,5 +1,5 @@
 <template>
-  <v-container class="justify-center pl-lg-10">
+  <v-container class="justify-center">
     <v-card max-width="450" class="mx-auto">
       <v-toolbar color="orange" dark>
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
@@ -38,6 +38,3 @@
     </v-card>
   </v-container>
 </template>
-<script>
-export default {};
-</script>
