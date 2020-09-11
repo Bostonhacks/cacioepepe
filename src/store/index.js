@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import firebase from "firebase/app";
-import { functions } from "@/firebase/init.js";
+import { functions, db } from "@/firebase/init.js";
 
 Vue.use(Vuex);
 
@@ -34,21 +34,25 @@ const actions = {
     if (!user) {
       return;
     }
-    var raid = await functions.httpsCallable("getUserData")({
-      uid: user.uid
-    });
-    if (!raid.data) {
-      await functions.httpsCallable("createNewUser")({
-        uid: user.uid,
+    var raid = await db
+      .collection("users")
+      .doc(user.uid)
+      .get();
+    if (!raid.exists) {
+      const userDocRef = db.collection("users").doc(user.uid);
+      await userDocRef.set({
         displayName: user.displayName,
-        email: user.email
+        email: user.email,
+        uid: user.uid,
+        role: "user"
       });
-      raid = await functions.httpsCallable("getUserData")({
-        uid: user.uid
-      });
-      context.commit("setUser", raid.data);
+      raid = await db
+        .collection("users")
+        .doc(user.uid)
+        .get();
+      context.commit("setUser", raid.data());
     } else {
-      context.commit("setUser", raid.data);
+      context.commit("setUser", raid.data());
     }
   },
   setSponsor: async context => {
