@@ -2,7 +2,7 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {	
 		function sameUID(uid) {
-			return uid == request.auth.uid;
+			return isLoggedIn() && (uid == request.auth.uid);
 		}
 		function isLoggedIn() {
 			return request.auth != null;
@@ -21,32 +21,32 @@ service cloud.firestore {
 		match /users/{userId} {
 			allow get: if hasRole("admin") || hasRole("sponsor") || sameUID(userId);
 			allow list: if hasRole("admin") || hasRole("sponsor");
-			allow create: if hasRole("admin") || (isLoggedIn() && sameUID(userId));
-			allow update: if hasRole("admin") || (isLoggedIn() && sameUID(userId) && invalidUserUpdate());
+			allow create: if hasRole("admin") || (sameUID(userId));
+			allow update: if hasRole("admin") || (sameUID(userId) && invalidUserUpdate());
 			allow delete: if hasRole("admin");
 		}
 		
 		match /volunteers/{voldId} {
 			allow list: if hasRole("admin");
-			allow get: if hasRole("admin") || (isLoggedIn() && sameUID(userId));
-			allow create: if hasRole("admin") || (isLoggedIn() && sameUID(userId));
-			allow update: if hasRole("admin") || (isLoggedIn() && sameUID(userId));
+			allow get: if hasRole("admin") || (sameUID(userId));
+			allow create: if hasRole("admin") || (sameUID(userId));
+			allow update: if hasRole("admin") || (sameUID(userId));
 			allow delete: if hasRole("admin");
 		}
 		
 		match /teams/{teamId}{
-			allow get: if false;
-			allow list: if false;
-			allow create: if false;
-			allow update: if false;
-			allow delete: if isAdmin();
+			allow get: if hasRole("admin");
+			allow list: if hasRole("admin");
+			allow create: if hasRole("admin");
+			allow update: if hasRole("admin");
+			allow delete: if hasRole("admin")
 		}
 		
 		match /applications/{appId} {
 			allow get: if hasRole("admin") || sameUID(userId);
 			allow list: if hasRole("admin") || hasRole("sponsor");
-			allow create: if hasRole("admin") || (isLoggedIn() && sameUID(userId));
-			allow update: if hasRole("admin") || (isLoggedIn() && sameUID(userId) && notUpdating("uid"));
+			allow create: if hasRole("admin") || (sameUID(userId));
+			allow update: if hasRole("admin") || (sameUID(userId) && notUpdating("uid"));
 			allow delete: if hasRole("admin");
 		}
 		
