@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import firebase from "firebase/app";
-import { functions } from "@/firebase/init.js";
+import { db } from "@/firebase/init.js";
 
 Vue.use(Vuex);
 
@@ -34,21 +34,25 @@ const actions = {
     if (!user) {
       return;
     }
-    var raid = await functions.httpsCallable("getUserData")({
-      uid: user.uid
-    });
-    if (!raid.data) {
-      await functions.httpsCallable("createNewUser")({
-        uid: user.uid,
+    var raid = await db
+      .collection("users")
+      .doc(user.uid)
+      .get();
+    if (!raid.exists) {
+      const userDocRef = db.collection("users").doc(user.uid);
+      await userDocRef.set({
         displayName: user.displayName,
-        email: user.email
+        email: user.email,
+        uid: user.uid,
+        role: "user"
       });
-      raid = await functions.httpsCallable("getUserData")({
-        uid: user.uid
-      });
-      context.commit("setUser", raid.data);
+      raid = await db
+        .collection("users")
+        .doc(user.uid)
+        .get();
+      context.commit("setUser", raid.data());
     } else {
-      context.commit("setUser", raid.data);
+      context.commit("setUser", raid.data());
     }
   },
   setSponsor: async context => {
@@ -56,21 +60,25 @@ const actions = {
     if (!user) {
       return;
     }
-    var raid = await functions.httpsCallable("getUserData")({
-      uid: user.uid
-    });
-    if (!raid.data) {
-      await functions.httpsCallable("createNewSponsor")({
-        uid: user.uid,
+    var raid = await db
+      .collection("users")
+      .doc(user.uid)
+      .get();
+    if (!raid.exists) {
+      const userDocRef = db.collection("users").doc(user.uid);
+      await userDocRef.set({
         displayName: user.displayName,
-        email: user.email
+        email: user.email,
+        uid: user.uid,
+        role: "sponsor"
       });
-      raid = await functions.httpsCallable("getUserData")({
-        uid: user.uid
-      });
-      context.commit("setSponsor", raid.data);
+      raid = await db
+        .collection("users")
+        .doc(user.uid)
+        .get();
+      context.commit("setSponsor", raid.data());
     } else {
-      context.commit("setSponsor", raid.data);
+      context.commit("setSponsor", raid.data());
     }
   },
   setVolunteer: async context => {
@@ -78,21 +86,25 @@ const actions = {
     if (!user) {
       return;
     }
-    var raid = await functions.httpsCallable("getUserData")({
-      uid: user.uid
-    });
-    if (!raid.data) {
-      await functions.httpsCallable("createNewVolunteer")({
-        uid: user.uid,
+    var raid = await db
+      .collection("users")
+      .doc(user.uid)
+      .get();
+    if (!raid.exists) {
+      const userDocRef = db.collection("users").doc(user.uid);
+      await userDocRef.set({
         displayName: user.displayName,
-        email: user.email
+        email: user.email,
+        uid: user.uid,
+        role: "volunteer"
       });
-      raid = await functions.httpsCallable("getUserData")({
-        uid: user.uid
-      });
-      context.commit("setVolunteer", raid.data);
+      raid = await db
+        .collection("users")
+        .doc(user.uid)
+        .get();
+      context.commit("setVolunteer", raid.data());
     } else {
-      context.commit("setVolunteer", raid.data);
+      context.commit("setVolunteer", raid.data());
     }
   },
   setMentor: async context => {
@@ -100,21 +112,25 @@ const actions = {
     if (!user) {
       return;
     }
-    var raid = await functions.httpsCallable("getUserData")({
-      uid: user.uid
-    });
-    if (!raid.data) {
-      await functions.httpsCallable("createMentor")({
-        uid: user.uid,
+    var raid = await db
+      .collection("users")
+      .doc(user.uid)
+      .get();
+    if (!raid.exists) {
+      const userDocRef = db.collection("users").doc(user.uid);
+      await userDocRef.set({
         displayName: user.displayName,
-        email: user.email
+        email: user.email,
+        uid: user.uid,
+        role: "mentor"
       });
-      raid = await functions.httpsCallable("getUserData")({
-        uid: user.uid
-      });
-      context.commit("setMentor", raid.data);
+      raid = await db
+        .collection("users")
+        .doc(user.uid)
+        .get();
+      context.commit("setMentor", raid.data());
     } else {
-      context.commit("setMentor", raid.data);
+      context.commit("setMentor", raid.data());
     }
   },
   getUser: async context => {
@@ -122,10 +138,11 @@ const actions = {
     if (!user) {
       return;
     }
-    var raid = await functions.httpsCallable("getUserData")({
-      uid: user.uid
-    });
-    context.commit("setUser", raid.data);
+    const raid = await db
+      .collection("users")
+      .doc(user.uid)
+      .get();
+    context.commit("setUser", raid.data());
   },
   logOut: async context => {
     await firebase.auth().signOut();

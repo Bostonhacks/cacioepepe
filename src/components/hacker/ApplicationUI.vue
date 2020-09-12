@@ -125,7 +125,7 @@
   </main>
 </template>
 <script>
-import { functions } from "@/firebase/init";
+import { functions, db } from "@/firebase/init";
 import store from "@/store/index";
 export default {
   name: "ApplicationUI",
@@ -271,27 +271,27 @@ export default {
   },
   methods: {
     async saveApplication() {
-      await functions.httpsCallable("saveApplication")({
-        uid: this.user.uid,
-        name: this.name,
-        phone: this.phone,
-        age: this.age,
-        gender: this.gender,
-        pronouns: this.pronouns,
-        educationLevel: this.educationLevel,
-        university: this.university,
-        major: this.major,
-        minor: this.minor,
-        resume: this.resume,
-        githubURL: this.githubURL,
-        linkedinURL: this.linkedinURL,
-        otherURL: this.otherURL,
-        beenToHackathon: this.beenToHackathon,
-        attendedBHacks: this.attendedBHacks,
-        marketingData: this.marketingData,
-        tAndC1: this.tAndC1,
-        tAndC2: this.tAndC2
-      });
+			const applications = db.collection("applications").doc(this.user.uid);
+			await applications.update({
+				name: this.name,
+				phone: this.phone,
+				age: this.age,
+				gender: this.gender,
+				pronouns: this.pronouns,
+				educationLevel: this.educationLevel,
+				university: this.university,
+				major: this.major,
+				minor: this.minor,
+				resume: this.resume,
+				githubURL: this.githubURL,
+				linkedinURL: this.linkedinURL,
+				otherURL: this.otherURL,
+				beenToHackathon: this.beenToHackathon,
+				attendedBHacks: this.attendedBHacks,
+				marketingData: this.marketingData,
+				tAndC1: this.tAndC1,
+				tAndC2: this.tAndC2
+			});
     },
     async submitApplication() {
       await functions.httpsCallable("submitApplication")({
