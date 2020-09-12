@@ -7,8 +7,9 @@ const fs = require("fs");
 const { Storage } = require("@google-cloud/storage");
 const storage = new Storage();
 
-module.exports.oneClickSelectDownload = functions.https.onCall(
-  async (data, context) => {
+module.exports.oneClickSelectDownload = functions
+  .runWith({ timeoutSeconds: 540, memory: "2GB" })
+  .https.onCall(async (data, context) => {
     if (!context.auth) {
       return { message: "Authentication Required!", code: 401 };
     }
@@ -82,5 +83,4 @@ module.exports.oneClickSelectDownload = functions.https.onCall(
         uuid,
       location: "selectedResumes/" + context.auth.uid + "/" + "Resume.zip"
     };
-  }
-);
+  });
