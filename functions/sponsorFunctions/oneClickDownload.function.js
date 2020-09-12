@@ -10,11 +10,6 @@ const db = admin.firestore();
 const { Storage } = require("@google-cloud/storage");
 const storage = new Storage();
 
-// const runtimeOpts = {
-//   timeoutSeconds: 540,
-//   memory: '2GB'
-// }
-
 module.exports.oneClickDownload = functions
   .runWith({ timeoutSeconds: 540, memory: "2GB" })
   .https.onCall(async (_, context) => {
@@ -76,8 +71,6 @@ module.exports.oneClickDownload = functions
         }
       }
     });
-
-    console.log("Zip file generated.");
 
     return {
       URL:
