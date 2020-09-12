@@ -125,7 +125,7 @@
   </main>
 </template>
 <script>
-import { functions } from "@/firebase/init";
+import { functions, db } from "@/firebase/init";
 import store from "@/store/index";
 export default {
   name: "ApplicationUI",
@@ -271,8 +271,8 @@ export default {
   },
   methods: {
     async saveApplication() {
-      await functions.httpsCallable("saveApplication")({
-        uid: this.user.uid,
+      const applications = db.collection("applications").doc(this.user.uid);
+      await applications.update({
         name: this.name,
         phone: this.phone,
         age: this.age,
