@@ -112,6 +112,14 @@ const routes = [
       requiresAuth: false
     }
   },
+  {
+    path: "/newsignup",
+    name: "newsignup",
+    component: () => import("@/views/NewSignUp.vue"),
+    meta: {
+      requiresAuth: false
+    }
+  },
   // PLEASE MAKE SURE THAT THIS IS ALWAYS THE LAST ROUTE!!!
   {
     path: "*",
