@@ -39,12 +39,12 @@ export default {
     SponsorDashboard,
     VolunteerDashboard,
     MentorDashboard,
-    HackerUI,
+    HackerUI
   },
   computed: {
     user() {
       return this.$store.state.user;
-    },
-  },
+    }
+  }
 };
 </script>

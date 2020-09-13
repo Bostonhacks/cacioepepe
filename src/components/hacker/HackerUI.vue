@@ -89,12 +89,12 @@ export default {
     MentorList,
     Schedule,
     SlackChannels,
-    Challenges,
+    Challenges
   },
   methods: {
     pushApplication() {
       this.$router.push("application");
-    },
+    }
   },
   data: () => ({
     null: "No result",
@@ -109,7 +109,7 @@ export default {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         title: "Rishab Bishab",
         description:
-          "<span class='text--primary'>God of Everything</span> &mdash; Vue, Firebase",
+          "<span class='text--primary'>God of Everything</span> &mdash; Vue, Firebase"
       },
       { divider: true, inset: true },
       {
@@ -117,8 +117,8 @@ export default {
         avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
         title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
         description:
-          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.",
-      },
+          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
+      }
     ],
     challengeList: [
       { header: "Challenge List" },
@@ -127,7 +127,7 @@ export default {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         title: "Rishab Bishab",
         description:
-          "<span class='text--primary'>God of Everything</span> &mdash; Vue, Firebase",
+          "<span class='text--primary'>God of Everything</span> &mdash; Vue, Firebase"
       },
       { divider: true, inset: true },
       {
@@ -135,8 +135,8 @@ export default {
         avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
         title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
         description:
-          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.",
-      },
+          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
+      }
     ],
     status: [
       "Started",
@@ -146,8 +146,8 @@ export default {
       "Accepted",
       "Confirmed",
       "Declined",
-      "Checked In",
-    ],
+      "Checked In"
+    ]
   }),
   mounted() {
     if (this.user === null) {
@@ -158,8 +158,8 @@ export default {
   computed: {
     user() {
       return this.$store.state.user;
-    },
-  },
+    }
+  }
 };
 </script>
 
