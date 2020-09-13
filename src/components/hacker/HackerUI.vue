@@ -1,60 +1,31 @@
 <!-- [Started, Submitted, Rejected, Waitlisted, Accepted, Confirmed, Declined, Checked In] -->
-<!-- Components:
-  Application Timeline
-  Mentors
-  Slack Channel
-  Schedule
-  Event Timer
-  Challenges
-  Link to mentor dashboard
- -->
-
-<!-- Started
-  Application Timeline & Link to begin application
-  -->
-
-<!-- Submitted
-  Application Timeline & say that they've submitted
-   -->
-
-<!-- Rejected
-  sad face
-   -->
-
-<!-- Waitlisted
-   -->
-
-<!-- Accepted
-   Application Timeline 
-   text: you have been accepted
-   Event Timer
-   -->
-
-<!-- Confirmed
-   Application Timeline
-   Slack Channel (not all)
-   Event Timer
-   -->
-
-<!-- Declined
-   text: see you next year?
-    -->
-
-<!-- Checked In
-  EVERYTHING -->
 <template>
   <div class="white--text sky-background pt-16">
-    <CountdownTimer class="py-10" />
-
-    <Timeline :applicationStatus="this.user.applicationStatus" />
-    <v-row class="justify-center">
-      <div class="display-3 font-weight-bold">
-        APPLICATION STATUS:
-        {{ messages[this.user.applicationStatus] }}
-      </div>
+    <CountdownTimer class="py-10" v-if="this.user.applicationStatus == 7" />
+    <!-- <Timeline :applicationStatus="this.user.applicationStatus" /> -->
+    <v-row class=" flex-column align-center display-3 font-weight-bold">
+      <v-col cols="8">
+        <v-row class="justify-center">
+          <div>
+            Application Status: {{ status[this.user.applicationStatus] }}
+          </div>
+          <div class="display-1" v-if="this.user.applicationStatus == 0">
+            To complete your application, click
+            <button
+              class="text-decoration-underline"
+              v-on:click="pushApplication()"
+            >
+              here
+            </button>
+          </div>
+          <div class="display-1" v-if="this.user.applicationStatus == 1">
+            You're all set! We'll let you know as soon as there's an update to
+            your application.
+          </div>
+        </v-row>
+      </v-col>
     </v-row>
     <grasstop class="mb-n2" />
-    <!-- <object data="/assets/hacker/grassTop.svg" class="mb-n2"></object> -->
     <div class="grass-background">
       <v-row no-gutters class="justify-space-between">
         <v-col sm="4" md="2"> <Tree /> </v-col
@@ -65,24 +36,25 @@
           <Tree id="tree3" />
         </v-col>
       </v-row>
-      <MentorList />
-      <v-row>
-        <v-col>
-          <Schedule />
-        </v-col>
-        <v-col>
-          <v-row>
-            <SlackChannels />
-          </v-row>
-          <v-row>
-            <Challenges />
-          </v-row>
-        </v-col>
-      </v-row>
+      <div v-if="this.user.applicationStatus == 7">
+        <MentorList />
+        <v-row>
+          <v-col>
+            <Schedule />
+          </v-col>
+          <v-col>
+            <v-row>
+              <SlackChannels />
+            </v-row>
+            <v-row>
+              <Challenges />
+            </v-row>
+          </v-col>
+        </v-row>
+      </div>
     </div>
 
     <div class="grass-bottom">
-      <!-- <object data="/assets/hacker/grassBottom.svg"></object> -->
       <grassbottom />
       <v-row class="justify-center">
         <h3 class="display-2 header text-center">
@@ -117,7 +89,12 @@ export default {
     MentorList,
     Schedule,
     SlackChannels,
-    Challenges
+    Challenges,
+  },
+  methods: {
+    pushApplication() {
+      this.$router.push("application");
+    },
   },
   data: () => ({
     null: "No result",
@@ -132,7 +109,7 @@ export default {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         title: "Rishab Bishab",
         description:
-          "<span class='text--primary'>God of Everything</span> &mdash; Vue, Firebase"
+          "<span class='text--primary'>God of Everything</span> &mdash; Vue, Firebase",
       },
       { divider: true, inset: true },
       {
@@ -140,8 +117,8 @@ export default {
         avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
         title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
         description:
-          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
-      }
+          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.",
+      },
     ],
     challengeList: [
       { header: "Challenge List" },
@@ -150,7 +127,7 @@ export default {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         title: "Rishab Bishab",
         description:
-          "<span class='text--primary'>God of Everything</span> &mdash; Vue, Firebase"
+          "<span class='text--primary'>God of Everything</span> &mdash; Vue, Firebase",
       },
       { divider: true, inset: true },
       {
@@ -158,10 +135,10 @@ export default {
         avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
         title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
         description:
-          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
-      }
+          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.",
+      },
     ],
-    messages: [
+    status: [
       "Started",
       "Submitted",
       "Rejected",
@@ -169,19 +146,20 @@ export default {
       "Accepted",
       "Confirmed",
       "Declined",
-      "Checked In"
-    ]
+      "Checked In",
+    ],
   }),
   mounted() {
     if (this.user === null) {
-      this.$router.push("application");
+      this.pushApplication();
     }
+    this.user.applicationStatus = 0;
   },
   computed: {
     user() {
       return this.$store.state.user;
-    }
-  }
+    },
+  },
 };
 </script>
 
