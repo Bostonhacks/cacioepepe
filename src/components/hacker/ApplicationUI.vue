@@ -172,7 +172,7 @@
             <v-row class="smallVertical">
               <v-col cols="12" sm="6">
                 <v-text-field
-                  v-model="first"
+                  v-model="firstName"
                   label="First Name"
                   outlined
                 ></v-text-field>
@@ -180,7 +180,7 @@
 
               <v-col cols="12" sm="6">
                 <v-text-field
-                  v-model="last"
+                  v-model="lastName"
                   label="Last Name"
                   outlined
                 ></v-text-field>
@@ -205,12 +205,20 @@
               <v-col cols="12" sm="6">
                 <v-select
                   :items="pronounList"
-                  v-model="pronoun"
+                  v-model="pronouns"
                   label="Pronoun"
                   outlined
                 ></v-select>
               </v-col>
-
+              <v-col cols="12" sm="6">
+                <v-text-field
+                  v-model="age"
+                  type="number"
+                  label="Age"
+                  :rules="ageRules"
+                  outlined
+                ></v-text-field>
+              </v-col>
               <v-col cols="12" sm="6">
                 <v-text-field
                   v-model="phone"
@@ -239,7 +247,7 @@
             </v-row>
             <v-btn color="primary" @click="e1 = 2">Continue</v-btn>
 
-            <v-btn text>Cancel</v-btn>
+            <v-btn @click="saveApplication">Save</v-btn>
           </v-stepper-content>
 
           <v-stepper-content step="2">
@@ -264,9 +272,9 @@
 
               <v-col cols="12" sm="6">
                 <v-select
-                  v-model="major"
+                  v-model="minor"
                   :items="courseList"
-                  label="Major"
+                  label="Minor"
                   outlined
                 ></v-select>
               </v-col>
@@ -283,7 +291,7 @@
 
             <v-btn color="primary" @click="e1 = 3">Continue</v-btn>
 
-            <v-btn text>Cancel</v-btn>
+            <v-btn @click="saveApplication">Save</v-btn>
           </v-stepper-content>
 
           <v-stepper-content step="3">
@@ -292,7 +300,7 @@
               counter="200"
               :counter-value="wordCounter"
               label="Why do you want to participate in BostonHacks? (200 word max) "
-              :rules="rules"
+              :rules="essayRules"
               v-model="essayAns"
               outlined
             ></v-textarea>
@@ -309,7 +317,7 @@
                 >Delete Resume</v-btn
               >
             </div>
-            <div v-else>
+            <div v-else-if="uploadedResume == null">
               <v-file-input
                 chips
                 multiple
@@ -318,6 +326,12 @@
                 @change="uploadResume"
                 v-model="uploadedResume"
               ></v-file-input>
+            </div>
+            <div v-else>
+              <v-progress-linear
+                color="#FA9F98"
+                indeterminate
+              ></v-progress-linear>
             </div>
             <v-text-field v-model="githubURL" label="Github URL"></v-text-field>
             <v-text-field
@@ -339,7 +353,7 @@
 
             <v-btn color="primary" @click="e1 = 4">Continue</v-btn>
 
-            <v-btn text>Cancel</v-btn>
+            <v-btn @click="saveApplication">Save</v-btn>
           </v-stepper-content>
 
           <v-stepper-content step="4">
@@ -358,10 +372,33 @@
               v-model="tAndC2"
               label="Do you accept the terms and conditions?"
             ></v-switch>
+            <v-btn
+              color="primary"
+              @click="submitApplication"
+              :disabled="
+                firstName == null ||
+                  lastName == null ||
+                  phone == null ||
+                  country == null ||
+                  timeZone == null ||
+                  age == null ||
+                  gender == null ||
+                  pronouns == null ||
+                  educationLevel == null ||
+                  university == null ||
+                  major == null ||
+                  resume == null ||
+                  marketingData == 0 ||
+                  marketingData == null ||
+                  tAndC1 == 0 ||
+                  tAndC1 == null ||
+                  tAndC2 == 0 ||
+                  tAndC2 == null
+              "
+              >Submit</v-btn
+            >
 
-            <v-btn color="primary" @click="e1 = 1">Continue</v-btn>
-
-            <v-btn text>Cancel</v-btn>
+            <v-btn @click="saveApplication">Save</v-btn>
           </v-stepper-content>
         </v-stepper-items>
       </v-stepper>
@@ -379,10 +416,10 @@ export default {
   name: "ApplicationUI",
   data() {
     return {
-      rules: [v => v.split(" ").length <= 200 || "Max 200 words!"],
+      essayRules: [v => v.split(" ").length <= 200 || "Max 200 words!"],
       wordCounter: input => (input ? input.split(" ").length : 0),
       e1: 1,
-      essayAns: null,
+      essayAns: "",
       editable: true,
       firstName: null,
       lastName: null,
@@ -407,12 +444,15 @@ export default {
       major: null,
       minor: null,
       country: null,
-      pronoun: null,
       timeZone: null,
       email: null,
-      emailRules: true,
+      emailRules: [
+        v =>
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+            v
+          ) || "Please enter a valid email"
+      ],
       timeZoneList: [
-        "GMT",
         "GMT+1:00",
         "GMT+2:00",
         "GMT+3:00",
@@ -636,6 +676,7 @@ export default {
         "Uganda",
         "Ukraine",
         "United Arab Emirates",
+        "United States",
         "United Kingdom",
         "Uruguay",
         "Uzbekistan",
@@ -793,6 +834,8 @@ export default {
         tAndC1: this.tAndC1,
         tAndC2: this.tAndC2
       });
+      console.log("sucessfully saved");
+      this.$router.push({ name: "dashboard" });
     },
     async submitApplication() {
       await functions.httpsCallable("submitApplication")({
@@ -821,6 +864,8 @@ export default {
         tAndC2: this.tAndC2
       });
       await store.dispatch("getUser");
+      console.log("sucessfully submitted");
+      this.$router.push({ name: "dashboard" });
     },
     async uploadResume() {
       const reader = new FileReader();
