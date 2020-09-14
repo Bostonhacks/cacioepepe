@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="sky-background">
     <SignUp class="google-signup" />
   </div>
 </template>
@@ -19,3 +19,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.sky-background {
+  background-color: #80d2ff;
+}
+</style>
