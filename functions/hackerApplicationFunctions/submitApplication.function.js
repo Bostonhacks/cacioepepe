@@ -12,6 +12,7 @@ module.exports.submitApplication = functions.https.onCall(
     const applications = db.collection("applications").doc(context.auth.uid);
     await applications.update({
       status: 1,
+      language: data.language,
       essayAns: data.essayAns,
       firstName: data.firstName,
       lastName: data.lastName,

@@ -10,6 +10,7 @@ module.exports.saveApplication = functions.https.onCall(
       firstName: data.firstName,
       lastName: data.lastName,
       essayAns: data.essayAns,
+      language: data.language,
       country: data.country,
       timeZone: data.timeZone,
       phone: data.phone,

@@ -195,20 +195,36 @@
               </v-col>
 
               <v-col cols="12" sm="6">
-                <v-select
+                <!-- <v-select
                   :items="genderList"
                   v-model="gender"
                   label="Gender"
                   outlined
-                ></v-select>
+                ></v-select> -->
+                <v-autocomplete
+                  v-model="gender"
+                  :items="genderList"
+                  color="primary"
+                  label="Gender"
+                  outlined
+                  return-object
+                ></v-autocomplete>
               </v-col>
               <v-col cols="12" sm="6">
-                <v-select
+                <!-- <v-select
                   :items="pronounList"
                   v-model="pronouns"
                   label="Pronoun"
                   outlined
-                ></v-select>
+                ></v-select> -->
+                <v-autocomplete
+                  v-model="pronouns"
+                  :items="pronounList"
+                  color="primary"
+                  label="Pronoun"
+                  outlined
+                  return-object
+                ></v-autocomplete>
               </v-col>
               <v-col cols="12" sm="6">
                 <v-text-field
@@ -228,21 +244,37 @@
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="6">
-                <v-select
+                <!-- <v-select
                   :items="timeZoneList"
                   v-model="timeZone"
                   label="Time Zone"
                   outlined
-                ></v-select>
+                ></v-select> -->
+                <v-autocomplete
+                  v-model="timeZone"
+                  :items="timeZoneList"
+                  color="primary"
+                  label="Time Zone"
+                  outlined
+                  return-object
+                ></v-autocomplete>
               </v-col>
 
               <v-col cols="12" sm="6">
-                <v-select
+                <!-- <v-select
                   v-model="country"
                   label="Country"
                   :items="countryList"
                   outlined
-                ></v-select>
+                ></v-select> -->
+                <v-autocomplete
+                  v-model="country"
+                  :items="countryList"
+                  color="primary"
+                  label="Country"
+                  outlined
+                  return-object
+                ></v-autocomplete>
               </v-col>
             </v-row>
             <v-btn color="primary" @click="e1 = 2">Continue</v-btn>
@@ -253,39 +285,96 @@
           <v-stepper-content step="2">
             <v-row class="smallVertical">
               <v-col cols="12" sm="6">
-                <v-select
+                <!-- <v-select
                   v-model="university"
                   :items="universityList"
                   label="University"
                   outlined
-                ></v-select>
+                ></v-select> -->
+                <v-autocomplete
+                  v-model="university"
+                  :items="universityList"
+                  color="primary"
+                  label="University"
+                  outlined
+                  return-object
+                ></v-autocomplete>
               </v-col>
 
               <v-col cols="12" sm="6">
-                <v-select
+                <!-- <v-select
                   v-model="major"
                   :items="courseList"
                   label="Major"
                   outlined
-                ></v-select>
+                ></v-select> -->
+                <v-autocomplete
+                  v-model="major"
+                  :items="courseList"
+                  color="primary"
+                  label="Major"
+                  outlined
+                  return-object
+                ></v-autocomplete>
               </v-col>
 
               <v-col cols="12" sm="6">
-                <v-select
+                <!-- <v-select
                   v-model="minor"
                   :items="courseList"
                   label="Minor"
                   outlined
-                ></v-select>
+                ></v-select> -->
+                <v-autocomplete
+                  v-model="minor"
+                  :items="courseList"
+                  color="primary"
+                  label="Minor"
+                  outlined
+                  return-object
+                ></v-autocomplete>
               </v-col>
 
               <v-col cols="12" sm="6">
-                <v-select
+                <!-- <v-select
                   :items="educationLevels"
                   v-model="educationLevel"
                   label="Select your Level of Education (required)"
                   outlined
-                ></v-select>
+                ></v-select> -->
+                <v-autocomplete
+                  v-model="educationLevel"
+                  :items="educationLevels"
+                  color="primary"
+                  label="Select your Level of Education (required)"
+                  outlined
+                  return-object
+                ></v-autocomplete>
+              </v-col>
+              <v-col cols="12" sm="6">
+                <v-combobox
+                  v-model="language"
+                  :items="languageList"
+                  :search-input.sync="languageSearch"
+                  hide-selected
+                  hint="Maximum of 5 tags"
+                  label="List proficient programming languages"
+                  multiple
+                  persistent-hint
+                  outlined
+                  small-chips
+                >
+                  <template v-slot:no-data>
+                    <v-list-item>
+                      <v-list-item-content>
+                        <v-list-item-title>
+                          No results matching "<strong>{{ search }}</strong
+                          >". Press <kbd>enter</kbd> to create a new one
+                        </v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </template>
+                </v-combobox>
               </v-col>
             </v-row>
 
@@ -304,7 +393,7 @@
               v-model="essayAns"
               outlined
             ></v-textarea>
-            <div v-if="resume">
+            <div v-if="resume && resumeLoading == false">
               <v-btn
                 color="primary"
                 class="mr-4"
@@ -317,7 +406,7 @@
                 >Delete Resume</v-btn
               >
             </div>
-            <div v-else-if="uploadedResume == null">
+            <div v-else-if="uploadedResume == null && resumeLoading == false">
               <v-file-input
                 chips
                 multiple
@@ -372,6 +461,7 @@
               v-model="tAndC2"
               label="Do you accept the terms and conditions?"
             ></v-switch>
+
             <v-btn
               color="primary"
               @click="submitApplication"
@@ -401,6 +491,13 @@
             <v-btn @click="saveApplication">Save</v-btn>
           </v-stepper-content>
         </v-stepper-items>
+        <v-fade-transition>
+          <v-overlay v-if="loading == true" absolute color="#c7c3c3">
+            <div>
+              <bostonHacksLoadingLogo class="loadingSVG" />
+            </div>
+          </v-overlay>
+        </v-fade-transition>
       </v-stepper>
     </v-container>
   </main>
@@ -409,16 +506,26 @@
 import { functions } from "@/firebase/init";
 import Cloud9 from "@/components/common/SVG/Cloud9";
 import store from "@/store/index";
+import BostonHacksLoadingLogo from "@/components/common/SVG/BostonHacksLoadingLogo";
+import Filedrop from "@/components/common/Filedrop";
 export default {
   components: {
-    Cloud9
+    Cloud9,
+    BostonHacksLoadingLogo,
+    Filedrop
   },
   name: "ApplicationUI",
   data() {
     return {
+      languageSearch: null,
+      language: [],
+      languageList: ["vue"],
+      resumeLoading: false,
       essayRules: [v => v.split(" ").length <= 200 || "Max 200 words!"],
       wordCounter: input => (input ? input.split(" ").length : 0),
       e1: 1,
+      loading: false,
+      search: null,
       essayAns: "",
       editable: true,
       firstName: null,
@@ -809,8 +916,10 @@ export default {
   },
   methods: {
     async saveApplication() {
+      this.loading = true;
       await functions.httpsCallable("saveApplication")({
         uid: this.user.uid,
+        language: this.language,
         essayAns: this.essayAns,
         firstName: this.firstName,
         lastName: this.lastName,
@@ -835,11 +944,14 @@ export default {
         tAndC2: this.tAndC2
       });
       console.log("sucessfully saved");
+      this.loading = false;
       this.$router.push({ name: "dashboard" });
     },
     async submitApplication() {
+      this.loading = true;
       await functions.httpsCallable("submitApplication")({
         uid: this.user.uid,
+        language: this.language,
         essayAns: this.essayAns,
         firstName: this.firstName,
         lastName: this.lastName,
@@ -865,9 +977,11 @@ export default {
       });
       await store.dispatch("getUser");
       console.log("sucessfully submitted");
+      this.loading = false;
       this.$router.push({ name: "dashboard" });
     },
     async uploadResume() {
+      this.resumeLoading = true;
       const reader = new FileReader();
       reader.readAsDataURL(this.uploadedResume[0]);
       reader.onload = async () => {
@@ -883,16 +997,20 @@ export default {
             this.uploadedResume = null;
           });
       };
+      this.resumeLoading = false;
     },
     async deleteResume() {
+      this.resumeLoading = true;
       await functions.httpsCallable("deleteResume")({
         uid: this.user.uid,
         location: this.resume[1]
       });
       this.resume = null;
+      this.resumeLoading = false;
     }
   },
   async mounted() {
+    this.loading = true;
     if (!this.user.applicationStatus) {
       await functions.httpsCallable("createApplication")({
         uid: this.user.uid
@@ -902,6 +1020,7 @@ export default {
         uid: this.user.uid
       });
       (this.essayAns = rawAppData.data.essayAns),
+        (this.language = rawAppData.data.language),
         (this.firstName = rawAppData.data.firstName),
         (this.lastName = rawAppData.data.lastName),
         (this.country = rawAppData.data.country),
@@ -924,6 +1043,7 @@ export default {
         (this.tAndC1 = rawAppData.data.tAndC1),
         (this.tAndC2 = rawAppData.data.tAndC2);
     }
+    this.loading = false;
     fetch(
       "https://raw.githubusercontent.com/MLH/mlh-policies/master/schools.csv"
     )
@@ -940,6 +1060,13 @@ export default {
         54;
         this.universityList = schoolList;
       });
+  },
+  watch: {
+    language(val) {
+      if (val && val.length > 5) {
+        this.$nextTick(() => this.language.pop());
+      }
+    }
   }
 };
 </script>
@@ -947,5 +1074,16 @@ export default {
 <style scoped>
 .smallVertical .col-sm-6 {
   margin-bottom: -2em;
+}
+
+.loadingSVG {
+  position: relative;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.v-menu__content {
+  margin-top: 3rem !important;
 }
 </style>
