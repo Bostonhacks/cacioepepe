@@ -13,7 +13,11 @@ service cloud.firestore {
 		function notUpdating(field) {
 			return !(field in request.resource.data) || (resource.data[field] == request.resource.data[field]);
 		}
-		
+
+
+		function invalidStateUpdate(statusFieldName) {
+			return !(statusFieldName in request.resource.data) || (request.resource.data[statusFieldName] == 7);
+		}
 		function invalidUserUpdate() {
 			return (notUpdating("apple_pass_url") && notUpdating("google_qr_url") && notUpdating("role") && notUpdating("uid"));
 		}
@@ -22,7 +26,7 @@ service cloud.firestore {
 			allow get: if hasRole("admin") || hasRole("sponsor") || sameUID(userId);
 			allow list: if hasRole("admin") || hasRole("sponsor");
 			allow create: if hasRole("admin") || (sameUID(userId));
-			allow update: if hasRole("admin") || (sameUID(userId) && invalidUserUpdate());
+			allow update: if hasRole("admin") || (sameUID(userId) && invalidUserUpdate() && invalidStateUpdate("status"));
 			allow delete: if hasRole("admin");
 		}
 		
@@ -46,7 +50,7 @@ service cloud.firestore {
 			allow get: if hasRole("admin") || sameUID(userId);
 			allow list: if hasRole("admin") || hasRole("sponsor");
 			allow create: if hasRole("admin") || (sameUID(userId));
-			allow update: if hasRole("admin") || (sameUID(userId) && notUpdating("uid"));
+			allow update: if hasRole("admin") || (sameUID(userId) && notUpdating("uid") && invalidStateUpdate("applicationStatus"));
 			allow delete: if hasRole("admin");
 		}
 		

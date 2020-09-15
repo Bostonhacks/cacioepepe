@@ -271,31 +271,36 @@ export default {
   },
   methods: {
     async saveApplication() {
-			const applications = db.collection("applications").doc(this.user.uid);
-			await applications.update({
-				name: this.name,
-				phone: this.phone,
-				age: this.age,
-				gender: this.gender,
-				pronouns: this.pronouns,
-				educationLevel: this.educationLevel,
-				university: this.university,
-				major: this.major,
-				minor: this.minor,
-				resume: this.resume,
-				githubURL: this.githubURL,
-				linkedinURL: this.linkedinURL,
-				otherURL: this.otherURL,
-				beenToHackathon: this.beenToHackathon,
-				attendedBHacks: this.attendedBHacks,
-				marketingData: this.marketingData,
-				tAndC1: this.tAndC1,
-				tAndC2: this.tAndC2
-			});
+      const userApplication = db.collection("applications").doc(this.user.uid);
+      await userApplication.update({
+        name: this.name,
+        phone: this.phone,
+        age: this.age,
+        gender: this.gender,
+        pronouns: this.pronouns,
+        educationLevel: this.educationLevel,
+        university: this.university,
+        major: this.major,
+        minor: this.minor,
+        resume: this.resume,
+        githubURL: this.githubURL,
+        linkedinURL: this.linkedinURL,
+        otherURL: this.otherURL,
+        beenToHackathon: this.beenToHackathon,
+        attendedBHacks: this.attendedBHacks,
+        marketingData: this.marketingData,
+        tAndC1: this.tAndC1,
+        tAndC2: this.tAndC2
+      });
     },
     async submitApplication() {
-      await functions.httpsCallable("submitApplication")({
-        uid: this.user.uid,
+      const userdb = db.collection("users").doc(this.user.uid);
+      await userdb.update({
+        applicationStatus: 1
+      });
+      const userApplication = db.collection("applications").doc(this.user.uid);
+      await userApplication.update({
+        status: 1,
         name: this.name,
         phone: this.phone,
         age: this.age,
@@ -344,31 +349,54 @@ export default {
   },
   async mounted() {
     if (!this.user.applicationStatus) {
-      await functions.httpsCallable("createApplication")({
-        uid: this.user.uid
+      const userdb = db.collection("users").doc(this.user.uid);
+      await userdb.update({
+        applicationStatus: 0
+      });
+      const userApplication = db.collection("applications").doc(this.user.uid);
+      await userApplication.set({
+        uid: this.user.uid,
+        status: 0,
+        name: null,
+        phone: null,
+        age: null,
+        gender: null,
+        pronouns: null,
+        educationLevel: null,
+        university: null,
+        major: null,
+        minor: null,
+        resume: null,
+        githubURL: null,
+        linkedinURL: null,
+        otherURL: null,
+        beenToHackathon: null,
+        attendedBHacks: null,
+        marketingData: null,
+        tAndC1: null,
+        tAndC2: null
       });
     } else {
-      var rawAppData = await functions.httpsCallable("loadApplication")({
-        uid: this.user.uid
-      });
-      (this.name = rawAppData.data.name),
-        (this.phone = rawAppData.data.phone),
-        (this.age = rawAppData.data.age),
-        (this.gender = rawAppData.data.gender),
-        (this.pronouns = rawAppData.data.pronouns),
-        (this.educationLevel = rawAppData.data.educationLevel),
-        (this.university = rawAppData.data.university),
-        (this.major = rawAppData.data.major),
-        (this.minor = rawAppData.data.minor),
-        (this.resume = rawAppData.data.resume),
-        (this.githubURL = rawAppData.data.githubURL),
-        (this.linkedinURL = rawAppData.data.linkedinURL),
-        (this.otherURL = rawAppData.data.otherURL),
-        (this.beenToHackathon = rawAppData.data.beenToHackathon),
-        (this.attendedBHacks = rawAppData.data.attendedBHacks),
-        (this.marketingData = rawAppData.data.marketingData),
-        (this.tAndC1 = rawAppData.data.tAndC1),
-        (this.tAndC2 = rawAppData.data.tAndC2);
+      const userApplication = db.collection("applications").doc(this.user.uid);
+      var userApplicationDoc = await userApplication.get();
+      (this.name = userApplicationDoc.data().name),
+        (this.phone = userApplicationDoc.data().phone),
+        (this.age = userApplicationDoc.data().age),
+        (this.gender = userApplicationDoc.data().gender),
+        (this.pronouns = userApplicationDoc.data().pronouns),
+        (this.educationLevel = userApplicationDoc.data().educationLevel),
+        (this.university = userApplicationDoc.data().university),
+        (this.major = userApplicationDoc.data().major),
+        (this.minor = userApplicationDoc.data().minor),
+        (this.resume = userApplicationDoc.data().resume),
+        (this.githubURL = userApplicationDoc.data().githubURL),
+        (this.linkedinURL = userApplicationDoc.data().linkedinURL),
+        (this.otherURL = userApplicationDoc.data().otherURL),
+        (this.beenToHackathon = userApplicationDoc.data().beenToHackathon),
+        (this.attendedBHacks = userApplicationDoc.data().attendedBHacks),
+        (this.marketingData = userApplicationDoc.data().marketingData),
+        (this.tAndC1 = userApplicationDoc.data().tAndC1),
+        (this.tAndC2 = userApplicationDoc.data().tAndC2);
     }
     fetch(
       "https://raw.githubusercontent.com/MLH/mlh-policies/master/schools.csv"
