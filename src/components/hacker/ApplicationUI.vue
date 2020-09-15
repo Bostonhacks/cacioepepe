@@ -231,7 +231,6 @@
                   v-model="age"
                   type="number"
                   label="Age"
-                  :rules="ageRules"
                   outlined
                 ></v-text-field>
               </v-col>
@@ -277,9 +276,11 @@
                 ></v-autocomplete>
               </v-col>
             </v-row>
-            <v-btn color="primary" @click="e1 = 2">Continue</v-btn>
+            <v-btn color="primary" class=" mt-5" @click="e1 = 2"
+              >Continue</v-btn
+            >
 
-            <v-btn @click="saveApplication">Save</v-btn>
+            <v-btn @click="saveApplication" class=" mt-5">Save</v-btn>
           </v-stepper-content>
 
           <v-stepper-content step="2">
@@ -378,9 +379,11 @@
               </v-col>
             </v-row>
 
-            <v-btn color="primary" @click="e1 = 3">Continue</v-btn>
+            <v-btn color="primary" class=" mt-5" @click="e1 = 3"
+              >Continue</v-btn
+            >
 
-            <v-btn @click="saveApplication">Save</v-btn>
+            <v-btn @click="saveApplication" class=" mt-5">Save</v-btn>
           </v-stepper-content>
 
           <v-stepper-content step="3">
@@ -393,7 +396,7 @@
               v-model="essayAns"
               outlined
             ></v-textarea>
-            <div v-if="resume && resumeLoading == false">
+            <!-- <div v-if="resume && resumeLoading == false">
               <v-btn
                 color="primary"
                 class="mr-4"
@@ -421,7 +424,13 @@
                 color="#FA9F98"
                 indeterminate
               ></v-progress-linear>
-            </div>
+            </div> -->
+            <Filedrop
+              v-on:change="test"
+              v-on:click="test"
+              :loading.sync="resumeLoading"
+              :file="resume"
+            />
             <v-text-field v-model="githubURL" label="Github URL"></v-text-field>
             <v-text-field
               v-model="linkedinURL"
@@ -440,9 +449,11 @@
               <v-radio label="3+" value="3+"></v-radio>
             </v-radio-group>
 
-            <v-btn color="primary" @click="e1 = 4">Continue</v-btn>
+            <v-btn color="primary" @click="e1 = 4" class=" mt-5"
+              >Continue</v-btn
+            >
 
-            <v-btn @click="saveApplication">Save</v-btn>
+            <v-btn @click="saveApplication" class=" mt-5">Save</v-btn>
           </v-stepper-content>
 
           <v-stepper-content step="4">
@@ -461,9 +472,9 @@
               v-model="tAndC2"
               label="Do you accept the terms and conditions?"
             ></v-switch>
-
             <v-btn
               color="primary"
+              class=" mt-5"
               @click="submitApplication"
               :disabled="
                 firstName == null ||
@@ -488,7 +499,7 @@
               >Submit</v-btn
             >
 
-            <v-btn @click="saveApplication">Save</v-btn>
+            <v-btn @click="saveApplication" class=" mt-5">Save</v-btn>
           </v-stepper-content>
         </v-stepper-items>
         <v-fade-transition>
@@ -519,7 +530,92 @@ export default {
     return {
       languageSearch: null,
       language: [],
-      languageList: ["vue"],
+      languageList: [
+        "ABAP",
+        "ActionScript",
+        "Ada",
+        "ALGOL",
+        "Alice",
+        "APL",
+        "ASP / ASP.NET",
+        "Assembly Language",
+        "Awk",
+        "BBC Basic",
+        "C",
+        "C++",
+        "C#",
+        "COBOL",
+        "Cascading Style Sheets",
+        "D",
+        "Delphi",
+        "Dreamweaver",
+        "Erlang and Elixir",
+        "F#",
+        "FORTH",
+        "FORTRAN",
+        "Functional Programming",
+        "Go",
+        "Haskell",
+        "HTML",
+        "IDL",
+        "INTERCAL",
+        "Java",
+        "Javascript",
+        "jQuery",
+        "LabVIEW",
+        "Lisp",
+        "Logo",
+        "MetaQuotes Language",
+        "ML",
+        "Modula-3",
+        "MS Access",
+        "MySQL",
+        "NXT-G",
+        "Object-Oriented Programming",
+        "Objective-C",
+        "OCaml",
+        "Pascal",
+        "Perl",
+        "PHP",
+        "PL/I",
+        "PL/SQL",
+        "PostgreSQL",
+        "PostScript",
+        "PROLOG",
+        "Pure Data",
+        "Python",
+        "R",
+        "RapidWeaver",
+        "RavenDB",
+        "Rexx",
+        "Ruby on Rails",
+        "S-PLUS",
+        "SAS",
+        "Scala",
+        "Sed",
+        "SGML",
+        "Simula",
+        "Smalltalk",
+        "SMIL",
+        "SNOBOL",
+        "SQL",
+        "SQLite",
+        "SSI",
+        "Stata",
+        "Swift",
+        "Tcl/Tk",
+        "TeX and LaTeX",
+        "Unified Modeling Language",
+        "Unix Shells",
+        "Verilog",
+        "VHDL",
+        "Visual Basic",
+        "Visual FoxPro",
+        "VRML",
+        "WAP/WML",
+        "XML",
+        "XSL"
+      ],
       resumeLoading: false,
       essayRules: [v => v.split(" ").length <= 200 || "Max 200 words!"],
       wordCounter: input => (input ? input.split(" ").length : 0),
@@ -905,8 +1001,7 @@ export default {
             v
           ) ||
           "Please enter phone numbers with the international access code identifier of '+'"
-      ],
-      ageRules: [v => v >= 18 || "You must be over 18 to come to BostonHacks!"]
+      ]
     };
   },
   computed: {
@@ -915,6 +1010,16 @@ export default {
     }
   },
   methods: {
+    test(value) {
+      if (value == "viewFile") {
+        window.open(this.resume[0], "_blank");
+      } else if (value == "deleteFile") {
+        this.deleteResume();
+      } else {
+        this.uploadResume(value);
+      }
+      console.log(value);
+    },
     async saveApplication() {
       this.loading = true;
       await functions.httpsCallable("saveApplication")({
@@ -980,8 +1085,9 @@ export default {
       this.loading = false;
       this.$router.push({ name: "dashboard" });
     },
-    async uploadResume() {
+    async uploadResume(value) {
       this.resumeLoading = true;
+      this.uploadedResume = value;
       const reader = new FileReader();
       reader.readAsDataURL(this.uploadedResume[0]);
       reader.onload = async () => {
@@ -995,9 +1101,9 @@ export default {
           .then(async data => {
             this.resume = [data.data.URL, data.data.location];
             this.uploadedResume = null;
+            this.resumeLoading = false;
           });
       };
-      this.resumeLoading = false;
     },
     async deleteResume() {
       this.resumeLoading = true;
