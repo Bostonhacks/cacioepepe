@@ -13,7 +13,12 @@ module.exports.createApplication = functions.https.onCall(
     await applications.set({
       uid: context.auth.uid,
       status: 0,
-      name: null,
+      language: null,
+      essayAns: null,
+      firstName: null,
+      lastName: null,
+      timeZone: null,
+      country: null,
       phone: null,
       age: null,
       gender: null,

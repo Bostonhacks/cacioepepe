@@ -71,7 +71,7 @@ firebase deploy
 To deploy only functions,
 
 ```bash
-firebase deploy --only functions
+npm run deploy
 ```
 
 To deploy a specific function,

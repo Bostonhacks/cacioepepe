@@ -7,7 +7,12 @@ module.exports.saveApplication = functions.https.onCall(
   async (data, context) => {
     const applications = db.collection("applications").doc(context.auth.uid);
     await applications.update({
-      name: data.name,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      essayAns: data.essayAns,
+      language: data.language,
+      country: data.country,
+      timeZone: data.timeZone,
       phone: data.phone,
       age: data.age,
       gender: data.gender,

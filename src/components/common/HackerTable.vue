@@ -108,7 +108,6 @@
               </v-flex>
             </v-row>
             <v-data-table
-              v-if="data != null"
               v-model="selected"
               show-select
               item-key="name"
@@ -117,8 +116,6 @@
               :items-per-page="5"
               class="elevation-1"
               :search="search"
-              :loading="data == null"
-              loading-text="Loading please wait ..."
             >
               <template v-slot:item.resume[0]="{ item }">
                 <button v-if="item.resume[0]">

@@ -131,6 +131,7 @@
       </v-sheet>
       <v-sheet height="600">
         <v-calendar
+          v-if="events"
           ref="calendar"
           v-model="focus"
           color="primary"
@@ -195,8 +196,10 @@
 import { functions } from "@/firebase/init";
 export default {
   name: "CalendarEvent",
+  props: ["loadEvents"],
   data: () => ({
     location: null,
+    events: null,
     scheduleType: null,
     start: new Date(),
     end: null,
@@ -216,7 +219,6 @@ export default {
     selectedEventIndex: null,
     selectedElement: null,
     selectedOpen: false,
-    events: [],
     colors: [
       "blue",
       "indigo",
@@ -237,12 +239,9 @@ export default {
       "Party"
     ]
   }),
-  async mounted() {
-    this.getEvents();
-  },
   methods: {
     async getEvents() {
-      var out = await functions.httpsCallable("readEvents")({});
+      var out = await functions.httpsCallable("readSchedules")({});
       if (out.data) {
         this.events = out.data;
       } else {
@@ -365,6 +364,9 @@ export default {
 
       nativeEvent.stopPropagation();
     }
+  },
+  mounted() {
+    this.getEvents();
   }
 };
 </script>

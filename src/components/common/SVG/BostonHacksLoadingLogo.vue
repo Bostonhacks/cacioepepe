@@ -1,6 +1,6 @@
 <template>
   <div class="logoContainer">
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 120 124" xmlns="http://www.w3.org/2000/svg">
       <g stroke="gray">
         <g stroke-dasharray="18" stroke-dashoffset="18">
           <path
@@ -185,6 +185,9 @@
           />
         </path>
       </g>
+      <text x="10" y="35" class="text" font="arial" transform="translate(0,83)">
+        Loading...
+      </text>
     </svg>
   </div>
 </template>
@@ -196,7 +199,8 @@
   left: calc(50vw - 75px);
   width: 150px;
   width: 150px;
-  z-index: 0;
-  opacity: 0;
+}
+.text {
+  font: 20px arial;
 }
 </style>
