@@ -196,9 +196,10 @@
 import { functions } from "@/firebase/init";
 export default {
   name: "CalendarEvent",
-  props: ["events"],
+  props: ["loadEvents"],
   data: () => ({
     location: null,
+    events: null,
     scheduleType: null,
     start: new Date(),
     end: null,
@@ -363,6 +364,9 @@ export default {
 
       nativeEvent.stopPropagation();
     }
+  },
+  mounted() {
+    this.getEvents();
   }
 };
 </script>

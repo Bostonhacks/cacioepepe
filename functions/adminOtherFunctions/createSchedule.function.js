@@ -50,10 +50,10 @@ module.exports.createSchedule = functions.https.onCall(
     // var userData = await eventSchedule.get();
     // var events = userData.data().schedule;
     let info = await eventSchedule.get();
-    this.schedules = info.data().schedules;
+    this.schedules = info.data().events;
     if (this.schedules.length == 0) {
       eventSchedule.set({
-        events: newEvent
+        events: [newEvent]
       });
     } else {
       // Append new event into the array

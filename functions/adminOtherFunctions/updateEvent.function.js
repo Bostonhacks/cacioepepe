@@ -20,7 +20,7 @@ module.exports.updateEvent = functions.https.onCall(async (data, context) => {
 
   const schedDb = db.collection("admin").doc("schedules");
   let info = await schedDb.get();
-  this.schedules = info.data().schedules;
+  this.schedules = info.data().events;
 
   var found = false;
   for (var i = 0; i < this.schedules.length; i++) {

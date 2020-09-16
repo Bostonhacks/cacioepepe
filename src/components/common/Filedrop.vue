@@ -32,9 +32,7 @@
         </v-icon>
       </v-row>
       <v-row justify="center" class="mx-5 mb-5">
-        <span
-          class="title indigo--text text--darken-2"
-          v-if="dragover == false || file == null"
+        <span class="title indigo--text text--darken-2"
           >Drag'n drop or click to upload file!</span
         >
       </v-row>
@@ -50,7 +48,8 @@ export default {
   props: ["loading", "file"],
   data() {
     return {
-      dragover: false
+      dragover: false,
+      localFile: this.file
     };
   },
   methods: {
@@ -63,7 +62,6 @@ export default {
     },
     deleteFile() {
       this.$emit("click", "deleteFile");
-      this.file = null;
     }
   }
 };

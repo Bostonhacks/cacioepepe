@@ -10,7 +10,7 @@
               Welcome to God Mode!
             </h1>
             <AdminStats :data="hackerData" />
-            <CalendarEvent :events="events" />
+            <CalendarEvent v-if="events" :loadEvents="events" />
             <v-tabs
               v-model="tab"
               background-color="deep-purple accent-4"
