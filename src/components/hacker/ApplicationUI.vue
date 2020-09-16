@@ -313,8 +313,8 @@
   </main>
 </template>
 <script>
-import { functions } from "@/firebase/init";
 import Cloud9 from "@/components/common/SVG/Cloud9";
+import { functions, db } from "@/firebase/init";
 import store from "@/store/index";
 import BostonHacksLoadingLogo from "@/components/common/SVG/BostonHacksLoadingLogo";
 import Filedrop from "@/components/common/Filedrop";
@@ -821,8 +821,8 @@ export default {
     },
     async saveApplication() {
       this.loading = true;
-      await functions.httpsCallable("saveApplication")({
-        uid: this.user.uid,
+      const applications = db.collection("applications").doc(this.user.uid);
+      await applications.update({
         language: this.language,
         essayAns: this.essayAns,
         firstName: this.firstName,
