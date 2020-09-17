@@ -134,7 +134,7 @@ import MentorTable from "@/components/admin/MentorTable";
 import PieChart from "@/components/common/PieChart";
 import Timeline from "@/components/common/Timeline";
 import SlackInfoUpload from "@/components/admin/SlackInfoUpload";
-import { functions } from "@/firebase/init";
+import { db } from "@/firebase/init";
 
 export default {
   name: "Admin",
@@ -265,7 +265,15 @@ export default {
         "Declined",
         "Checked In"
       ];
-      const out = await functions.httpsCallable("retrieveAllApplications")({});
+      // retrieveAllApplications
+      const applications = db
+        .collection("applications")
+        .where("status", ">", 0);
+      var appData = await applications.get();
+      var out = [];
+      appData.forEach(element => {
+        out.push(element.data());
+      });
       const applicants = out.data;
       this.data = applicants.filter(applicant =>
         applicantStatus.includes(statusList[applicant.status])
@@ -336,11 +344,28 @@ export default {
   },
 
   async mounted() {
-    var hackOut = await functions.httpsCallable("retrieveAllApplications")({});
-    var mentorOut = await functions.httpsCallable("retrieveAllMentors")({});
-    var volunteerOut = await functions.httpsCallable("retrieveAllVolunteers")(
-      {}
-    );
+    const applications = db.collection("applications").where("status", ">", 0);
+    // retrieveAllApplications
+    var appData = await applications.get();
+    var hackOut = [];
+    appData.forEach(element => {
+      hackOut.push(element.data());
+    });
+    // retrieveAllMentors
+    const mentors = db.collection("mentors").where("status", ">", 0);
+    var mData = await mentors.get();
+    var mentorOut = [];
+    mData.forEach(element => {
+      mentorOut.push(element.data());
+    });
+    // retrieveAllVolunteers
+    const volunteers = db.collection("volunteers").where("status", ">", 0);
+    var vData = await volunteers.get();
+    var volunteerOut = [];
+    vData.forEach(element => {
+      volunteerOut.push(element.data());
+    });
+
     this.hackerData = hackOut.data;
     this.mentorData = mentorOut.data;
     this.volunteerData = volunteerOut.data;
