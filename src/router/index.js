@@ -80,6 +80,14 @@ const routes = [
     }
   },
   {
+    path: "/hacker",
+    name: "hacker",
+    component: () => import("@/views/Hacker.vue"),
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
     path: "/volunteerlogin",
     name: "volunteerlogin",
     component: () => import("@/views/Login.vue"),
@@ -95,12 +103,29 @@ const routes = [
       requiresAuth: false
     }
   },
+
   {
     path: "/dashboard",
     name: "dashboard",
     component: () => import("@/views/Dashboard.vue"),
     meta: {
       requiresAuth: false
+    }
+  },
+  {
+    path: "/signup",
+    name: "signup",
+    component: () => import("@/views/SignUp.vue"),
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: "/finishsignup",
+    name: "finishsignup",
+    component: () => import("@/views/FinishSignUp.vue"),
+    meta: {
+      requiresAuth: true
     }
   },
   // PLEASE MAKE SURE THAT THIS IS ALWAYS THE LAST ROUTE!!!
@@ -152,6 +177,15 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  let user = store.state.user;
+  if (user && to.name != "finishsignup" && notFullySignUp(user)) {
+    next({ name: "finishsignup" });
+  } else {
+    next();
+  }
+});
+
+router.beforeEach((to, from, next) => {
   if (to.matched.some(rec => rec.meta.requiresAuth)) {
     let user = store.state.user;
     if (user) {
@@ -176,5 +210,9 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
+
+const notFullySignUp = user => {
+  return user.role == null;
+};
 
 export default router;

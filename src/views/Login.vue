@@ -1,13 +1,13 @@
 <template>
-  <LoginUI class="blue" />
+  <LoginForm class="blue" />
 </template>
 
 <script>
-import LoginUI from "@/components/login/LoginUI";
+import LoginForm from "@/components/login/LoginForm";
 
 export default {
   components: {
-    LoginUI
+    LoginForm
   }
 };
 </script>
