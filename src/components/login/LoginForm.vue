@@ -26,6 +26,12 @@
         <v-card-title class="justify-center">
           <h3>Login</h3>
         </v-card-title>
+        <v-card-title class="justify-center">
+          <h5>
+            Doesn't have an account?
+            <router-link class="blue" to="/signup">Sign Up</router-link>
+          </h5>
+        </v-card-title>
         <v-card-text>
           <v-form>
             <v-container>
