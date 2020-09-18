@@ -133,15 +133,15 @@ export default {
             email: this.email,
             role: this.accountType
           });
+          this.$router.push("/");
         })
         .catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
           console.log("Error code" + errorCode);
-          console.log("Error message" + errorMessage);
+          alert(errorMessage);
         });
-      this.$router.push("/");
     }
   }
 };

@@ -103,7 +103,7 @@ export default {
           var errorCode = error.code;
           var errorMessage = error.message;
           console.log("Error code" + errorCode);
-          console.log("Error message" + errorMessage);
+          alert(errorMessage);
         });
     }
   }

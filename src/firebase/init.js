@@ -3,6 +3,7 @@ const firebaseui = require("firebaseui");
 import "firebaseui/dist/firebaseui.css";
 import "firebase/auth";
 import "firebase/functions";
+import "firebase/firestore";
 
 const config = {
   apiKey: "AIzaSyBGE2R4SS_JZ3vXDPt-q8rJ6kjfE3u-iPE",

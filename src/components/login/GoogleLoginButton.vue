@@ -6,6 +6,7 @@
 
 <script>
 import firebase from "firebase/app";
+import store from "../../store";
 
 export default {
   name: "GoogleLoginButton",
@@ -19,7 +20,7 @@ export default {
       firebase
         .auth()
         .signInWithPopup(provider)
-        .then(result => {
+        .then(async result => {
           // This gives you a Google Access Token. You can use it to access the Google API.
           var token = result.credential.accessToken;
           // The signed-in user info.
@@ -27,18 +28,18 @@ export default {
 
           console.log(user.uid);
           console.log(token);
+
+          await store.dispatch("setUser");
+
           this.$router.push("/finishsignup");
+        })
+        .catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+
+          console.log(errorCode);
+          alert(errorMessage);
         });
-      // .catch(function(error) {
-      //   // Handle Errors here.
-      //   // var errorCode = error.code;
-      //   // var errorMessage = error.message;
-      //   // The email of the user's account used.
-      //   // var email = error.email;
-      //   // The firebase.auth.AuthCredential type that was used.
-      //   // var credential = error.credential;
-      //   // ...
-      // });
     }
   }
 };
