@@ -1,4 +1,3 @@
-<!-- For use after Google Signup Route -->
 <template>
   <v-row
     class="pb-10 px-5 justify-center align-center"
@@ -25,25 +24,25 @@
     <v-col cols="12" sm="6" md="4">
       <v-card>
         <v-card-title class="justify-center">
-          <h3>Finish Sign Up</h3>
+          <h3>Reset Password</h3>
+        </v-card-title>
+        <v-card-title class="justify-center">
+          <h3>Please enter your email address to reset yout password</h3>
         </v-card-title>
         <v-card-text>
-          <v-form class="login-form">
-            <v-text-field
-              v-model="displayName"
-              type="text"
-              label="Name"
-              placeholder="Jone Doe"
-            ></v-text-field>
-            <v-select
-              label="Account Type"
-              item-text="name"
-              v-model="accountType"
-              :items="accountTypes"
-            ></v-select>
-            <v-btn color="accent" class="mr-4" @click="finishSignUp">
-              Submit
-            </v-btn>
+          <v-form>
+            <v-container>
+              <v-text-field
+                v-model="email"
+                type="text"
+                label="Email"
+                placeholder="jone@example.com"
+              ></v-text-field>
+              <v-divider></v-divider>
+              <v-btn v-btn block color="info white--text" @click="forgetPW">
+                Reset Password
+              </v-btn>
+            </v-container>
           </v-form>
         </v-card-text>
       </v-card>
@@ -70,36 +69,33 @@
 </template>
 
 <script>
-// import firebase from "firebase/app";
-import { functions } from "@/firebase/init.js";
-import store from "../../store";
+import firebase from "firebase/app";
 import Cloud9 from "@/components/common/SVG/Cloud9";
 
 export default {
-  name: "FinishSignUpForm",
+  name: "Resetpw",
   data() {
     return {
-      displayName: null,
-      accountType: null,
-      accountTypes: ["Hacker", "Volunteer", "Mentor", "Sponsor"]
+      email: null
     };
   },
   components: {
     Cloud9
   },
   methods: {
-    async finishSignUp() {
-      console.log(this.displayName);
-      console.log(this.accountType);
-      functions
-        .httpsCallable("updateUserData")({
-          displayName: this.displayName,
-          role: this.accountType
+    async forgetPW() {
+      var auth = firebase.auth();
+      var emailAddress = this.email;
+
+      auth
+        .sendPasswordResetEmail(emailAddress)
+        .then(function() {
+          var message = "An Email has been sent to reset your password.";
+          alert(message);
         })
-        .then(() => {
-          store.dispatch("setUser").then(() => {
-            this.$router.push("/");
-          });
+        .catch(function(error) {
+          var errorMessage = error.message;
+          alert(errorMessage);
         });
     }
   }

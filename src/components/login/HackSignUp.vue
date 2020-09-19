@@ -39,7 +39,7 @@
                 v-model="displayName"
                 type="text"
                 label="Name"
-                placeholder=" "
+                placeholder="Jone Doe"
                 required
               ></v-text-field>
               <v-text-field
@@ -54,28 +54,14 @@
                 label="Password"
                 placeholder="***"
               ></v-text-field>
-              <v-select
-                label="Account Type"
-                item-text="name"
-                v-model="accountType"
-                :items="accountTypes"
-              ></v-select>
-              <v-btn
-                block
-                color="info white--text"
-                class="mr-4"
-                @click="signUp"
-              >
-                Submit
+              <v-btn color="accent" class="mr-4" @click="signUp">
+                Login
               </v-btn>
             </v-container>
           </v-form>
           <v-divider></v-divider>
           <v-card-actions>
-            <GoogleLoginButton
-              buttonName="Sign up with Google"
-              class="google-signup"
-            />
+            <GoogleLoginButton class="google-signup justify-center" />
           </v-card-actions>
         </v-card-text>
       </v-card>
@@ -119,9 +105,7 @@ export default {
     return {
       email: null,
       password: null,
-      displayName: null,
-      accountType: "Hacker",
-      accountTypes: ["Hacker", "Volunteer", "Mentor", "Sponsor"]
+      displayName: null
     };
   },
   components: {
@@ -139,7 +123,7 @@ export default {
           functions.httpsCallable("createNewUser")({
             displayName: this.displayName,
             email: this.email,
-            role: this.accountType
+            role: "Hacker"
           });
           this.$router.push("/");
         })

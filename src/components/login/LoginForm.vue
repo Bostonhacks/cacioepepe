@@ -26,12 +26,6 @@
         <v-card-title class="justify-center">
           <h3>Login</h3>
         </v-card-title>
-        <v-card-title class="justify-center">
-          <h5>
-            Doesn't have an account?
-            <router-link class="blue" to="/signup">Sign Up</router-link>
-          </h5>
-        </v-card-title>
         <v-card-text>
           <v-form>
             <v-container>
@@ -47,13 +41,26 @@
                 label="Password"
                 placeholder=" "
               ></v-text-field>
-              <v-btn color="accent" class="mr-4" @click="login"> Submit </v-btn>
+              <v-btn color="info white--text" @click="login"> Login </v-btn>
+              <router-link to="/resetpw" class="ml-8"
+                >Forget your Password?</router-link
+              >
             </v-container>
           </v-form>
           <v-divider></v-divider>
           <v-card-actions>
-            <GoogleLoginButton class="google-signup" />
+            <GoogleLoginButton
+              buttonName="Login with Google"
+              class="google-signup"
+            />
           </v-card-actions>
+          <v-card-text>
+            Hackers, don't have an account?
+            <router-link to="/signup">Sign Up</router-link>
+            <v-spacer></v-spacer>
+            Interested in sponsoring and helping?
+            <router-link to="/signup">Sign Up</router-link>
+          </v-card-text>
         </v-card-text>
       </v-card>
     </v-col>
@@ -96,6 +103,21 @@ export default {
     GoogleLoginButton
   },
   methods: {
+    async forgetPW() {
+      var auth = firebase.auth();
+      var emailAddress = this.email;
+
+      auth
+        .sendPasswordResetEmail(emailAddress)
+        .then(function() {
+          var message = "An Email has been sent to reset your password.";
+          alert(message);
+        })
+        .catch(function(error) {
+          var errorMessage = error.message;
+          alert(errorMessage);
+        });
+    },
     async login() {
       firebase
         .auth()
