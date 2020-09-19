@@ -24,7 +24,7 @@ const db = firebase.firestore();
 
 const authUI = new firebaseui.auth.AuthUI(auth);
 
-const arrayUnion = firebase.firestore.FieldValue.arrayUnion();
+const arrayUnion = array => firebase.firestore.FieldValue.arrayUnion(array);
 
 const authUIConfig = {
   signInSuccessUrl: "/",
