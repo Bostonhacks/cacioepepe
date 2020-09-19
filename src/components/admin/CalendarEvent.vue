@@ -193,7 +193,7 @@
 </template>
 
 <script>
-import { functions, db } from "@/firebase/init";
+import { functions, db, arrayUnion } from "@/firebase/init";
 export default {
   name: "CalendarEvent",
   props: ["loadEvents"],
@@ -255,8 +255,6 @@ export default {
         console.log("update");
       } else {
         // createSchedule
-        const admin = require("firebase-admin");
-        const arrayUnion = admin.firestore.FieldValue.arrayUnion;
         var newEvent = {
           name: this.name,
           description: this.description,

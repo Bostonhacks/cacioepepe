@@ -24,6 +24,8 @@ const db = firebase.firestore();
 
 const authUI = new firebaseui.auth.AuthUI(auth);
 
+const arrayUnion = firebase.firestore.FieldValue.arrayUnion();
+
 const authUIConfig = {
   signInSuccessUrl: "/",
   signInOptions: [
@@ -40,4 +42,4 @@ const authUIConfig = {
 };
 
 export default app;
-export { auth, authUI, authUIConfig, functions, db };
+export { auth, authUI, authUIConfig, functions, db, arrayUnion };
