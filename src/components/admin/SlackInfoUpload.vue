@@ -101,7 +101,7 @@
 </template>
 
 <script>
-import { functions } from "@/firebase/init";
+import { db } from "@/firebase/init";
 export default {
   name: "SlackInfoUpload",
   data() {
@@ -125,14 +125,16 @@ export default {
   },
   methods: {
     async submitToken() {
-      await functions.httpsCallable("uploadSlackInfo")({
-        token: this.token,
-        invitelink: this.invitelink,
-        mentorChannels: this.mentor,
-        sponsorChannels: this.sponsor,
-        volunteerChannels: this.volunteer,
+      // uploadSlackInfo
+      const slackdb = db.collection("admin").doc("slackInfo");
+      await slackdb.set({
+        slackToken: this.token,
+        slackInviteLink: this.invitelink,
         hackerChannels: this.hacker,
-        adminChannels: this.admin
+        sponsorChannels: this.sponsor,
+        adminChannels: this.admin,
+        volunteerChannels: this.volunteer,
+        mentorChannels: this.mentor
       });
     }
   }

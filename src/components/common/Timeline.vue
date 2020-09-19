@@ -79,7 +79,7 @@
 </template>
 
 <script>
-import { functions } from "@/firebase/init";
+import { db } from "@/firebase/init";
 
 export default {
   data: () => ({
@@ -108,7 +108,9 @@ export default {
   },
   methods: {
     async getDate() {
-      var out = await functions.httpsCallable("readDeadline")({});
+      const deadlineDb = db.collection("admin").doc("regDeadline");
+      var deadlineDoc = await deadlineDb.get();
+      var out = deadlineDoc.data();
 
       if (out.data["startTime"] != null && out.data["startTime"] != null) {
         console.log(out.data);
@@ -124,10 +126,19 @@ export default {
         this.updateDate();
         console.log("update");
       } else {
-        await functions.httpsCallable("createDeadline")({
+        var newDeadline = {
           startTime: this.start,
           finishTime: this.end
-        });
+        };
+        const deadlineDoc = db.collection("admin").doc("regDeadline");
+        // Append new event into the array
+        await deadlineDoc
+          .set({
+            events: newDeadline
+          })
+          .catch(function(error) {
+            console.error("Error: ", error);
+          });
         this.push({
           start: this.start,
           end: this.end
@@ -136,7 +147,8 @@ export default {
     },
     async updateDate() {
       console.log(this.start);
-      await functions.httpsCallable("updateDeadline")({
+      const deadlineDb = db.collection("admin").doc("regDeadline");
+      await deadlineDb.update({
         startTime: this.start,
         finishTime: this.end
       });

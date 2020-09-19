@@ -4,6 +4,7 @@ import "firebaseui/dist/firebaseui.css";
 import "firebase/firestore";
 import "firebase/auth";
 import "firebase/functions";
+import "firebase/firestore";
 
 const config = {
   apiKey: "AIzaSyBGE2R4SS_JZ3vXDPt-q8rJ6kjfE3u-iPE",
@@ -23,6 +24,8 @@ const db = firebase.firestore();
 
 const authUI = new firebaseui.auth.AuthUI(auth);
 
+const arrayUnion = firebase.firestore.FieldValue.arrayUnion();
+
 const authUIConfig = {
   signInSuccessUrl: "/",
   signInOptions: [
@@ -39,4 +42,4 @@ const authUIConfig = {
 };
 
 export default app;
-export { auth, authUI, authUIConfig, functions, db };
+export { auth, authUI, authUIConfig, functions, db, arrayUnion };
