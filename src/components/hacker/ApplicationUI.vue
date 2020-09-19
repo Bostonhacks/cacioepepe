@@ -110,9 +110,11 @@
                 <v-autocomplete
                   v-model="timeZone"
                   :items="timeZoneList"
+                  hint="Don't Google - Boston Timezone is GMT+5"
                   color="primary"
                   label="Time Zone"
                   outlined
+                  persistent-hint
                   return-object
                 ></v-autocomplete>
               </v-col>
@@ -258,6 +260,11 @@
           <v-stepper-content step="4">
             <v-switch
               class="pl-3"
+              v-model="miniHacks"
+              label="Did you attend BostonHacks Mini Hacks 2020?"
+            ></v-switch>
+            <v-switch
+              class="pl-3"
               v-model="marketingData"
               label="Do you consent to us stealing your data?"
             ></v-switch>
@@ -289,6 +296,8 @@
                   major == null ||
                   resume == null ||
                   marketingData == 0 ||
+                  miniHacks == 0 ||
+                  miniHacks == null ||
                   marketingData == null ||
                   tAndC1 == 0 ||
                   tAndC1 == null ||
@@ -791,6 +800,7 @@ export default {
       otherURL: null,
       beenToHackathon: null,
       attendedBHacks: 0,
+      miniHacks: 0,
       marketingData: 0,
       tAndC1: 0,
       tAndC2: 0,
@@ -844,6 +854,7 @@ export default {
         beenToHackathon: this.beenToHackathon,
         attendedBHacks: this.attendedBHacks,
         marketingData: this.marketingData,
+        miniHacks: this.miniHacks,
         tAndC1: this.tAndC1,
         tAndC2: this.tAndC2
       });
@@ -883,6 +894,7 @@ export default {
         beenToHackathon: this.beenToHackathon,
         attendedBHacks: this.attendedBHacks,
         marketingData: this.marketingData,
+        miniHacks: this.miniHacks,
         tAndC1: this.tAndC1,
         tAndC2: this.tAndC2
       });
@@ -949,7 +961,8 @@ export default {
         attendedBHacks: null,
         marketingData: null,
         tAndC1: null,
-        tAndC2: null
+        tAndC2: null,
+        miniHacks: null
       });
     } else {
       const userApplication = db.collection("applications").doc(this.user.uid);
@@ -977,6 +990,7 @@ export default {
         (this.marketingData = userApplicationDoc.data().marketingData),
         (this.tAndC1 = userApplicationDoc.data().tAndC1),
         (this.tAndC2 = userApplicationDoc.data().tAndC2);
+      this.miniHacks = userApplicationDoc.data().miniHacks;
     }
     this.loading = false;
     fetch(

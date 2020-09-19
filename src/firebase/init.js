@@ -1,6 +1,7 @@
 import * as firebase from "firebase/app";
 const firebaseui = require("firebaseui");
 import "firebaseui/dist/firebaseui.css";
+import "firebase/firestore";
 import "firebase/auth";
 import "firebase/functions";
 import "firebase/firestore";
