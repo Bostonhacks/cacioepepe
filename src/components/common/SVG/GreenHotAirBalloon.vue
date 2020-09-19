@@ -1,5 +1,9 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -50 415.6 640.7" class="optimizeTransformGreen">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 -50 415.6 640.7"
+    class="optimizeTransformGreen"
+  >
     <g transform="translate(0 50)">
       <g class="lightGreen">
         <path

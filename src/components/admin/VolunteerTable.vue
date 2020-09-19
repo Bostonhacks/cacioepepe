@@ -80,8 +80,9 @@
                 ></v-select>
               </v-flex>
             </v-row>
+            <BostonHacksLoadingLogo v-if="data == null" />
             <v-data-table
-              v-if="data != null"
+              v-else
               v-model="selected"
               show-select
               item-key="name"
@@ -90,8 +91,6 @@
               :items-per-page="5"
               class="elevation-1"
               :search="search"
-              :loading="data == null"
-              loading-text="Loading please wait ..."
             >
               <template v-slot:item.resume[0]="{ item }">
                 <button v-if="item.resume[0]">
@@ -166,9 +165,13 @@
 
 <script>
 import { db } from "@/firebase/init";
+import BostonHacksLoadingLogo from "@/components/common/SVG/BostonHacksLoadingLogo";
 
 export default {
   name: "VolunteerTable",
+  components: {
+    BostonHacksLoadingLogo
+  },
   props: ["data"],
   computed: {
     user() {

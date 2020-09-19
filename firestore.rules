@@ -1,7 +1,6 @@
 rules_version = '2';
 service cloud.firestore {
-  match /databases/{database}/documents {
-	
+  match /databases/{database}/documents {	
 		function sameUID(uid) {
 			return isLoggedIn() && (uid == request.auth.uid);
 		}
@@ -15,10 +14,10 @@ service cloud.firestore {
 			return !(field in request.resource.data) || (resource.data[field] == request.resource.data[field]);
 		}
 
-
 		function invalidStateUpdate(statusFieldName) {
 			return !(statusFieldName in request.resource.data) || (request.resource.data[statusFieldName] == 7);
 		}
+		
 		function invalidUserUpdate() {
 			return (notUpdating("apple_pass_url") && notUpdating("google_qr_url") && notUpdating("role") && notUpdating("uid"));
 		}
