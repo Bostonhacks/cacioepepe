@@ -276,7 +276,7 @@
                 counter="200"
                 :counter-value="wordCounter"
                 label="Why do you want to participate in BostonHacks? (200 word max) "
-                :rules="essayRules"
+                :rules="essayRules.concat(requiredRule)"
                 v-model="essayAns"
                 outlined
               ></v-textarea>
@@ -1231,6 +1231,7 @@ export default {
         this.phone == null ||
         this.country == null ||
         this.timeZone == null ||
+        this.essayAns == "" ||
         this.age == null ||
         this.email == null ||
         this.gender == null ||
@@ -1247,7 +1248,8 @@ export default {
         this.tAndC2 == null ||
         !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
           this.email
-        )
+        ) ||
+        !(this.essayAns.split(" ").length <= 200)
       ) {
         this.valid = false;
         return;
