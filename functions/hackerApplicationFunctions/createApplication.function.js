@@ -20,7 +20,12 @@ module.exports.createApplication = functions.https.onCall(
       timeZone: null,
       country: null,
       phone: null,
+      countryCode: null,
       age: null,
+      email: null,
+      address: null,
+      city: null,
+      zip: null,
       gender: null,
       pronouns: null,
       educationLevel: null,
@@ -34,6 +39,7 @@ module.exports.createApplication = functions.https.onCall(
       beenToHackathon: null,
       attendedBHacks: null,
       marketingData: null,
+      miniHacks: null,
       tAndC1: null,
       tAndC2: null
     });
