@@ -10,7 +10,7 @@
 <script>
 import ApplicationUI from "@/components/hacker/ApplicationUI";
 import RefuseUI from "@/components/reject/RefuseUI";
-import { functions } from "@/firebase/init";
+import { db } from "@/firebase/init";
 
 export default {
   data() {
@@ -30,7 +30,10 @@ export default {
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     },
     async getDate() {
-      var out = await functions.httpsCallable("readDeadline")({});
+      // readDeadline
+      const deadlineDb = db.collection("admin").doc("regDeadline");
+      var deadlineDoc = await deadlineDb.get();
+      var out = deadlineDoc.data();
       this.deadline = out.data["finishTime"];
       console.log(this.date);
       console.log(this.deadline);

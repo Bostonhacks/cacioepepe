@@ -1107,7 +1107,6 @@ export default {
       } else {
         this.uploadResume(value);
       }
-      console.log(value);
     },
     async saveApplication() {
       this.loading = true;
@@ -1143,7 +1142,6 @@ export default {
         tAndC1: this.tAndC1,
         tAndC2: this.tAndC2
       });
-      console.log("sucessfully saved");
       this.loading = false;
       this.$router.push({ name: "dashboard" });
     },
@@ -1155,7 +1153,6 @@ export default {
       // console.log(this.valid);
       if (this.valid) {
         await functions.httpsCallable("submitApplication")({
-          uid: this.user.uid,
           language: this.language,
           essayAns: this.essayAns,
           firstName: this.firstName,
@@ -1194,6 +1191,43 @@ export default {
         this.e1 = 1;
         this.loading = false;
       }
+      const userdb = db.collection("users").doc(this.user.uid);
+      await userdb.update({
+        applicationStatus: 1
+      });
+      const userApplication = db.collection("applications").doc(this.user.uid);
+      await userApplication.update({
+        status: 1,
+        name: this.name,
+        uid: this.user.uid,
+        language: this.language,
+        essayAns: this.essayAns,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        timeZone: this.timeZone,
+        country: this.country,
+        phone: this.phone,
+        age: this.age,
+        gender: this.gender,
+        pronouns: this.pronouns,
+        educationLevel: this.educationLevel,
+        university: this.university,
+        major: this.major,
+        minor: this.minor,
+        resume: this.resume,
+        githubURL: this.githubURL,
+        linkedinURL: this.linkedinURL,
+        otherURL: this.otherURL,
+        beenToHackathon: this.beenToHackathon,
+        attendedBHacks: this.attendedBHacks,
+        marketingData: this.marketingData,
+        miniHacks: this.miniHacks,
+        tAndC1: this.tAndC1,
+        tAndC2: this.tAndC2
+      });
+      await store.dispatch("getUser");
+      this.loading = false;
+      this.$router.push({ name: "dashboard" });
     },
     async uploadResume(value) {
       this.resumeLoading = true;
@@ -1210,6 +1244,12 @@ export default {
           })
           .then(async data => {
             this.resume = [data.data.URL, data.data.location];
+            await db
+              .collection("applications")
+              .doc(this.user.uid)
+              .update({
+                resume: this.resume
+              });
             this.uploadedResume = null;
             this.resumeLoading = false;
           });
@@ -1266,42 +1306,76 @@ export default {
   async mounted() {
     this.loading = true;
     if (!this.user.applicationStatus) {
-      await functions.httpsCallable("createApplication")({
-        uid: this.user.uid
+      const userdb = db.collection("users").doc(this.user.uid);
+      await userdb.update({
+        applicationStatus: 0
+      });
+      const userApplication = db.collection("applications").doc(this.user.uid);
+      await userApplication.set({
+        uid: this.user.uid,
+        status: 0,
+        firstName: null,
+        lastName: null,
+        phone: null,
+        countryCode: null,
+        country: null,
+        email: null,
+        timeZone: null,
+        address: null,
+        city: null,
+        zip: null,
+        age: null,
+        gender: null,
+        pronouns: null,
+        educationLevel: null,
+        university: null,
+        language: null,
+        essayAns: null,
+        major: null,
+        minor: null,
+        resume: null,
+        githubURL: null,
+        linkedinURL: null,
+        otherURL: null,
+        beenToHackathon: null,
+        attendedBHacks: null,
+        marketingData: null,
+        tAndC1: null,
+        tAndC2: null,
+        miniHacks: null
       });
     } else {
-      var rawAppData = await functions.httpsCallable("loadApplication")({
-        uid: this.user.uid
-      });
-      (this.essayAns = rawAppData.data.essayAns),
-        (this.language = rawAppData.data.language),
-        (this.firstName = rawAppData.data.firstName),
-        (this.lastName = rawAppData.data.lastName),
-        (this.country = rawAppData.data.country),
-        (this.timeZone = rawAppData.data.timeZone),
-        (this.email = rawAppData.data.email),
-        (this.countryCode = rawAppData.data.countryCode),
-        (this.phone = rawAppData.data.phone),
-        (this.address = rawAppData.data.address),
-        (this.city = rawAppData.data.city),
-        (this.zip = rawAppData.data.zip),
-        (this.age = rawAppData.data.age),
-        (this.gender = rawAppData.data.gender),
-        (this.pronouns = rawAppData.data.pronouns),
-        (this.educationLevel = rawAppData.data.educationLevel),
-        (this.university = rawAppData.data.university),
-        (this.major = rawAppData.data.major),
-        (this.minor = rawAppData.data.minor),
-        (this.resume = rawAppData.data.resume),
-        (this.githubURL = rawAppData.data.githubURL),
-        (this.linkedinURL = rawAppData.data.linkedinURL),
-        (this.otherURL = rawAppData.data.otherURL),
-        (this.beenToHackathon = rawAppData.data.beenToHackathon),
-        (this.attendedBHacks = rawAppData.data.attendedBHacks),
-        (this.marketingData = rawAppData.data.marketingData),
-        (this.tAndC1 = rawAppData.data.tAndC1),
-        (this.tAndC2 = rawAppData.data.tAndC2),
-        (this.miniHacks = rawAppData.data.miniHacks);
+      const userApplication = db.collection("applications").doc(this.user.uid);
+      var userApplicationDoc = await userApplication.get();
+      (this.essayAns = userApplicationDoc.data().essayAns),
+        (this.language = userApplicationDoc.data().language),
+        (this.firstName = userApplicationDoc.data().firstName),
+        (this.lastName = userApplicationDoc.data().lastName),
+        (this.country = userApplicationDoc.data().country),
+        (this.countryCode = userApplicationDoc.data().countryCode),
+        (this.address = userApplicationDoc.data().address),
+        (this.zip = userApplicationDoc.data().zip),
+        (this.city = userApplicationDoc.data().city),
+        (this.email = userApplicationDoc.data().email),
+        (this.timeZone = userApplicationDoc.data().timeZone),
+        (this.phone = userApplicationDoc.data().phone),
+        (this.age = userApplicationDoc.data().age),
+        (this.gender = userApplicationDoc.data().gender),
+        (this.pronouns = userApplicationDoc.data().pronouns),
+        (this.educationLevel = userApplicationDoc.data().educationLevel),
+        (this.university = userApplicationDoc.data().university),
+        (this.major = userApplicationDoc.data().major),
+        (this.minor = userApplicationDoc.data().minor),
+        (this.resume = userApplicationDoc.data().resume),
+        (this.githubURL = userApplicationDoc.data().githubURL),
+        (this.linkedinURL = userApplicationDoc.data().linkedinURL),
+        (this.otherURL = userApplicationDoc.data().otherURL),
+        (this.beenToHackathon = userApplicationDoc.data().beenToHackathon),
+        (this.attendedBHacks = userApplicationDoc.data().attendedBHacks),
+        (this.marketingData = userApplicationDoc.data().marketingData),
+        (this.tAndC1 = userApplicationDoc.data().tAndC1),
+        (this.tAndC2 = userApplicationDoc.data().tAndC2);
+      this.miniHacks = userApplicationDoc.data().miniHacks;
     }
     this.loading = false;
     fetch(

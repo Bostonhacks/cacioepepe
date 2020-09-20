@@ -8,10 +8,14 @@ service cloud.firestore {
 			return request.auth != null;
 		}
 		function hasRole(role) {
-			return (isLoggedIn() && (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == role);
+			return (isLoggedIn() && (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == role));
 		}
 		function notUpdating(field) {
 			return !(field in request.resource.data) || (resource.data[field] == request.resource.data[field]);
+		}
+
+		function invalidStateUpdate(statusFieldName) {
+			return !(statusFieldName in request.resource.data) || (request.resource.data[statusFieldName] == 7);
 		}
 		
 		function invalidUserUpdate() {
@@ -22,15 +26,15 @@ service cloud.firestore {
 			allow get: if hasRole("admin") || hasRole("sponsor") || sameUID(userId);
 			allow list: if hasRole("admin") || hasRole("sponsor");
 			allow create: if hasRole("admin") || (sameUID(userId));
-			allow update: if hasRole("admin") || (sameUID(userId) && invalidUserUpdate());
+			allow update: if hasRole("admin") || (sameUID(userId) && invalidUserUpdate() && invalidStateUpdate("status"));
 			allow delete: if hasRole("admin");
 		}
 		
 		match /volunteers/{voldId} {
 			allow list: if hasRole("admin");
-			allow get: if hasRole("admin") || (sameUID(userId));
-			allow create: if hasRole("admin") || (sameUID(userId));
-			allow update: if hasRole("admin") || (sameUID(userId));
+			allow get: if hasRole("admin") || (sameUID(voldId));
+			allow create: if hasRole("admin") || (sameUID(voldId));
+			allow update: if hasRole("admin") || (sameUID(voldId));
 			allow delete: if hasRole("admin");
 		}
 		
@@ -43,10 +47,10 @@ service cloud.firestore {
 		}
 		
 		match /applications/{appId} {
-			allow get: if hasRole("admin") || sameUID(userId);
+			allow get: if hasRole("admin") || sameUID(appId);
 			allow list: if hasRole("admin") || hasRole("sponsor");
-			allow create: if hasRole("admin") || (sameUID(userId));
-			allow update: if hasRole("admin") || (sameUID(userId) && notUpdating("uid"));
+			allow create: if hasRole("admin") || (sameUID(appId));
+			allow update: if hasRole("admin") || (sameUID(appId) && notUpdating("uid") && invalidStateUpdate("applicationStatus"));
 			allow delete: if hasRole("admin");
 		}
 		

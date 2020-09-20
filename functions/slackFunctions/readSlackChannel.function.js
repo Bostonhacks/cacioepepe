@@ -11,7 +11,6 @@ module.exports.readSlackChannel = functions.https.onCall(async context => {
   var allChannels = await slackdb.get();
   var res = [];
   allChannels.forEach(element => {
-    console.log(element);
     if (element.key.toLowerCase().includes("channel")) {
       res.push(element.data());
     }

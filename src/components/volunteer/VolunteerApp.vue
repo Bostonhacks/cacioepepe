@@ -162,7 +162,7 @@
 </template>
 
 <script>
-import { functions } from "@/firebase/init";
+import { functions, db } from "@/firebase/init";
 export default {
   name: "volunteer",
   data() {
@@ -215,7 +215,13 @@ export default {
   },
   methods: {
     async submitApplication() {
-      await functions.httpsCallable("submitVolunteerApplication")({
+      const userdb = db.collection("users").doc(this.user.uid);
+      await userdb.update({
+        applicationStatus: 1
+      });
+      const userApplication = db.collection("volunteers").doc(this.user.uid);
+      await userApplication.set({
+        status: 1,
         first: this.first,
         last: this.last,
         phone: this.phone,
@@ -230,7 +236,8 @@ export default {
         tablingEvent: this.tablingEvent,
         eventVolunteer: this.eventVolunteer,
         picturePermission: this.picturePermission,
-        tAandC: this.tAandC
+        tAandC: this.tAandC,
+        uid: this.user.uid
       });
       this.$router.push("/");
     },
@@ -247,6 +254,12 @@ export default {
           })
           .then(async data => {
             this.resume = [data.data.URL, data.data.location];
+            await db
+              .collection("volunteers")
+              .doc(this.user.uid)
+              .update({
+                resume: this.resume
+              });
             this.uploadedResume = null;
           });
       };
