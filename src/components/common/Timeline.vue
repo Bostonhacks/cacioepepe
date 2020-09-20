@@ -113,18 +113,15 @@ export default {
       var out = deadlineDoc.data();
 
       if (out.data["startTime"] != null && out.data["startTime"] != null) {
-        console.log(out.data);
         this.firstInput = false;
         this.start = out.data["startTime"];
         this.end = out.data["finishTime"];
       }
-      console.log(this.start);
     },
     async saveDate() {
       this.dialog = false;
       if (this.start != "" && this.end != "") {
         this.updateDate();
-        console.log("update");
       } else {
         var newDeadline = {
           startTime: this.start,
@@ -146,7 +143,6 @@ export default {
       }
     },
     async updateDate() {
-      console.log(this.start);
       const deadlineDb = db.collection("admin").doc("regDeadline");
       await deadlineDb.update({
         startTime: this.start,

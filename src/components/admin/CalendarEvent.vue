@@ -252,7 +252,6 @@ export default {
       this.dialog = false;
       if (Object.keys(this.selectedEvent).length > 0) {
         this.updateEvent();
-        console.log("update");
       } else {
         // createSchedule
         var newEvent = {

@@ -827,7 +827,6 @@ export default {
       } else {
         this.uploadResume(value);
       }
-      console.log(value);
     },
     async saveApplication() {
       this.loading = true;
@@ -858,7 +857,6 @@ export default {
         tAndC1: this.tAndC1,
         tAndC2: this.tAndC2
       });
-      console.log("sucessfully saved");
       this.loading = false;
       this.$router.push({ name: "dashboard" });
     },

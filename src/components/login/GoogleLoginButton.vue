@@ -19,7 +19,7 @@ export default {
 
       firebase
         .auth()
-        .signInWithPopup(provider)
+        .signInWithRedirect(provider)
         .then(async result => {
           // This gives you a Google Access Token. You can use it to access the Google API.
           var token = result.credential.accessToken;

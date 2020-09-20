@@ -43,7 +43,7 @@
               ></v-text-field>
               <v-btn color="info white--text" @click="login"> Login </v-btn>
               <router-link to="/resetpw" class="ml-8"
-                >Forget your Password?</router-link
+                >Forgot Password?</router-link
               >
             </v-container>
           </v-form>
@@ -110,7 +110,8 @@ export default {
       auth
         .sendPasswordResetEmail(emailAddress)
         .then(function() {
-          var message = "An Email has been sent to reset your password.";
+          var message =
+            "An email has been sent to help you reset your password.";
           alert(message);
         })
         .catch(function(error) {

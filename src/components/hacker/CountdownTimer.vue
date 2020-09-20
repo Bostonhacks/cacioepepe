@@ -28,10 +28,9 @@ export default {
   methods: {
     countDown() {
       let countDownDate = new Date("Nov 4, 2020, 0:00:00").getTime();
-      let x = setTimeout(function() {
+      setTimeout(function() {
         let now = new Date().getTime();
         let distance = countDownDate - now;
-        // let days = Math.floor(distance / (1000 * 60 * 60 * 24));
         let hours = Math.floor(
           (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
         );
@@ -39,14 +38,8 @@ export default {
         let seconds = Math.floor((distance % (1000 * 60)) / 1000);
         this.hours = hours;
         this.minutes = minutes;
-        console.log("seconds:", this.seconds);
         this.seconds = seconds;
-        console.log("seconds:", this.seconds);
-        // countDown();
-        // document.getElementById("timer").innerHTML =
-        // hours + ":" + minutes + ":" + seconds;
       }, 1000);
-      console.log(x);
     },
     prefixZero(num) {
       return String(num).padStart(2, "0");

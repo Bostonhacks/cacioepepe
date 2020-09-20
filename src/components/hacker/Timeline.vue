@@ -10,7 +10,6 @@ export default {
       console.log("Not logged in");
     } else {
       this.status[this.applicationStatus].isCurrentStatus = true;
-      console.log(this.applicationStatus);
     }
   },
   data() {
