@@ -42,7 +42,7 @@
                 placeholder=" "
               ></v-text-field>
               <v-btn color="info white--text" @click="login"> Login </v-btn>
-              <router-link to="/resetpw" class="ml-8"
+              <router-link to="/resetPw" class="ml-8"
                 >Forgot Password?</router-link
               >
             </v-container>
