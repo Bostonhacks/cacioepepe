@@ -899,7 +899,6 @@ export default {
         tAndC2: this.tAndC2
       });
       await store.dispatch("getUser");
-      console.log("sucessfully submitted");
       this.loading = false;
       this.$router.push({ name: "dashboard" });
     },
@@ -918,6 +917,12 @@ export default {
           })
           .then(async data => {
             this.resume = [data.data.URL, data.data.location];
+            await db
+              .collection("applications")
+              .doc(this.user.uid)
+              .update({
+                resume: this.resume
+              });
             this.uploadedResume = null;
             this.resumeLoading = false;
           });
