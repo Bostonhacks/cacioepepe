@@ -136,10 +136,11 @@ export default {
         .then(() => {
           var user = firebase.auth().currentUser;
           console.log("UserID: " + user.uid);
+          //fix to use db code
           functions.httpsCallable("createNewUser")({
             displayName: this.displayName,
             email: this.email,
-            role: this.accountType
+            role: this.accountType.toLowerCase()
           });
           this.$router.push("/");
         })
