@@ -29,7 +29,7 @@
         <v-card-title class="justify-center">
           <h5>
             Already signed up?
-            <router-link class="blue" to="/login">Login</router-link>
+            <router-link to="/login">Login</router-link>
           </h5>
         </v-card-title>
         <v-card-text>
@@ -39,20 +39,20 @@
                 v-model="displayName"
                 type="text"
                 label="Name"
-                placeholder=" "
+                placeholder="Jane Doe"
                 required
               ></v-text-field>
               <v-text-field
                 v-model="email"
                 type="text"
                 label="Email"
-                placeholder="jone@example.com"
+                placeholder="jane@example.com"
               ></v-text-field>
               <v-text-field
                 v-model="password"
                 type="password"
                 label="Password"
-                placeholder="***"
+                placeholder="*******"
               ></v-text-field>
               <v-select
                 label="Account Type"

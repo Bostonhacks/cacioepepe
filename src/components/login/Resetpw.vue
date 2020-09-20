@@ -73,7 +73,7 @@ import firebase from "firebase/app";
 import Cloud9 from "@/components/common/SVG/Cloud9";
 
 export default {
-  name: "Resetpw",
+  name: "ResetPw",
   data() {
     return {
       email: null

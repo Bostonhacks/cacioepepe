@@ -1,5 +1,5 @@
 <template>
-  <Resetpw class="blue" />
+  <ResetPw class="blue" />
 </template>
 
 <style scoped>
@@ -9,10 +9,10 @@
 </style>
 
 <script>
-import Resetpw from "@/components/login/Resetpw";
+import ResetPw from "@/components/login/ResetPw";
 export default {
   components: {
-    Resetpw
+    ResetPw
   }
 };
 </script>

@@ -129,9 +129,9 @@ const routes = [
     }
   },
   {
-    path: "/resetpw",
-    name: "resetpw",
-    component: () => import("@/views/Resetpw.vue"),
+    path: "/resetPw",
+    name: "resetPw",
+    component: () => import("@/views/ResetPw.vue"),
     meta: {
       requiresAuth: false
     }
