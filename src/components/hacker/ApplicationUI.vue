@@ -1152,20 +1152,28 @@ export default {
       this.check();
       // console.log(this.valid);
       if (this.valid) {
-        await functions.httpsCallable("submitApplication")({
+        const userdb = db.collection("users").doc(this.user.uid);
+        await userdb.update({
+          applicationStatus: 1
+        });
+        const userApplication = db
+          .collection("applications")
+          .doc(this.user.uid);
+        await userApplication.update({
+          status: 1,
+          uid: this.user.uid,
           language: this.language,
           essayAns: this.essayAns,
           firstName: this.firstName,
           lastName: this.lastName,
           timeZone: this.timeZone,
-          email: this.email,
           country: this.country,
           countryCode: this.countryCode,
-          phone: this.phone,
-          age: this.age,
           address: this.address,
           city: this.city,
           zip: this.zip,
+          phone: this.phone,
+          age: this.age,
           gender: this.gender,
           pronouns: this.pronouns,
           educationLevel: this.educationLevel,
@@ -1184,50 +1192,12 @@ export default {
           tAndC2: this.tAndC2
         });
         await store.dispatch("getUser");
-        console.log("sucessfully submitted");
         this.loading = false;
         this.$router.push({ name: "dashboard" });
       } else {
-        this.e1 = 1;
         this.loading = false;
+        this.e1 = 1;
       }
-      const userdb = db.collection("users").doc(this.user.uid);
-      await userdb.update({
-        applicationStatus: 1
-      });
-      const userApplication = db.collection("applications").doc(this.user.uid);
-      await userApplication.update({
-        status: 1,
-        name: this.name,
-        uid: this.user.uid,
-        language: this.language,
-        essayAns: this.essayAns,
-        firstName: this.firstName,
-        lastName: this.lastName,
-        timeZone: this.timeZone,
-        country: this.country,
-        phone: this.phone,
-        age: this.age,
-        gender: this.gender,
-        pronouns: this.pronouns,
-        educationLevel: this.educationLevel,
-        university: this.university,
-        major: this.major,
-        minor: this.minor,
-        resume: this.resume,
-        githubURL: this.githubURL,
-        linkedinURL: this.linkedinURL,
-        otherURL: this.otherURL,
-        beenToHackathon: this.beenToHackathon,
-        attendedBHacks: this.attendedBHacks,
-        marketingData: this.marketingData,
-        miniHacks: this.miniHacks,
-        tAndC1: this.tAndC1,
-        tAndC2: this.tAndC2
-      });
-      await store.dispatch("getUser");
-      this.loading = false;
-      this.$router.push({ name: "dashboard" });
     },
     async uploadResume(value) {
       this.resumeLoading = true;
@@ -1305,7 +1275,39 @@ export default {
   },
   async mounted() {
     this.loading = true;
-    if (!this.user.applicationStatus) {
+    if (this.user.applicationStatus >= 0) {
+      const userApplication = db.collection("applications").doc(this.user.uid);
+      var userApplicationDoc = await userApplication.get();
+      (this.essayAns = userApplicationDoc.data().essayAns),
+        (this.language = userApplicationDoc.data().language),
+        (this.firstName = userApplicationDoc.data().firstName),
+        (this.lastName = userApplicationDoc.data().lastName),
+        (this.country = userApplicationDoc.data().country),
+        (this.countryCode = userApplicationDoc.data().countryCode),
+        (this.address = userApplicationDoc.data().address),
+        (this.zip = userApplicationDoc.data().zip),
+        (this.city = userApplicationDoc.data().city),
+        (this.email = userApplicationDoc.data().email),
+        (this.timeZone = userApplicationDoc.data().timeZone),
+        (this.phone = userApplicationDoc.data().phone),
+        (this.age = userApplicationDoc.data().age),
+        (this.gender = userApplicationDoc.data().gender),
+        (this.pronouns = userApplicationDoc.data().pronouns),
+        (this.educationLevel = userApplicationDoc.data().educationLevel),
+        (this.university = userApplicationDoc.data().university),
+        (this.major = userApplicationDoc.data().major),
+        (this.minor = userApplicationDoc.data().minor),
+        (this.resume = userApplicationDoc.data().resume),
+        (this.githubURL = userApplicationDoc.data().githubURL),
+        (this.linkedinURL = userApplicationDoc.data().linkedinURL),
+        (this.otherURL = userApplicationDoc.data().otherURL),
+        (this.beenToHackathon = userApplicationDoc.data().beenToHackathon),
+        (this.attendedBHacks = userApplicationDoc.data().attendedBHacks),
+        (this.marketingData = userApplicationDoc.data().marketingData),
+        (this.tAndC1 = userApplicationDoc.data().tAndC1),
+        (this.tAndC2 = userApplicationDoc.data().tAndC2);
+      this.miniHacks = userApplicationDoc.data().miniHacks;
+    } else {
       const userdb = db.collection("users").doc(this.user.uid);
       await userdb.update({
         applicationStatus: 0
@@ -1344,38 +1346,6 @@ export default {
         tAndC2: null,
         miniHacks: null
       });
-    } else {
-      const userApplication = db.collection("applications").doc(this.user.uid);
-      var userApplicationDoc = await userApplication.get();
-      (this.essayAns = userApplicationDoc.data().essayAns),
-        (this.language = userApplicationDoc.data().language),
-        (this.firstName = userApplicationDoc.data().firstName),
-        (this.lastName = userApplicationDoc.data().lastName),
-        (this.country = userApplicationDoc.data().country),
-        (this.countryCode = userApplicationDoc.data().countryCode),
-        (this.address = userApplicationDoc.data().address),
-        (this.zip = userApplicationDoc.data().zip),
-        (this.city = userApplicationDoc.data().city),
-        (this.email = userApplicationDoc.data().email),
-        (this.timeZone = userApplicationDoc.data().timeZone),
-        (this.phone = userApplicationDoc.data().phone),
-        (this.age = userApplicationDoc.data().age),
-        (this.gender = userApplicationDoc.data().gender),
-        (this.pronouns = userApplicationDoc.data().pronouns),
-        (this.educationLevel = userApplicationDoc.data().educationLevel),
-        (this.university = userApplicationDoc.data().university),
-        (this.major = userApplicationDoc.data().major),
-        (this.minor = userApplicationDoc.data().minor),
-        (this.resume = userApplicationDoc.data().resume),
-        (this.githubURL = userApplicationDoc.data().githubURL),
-        (this.linkedinURL = userApplicationDoc.data().linkedinURL),
-        (this.otherURL = userApplicationDoc.data().otherURL),
-        (this.beenToHackathon = userApplicationDoc.data().beenToHackathon),
-        (this.attendedBHacks = userApplicationDoc.data().attendedBHacks),
-        (this.marketingData = userApplicationDoc.data().marketingData),
-        (this.tAndC1 = userApplicationDoc.data().tAndC1),
-        (this.tAndC2 = userApplicationDoc.data().tAndC2);
-      this.miniHacks = userApplicationDoc.data().miniHacks;
     }
     this.loading = false;
     fetch(
