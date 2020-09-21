@@ -134,7 +134,7 @@
                     :items="timeZoneList"
                     hint="Don't Google - Boston Timezone is GMT+5"
                     color="primary"
-                    label="Time Zone"
+                    label="Timezone"
                     :rules="requiredRule"
                     outlined
                     persistent-hint
