@@ -300,7 +300,7 @@
               <v-text-field v-model="otherURL" label="Other URL"></v-text-field>
               <v-switch
                 v-model="attendedBHacks"
-                label="Have you attended BostonHacks?"
+                label="Have you attended BostonHacks previously?"
                 class="pl-3"
               ></v-switch>
               <label>How many hackathons have you attended before?</label>
