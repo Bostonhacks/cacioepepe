@@ -7,37 +7,51 @@
 <script>
 import firebase from "firebase/app";
 import store from "../../store";
+import { db } from "@/firebase/init.js";
 
 export default {
   name: "GoogleLoginButton",
   props: ["buttonName"],
-  methods: {
-    async googleSignUp() {
-      var provider = new firebase.auth.GoogleAuthProvider();
-      firebase.auth().useDeviceLanguage();
-
-      firebase
-        .auth()
-        .signInWithRedirect(provider)
-        .then(async result => {
-          // This gives you a Google Access Token. You can use it to access the Google API.
-          var token = result.credential.accessToken;
+  mounted() {
+    firebase
+      .auth()
+      .getRedirectResult()
+      .then(async result => {
+        if (result.credential) {
           // The signed-in user info.
           var user = result.user;
 
-          console.log(user.uid);
-          console.log(token);
-
-          await store.dispatch("setUser");
+          let userDbResult = await db
+            .collection("users")
+            .doc(user.uid)
+            .get();
+          if (!userDbResult.data()) {
+            await db
+              .collection("users")
+              .doc(user.uid)
+              .set({
+                displayName: user.displayName,
+                email: user.email,
+                uid: user.uid
+              });
+            await store.dispatch("setUser");
+          }
 
           this.$router.push("/");
-        })
-        .catch(function(error) {
-          var errorMessage = error.message;
-          var errorCode = error.code;
-          console.log(errorCode);
-          alert(errorMessage);
-        });
+        }
+      })
+      .catch(function(error) {
+        // Handle Errors here.
+        var errorMessage = error.message;
+        alert(errorMessage);
+      });
+  },
+  methods: {
+    googleSignUp() {
+      var provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().useDeviceLanguage();
+
+      firebase.auth().signInWithRedirect(provider);
     }
   }
 };

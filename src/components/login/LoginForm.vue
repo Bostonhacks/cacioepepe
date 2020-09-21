@@ -124,14 +124,11 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          // var user = firebase.auth().currentUser;
           this.$router.push("/");
         })
         .catch(function(error) {
           // Handle Errors here.
-          var errorCode = error.code;
           var errorMessage = error.message;
-          console.log("Error code" + errorCode);
           alert(errorMessage);
         });
     }
