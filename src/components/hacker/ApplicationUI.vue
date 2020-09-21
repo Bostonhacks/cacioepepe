@@ -289,17 +289,20 @@
               <v-text-field
                 v-model="githubURL"
                 label="Github URL"
+                :rules="urlRules"
               ></v-text-field>
               <v-text-field
                 v-model="linkedinURL"
                 label="LinkedIn URL"
+                :rules="urlRules"
               ></v-text-field>
               <v-text-field v-model="otherURL" label="Other URL"></v-text-field>
               <v-switch
                 v-model="attendedBHacks"
                 label="Have you attended BostonHacks?"
+                :rules="urlRules"
               ></v-switch>
-              <label>How many hackathons have you attended?</label>
+              <label>How many hackathons have you attended before?</label>
               <v-radio-group v-model="beenToHackathon" :rules="requiredRule">
                 <v-radio label="0" value="0"></v-radio>
                 <v-radio label="1" value="1"></v-radio>
@@ -323,19 +326,19 @@
               <v-switch
                 class="pl-3"
                 v-model="marketingData"
-                label="Do you consent to us stealing your data?"
+                label="Do you consent to you picture or your likeness being used in future BostonHacks marketing material?"
                 :rules="requiredRule"
               ></v-switch>
               <v-switch
                 class="pl-3"
                 v-model="tAndC1"
-                label="Do you accept the terms and conditions?"
+                label="Do you agree to abide by the MLH code of conduct?"
                 :rules="requiredRule"
               ></v-switch>
               <v-switch
                 class="pl-3"
                 v-model="tAndC2"
-                label="Do you accept the terms and conditions?"
+                label="Do you agree to abide by the Boston University code of conduct?"
                 :rules="requiredRule"
               ></v-switch>
               <v-btn color="primary" class=" mt-5" @click="submitApplication"
@@ -504,6 +507,12 @@ export default {
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             v
           ) || "Please enter a valid email"
+      ],
+      urlRules: [
+        v =>
+          /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(
+            v
+          ) || "Please enter a valid URL address"
       ],
       timeZoneList: [
         "GMT+1:00",
