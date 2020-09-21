@@ -1161,10 +1161,8 @@ export default {
     },
     async submitApplication() {
       this.loading = true;
-      // console.log(this.valid);
       this.$refs.form.validate();
       this.check();
-      // console.log(this.valid);
       if (this.valid) {
         const userdb = db.collection("users").doc(this.user.uid);
         await userdb.update({

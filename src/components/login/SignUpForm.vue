@@ -33,7 +33,7 @@
           </h5>
         </v-card-title>
         <v-card-text>
-          <v-form>
+          <v-form v-if="switchbt">
             <v-container>
               <v-text-field
                 v-model="displayName"
@@ -52,9 +52,10 @@
                 v-model="password"
                 type="password"
                 label="Password"
-                placeholder="*******"
+                placeholder="********"
               ></v-text-field>
               <v-select
+                v-if="rolechoice"
                 label="Account Type"
                 item-text="name"
                 v-model="accountType"
@@ -63,20 +64,30 @@
               <v-btn
                 block
                 color="info white--text"
-                class="mr-4"
+                class="mr-4 mb-1"
                 @click="signUp"
               >
                 Submit
               </v-btn>
+              <v-btn block color="red white--text" @click="cancel"
+                >Cancel</v-btn
+              >
             </v-container>
           </v-form>
-          <v-divider></v-divider>
-          <v-card-actions>
-            <GoogleLoginButton
-              buttonName="Sign up with Google"
-              class="google-signup"
-            />
-          </v-card-actions>
+          <v-form v-else>
+            <v-card-actions>
+              <v-btn block color="info white--text" @click="switchpage"
+                >Sign up with Email</v-btn
+              >
+            </v-card-actions>
+            <v-divider></v-divider>
+            <v-card-actions>
+              <GoogleLoginButton
+                buttonName="Sign up with Google"
+                class="google-signup"
+              />
+            </v-card-actions>
+          </v-form>
         </v-card-text>
       </v-card>
     </v-col>
@@ -121,6 +132,8 @@ export default {
       password: null,
       displayName: null,
       accountType: "Hacker",
+      rolechoice: false,
+      switchbt: false,
       accountTypes: ["Hacker", "Volunteer", "Mentor", "Sponsor"]
     };
   },
@@ -129,6 +142,12 @@ export default {
     GoogleLoginButton
   },
   methods: {
+    cancel() {
+      this.switchbt = false;
+    },
+    switchpage() {
+      this.switchbt = true;
+    },
     async signUp() {
       firebase
         .auth()

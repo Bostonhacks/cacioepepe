@@ -27,40 +27,50 @@
           <h3>Login</h3>
         </v-card-title>
         <v-card-text>
-          <v-form>
+          <v-form v-if="switchbt">
             <v-container>
               <v-text-field
                 v-model="email"
                 type="text"
                 label="Email"
-                placeholder="jone@example.com"
+                placeholder="jane@example.com"
               ></v-text-field>
               <v-text-field
                 v-model="password"
                 type="password"
                 label="Password"
-                placeholder=" "
+                placeholder="********"
               ></v-text-field>
               <v-btn color="info white--text" @click="login"> Login </v-btn>
-              <router-link to="/resetpw" class="ml-8"
+              <v-btn class="ml-2" color="red white--text" @click="cancel">
+                Cancel
+              </v-btn>
+              <router-link class="ml-2" to="/resetPw"
                 >Forgot Password?</router-link
               >
             </v-container>
           </v-form>
-          <v-divider></v-divider>
-          <v-card-actions>
-            <GoogleLoginButton
-              buttonName="Login with Google"
-              class="google-signup"
-            />
-          </v-card-actions>
-          <v-card-text>
-            Hackers, don't have an account?
-            <router-link to="/signup">Sign Up</router-link>
-            <v-spacer></v-spacer>
-            Interested in sponsoring and helping?
-            <router-link to="/signup">Sign Up</router-link>
-          </v-card-text>
+          <v-form v-else>
+            <v-card-actions>
+              <v-btn block color="info white--text" @click="switchpage"
+                >Login with Email</v-btn
+              >
+            </v-card-actions>
+            <v-divider></v-divider>
+            <v-card-actions>
+              <GoogleLoginButton
+                buttonName="Login with Google"
+                class="google-signup"
+              />
+            </v-card-actions>
+            <v-card-text>
+              Hackers, don't have an account?
+              <router-link to="/signup">Sign Up</router-link>
+              <!-- <v-spacer></v-spacer>
+              Interested in sponsoring and helping?
+              <router-link to="/signup">Sign Up</router-link> -->
+            </v-card-text>
+          </v-form>
         </v-card-text>
       </v-card>
     </v-col>
@@ -95,7 +105,8 @@ export default {
   data() {
     return {
       email: null,
-      password: null
+      password: null,
+      switchbt: false
     };
   },
   components: {
@@ -103,6 +114,12 @@ export default {
     GoogleLoginButton
   },
   methods: {
+    cancel() {
+      this.switchbt = false;
+    },
+    switchpage() {
+      this.switchbt = true;
+    },
     async forgetPW() {
       var auth = firebase.auth();
       var emailAddress = this.email;

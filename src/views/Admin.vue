@@ -259,7 +259,6 @@ export default {
     async getEvents() {
       var out = await functions.httpsCallable("readSchedules")({});
       if (out.data) {
-        console.log(out.data);
         this.events = out.data;
       } else {
         this.events = [];

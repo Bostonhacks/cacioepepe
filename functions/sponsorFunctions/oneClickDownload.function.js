@@ -29,8 +29,6 @@ module.exports.oneClickDownload = functions
       paths.push(element.data().resume[1]);
     });
 
-    // console.log(paths);
-    // console.log(names);
     const bucket = storage.bucket("bostonhacks-cacioepepe.appspot.com");
 
     // Creates a temporary file path
@@ -44,8 +42,6 @@ module.exports.oneClickDownload = functions
     });
     archive.pipe(output);
 
-    console.log("Zip file created.");
-
     // Downloads the resumes to the tempfile
     var uuid = UUID();
     for (var i = 0; i < paths.length; i++) {
@@ -58,8 +54,6 @@ module.exports.oneClickDownload = functions
     }
     // Finalize the zip file with all the resumes inside
     await archive.finalize();
-
-    console.log("Zip file finalized.");
 
     // Uploads resume back to allResumes folder in Firebase Storage
     await bucket.upload(tempFilePath + "/Resume.zip", {
