@@ -276,14 +276,14 @@
                 class="pt-3"
                 counter="200"
                 :counter-value="wordCounter"
-                label="Why do you want to participate in BostonHacks? (200 word max) "
+                label="Why do you want to come to BostonHacks? (200 word max) "
                 :rules="essayRules.concat(requiredRule)"
                 v-model="essayAns"
                 outlined
               ></v-textarea>
               <Filedrop
-                v-on:change="test"
-                v-on:click="test"
+                v-on:change="fileUpload"
+                v-on:click="fileUpload"
                 :loading.sync="resumeLoading"
                 :file="resume"
               />
@@ -326,13 +326,12 @@
               <v-switch
                 class="pl-3"
                 v-model="miniHacks"
-                label="Did you attend BostonHacks Mini Hacks 2020?"
+                label="Did you attend BostonHacks Virtual MiniHacks 2020?"
               ></v-switch>
               <v-switch
                 class="pl-3"
                 v-model="marketingData"
                 label="Do you consent to you picture or your likeness being used in future BostonHacks marketing material?"
-                :rules="requiredRule"
               ></v-switch>
               <v-switch
                 class="pl-3"
@@ -517,7 +516,7 @@ export default {
         v =>
           /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=+$,\w]+@)[A-Za-z0-9.-]+)((?:\/[+~%/.\w-_]*)?\??(?:[-+=&;%@.\w_]*)#?(?:[\w]*))?)/.test(
             v
-          ) || "Please enter a valid URL address"
+          ) || "Please enter a valid URL"
       ],
       timeZoneList: [
         "GMT+1:00",
@@ -1113,7 +1112,7 @@ export default {
     }
   },
   methods: {
-    test(value) {
+    fileUpload(value) {
       if (value == "viewFile") {
         window.open(this.resume[0], "_blank");
       } else if (value == "deleteFile") {
@@ -1261,9 +1260,6 @@ export default {
         this.educationLevel == null ||
         this.university == null ||
         this.major == null ||
-        this.resume == null ||
-        this.marketingData == false ||
-        this.marketingData == null ||
         this.tAndC1 == false ||
         this.tAndC1 == null ||
         this.tAndC2 == false ||
