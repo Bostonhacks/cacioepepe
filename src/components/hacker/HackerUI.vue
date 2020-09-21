@@ -1,15 +1,19 @@
 <!-- [Started, Submitted, Rejected, Waitlisted, Accepted, Confirmed, Declined, Checked In] -->
 <template>
-  <div class="white--text sky-background pt-16">
-    <CountdownTimer class="py-10" v-if="this.user.applicationStatus == 7" />
-    <!-- <Timeline :applicationStatus="this.user.applicationStatus" /> -->
-    <v-row class=" flex-column align-center display-3 font-weight-bold">
+  <div class="white--text blue pt-16">
+    <CountdownTimer class="py-10" v-if="this.user.applicationStatus === 7" />
+    <v-row justify="center">
+      <v-col cols="12" sm="10" md="8" xl="6">
+        <Timeline :applicationStatus="this.user.applicationStatus" />
+      </v-col>
+    </v-row>
+    <v-row class="flex-column align-center display-3 font-weight-bold">
       <v-col cols="8">
         <v-row class="justify-center">
           <div>
             Application Status: {{ status[this.user.applicationStatus] }}
           </div>
-          <div class="display-1" v-if="this.user.applicationStatus == 0">
+          <div class="display-1" v-if="this.user.applicationStatus === 0">
             To complete your application, click
             <button
               class="text-decoration-underline"
@@ -18,7 +22,7 @@
               here
             </button>
           </div>
-          <div class="display-1" v-if="this.user.applicationStatus == 1">
+          <div class="display-1" v-if="this.user.applicationStatus === 1">
             You're all set! We'll let you know as soon as there's an update to
             your application.
           </div>
@@ -26,17 +30,19 @@
       </v-col>
     </v-row>
     <grasstop class="mb-n2" />
-    <div class="grass-background">
+    <div class="green">
       <v-row no-gutters class="justify-space-between">
-        <v-col sm="4" md="2"> <Tree /> </v-col
-        ><v-col sm="4" md="2">
+        <v-col sm="4" md="2">
+          <Tree />
+        </v-col>
+        <v-col sm="4" md="2">
           <Tree id="tree2" />
         </v-col>
         <v-col v-if="!this.$vuetify.breakpoint.mobile" sm="4" md="2">
           <Tree id="tree3" />
         </v-col>
       </v-row>
-      <div v-if="this.user.applicationStatus == 7">
+      <div v-if="this.user.applicationStatus === 7">
         <MentorList />
         <v-row>
           <v-col>
@@ -54,7 +60,7 @@
       </div>
     </div>
 
-    <div class="grass-bottom">
+    <div class="green darken-1">
       <grassbottom />
       <v-row class="justify-center">
         <h3 class="display-2 header text-center">
@@ -69,7 +75,7 @@
 // import { functions } from "@/firebase/init";
 // import store from "@/store/index";
 import CountdownTimer from "./CountdownTimer";
-// import Timeline from "./Timeline.svg.vue";
+import Timeline from "./Timeline/Timeline.svg.vue";
 import Tree from "@/components/common/SVG/Tree.vue";
 import grasstop from "./grasstop.svg.vue";
 import grassbottom from "./grassbottom.svg.vue";
@@ -88,7 +94,8 @@ export default {
     MentorList,
     Schedule,
     SlackChannels,
-    Challenges
+    Challenges,
+    Timeline
   },
   methods: {
     pushApplication() {
@@ -163,15 +170,6 @@ export default {
 </script>
 
 <style scoped>
-.sky-background {
-  background-color: #80d2ff;
-}
-.grass-background {
-  background-color: #53d186;
-}
-.grass-bottom {
-  background-color: #4cbf7b;
-}
 #tree1 {
   position: relative;
   top: -10rem;
