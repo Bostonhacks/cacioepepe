@@ -57,27 +57,23 @@
         class="fancyLine"
       />
 
-      <circle
-        v-for="stage in stages"
-        :cx="stage.column * 44 + 12"
-        :cy="stage.vertical ? 50 + stage.vertical : 50"
-        r="10"
-        :fill="stage.color"
-        :key="stage.color"
-        @mouseenter="currentStage = stage.column"
-      />
-
       <TextElements />
       <!-- <circle r="10" fill="red" cx="10" cy="10" /> -->
 
-      <Started transform="translate(2, 40)" />
+      <Started
+        :applicationStatus="applicationStatus"
+        transform="translate(2, 40)"
+      />
+      <Submitted
+        :applicationStatus="applicationStatus"
+        transform="translate(46,40)"
+      />
       <Confirmed transform="translate(134, 40)" />
       <Declined transform="translate(134, 5)" />
       <Accepted transform="translate(90,40)" />
       <Rejected transform="translate(90,5)" />
       <CheckedIn transform="translate(178,40)" />
       <Waitlisted transform="translate(90, 75)" />
-      <Submitted transform="translate(46,40)" />
     </svg>
   </div>
 </template>
