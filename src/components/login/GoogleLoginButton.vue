@@ -33,7 +33,7 @@ export default {
                 email: user.email,
                 uid: user.uid
               });
-            await store.dispatch("setUser");
+            await store.dispatch("getUser");
           }
 
           this.$router.push("/");
