@@ -187,7 +187,6 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   let user = store.state.user;
   if (user && to.name != "finishsignup" && notFullySignUp(user)) {
-    console.log(notFullySignUp(user));
     next({ name: "finishsignup" });
   } else {
     next();
@@ -221,7 +220,6 @@ router.beforeEach((to, from, next) => {
 });
 
 const notFullySignUp = user => {
-  console.log(user.role);
   return user.role == null;
 };
 

@@ -109,9 +109,9 @@
 
 <script>
 import firebase from "firebase/app";
-import { functions } from "@/firebase/init.js";
 import Cloud9 from "@/components/common/SVG/Cloud9";
 import GoogleLoginButton from "@/components/login/GoogleLoginButton.vue";
+import { db } from "@/firebase/init.js";
 
 export default {
   name: "SignUpForm",
@@ -135,20 +135,21 @@ export default {
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(() => {
           var user = firebase.auth().currentUser;
-          console.log("UserID: " + user.uid);
-          //fix to use db code
-          functions.httpsCallable("createNewUser")({
-            displayName: this.displayName,
-            email: this.email,
-            role: this.accountType.toLowerCase()
-          });
-          this.$router.push("/");
+          db.collection("users")
+            .doc(user.uid)
+            .set({
+              displayName: this.displayName,
+              email: this.email,
+              uid: user.uid,
+              role: this.accountType.toLowerCase()
+            })
+            .then(() => {
+              this.$router.push("/");
+            });
         })
         .catch(function(error) {
           // Handle Errors here.
-          var errorCode = error.code;
           var errorMessage = error.message;
-          console.log("Error code" + errorCode);
           alert(errorMessage);
         });
     }

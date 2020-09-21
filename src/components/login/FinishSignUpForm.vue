@@ -70,8 +70,8 @@
 </template>
 
 <script>
-// import firebase from "firebase/app";
-import { functions } from "@/firebase/init.js";
+import firebase from "firebase/app";
+import { db } from "@/firebase/init.js";
 import store from "../../store";
 import Cloud9 from "@/components/common/SVG/Cloud9";
 
@@ -89,12 +89,12 @@ export default {
   },
   methods: {
     async finishSignUp() {
-      console.log(this.displayName);
-      console.log(this.accountType);
-      functions
-        .httpsCallable("updateUserData")({
+      let user = firebase.auth().currentUser;
+      db.collection("users")
+        .doc(user.uid)
+        .update({
           displayName: this.displayName,
-          role: this.accountType
+          role: this.accountType.toLowerCase()
         })
         .then(() => {
           store.dispatch("setUser").then(() => {
