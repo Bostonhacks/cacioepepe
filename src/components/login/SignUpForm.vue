@@ -52,7 +52,7 @@
                 v-model="password"
                 type="password"
                 label="Password"
-                placeholder="*******"
+                placeholder="********"
               ></v-text-field>
               <v-select
                 v-if="rolechoice"

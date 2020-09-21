@@ -33,20 +33,20 @@
                 v-model="email"
                 type="text"
                 label="Email"
-                placeholder="jone@example.com"
+                placeholder="jane@example.com"
               ></v-text-field>
               <v-text-field
                 v-model="password"
                 type="password"
                 label="Password"
-                placeholder=" "
+                placeholder="********"
               ></v-text-field>
               <v-btn color="info white--text" @click="login"> Login </v-btn>
               <v-btn class="ml-2" color="red white--text" @click="cancel">
                 Cancel
               </v-btn>
-              <router-link class="ml-1" to="/resetPw"
-                >Forget Password?</router-link
+              <router-link class="ml-2" to="/resetPw"
+                >Forgot Password?</router-link
               >
             </v-container>
           </v-form>
