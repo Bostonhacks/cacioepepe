@@ -38,8 +38,6 @@ module.exports.selectEntryDownload = functions.https.onCall(
       info.push(toPush);
     });
     var csv = await converter.json2csvAsync(info); // converting json to csv
-    console.log(info);
-    console.log(csv);
 
     const bucket = storage.bucket("bostonhacks-cacioepepe.appspot.com");
 
@@ -49,7 +47,6 @@ module.exports.selectEntryDownload = functions.https.onCall(
       err
     ) {
       if (err) throw err;
-      console.log("File is created successfully.");
     });
     await bucket.upload(tempFilePath + "/selectedApplicantInfo.csv", {
       destination:
