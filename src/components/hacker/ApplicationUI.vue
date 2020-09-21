@@ -331,7 +331,7 @@
               <v-switch
                 class="pl-3"
                 v-model="marketingData"
-                label="Do you consent to you picture or your likeness being used in future BostonHacks marketing material?"
+                label="Do you consent to your picture or your likeness being used in future BostonHacks marketing material?"
               ></v-switch>
               <v-switch
                 class="pl-3"
