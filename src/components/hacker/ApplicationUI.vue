@@ -338,13 +338,53 @@
                 v-model="tAndC1"
                 label="Do you agree to abide by the MLH code of conduct?"
                 :rules="requiredRule"
-              ></v-switch>
+              >
+                <template v-slot:label>
+                  <div>
+                    Do you agree to abide by the
+                    <v-tooltip bottom>
+                      <template v-slot:activator="{ on }">
+                        <a
+                          target="_blank"
+                          href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
+                          @click.stop
+                          v-on="on"
+                        >
+                          MLH code of conduct
+                        </a>
+                      </template>
+                      Opens in new window
+                    </v-tooltip>
+                    ？
+                  </div>
+                </template>
+              </v-switch>
               <v-switch
                 class="pl-3"
                 v-model="tAndC2"
                 label="Do you agree to abide by the Boston University code of conduct?"
                 :rules="requiredRule"
-              ></v-switch>
+              >
+                <template v-slot:label>
+                  <div>
+                    Do you agree to abide by the
+                    <v-tooltip bottom>
+                      <template v-slot:activator="{ on }">
+                        <a
+                          target="_blank"
+                          href="http://www.bu.edu/dos/policies/student-responsibilities/"
+                          @click.stop
+                          v-on="on"
+                        >
+                          Boston University code of conduct
+                        </a>
+                      </template>
+                      Opens in new window
+                    </v-tooltip>
+                    ？
+                  </div>
+                </template>
+              </v-switch>
               <v-btn color="primary" class="mt-5" @click="submitApplication"
                 >Submit</v-btn
               >
