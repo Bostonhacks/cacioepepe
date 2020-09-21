@@ -181,11 +181,11 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <v-btn color="primary" class=" mt-5" @click="e1 = 2"
+              <v-btn color="primary" class="mt-5" @click="e1 = 2"
                 >Continue</v-btn
               >
 
-              <v-btn @click="saveApplication" class=" mt-5 ml-5">Save</v-btn>
+              <v-btn @click="saveApplication" class="mt-5 ml-5">Save</v-btn>
             </v-stepper-content>
 
             <v-stepper-content step="2">
@@ -253,7 +253,8 @@
                       <v-list-item>
                         <v-list-item-content>
                           <v-list-item-title>
-                            No results matching "<strong>{{ search }}</strong
+                            No results matching "
+                            <strong>{{ search }}</strong
                             >". Press <kbd>enter</kbd> to create a new one
                           </v-list-item-title>
                         </v-list-item-content>
@@ -263,11 +264,11 @@
                 </v-col>
               </v-row>
 
-              <v-btn color="primary" class=" mt-5" @click="e1 = 3"
+              <v-btn color="primary" class="mt-5" @click="e1 = 3"
                 >Continue</v-btn
               >
 
-              <v-btn @click="saveApplication" class=" mt-5 ml-5">Save</v-btn>
+              <v-btn @click="saveApplication" class="mt-5 ml-5">Save</v-btn>
             </v-stepper-content>
 
             <v-stepper-content step="3">
@@ -300,7 +301,6 @@
               <v-switch
                 v-model="attendedBHacks"
                 label="Have you attended BostonHacks?"
-                :rules="requiredRule"
                 class="pl-3"
               ></v-switch>
               <label>How many hackathons have you attended before?</label>
@@ -315,11 +315,11 @@
                 <v-radio label="3+" value="3+"></v-radio>
               </v-radio-group>
 
-              <v-btn color="primary" @click="e1 = 4" class=" mt-5"
+              <v-btn color="primary" @click="e1 = 4" class="mt-5"
                 >Continue</v-btn
               >
 
-              <v-btn @click="saveApplication" class=" mt-5 ml-5">Save</v-btn>
+              <v-btn @click="saveApplication" class="mt-5 ml-5">Save</v-btn>
             </v-stepper-content>
 
             <v-stepper-content step="4">
@@ -346,11 +346,11 @@
                 label="Do you agree to abide by the Boston University code of conduct?"
                 :rules="requiredRule"
               ></v-switch>
-              <v-btn color="primary" class=" mt-5" @click="submitApplication"
+              <v-btn color="primary" class="mt-5" @click="submitApplication"
                 >Submit</v-btn
               >
 
-              <v-btn @click="saveApplication" class=" mt-5 ml-5">Save</v-btn>
+              <v-btn @click="saveApplication" class="mt-5 ml-5">Save</v-btn>
             </v-stepper-content>
           </v-stepper-items>
         </v-form>
