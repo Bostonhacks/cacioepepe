@@ -38,16 +38,14 @@ export default {
           action: () => this.navigate("/sponsor")
         },
         {
-          condition: () => false,
-          // condition: () => this.user,
+          condition: () => this.user,
           text: "Dashboard",
           direction: "right",
           color: "#0098FF",
           action: () => this.navigate("/dashboard")
         },
         {
-          condition: () => false,
-          // condition: () => !this.user,
+          condition: () => !this.user,
           text: "Log In",
           direction: "left",
           color: "#4BBC79",

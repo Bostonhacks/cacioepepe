@@ -7,8 +7,9 @@ const fs = require("fs");
 const { Storage } = require("@google-cloud/storage");
 const storage = new Storage();
 
-module.exports.oneClickSelectDownload = functions.https.onCall(
-  async (data, context) => {
+module.exports.oneClickSelectDownload = functions
+  .runWith({ timeoutSeconds: 540, memory: "2GB" })
+  .https.onCall(async (data, context) => {
     if (!context.auth) {
       return { message: "Authentication Required!", code: 401 };
     }
@@ -21,9 +22,6 @@ module.exports.oneClickSelectDownload = functions.https.onCall(
       names.push(name[2]);
       paths.push(resume[1]);
     });
-
-    // console.log(paths);
-    // console.log(names);
 
     const bucket = storage.bucket("bostonhacks-cacioepepe.appspot.com");
 
@@ -38,8 +36,6 @@ module.exports.oneClickSelectDownload = functions.https.onCall(
     });
     archive.pipe(output);
 
-    console.log("Zip file created.");
-
     // Downloads the resumes to the tempfile
     var uuid = UUID();
     for (var i = 0; i < paths.length; i++) {
@@ -53,8 +49,6 @@ module.exports.oneClickSelectDownload = functions.https.onCall(
     // Finalize the zip file with all the resumes inside
     await archive.finalize();
 
-    console.log("Zip file finalized.");
-
     // Uploads resume back to allResumes folder in Firebase Storage
     await bucket.upload(tempFilePath + "/Resume.zip", {
       destination: "selectedResumes/" + context.auth.uid + "/" + "Resume.zip",
@@ -65,8 +59,6 @@ module.exports.oneClickSelectDownload = functions.https.onCall(
         }
       }
     });
-
-    console.log("Zip file generated.");
 
     return {
       URL:
@@ -82,5 +74,4 @@ module.exports.oneClickSelectDownload = functions.https.onCall(
         uuid,
       location: "selectedResumes/" + context.auth.uid + "/" + "Resume.zip"
     };
-  }
-);
+  });

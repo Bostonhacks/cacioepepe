@@ -57,7 +57,7 @@
 <script>
 import HackerTable from "@/components/common/HackerTable";
 import PieChart from "@/components/common/PieChart";
-import { functions } from "@/firebase/init";
+import { db } from "@/firebase/init";
 export default {
   name: "SponsorDashboard",
   components: {
@@ -152,7 +152,14 @@ export default {
         "Declined",
         "Checked In"
       ];
-      const out = await functions.httpsCallable("retrieveAllApplications")({});
+      const applications = db
+        .collection("applications")
+        .where("status", ">", 0);
+      var appData = await applications.get();
+      var out = [];
+      appData.forEach(element => {
+        out.push(element.data());
+      });
       const applicants = out.data;
       this.data = applicants.filter(applicant =>
         applicantStatus.includes(statusList[applicant.status])

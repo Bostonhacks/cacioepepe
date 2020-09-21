@@ -1,5 +1,5 @@
 <template>
-  <div v-if="'parseDate(date)' > 'parseDate(dealine)'">
+  <div v-if="'parseDate(date)' > 'parseDate(deadline)'">
     <RefuseUI />
   </div>
   <div v-else>
@@ -10,7 +10,7 @@
 <script>
 import ApplicationUI from "@/components/hacker/ApplicationUI";
 import RefuseUI from "@/components/reject/RefuseUI";
-import { functions } from "@/firebase/init";
+import { db } from "@/firebase/init";
 
 export default {
   data() {
@@ -25,15 +25,15 @@ export default {
   methods: {
     parseDate(date) {
       if (!date) return null;
-
       const [month, day, year] = date.split("/");
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     },
     async getDate() {
-      var out = await functions.httpsCallable("readDeadline")({});
-      this.deadline = out.data["finishTime"];
-      console.log(this.date);
-      console.log(this.deadline);
+      // readDeadline
+      const deadlineDb = db.collection("admin").doc("regDeadline");
+      var deadlineDoc = await deadlineDb.get();
+      var out = deadlineDoc.data();
+      this.deadline = out["finishTime"];
     }
   },
   components: {

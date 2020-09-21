@@ -108,7 +108,6 @@
               </v-flex>
             </v-row>
             <v-data-table
-              v-if="data != null"
               v-model="selected"
               show-select
               item-key="name"
@@ -117,8 +116,6 @@
               :items-per-page="5"
               class="elevation-1"
               :search="search"
-              :loading="data == null"
-              loading-text="Loading please wait ..."
             >
               <template v-slot:item.resume[0]="{ item }">
                 <button v-if="item.resume[0]">
@@ -297,7 +294,7 @@
 </template>
 
 <script>
-import { functions } from "@/firebase/init";
+import { functions, db } from "@/firebase/init";
 
 export default {
   name: "HackerTable",
@@ -369,8 +366,15 @@ export default {
       this.selected.forEach(entry => {
         UIDList.push(entry.uid);
       });
-      await functions.httpsCallable("massAcceptEmail")({
-        UIDList: UIDList
+      UIDList.forEach(async uid => {
+        const user = db.collection("users").doc(uid);
+        const application = db.collection("applications").doc(uid);
+        await user.update({
+          applicationStatus: 4
+        });
+        await application.update({
+          status: 4
+        });
       });
     },
     async downloadSelectedResumes() {
@@ -389,8 +393,15 @@ export default {
       this.selected.forEach(entry => {
         UIDList.push(entry.uid);
       });
-      await functions.httpsCallable("massRejectEmail")({
-        UIDList: UIDList
+      UIDList.forEach(async uid => {
+        const user = db.collection("users").doc(uid);
+        const application = db.collection("applications").doc(uid);
+        await user.update({
+          applicationStatus: 2
+        });
+        await application.update({
+          status: 2
+        });
       });
     },
     async waitlistApplicants() {
@@ -398,26 +409,54 @@ export default {
       this.selected.forEach(entry => {
         UIDList.push(entry.uid);
       });
-      await functions.httpsCallable("massWaitlistEmail")({
-        UIDList: UIDList
+      UIDList.forEach(async uid => {
+        const user = db.collection("users").doc(uid);
+        const application = db.collection("applications").doc(uid);
+        await user.update({
+          applicationStatus: 3
+        });
+        await application.update({
+          status: 3
+        });
       });
     },
     async save() {
       if (this.editItem.status == 2) {
-        await functions.httpsCallable("rejectApplicant")({
-          uid: this.editItem.uid
+        const user = db.collection("users").doc(this.editItem.uid);
+        const application = db
+          .collection("applications")
+          .doc(this.editItem.uid);
+        await user.update({
+          applicationStatus: 2
+        });
+        await application.update({
+          status: 2
         });
         Object.assign(this.data[this.editIndex], this.editItem);
         this.close();
       } else if (this.editItem.status == 3) {
-        await functions.httpsCallable("waitlistApplicant")({
-          uid: this.editItem.uid
+        const user = db.collection("users").doc(this.editItem.uid);
+        const application = db
+          .collection("applications")
+          .doc(this.editItem.uid);
+        await user.update({
+          applicationStatus: 3
+        });
+        await application.update({
+          status: 3
         });
         Object.assign(this.data[this.editIndex], this.editItem);
         this.close();
       } else if (this.editItem.status == 4) {
-        await functions.httpsCallable("acceptApplicant")({
-          uid: this.editItem.uid
+        const user = db.collection("users").doc(this.editItem.uid);
+        const application = db
+          .collection("applications")
+          .doc(this.editItem.uid);
+        await user.update({
+          applicationStatus: 4
+        });
+        await application.update({
+          status: 4
         });
         Object.assign(this.data[this.editIndex], this.editItem);
         this.close();

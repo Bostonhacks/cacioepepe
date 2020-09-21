@@ -1,9 +1,36 @@
 <template>
   <main class="pt-70px darkBlue">
-    <div class="darkBlue text--white white--text py-10">
+    <div
+      class="darkBlue text--white white--text py-10"
+      v-if="this.user.role == 'hacker'"
+    >
+      <HackerUI />
+    </div>
+    <div
+      class="darkBlue text--white white--text py-10"
+      v-if="this.user.role == 'admin'"
+    >
       <SponsorDashboard />
-      <VolunteerDashboard />
       <MentorDashboard />
+      <VolunteerDashboard />
+    </div>
+    <div
+      class="darkBlue text--white white--text py-10"
+      v-if="this.user.role == 'mentor'"
+    >
+      <MentorDashboard />
+    </div>
+    <div
+      class="darkBlue text--white white--text py-10"
+      v-if="this.user.role == 'volunteer'"
+    >
+      <VolunteerDashboard />
+    </div>
+    <div
+      class="darkBlue text--white white--text py-10"
+      v-if="this.user.role == 'sponsor'"
+    >
+      <SponsorDashboard />
     </div>
   </main>
 </template>
@@ -12,13 +39,15 @@
 import SponsorDashboard from "@/components/sponsor/SponsorDashboard";
 import VolunteerDashboard from "@/components/volunteer/VolunteerDashboard";
 import MentorDashboard from "@/components/mentor/MentorDashboard";
+import HackerUI from "@/components/hacker/HackerUI";
 
 export default {
   name: "Dashboard",
   components: {
     SponsorDashboard,
     VolunteerDashboard,
-    MentorDashboard
+    MentorDashboard,
+    HackerUI
   },
   computed: {
     user() {

@@ -131,6 +131,7 @@
       </v-sheet>
       <v-sheet height="600">
         <v-calendar
+          v-if="events"
           ref="calendar"
           v-model="focus"
           color="primary"
@@ -192,11 +193,13 @@
 </template>
 
 <script>
-import { functions } from "@/firebase/init";
+import { functions, db, arrayUnion } from "@/firebase/init";
 export default {
   name: "CalendarEvent",
+  props: ["loadEvents"],
   data: () => ({
     location: null,
+    events: null,
     scheduleType: null,
     start: new Date(),
     end: null,
@@ -216,7 +219,6 @@ export default {
     selectedEventIndex: null,
     selectedElement: null,
     selectedOpen: false,
-    events: [],
     colors: [
       "blue",
       "indigo",
@@ -237,12 +239,9 @@ export default {
       "Party"
     ]
   }),
-  async mounted() {
-    this.getEvents();
-  },
   methods: {
     async getEvents() {
-      var out = await functions.httpsCallable("readEvents")({});
+      var out = await functions.httpsCallable("readSchedules")({});
       if (out.data) {
         this.events = out.data;
       } else {
@@ -253,16 +252,24 @@ export default {
       this.dialog = false;
       if (Object.keys(this.selectedEvent).length > 0) {
         this.updateEvent();
-        console.log("update");
       } else {
-        await functions.httpsCallable("createSchedule")({
+        // createSchedule
+        var newEvent = {
           name: this.name,
           description: this.description,
           location: this.location,
           type: this.scheduleType,
           start: this.$refs.startTimePicker.formattedDatetime,
           end: this.$refs.endTimePicker.formattedDatetime
-        });
+        };
+        const eventSchedule = db.collection("admin").doc("schedules");
+        await eventSchedule
+          .update({
+            events: arrayUnion(newEvent)
+          })
+          .catch(function(error) {
+            console.error("Error: ", error);
+          });
         this.events.push({
           name: this.name,
           description: this.description,
@@ -323,14 +330,27 @@ export default {
       this.$refs.calendar.next();
     },
     async deleteEvent() {
-      await functions.httpsCallable("deleteSchedule")({
-        name: this.selectedEvent.name,
-        description: this.selectedEvent.description,
-        location: this.selectedEvent.location,
-        type: this.selectedEvent.scheduleType,
-        start: this.selectedEvent.start,
-        end: this.selectedEvent.end
-      });
+      // deleteSchedule
+      const schedsDb = db.collection("admin").doc("schedules");
+      let info = await schedsDb.get();
+      this.events = info
+        .data()
+        .events.filter(
+          schedule =>
+            schedule.name != this.selectedEvent.name &&
+            schedule.description != this.selectedEvent.description &&
+            schedule.location != this.selectedEvent.location &&
+            schedule.type != this.selectedEvent.scheduleType &&
+            schedule.start != this.selectedEvent.start &&
+            schedule.end != this.selectedEvent.end
+        );
+      await schedsDb
+        .update({
+          events: this.events
+        })
+        .catch(function(error) {
+          console.error("Error: ", error);
+        });
       this.events.splice(this.selectedEventIndex, 1);
       this.selectedOpen = false;
     },
@@ -365,6 +385,9 @@ export default {
 
       nativeEvent.stopPropagation();
     }
+  },
+  mounted() {
+    this.getEvents();
   }
 };
 </script>
