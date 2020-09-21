@@ -1394,6 +1394,7 @@ export default {
         tAndC2: false,
         miniHacks: false
       });
+      await store.dispatch("getUser");
     }
     this.loading = false;
     fetch(
