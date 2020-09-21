@@ -41,7 +41,7 @@
               v-model="accountType"
               :items="accountTypes"
             ></v-select>
-            <v-btn color="accent" class="mr-4" @click="finishSignUp">
+            <v-btn color="primary" class="mr-4" @click="finishSignUp">
               Submit
             </v-btn>
           </v-form>
@@ -90,6 +90,7 @@ export default {
   methods: {
     async finishSignUp() {
       let user = firebase.auth().currentUser;
+      // you cant update role, user must be created with the right role
       db.collection("users")
         .doc(user.uid)
         .update({

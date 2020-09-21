@@ -1341,7 +1341,7 @@ export default {
         educationLevel: null,
         university: null,
         language: null,
-        essayAns: null,
+        essayAns: "",
         major: null,
         minor: null,
         resume: null,
