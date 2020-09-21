@@ -40,8 +40,6 @@ module.exports.entryDownload = functions.https.onCall(async (data, context) => {
     info.push(toPush);
   });
   var csv = await converter.json2csvAsync(info); // converting json to csv
-  console.log(info);
-  console.log(csv);
 
   const bucket = storage.bucket("bostonhacks-cacioepepe.appspot.com");
 
@@ -49,7 +47,6 @@ module.exports.entryDownload = functions.https.onCall(async (data, context) => {
   const tempFilePath = os.tmpdir();
   fs.writeFile(tempFilePath + "/allApplicantInfo.csv", csv, function(err) {
     if (err) throw err;
-    console.log("File is created successfully.");
   });
   await bucket.upload(tempFilePath + "/allApplicantInfo.csv", {
     destination: "applicantInfo/" + context.auth.uid + "/applicants.csv",

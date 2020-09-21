@@ -1,5 +1,5 @@
 <template>
-  <div v-if="'parseDate(date)' > 'parseDate(dealine)'">
+  <div v-if="'parseDate(date)' > 'parseDate(deadline)'">
     <RefuseUI />
   </div>
   <div v-else>
@@ -25,7 +25,6 @@ export default {
   methods: {
     parseDate(date) {
       if (!date) return null;
-
       const [month, day, year] = date.split("/");
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     },
@@ -34,9 +33,7 @@ export default {
       const deadlineDb = db.collection("admin").doc("regDeadline");
       var deadlineDoc = await deadlineDb.get();
       var out = deadlineDoc.data();
-      this.deadline = out.data["finishTime"];
-      console.log(this.date);
-      console.log(this.deadline);
+      this.deadline = out["finishTime"];
     }
   },
   components: {
