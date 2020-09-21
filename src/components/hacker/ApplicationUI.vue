@@ -1319,7 +1319,7 @@ export default {
         firstName: null,
         lastName: null,
         phone: null,
-        countryCode: null,
+        countryCode: "United States +1",
         country: null,
         email: null,
         timeZone: null,
