@@ -20,7 +20,6 @@ export default {
         if (result.credential) {
           // The signed-in user info.
           var user = result.user;
-
           let userDbResult = await db
             .collection("users")
             .doc(user.uid)
@@ -50,7 +49,6 @@ export default {
     googleSignUp() {
       var provider = new firebase.auth.GoogleAuthProvider();
       firebase.auth().useDeviceLanguage();
-
       firebase.auth().signInWithRedirect(provider);
     }
   }
