@@ -1353,12 +1353,12 @@ export default {
         githubURL: null,
         linkedinURL: null,
         otherURL: null,
-        beenToHackathon: null,
+        beenToHackathon: false,
         attendedBHacks: null,
-        marketingData: null,
-        tAndC1: null,
-        tAndC2: null,
-        miniHacks: null
+        marketingData: false,
+        tAndC1: false,
+        tAndC2: false,
+        miniHacks: false
       });
     }
     this.loading = false;
