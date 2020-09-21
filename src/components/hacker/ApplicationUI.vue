@@ -300,7 +300,7 @@
               <v-switch
                 v-model="attendedBHacks"
                 label="Have you attended BostonHacks?"
-                :rules="urlRules"
+                :rules="requiredRule"
               ></v-switch>
               <label>How many hackathons have you attended before?</label>
               <v-radio-group v-model="beenToHackathon" :rules="requiredRule">
@@ -510,7 +510,7 @@ export default {
       ],
       urlRules: [
         v =>
-          /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(
+          /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=+$,\w]+@)[A-Za-z0-9.-]+)((?:\/[+~%/.\w-_]*)?\??(?:[-+=&;%@.\w_]*)#?(?:[\w]*))?)/.test(
             v
           ) || "Please enter a valid URL address"
       ],
