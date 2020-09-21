@@ -7,20 +7,32 @@
         <Timeline :applicationStatus="this.user.applicationStatus" />
       </v-col>
     </v-row>
-    <v-row class="flex-column align-center display-3 font-weight-bold">
+    <v-row
+      class="flex-column align-center display-3 font-weight-bold  text-center"
+    >
       <v-col cols="8">
-        <v-row class="justify-center">
-          <div>
+        <v-row class="justify-center text-align-center">
+          <div class="pb-10" v-if="this.user.applicationStatus">
             Application Status: {{ status[this.user.applicationStatus] }}
           </div>
-          <div class="display-1" v-if="this.user.applicationStatus === 0">
-            To complete your application, click
-            <button
-              class="text-decoration-underline"
-              v-on:click="pushApplication()"
-            >
-              here
-            </button>
+          <div
+            class="display-3 font-weight-bold"
+            v-if="this.user.applicationStatus === 0"
+          >
+            <v-row class="pb-5">
+              Your application is not complete!
+            </v-row>
+            <v-row class="justify-center pt-5">
+              <v-btn
+                rounded
+                x-large
+                class="red--text pa-8 display-1 font-weight-bold"
+                style="text-transform: none !important"
+                v-on:click="pushApplication()"
+              >
+                Go to Application
+              </v-btn>
+            </v-row>
           </div>
           <div class="display-1" v-if="this.user.applicationStatus === 1">
             You're all set! We'll let you know as soon as there's an update to
@@ -68,17 +80,19 @@
         </h3>
       </v-row>
     </div>
+    <div class="green darken-1 mb-n4">
+      <footertop />
+    </div>
   </div>
 </template>
 
 <script>
-// import { functions } from "@/firebase/init";
-// import store from "@/store/index";
 import CountdownTimer from "./CountdownTimer";
 import Timeline from "./Timeline/Timeline.svg.vue";
 import Tree from "@/components/common/SVG/Tree.vue";
 import grasstop from "./grasstop.svg.vue";
 import grassbottom from "./grassbottom.svg.vue";
+import footertop from "./footertop.svg.vue";
 import MentorList from "./MentorList.vue";
 import Schedule from "./Schedule.vue";
 import SlackChannels from "./SlackChannels.vue";
@@ -91,6 +105,7 @@ export default {
     Tree,
     grasstop,
     grassbottom,
+    footertop,
     MentorList,
     Schedule,
     SlackChannels,
@@ -103,6 +118,7 @@ export default {
     }
   },
   data: () => ({
+    contentLoaded: false,
     null: "No result",
     searchM: "",
     searchC: "",
@@ -156,10 +172,10 @@ export default {
     ]
   }),
   mounted() {
-    if (this.user === null) {
+    if ((this.user == null) | (this.user.applicationStatus == null)) {
       this.pushApplication();
     }
-    this.user.applicationStatus = 0;
+    console.log(this.user.applicationStatus);
   },
   computed: {
     user() {
