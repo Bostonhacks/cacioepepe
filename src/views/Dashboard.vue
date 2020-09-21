@@ -1,9 +1,6 @@
 <template>
-  <main class="pt-70px darkBlue">
-    <div
-      class="darkBlue text--white white--text py-10"
-      v-if="this.user.role == 'user'"
-    >
+  <main class="blue pt-70px">
+    <div class="text--white white--text pt-10" v-if="this.user.role == 'user'">
       <HackerUI />
     </div>
     <div
