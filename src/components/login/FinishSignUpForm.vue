@@ -41,7 +41,7 @@
               v-model="accountType"
               :items="accountTypes"
             ></v-select>
-            <v-btn color="accent" class="mr-4" @click="finishSignUp">
+            <v-btn color="primary" class="mr-4" @click="finishSignUp">
               Submit
             </v-btn>
           </v-form>
@@ -70,9 +70,9 @@
 </template>
 
 <script>
-// import firebase from "firebase/app";
-import { functions } from "@/firebase/init.js";
-import store from "../../store";
+import firebase from "firebase/app";
+import { db } from "@/firebase/init.js";
+import store from "@/store";
 import Cloud9 from "@/components/common/SVG/Cloud9";
 
 export default {
@@ -89,19 +89,23 @@ export default {
   },
   methods: {
     async finishSignUp() {
-      console.log(this.displayName);
-      console.log(this.accountType);
-      functions
-        .httpsCallable("updateUserData")({
+      let user = firebase.auth().currentUser;
+      // you cant update role, user must be created with the right role
+      db.collection("users")
+        .doc(user.uid)
+        .update({
           displayName: this.displayName,
-          role: this.accountType
+          role: this.accountType.toLowerCase()
         })
         .then(() => {
-          store.dispatch("setUser").then(() => {
+          store.dispatch("getUser").then(() => {
             this.$router.push("/");
           });
         });
     }
+  },
+  mounted() {
+    this.displayName = firebase.auth().currentUser.displayName;
   }
 };
 </script>

@@ -48,25 +48,9 @@ const routes = [
     }
   },
   {
-    path: "/sponsorlogin",
-    name: "sponsorlogin",
-    component: () => import("@/views/Login.vue"),
-    meta: {
-      requiresAuth: false
-    }
-  },
-  {
     path: "/mentor",
     name: "mentor",
     component: () => import("@/views/Mentor.vue"),
-    meta: {
-      requiresAuth: false
-    }
-  },
-  {
-    path: "/mentorlogin",
-    name: "mentorlogin",
-    component: () => import("@/views/Login.vue"),
     meta: {
       requiresAuth: false
     }
@@ -83,14 +67,6 @@ const routes = [
     path: "/hacker",
     name: "hacker",
     component: () => import("@/views/Hacker.vue"),
-    meta: {
-      requiresAuth: false
-    }
-  },
-  {
-    path: "/volunteerlogin",
-    name: "volunteerlogin",
-    component: () => import("@/views/Login.vue"),
     meta: {
       requiresAuth: false
     }
@@ -120,17 +96,17 @@ const routes = [
       requiresAuth: false
     }
   },
-  {
+  /*  {
     path: "/finishsignup",
     name: "finishsignup",
     component: () => import("@/views/FinishSignUp.vue"),
     meta: {
       requiresAuth: true
     }
-  },
+  },*/
   {
-    path: "/resetPw",
-    name: "resetPw",
+    path: "/resetpw",
+    name: "resetpw",
     component: () => import("@/views/ResetPw.vue"),
     meta: {
       requiresAuth: false
@@ -184,15 +160,14 @@ const router = new VueRouter({
   }
 });
 
-router.beforeEach((to, from, next) => {
+/*router.beforeEach((to, from, next) => {
   let user = store.state.user;
   if (user && to.name != "finishsignup" && notFullySignUp(user)) {
-    console.log(notFullySignUp(user));
     next({ name: "finishsignup" });
   } else {
     next();
   }
-});
+});*/
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(rec => rec.meta.requiresAuth)) {
@@ -220,9 +195,8 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-const notFullySignUp = user => {
-  console.log(user.role);
+/*const notFullySignUp = user => {
   return user.role == null;
-};
+};*/
 
 export default router;
