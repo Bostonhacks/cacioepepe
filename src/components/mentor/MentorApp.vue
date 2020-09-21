@@ -325,6 +325,12 @@ export default {
           })
           .then(async data => {
             this.resume = [data.data.URL, data.data.location];
+            await db
+              .collection("mentors")
+              .doc(this.user.uid)
+              .update({
+                resume: this.resume
+              });
             this.uploadedResume = null;
           });
       };

@@ -827,7 +827,6 @@ export default {
       } else {
         this.uploadResume(value);
       }
-      console.log(value);
     },
     async saveApplication() {
       this.loading = true;
@@ -858,7 +857,6 @@ export default {
         tAndC1: this.tAndC1,
         tAndC2: this.tAndC2
       });
-      console.log("sucessfully saved");
       this.loading = false;
       this.$router.push({ name: "dashboard" });
     },
@@ -899,7 +897,6 @@ export default {
         tAndC2: this.tAndC2
       });
       await store.dispatch("getUser");
-      console.log("sucessfully submitted");
       this.loading = false;
       this.$router.push({ name: "dashboard" });
     },
@@ -918,6 +915,12 @@ export default {
           })
           .then(async data => {
             this.resume = [data.data.URL, data.data.location];
+            await db
+              .collection("applications")
+              .doc(this.user.uid)
+              .update({
+                resume: this.resume
+              });
             this.uploadedResume = null;
             this.resumeLoading = false;
           });
