@@ -185,7 +185,7 @@
                 >Continue</v-btn
               >
 
-              <v-btn @click="saveApplication" class=" mt-5">Save</v-btn>
+              <v-btn @click="saveApplication" class=" mt-5 ml-5">Save</v-btn>
             </v-stepper-content>
 
             <v-stepper-content step="2">
@@ -267,7 +267,7 @@
                 >Continue</v-btn
               >
 
-              <v-btn @click="saveApplication" class=" mt-5">Save</v-btn>
+              <v-btn @click="saveApplication" class=" mt-5 ml-5">Save</v-btn>
             </v-stepper-content>
 
             <v-stepper-content step="3">
@@ -301,9 +301,14 @@
                 v-model="attendedBHacks"
                 label="Have you attended BostonHacks?"
                 :rules="requiredRule"
+                class="pl-3"
               ></v-switch>
               <label>How many hackathons have you attended before?</label>
-              <v-radio-group v-model="beenToHackathon" :rules="requiredRule">
+              <v-radio-group
+                v-model="beenToHackathon"
+                :rules="requiredRule"
+                class="pl-5"
+              >
                 <v-radio label="0" value="0"></v-radio>
                 <v-radio label="1" value="1"></v-radio>
                 <v-radio label="2" value="2"></v-radio>
@@ -314,7 +319,7 @@
                 >Continue</v-btn
               >
 
-              <v-btn @click="saveApplication" class=" mt-5">Save</v-btn>
+              <v-btn @click="saveApplication" class=" mt-5 ml-5">Save</v-btn>
             </v-stepper-content>
 
             <v-stepper-content step="4">
@@ -345,7 +350,7 @@
                 >Submit</v-btn
               >
 
-              <v-btn @click="saveApplication" class=" mt-5">Save</v-btn>
+              <v-btn @click="saveApplication" class=" mt-5 ml-5">Save</v-btn>
             </v-stepper-content>
           </v-stepper-items>
         </v-form>
