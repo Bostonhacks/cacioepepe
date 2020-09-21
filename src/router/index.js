@@ -46,22 +46,22 @@ const routes = [
       requiresAuth: false
     }
   },
-  {
-    path: "/mentor",
-    name: "mentor",
-    component: () => import("@/views/Mentor.vue"),
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: "/volunteer",
-    name: "volunteer",
-    component: () => import("@/views/Volunteer.vue"),
-    meta: {
-      requiresAuth: true
-    }
-  },
+  // {
+  //   path: "/mentor",
+  //   name: "mentor",
+  //   component: () => import("@/views/Mentor.vue"),
+  //   meta: {
+  //     requiresAuth: true
+  //   }
+  // },
+  // {
+  //   path: "/volunteer",
+  //   name: "volunteer",
+  //   component: () => import("@/views/Volunteer.vue"),
+  //   meta: {
+  //     requiresAuth: true
+  //   }
+  // },
   {
     path: "/live",
     name: "live",
