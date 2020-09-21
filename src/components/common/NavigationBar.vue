@@ -38,7 +38,6 @@ export default {
           action: () => this.navigate("/sponsor")
         },
         {
-          // condition: () => false,
           condition: () => this.user,
           text: "Dashboard",
           direction: "right",
@@ -46,7 +45,6 @@ export default {
           action: () => this.navigate("/dashboard")
         },
         {
-          // condition: () => false,
           condition: () => !this.user,
           text: "Log In",
           direction: "left",
