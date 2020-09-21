@@ -72,7 +72,7 @@
 <script>
 import firebase from "firebase/app";
 import { db } from "@/firebase/init.js";
-import store from "../../store";
+import store from "@/store";
 import Cloud9 from "@/components/common/SVG/Cloud9";
 
 export default {
@@ -97,11 +97,14 @@ export default {
           role: this.accountType.toLowerCase()
         })
         .then(() => {
-          store.dispatch("setUser").then(() => {
+          store.dispatch("getUser").then(() => {
             this.$router.push("/");
           });
         });
     }
+  },
+  mounted() {
+    this.displayName = firebase.auth().currentUser.displayName;
   }
 };
 </script>

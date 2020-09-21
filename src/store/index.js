@@ -20,17 +20,6 @@ const mutations = {
 };
 
 const actions = {
-  setUser: async context => {
-    const user = firebase.auth().currentUser;
-    if (!user) {
-      return;
-    }
-    var raid = await db
-      .collection("users")
-      .doc(user.uid)
-      .get();
-    context.commit("setUser", raid.data());
-  },
   getUser: async context => {
     const user = firebase.auth().currentUser;
     if (!user) {
