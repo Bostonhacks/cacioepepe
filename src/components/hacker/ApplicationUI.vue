@@ -181,11 +181,11 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <v-btn color="primary" class=" mt-5" @click="e1 = 2"
+              <v-btn color="primary" class="mt-5" @click="e1 = 2"
                 >Continue</v-btn
               >
 
-              <v-btn @click="saveApplication" class=" mt-5">Save</v-btn>
+              <v-btn @click="saveApplication" class="mt-5 ml-5">Save</v-btn>
             </v-stepper-content>
 
             <v-stepper-content step="2">
@@ -253,7 +253,8 @@
                       <v-list-item>
                         <v-list-item-content>
                           <v-list-item-title>
-                            No results matching "<strong>{{ search }}</strong
+                            No results matching "
+                            <strong>{{ search }}</strong
                             >". Press <kbd>enter</kbd> to create a new one
                           </v-list-item-title>
                         </v-list-item-content>
@@ -263,11 +264,11 @@
                 </v-col>
               </v-row>
 
-              <v-btn color="primary" class=" mt-5" @click="e1 = 3"
+              <v-btn color="primary" class="mt-5" @click="e1 = 3"
                 >Continue</v-btn
               >
 
-              <v-btn @click="saveApplication" class=" mt-5">Save</v-btn>
+              <v-btn @click="saveApplication" class="mt-5 ml-5">Save</v-btn>
             </v-stepper-content>
 
             <v-stepper-content step="3">
@@ -289,29 +290,36 @@
               <v-text-field
                 v-model="githubURL"
                 label="Github URL"
+                :rules="urlRules"
               ></v-text-field>
               <v-text-field
                 v-model="linkedinURL"
                 label="LinkedIn URL"
+                :rules="urlRules"
               ></v-text-field>
               <v-text-field v-model="otherURL" label="Other URL"></v-text-field>
               <v-switch
                 v-model="attendedBHacks"
-                label="Have you attended BostonHacks?"
+                label="Have you attended BostonHacks previously?"
+                class="pl-3"
               ></v-switch>
-              <label>How many hackathons have you attended?</label>
-              <v-radio-group v-model="beenToHackathon" :rules="requiredRule">
+              <label>How many hackathons have you attended before?</label>
+              <v-radio-group
+                v-model="beenToHackathon"
+                :rules="requiredRule"
+                class="pl-5"
+              >
                 <v-radio label="0" value="0"></v-radio>
                 <v-radio label="1" value="1"></v-radio>
                 <v-radio label="2" value="2"></v-radio>
                 <v-radio label="3+" value="3+"></v-radio>
               </v-radio-group>
 
-              <v-btn color="primary" @click="e1 = 4" class=" mt-5"
+              <v-btn color="primary" @click="e1 = 4" class="mt-5"
                 >Continue</v-btn
               >
 
-              <v-btn @click="saveApplication" class=" mt-5">Save</v-btn>
+              <v-btn @click="saveApplication" class="mt-5 ml-5">Save</v-btn>
             </v-stepper-content>
 
             <v-stepper-content step="4">
@@ -323,26 +331,26 @@
               <v-switch
                 class="pl-3"
                 v-model="marketingData"
-                label="Do you consent to us stealing your data?"
+                label="Do you consent to you picture or your likeness being used in future BostonHacks marketing material?"
                 :rules="requiredRule"
               ></v-switch>
               <v-switch
                 class="pl-3"
                 v-model="tAndC1"
-                label="Do you accept the terms and conditions?"
+                label="Do you agree to abide by the MLH code of conduct?"
                 :rules="requiredRule"
               ></v-switch>
               <v-switch
                 class="pl-3"
                 v-model="tAndC2"
-                label="Do you accept the terms and conditions?"
+                label="Do you agree to abide by the Boston University code of conduct?"
                 :rules="requiredRule"
               ></v-switch>
-              <v-btn color="primary" class=" mt-5" @click="submitApplication"
+              <v-btn color="primary" class="mt-5" @click="submitApplication"
                 >Submit</v-btn
               >
 
-              <v-btn @click="saveApplication" class=" mt-5">Save</v-btn>
+              <v-btn @click="saveApplication" class="mt-5 ml-5">Save</v-btn>
             </v-stepper-content>
           </v-stepper-items>
         </v-form>
@@ -504,6 +512,12 @@ export default {
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             v
           ) || "Please enter a valid email"
+      ],
+      urlRules: [
+        v =>
+          /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=+$,\w]+@)[A-Za-z0-9.-]+)((?:\/[+~%/.\w-_]*)?\??(?:[-+=&;%@.\w_]*)#?(?:[\w]*))?)/.test(
+            v
+          ) || "Please enter a valid URL address"
       ],
       timeZoneList: [
         "GMT+1:00",
@@ -1330,7 +1344,7 @@ export default {
         educationLevel: null,
         university: null,
         language: null,
-        essayAns: null,
+        essayAns: "",
         major: null,
         minor: null,
         resume: null,
@@ -1338,11 +1352,11 @@ export default {
         linkedinURL: null,
         otherURL: null,
         beenToHackathon: null,
-        attendedBHacks: null,
-        marketingData: null,
-        tAndC1: null,
-        tAndC2: null,
-        miniHacks: null
+        attendedBHacks: false,
+        marketingData: false,
+        tAndC1: false,
+        tAndC2: false,
+        miniHacks: false
       });
     }
     this.loading = false;
