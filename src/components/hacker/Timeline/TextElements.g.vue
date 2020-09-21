@@ -1,0 +1,169 @@
+<template>
+  <g>
+    <rect
+      x="1"
+      y="61.5"
+      width="22"
+      height="8"
+      fill="#eee"
+      rx="5"
+      ry="20"
+      dominant-baseline="middle"
+      text-anchor="middle"
+    ></rect>
+    <text
+      x="12"
+      y="66"
+      font-size="5"
+      dominant-baseline="middle"
+      text-anchor="middle"
+      >Started</text
+    >
+
+    <rect
+      x="42"
+      y="61.5"
+      width="28"
+      height="8"
+      fill="#eee"
+      rx="5"
+      ry="20"
+      dominant-baseline="middle"
+      text-anchor="middle"
+    ></rect>
+    <text
+      x="56"
+      y="66"
+      font-size="5"
+      dominant-baseline="middle"
+      text-anchor="middle"
+      >Submitted</text
+    >
+
+    <rect
+      x="86"
+      y="61.5"
+      width="28"
+      height="8"
+      fill="#eee"
+      rx="5"
+      ry="20"
+      dominant-baseline="middle"
+      text-anchor="middle"
+    ></rect>
+    <text
+      x="100"
+      y="66"
+      font-size="5"
+      dominant-baseline="middle"
+      text-anchor="middle"
+      >Accepted</text
+    >
+
+    <rect
+      x="130"
+      y="61.5"
+      width="28"
+      height="8"
+      fill="#eee"
+      rx="5"
+      ry="20"
+      dominant-baseline="middle"
+      text-anchor="middle"
+    ></rect>
+    <text
+      x="144"
+      y="66"
+      font-size="5"
+      dominant-baseline="middle"
+      text-anchor="middle"
+      >Confirmed</text
+    >
+
+    <rect
+      x="174"
+      y="61.5"
+      width="28"
+      height="8"
+      fill="#eee"
+      rx="5"
+      ry="20"
+      dominant-baseline="middle"
+      text-anchor="middle"
+    ></rect>
+    <text
+      x="188"
+      y="66"
+      font-size="5"
+      dominant-baseline="middle"
+      text-anchor="middle"
+      >Checked In</text
+    >
+
+    <rect
+      x="86"
+      y="26.5"
+      width="28"
+      height="8"
+      fill="#eee"
+      rx="5"
+      ry="20"
+      dominant-baseline="middle"
+      text-anchor="middle"
+    ></rect>
+    <text
+      x="100"
+      y="31"
+      font-size="5"
+      dominant-baseline="middle"
+      text-anchor="middle"
+      >Rejected</text
+    >
+
+    <rect
+      x="86"
+      y="96.5"
+      width="28"
+      height="8"
+      fill="#eee"
+      rx="5"
+      ry="20"
+      dominant-baseline="middle"
+      text-anchor="middle"
+    ></rect>
+    <text
+      x="100"
+      y="101"
+      font-size="5"
+      dominant-baseline="middle"
+      text-anchor="middle"
+      >Waitlisted</text
+    >
+
+    <rect
+      x="130"
+      y="26.5"
+      width="28"
+      height="8"
+      fill="#eee"
+      rx="5"
+      ry="20"
+      dominant-baseline="middle"
+      text-anchor="middle"
+    ></rect>
+    <text
+      x="144"
+      y="31"
+      font-size="5"
+      dominant-baseline="middle"
+      text-anchor="middle"
+      >Declined</text
+    >
+  </g>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style></style>
