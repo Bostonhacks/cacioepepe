@@ -1,5 +1,5 @@
 <template>
-  <HackerUI class="blue" />
+  <HackerUI class="green" />
 </template>
 
 <script>

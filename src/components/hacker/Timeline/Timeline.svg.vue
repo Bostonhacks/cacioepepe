@@ -7,16 +7,16 @@
         y="0.5"
         width="199"
         height="99"
-        stroke="green"
+        stroke="#aaa"
         stroke-width="0"
       />
 
-      <line x1="12" y1="50" x2="188" y2="50" stroke="gray" stroke-width="4" />
+      <line x1="12" y1="50" x2="188" y2="50" stroke="#aaa" stroke-width="4" />
 
       <path
         d="M12 50 L56 50 L75 15 L100 15"
         fill="none"
-        stroke="lime"
+        stroke="#aaa"
         stroke-width="4"
         stroke-dasharray="108.82461547851562"
       />
@@ -24,7 +24,7 @@
       <path
         d="M12 50 L100 50 L122 15 L144 15"
         fill="none"
-        stroke="hotpink"
+        stroke="#aaa"
         stroke-width="4"
         id="hotpink"
         stroke-dasharray="151.34005737304688"
@@ -32,7 +32,7 @@
       <path
         d="M12 50 L56 50 L75 85 L100 85"
         fill="none"
-        stroke="cyan"
+        stroke="#aaa"
         stroke-width="4"
         id="cyan"
         stroke-dasharray="108.82461547851562"
@@ -40,7 +40,7 @@
       <path
         d="M12 50 L56 50 L56 50 L56 50"
         fill="none"
-        stroke="orange"
+        stroke="#aaa"
         stroke-width="4"
         id="orange"
       />
@@ -50,7 +50,7 @@
         y1="50"
         x2="188"
         y2="50"
-        stroke="red"
+        stroke="#aaa"
         stroke-width="4"
         stroke-dasharray="176"
         :stroke-dashoffset="176 - stages[currentStage].column * 44"
@@ -68,11 +68,16 @@
       />
 
       <TextElements />
+      <!-- <circle r="10" fill="red" cx="10" cy="10" /> -->
 
-      <Started width="20" height="20" x="2" y="40" />
-      <circle r="10" fill="red" cx="10" cy="10" />
-
-      <Confirmed transform="scale(0.065)" />
+      <Started transform="translate(2, 40)" />
+      <Confirmed transform="translate(134, 40)" />
+      <Declined transform="translate(134, 5)" />
+      <Accepted transform="translate(90,40)" />
+      <Rejected transform="translate(90,5)" />
+      <CheckedIn transform="translate(178,40)" />
+      <Waitlisted transform="translate(90, 75)" />
+      <Submitted transform="translate(46,40)" />
     </svg>
   </div>
 </template>
@@ -80,8 +85,13 @@
 <script>
 import Started from "./Started.svg.vue";
 import Confirmed from "./Confirmed.g";
-
+import Declined from "./Declined.g";
 import TextElements from "./TextElements.g";
+import Accepted from "./Accepted.g";
+import Rejected from "./Rejected.g";
+import CheckedIn from "./CheckedIn.g";
+import Waitlisted from "./Waitlisted.g";
+import Submitted from "./Submitted.g";
 
 const allStages = {
   STARTED: 0,
@@ -159,7 +169,17 @@ export default {
     }
   },
   props: ["applicationStatus"],
-  components: { TextElements, Started, Confirmed }
+  components: {
+    TextElements,
+    Started,
+    Confirmed,
+    Declined,
+    Accepted,
+    Rejected,
+    CheckedIn,
+    Waitlisted,
+    Submitted
+  }
 };
 </script>
 
