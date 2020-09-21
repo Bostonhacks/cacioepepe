@@ -175,7 +175,6 @@ export default {
     if ((this.user == null) | (this.user.applicationStatus == null)) {
       this.pushApplication();
     }
-    console.log(this.user.applicationStatus);
   },
   computed: {
     user() {
