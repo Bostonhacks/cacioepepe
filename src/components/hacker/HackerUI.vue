@@ -1,6 +1,6 @@
 <!-- [Started, Submitted, Rejected, Waitlisted, Accepted, Confirmed, Declined, Checked In] -->
 <template>
-  <div class="white--text blue pt-16">
+  <div class="white--text blue mt-n14">
     <CountdownTimer class="py-10" v-if="this.user.applicationStatus === 7" />
     <v-row justify="center">
       <v-col cols="12" sm="10" md="8" xl="6">
