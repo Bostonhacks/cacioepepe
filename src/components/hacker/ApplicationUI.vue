@@ -331,20 +331,60 @@
               <v-switch
                 class="pl-3"
                 v-model="marketingData"
-                label="Do you consent to you picture or your likeness being used in future BostonHacks marketing material?"
+                label="Do you consent to your picture or your likeness being used in future BostonHacks marketing material?"
               ></v-switch>
               <v-switch
                 class="pl-3"
                 v-model="tAndC1"
                 label="Do you agree to abide by the MLH code of conduct?"
                 :rules="requiredRule"
-              ></v-switch>
+              >
+                <template v-slot:label>
+                  <div>
+                    Do you agree to abide by the
+                    <v-tooltip bottom>
+                      <template v-slot:activator="{ on }">
+                        <a
+                          target="_blank"
+                          href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
+                          @click.stop
+                          v-on="on"
+                        >
+                          MLH code of conduct
+                        </a>
+                      </template>
+                      Opens in new window
+                    </v-tooltip>
+                    ？
+                  </div>
+                </template>
+              </v-switch>
               <v-switch
                 class="pl-3"
                 v-model="tAndC2"
                 label="Do you agree to abide by the Boston University code of conduct?"
                 :rules="requiredRule"
-              ></v-switch>
+              >
+                <template v-slot:label>
+                  <div>
+                    Do you agree to abide by the
+                    <v-tooltip bottom>
+                      <template v-slot:activator="{ on }">
+                        <a
+                          target="_blank"
+                          href="http://www.bu.edu/dos/policies/student-responsibilities/"
+                          @click.stop
+                          v-on="on"
+                        >
+                          Boston University code of conduct
+                        </a>
+                      </template>
+                      Opens in new window
+                    </v-tooltip>
+                    ？
+                  </div>
+                </template>
+              </v-switch>
               <v-btn color="primary" class="mt-5" @click="submitApplication"
                 >Submit</v-btn
               >
@@ -1354,6 +1394,7 @@ export default {
         tAndC2: false,
         miniHacks: false
       });
+      await store.dispatch("getUser");
     }
     this.loading = false;
     fetch(

@@ -51,7 +51,7 @@ const routes = [
     name: "mentor",
     component: () => import("@/views/Mentor.vue"),
     meta: {
-      requiresAuth: false
+      requiresAuth: true
     }
   },
   {
@@ -59,15 +59,7 @@ const routes = [
     name: "volunteer",
     component: () => import("@/views/Volunteer.vue"),
     meta: {
-      requiresAuth: false
-    }
-  },
-  {
-    path: "/hacker",
-    name: "hacker",
-    component: () => import("@/views/Hacker.vue"),
-    meta: {
-      requiresAuth: false
+      requiresAuth: true
     }
   },
   {
@@ -84,7 +76,7 @@ const routes = [
     name: "dashboard",
     component: () => import("@/views/Dashboard.vue"),
     meta: {
-      requiresAuth: false
+      requiresAuth: true
     }
   },
   {
