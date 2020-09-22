@@ -37,6 +37,14 @@ service cloud.firestore {
 			allow update: if hasRole("admin") || (sameUID(voldId));
 			allow delete: if hasRole("admin");
 		}
+
+		match /mentors/{voldId} {
+			allow list: if hasRole("admin");
+			allow get: if hasRole("admin") || (sameUID(voldId));
+			allow create: if hasRole("admin") || (sameUID(voldId));
+			allow update: if hasRole("admin") || (sameUID(voldId));
+			allow delete: if hasRole("admin");
+		}
 		
 		match /teams/{teamId}{
 			allow get: if hasRole("admin");
