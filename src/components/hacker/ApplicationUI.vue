@@ -1223,6 +1223,7 @@ export default {
           address: this.address,
           city: this.city,
           zip: this.zip,
+          email: this.email,
           phone: this.phone,
           age: this.age,
           gender: this.gender,
