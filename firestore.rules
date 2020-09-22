@@ -63,8 +63,11 @@ service cloud.firestore {
 		}
 		
 		match /admin/{docId} {
-			allow read: if true;
-			allow write: if hasRole("admin");
+			allow get: if true;
+			allow list: if true;
+			allow create: if hasRole("admin");
+			allow update: if hasRole("admin");
+			allow delete: if hasRole("admin");
 		}
 		
   }
