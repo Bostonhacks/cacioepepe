@@ -154,13 +154,13 @@ export default {
     return {
       email: null,
       password: null,
-      switchbt: false,
+      switchbt: false
     };
   },
   components: {
     Cloud9,
     GoogleLoginButton,
-    google,
+    google
   },
   methods: {
     cancel() {
@@ -197,7 +197,7 @@ export default {
           var errorMessage = error.message;
           alert(errorMessage);
         });
-    },
-  },
+    }
+  }
 };
 </script>
