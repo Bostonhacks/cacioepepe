@@ -132,7 +132,7 @@
                   <v-autocomplete
                     v-model="timeZone"
                     :items="timeZoneList"
-                    hint="Don't Google - Boston Time Zone is GMT+5"
+                    hint="Don't Google - Boston Time Zone is GMT-5"
                     color="primary"
                     label="Time Zone"
                     :rules="requiredRule"
