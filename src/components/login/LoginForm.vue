@@ -22,7 +22,57 @@
       </v-row>
     </v-container>
     <v-col cols="12" sm="6" md="4">
+      <h1 class="py-4 white--text basicTextShadow">Login</h1>
       <v-card>
+        <v-row>
+          <v-col></v-col>
+          <v-col>
+            <v-row
+              no-gutters
+              class="flex-column justify-center align-center pa-6"
+            >
+              <v-text-field
+                style="width: 100%;"
+                v-model="email"
+                type="text"
+                prepend-inner-icon="mdi-email-outline"
+                placeholder="Email"
+                outlined
+              ></v-text-field>
+              <v-text-field
+                style="width: 100%;"
+                v-model="password"
+                type="password"
+                prepend-inner-icon="mdi-lock-outline"
+                placeholder="Password"
+                outlined
+              ></v-text-field>
+              <router-link
+                style="z-index: 1"
+                class=" mt-n5 mb-3 align-self-end caption"
+                to="/resetPw"
+                >Forgot Password?</router-link
+              >
+
+              <v-btn elevation="10" class=" align-self-center red white--text"
+                >Login</v-btn
+              >
+              <v-subheader class="align-self-center font-weight-bold"
+                >OR</v-subheader
+              >
+              <p class="text-caption align-self-center">
+                Log in with
+              </p>
+              <v-btn class=" px-1 py-6 darkBlue white--text">
+                <google />
+              </v-btn>
+              <v-card-subtitle>Don't have an account?</v-card-subtitle>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-card>
+
+      <!-- <v-card>
         <v-card-title class="justify-center">
           <h3>Login</h3>
         </v-card-title>
@@ -66,13 +116,10 @@
             <v-card-text>
               Hackers, don't have an account?
               <router-link to="/signup">Sign Up</router-link>
-              <!-- <v-spacer></v-spacer>
-              Interested in sponsoring and helping?
-              <router-link to="/signup">Sign Up</router-link> -->
             </v-card-text>
           </v-form>
         </v-card-text>
-      </v-card>
+      </v-card> -->
     </v-col>
     <v-container class="mt-5">
       <v-row justify="space-between" class="mx-md-n8 mb-n16">
@@ -99,6 +146,7 @@
 import firebase from "firebase/app";
 import Cloud9 from "@/components/common/SVG/Cloud9";
 import GoogleLoginButton from "@/components/login/GoogleLoginButton.vue";
+import google from "./google.svg.vue";
 
 export default {
   name: "LoginForm",
@@ -106,12 +154,13 @@ export default {
     return {
       email: null,
       password: null,
-      switchbt: false
+      switchbt: false,
     };
   },
   components: {
     Cloud9,
-    GoogleLoginButton
+    GoogleLoginButton,
+    google,
   },
   methods: {
     cancel() {
@@ -148,7 +197,7 @@ export default {
           var errorMessage = error.message;
           alert(errorMessage);
         });
-    }
-  }
+    },
+  },
 };
 </script>
