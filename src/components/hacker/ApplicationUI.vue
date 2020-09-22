@@ -618,6 +618,7 @@ export default {
         "Bulgaria",
         "Burkina Faso",
         "Burundi",
+        "Canada",
         "Cambodia",
         "Cameroon",
         "Cape Verde",
