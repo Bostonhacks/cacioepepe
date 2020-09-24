@@ -6,7 +6,7 @@ import "firebase/firestore";
 
 const config = {
   apiKey: "AIzaSyBGE2R4SS_JZ3vXDPt-q8rJ6kjfE3u-iPE",
-  authDomain: "bostonhacks-cacioepepe.firebaseapp.com",
+  authDomain: "auth.bostonhacks.io",
   databaseURL: "https://bostonhacks-cacioepepe.firebaseio.com",
   projectId: "bostonhacks-cacioepepe",
   storageBucket: "bostonhacks-cacioepepe.appspot.com",
