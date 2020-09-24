@@ -1,8 +1,8 @@
-name: Deploy Hosting
+name: Staging Workflow
 
 on:
   push:
-    branches: [ prod ]
+    branches: [ master ]
     
 jobs:
   deploy:
@@ -17,6 +17,6 @@ jobs:
     - run: npm run build
     - uses: w9jds/firebase-action@v1.5.0
       with:
-        args: deploy
+        args: deploy --only hosting:staging
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
