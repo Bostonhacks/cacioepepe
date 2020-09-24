@@ -94,6 +94,7 @@
                 class="mr-4"
                 :href="resume[0]"
                 target="_blank"
+                rel="noreferrer"
                 >View Uploaded Resume</v-btn
               >
               <v-btn color="primary" class="mr-4" @click="deleteResume"
@@ -145,7 +146,7 @@
 </template>
 
 <script>
-import { functions } from "@/firebase/init";
+import { functions, db } from "@/firebase/init";
 export default {
   name: "mentor",
   data() {
@@ -289,19 +290,25 @@ export default {
   },
   methods: {
     async submitApplication() {
-      await functions.httpsCallable("submitMentorApplication")({
+      const userDoc = db.collection("users").doc(this.user.uid);
+      await userDoc.update({
+        applicationStatus: 1
+      });
+      const mentorDoc = db.collection("mentors").doc(this.user.uid);
+      await mentorDoc.add({
+        status: 1,
         first: this.first,
         last: this.last,
         phone: this.phone,
         gender: this.gender,
         pronoun: this.pronoun,
         educationLevel: this.educationLevel,
-        major: this.major,
         university: this.university,
         email: this.email,
         resume: this.resume,
         picturePermission: this.picturePermission,
-        tAandC: this.tAandC
+        tAandC: this.tAandC,
+        uid: this.user.uid
       });
       this.$router.push("/");
     },
@@ -318,6 +325,12 @@ export default {
           })
           .then(async data => {
             this.resume = [data.data.URL, data.data.location];
+            await db
+              .collection("mentors")
+              .doc(this.user.uid)
+              .update({
+                resume: this.resume
+              });
             this.uploadedResume = null;
           });
       };

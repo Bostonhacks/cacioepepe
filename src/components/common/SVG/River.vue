@@ -3,6 +3,7 @@
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="10 0 995 483.7"
+    class="optimizeTransform"
   >
     <defs>
       <path
@@ -91,4 +92,8 @@ export default {
 /* #river {
   transform: scale(1 0.5);
 } */
+
+.optimizeTransform {
+  transform: translateZ(0px);
+}
 </style>

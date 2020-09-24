@@ -1,22 +1,22 @@
 <template>
   <main class="pt-70px blue">
-    <div id="home" z-index="100" class="mb-n1 blue pt-16 pt-sm-0">
+    <div id="home" class="mb-n1 blue pt-16 pt-sm-0">
       <!-- spacing hack -->
       <v-row class="py-6 py-sm-0"></v-row>
       <v-container class="mt-5">
         <v-row justify="space-between" class="mx-md-n8 mb-n16">
-          <v-col cols="3" class="pa-0">
+          <v-col cols="4" class="pa-0">
             <Cloud9
               type="light"
               style=" position: relative"
               class="d-none d-sm-flex ml-sm-4 mt-n16"
             />
           </v-col>
-          <v-col cols="3">
+          <v-col cols="4">
             <Cloud9
               type="light"
               style=" position: relative"
-              class="d-none d-sm-flex ml-sm-4 mt-16 pt-16"
+              class="d-none d-sm-flex ml-sm-4 mt-1 pt-16"
             />
           </v-col>
         </v-row>
@@ -33,8 +33,7 @@
             <Feliz
               alt="pinata"
               class="mt-5"
-              style="max-height: 80vh; z-index: 100"
-              :z-index="1000"
+              style="max-height: 80vh; z-index: 1; position: relative"
             />
           </v-col>
           <v-col
@@ -44,7 +43,11 @@
             offset-sm="0"
             class="text-center white--text basicTextShadow"
           >
-            <BostonHacksLogoTextShadowed class="mb-5" />
+            <BostonHacksLogoTextShadowed
+              class="mb-5"
+              z-index="1"
+              style="position: relative; "
+            />
             <h2>Come hack with us!</h2>
             <h2 class="mb-5">November 14-15th, 2020</h2>
             <v-btn
@@ -113,7 +116,7 @@
     >
       <v-container>
         <v-row style="height: 0">
-          <v-col cols="3" class="pa-0">
+          <v-col cols="4" class="pa-0">
             <Cloud9
               alt="Blue Cloud"
               type="dark"
@@ -141,7 +144,7 @@
             </h2>
           </v-col>
         </v-row>
-        <v-row justify="end">
+        <v-row justify="end" style="position: relative; z-index: 1">
           <v-col cols="12" sm="6" md="5" xl="4">
             <div>
               <h2>Conservation for Society</h2>
@@ -155,7 +158,7 @@
             </div>
           </v-col>
         </v-row>
-        <v-row justify="center">
+        <v-row justify="center" style="position: relative; z-index: 1">
           <v-col cols="12" sm="6" md="5" xl="4">
             <h2>Smart Home</h2>
             <p>
@@ -165,7 +168,7 @@
             </p>
           </v-col>
         </v-row>
-        <v-row justify="start">
+        <v-row justify="start" style="position: relative; z-index: 1">
           <v-col cols="12" sm="6" md="5" xl="4">
             <h2>Fit-Tech</h2>
             <p>
@@ -179,14 +182,14 @@
         </v-row>
 
         <v-row justify="space-between">
-          <v-col cols="3" class="pa-0">
+          <v-col cols="4" class="pa-0">
             <Cloud9
               type="dark"
               alt="Blue Cloud"
               style="position: relative; top: 0rem;"
             />
           </v-col>
-          <v-col cols="3" class="pa-0">
+          <v-col cols="4" class="pa-0">
             <Cloud9
               type="dark"
               style=" position: relative; top: -20rem; "
@@ -334,6 +337,7 @@
                   alt="Our Code of Conduct"
                   class="white--text"
                   target="_blank"
+                  rel="noreferrer"
                   >Code of Conduct.</a
                 >
               </p>
@@ -430,13 +434,6 @@ export default {
 html {
   scroll-behavior: smooth;
 }
-
-#tracks {
-  /* background: #aee2ff; */
-  /* color: #1e75af; */
-  /* color: var(--v-darkBlue-darken1); */
-}
-
 #schedule {
   background: var(--v-green-base);
 }

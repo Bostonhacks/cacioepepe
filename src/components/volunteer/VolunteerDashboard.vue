@@ -8,6 +8,20 @@
             Welcome to the Volunteer Dashboard
           </h1>
           <v-card flat tile>
+            <v-card flat tile>
+              <v-card-actions>
+                <v-select
+                  :items="statusList"
+                  v-model="itemStatus"
+                  label="Status"
+                  multiple
+                  @change="filterStatus(volunteerCurrentData, volunteerData)"
+                ></v-select>
+              </v-card-actions>
+              <v-card-text>
+                <VolunteerTable :data="volunteerCurrentData" />
+              </v-card-text>
+            </v-card>
             <SlackComponent :channels="channels" />
           </v-card>
         </v-flex>

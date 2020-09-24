@@ -269,18 +269,18 @@
       <v-row no-gutters justify="center" class="grass-background">
         <v-col cols="12" md="8">
           <v-row class="d-flex flex-column-reverse">
-            <v-col cols="12" md="6" style="padding: 0px;">
+            <v-col cols="12" md="6">
               <h4 class="font-weight-bold">Twilio: Sam Agnew</h4>
               <p class="font-italic">
                 “I go to a ton of hackathons and BostonHacks is consistently one
-                of the best that I continue to sponsor selectedYear after
-                selectedYear. At BostonHacks, you get the best hackers in both
-                Boston and the Northeast at large. Without fail, the projects
-                that come from these student developers are unique and
-                awe-inspiring. I’m not really sure how the organizers manage to
-                attract such talent, but it might be that good hackers flock to
-                events that are well-run. But never mind all of that. The great
-                food is the real reason to go to BostonHacks!”
+                of the best that I continue to sponsor year after year. At
+                BostonHacks, you get the best hackers in both Boston and the
+                Northeast at large. Without fail, the projects that come from
+                these student developers are unique and awe-inspiring. I’m not
+                really sure how the organizers manage to attract such talent,
+                but it might be that good hackers flock to events that are
+                well-run. But never mind all of that. The great food is the real
+                reason to go to BostonHacks!”
               </p>
             </v-col>
           </v-row>
@@ -320,7 +320,7 @@
         style="width: 100vw; flex-direction: row-reverse"
         class="mt-10 mb-10"
       >
-        <v-col class="align-self-end col-12 col-md-5">
+        <v-col class="align-self-end col-12 col-md-5 pl-10">
           <object data="/assets/sponsor/bee.svg"></object>
         </v-col>
       </v-row>

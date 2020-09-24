@@ -1,3 +1,5 @@
+// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+//   .BundleAnalyzerPlugin;
 module.exports = {
   runtimeCompiler: true,
   productionSourceMap: false,
@@ -14,5 +16,12 @@ module.exports = {
       background_color: "#0098ff"
     }
   },
-  transpileDependencies: ["vuetify"]
+  transpileDependencies: ["vuetify"],
+  configureWebpack: {
+    externals: {
+      moment: "moment"
+    }
+    // uncomment this line to analyze build size
+    // plugins: [new BundleAnalyzerPlugin()]
+  }
 };

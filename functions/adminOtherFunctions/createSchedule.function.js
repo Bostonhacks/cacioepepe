@@ -49,16 +49,22 @@ module.exports.createSchedule = functions.https.onCall(
     const eventSchedule = db.collection("admin").doc("schedules");
     // var userData = await eventSchedule.get();
     // var events = userData.data().schedule;
-
-    // Append new event into the array
-    await eventSchedule
-      .update({
-        events: arrayUnion(newEvent)
-      })
-      .catch(function(error) {
-        console.error("Error: ", error);
+    let info = await eventSchedule.get();
+    this.schedules = info.data().events;
+    if (this.schedules.length == 0) {
+      eventSchedule.set({
+        events: [newEvent]
       });
-
+    } else {
+      // Append new event into the array
+      await eventSchedule
+        .update({
+          events: arrayUnion(newEvent)
+        })
+        .catch(function(error) {
+          console.error("Error: ", error);
+        });
+    }
     // Sort events based on startTime
     // events.sort((a, b) => a.startTime > b.startTime);
     // events.orderByValue(startTime);

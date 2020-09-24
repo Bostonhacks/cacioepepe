@@ -3,15 +3,21 @@
     <v-container>
       <v-row>
         <v-col cols="12" sm="4" md="1" class="pa-0 verticalCenter">
-          <router-link to="/" alt="Home Link" class="text-left">
+          <router-link
+            to="/"
+            aria-label="Home"
+            alt="Home Link"
+            class="text-left"
+          >
             <BostonHacksLogoTextShadowed class="max-height-75" />
           </router-link>
         </v-col>
-        <v-col cols="12" sm="3" md="2" offset-md="1">
+        <v-col cols="12" sm="3" md="3" offset-md="1">
           <v-row class="logos">
             <v-col cols="4">
               <a
                 href="https://www.facebook.com/bostonhacks"
+                aria-label="Facebook"
                 alt="Facebook Link"
               >
                 <FaceBookLogo class="max-height-75" />
@@ -20,13 +26,18 @@
             <v-col cols="4">
               <a
                 href="https://www.instagram.com/bostonhacks/"
+                aria-label="Instagram"
                 alt="Instagram Link"
               >
                 <InstagramLogo class="max-height-75" />
               </a>
             </v-col>
             <v-col cols="4">
-              <a href="https://twitter.com/boston_hacks" alt="Twitter Link">
+              <a
+                href="https://twitter.com/boston_hacks"
+                aria-label="Twitter"
+                alt="Twitter Link"
+              >
                 <TwitterLogo class="max-height-75" />
               </a>
             </v-col>
@@ -36,7 +47,7 @@
           cols="12"
           sm="5"
           offset-sm="0"
-          offset-md="3"
+          offset-md="2"
           class="text-center text-md-right verticalCenter"
         >
           <a class="email basicTextShadow" href="mailto:contact@bostonhacks.io"
@@ -76,7 +87,7 @@ export default {
 <style scoped>
 .email {
   color: white;
-  /* font-size: 1.5em; */
+  font-size: 1.5em;
 }
 .max-height-75 {
   max-height: 65px;
