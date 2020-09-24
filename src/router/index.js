@@ -104,6 +104,14 @@ const routes = [
       requiresAuth: false
     }
   },
+  {
+    path: "/privacy",
+    name: "privacy",
+    component: () => import("@/views/Privacy.vue"),
+    meta: {
+      requiresAuth: false
+    }
+  },
   // PLEASE MAKE SURE THAT THIS IS ALWAYS THE LAST ROUTE!!!
   {
     path: "*",
