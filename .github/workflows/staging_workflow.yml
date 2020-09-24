@@ -1,0 +1,22 @@
+name: Staging Workflow
+
+on:
+  push:
+    branches: [ master ]
+    
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@master
+      with: 
+        node-version: '14.x'
+    - run: npm install
+    - run: cd functions && npm install && cd ..
+    - run: npm run build
+    - uses: w9jds/firebase-action@v1.5.0
+      with:
+        args: deploy --only hosting:staging
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
