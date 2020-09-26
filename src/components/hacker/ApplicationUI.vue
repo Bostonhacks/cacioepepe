@@ -132,7 +132,7 @@
                   <v-autocomplete
                     v-model="timeZone"
                     :items="timeZoneList"
-                    hint="Don't Google - Boston Time Zone is GMT+5"
+                    hint="Don't Google - Boston Time Zone is GMT-5"
                     color="primary"
                     label="Time Zone"
                     :rules="requiredRule"
@@ -618,6 +618,7 @@ export default {
         "Bulgaria",
         "Burkina Faso",
         "Burundi",
+        "Canada",
         "Cambodia",
         "Cameroon",
         "Cape Verde",
@@ -1395,6 +1396,7 @@ export default {
         tAndC2: false,
         miniHacks: false
       });
+      await store.dispatch("getUser");
     }
     this.loading = false;
     fetch(

@@ -26,7 +26,7 @@ npm run build
 #### Testing Build
 
 ```bash
-serve -s dist
+serve -s dist OR firebase serve --only hosting
 ```
 
 ### Lints and fixes files
@@ -44,6 +44,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 With an authenticated @firebase/app object,
 
 ```javascript
+import { functions } from "../firebase/init";
 firebase.functions().httpsCallable("name-of-function")(input_data).then(data => {...})
 ```
 
@@ -60,15 +61,15 @@ db.collection("name-of-collection").doc("doc-identifier").action().then(data => 
 
 For more info on actions that can be performed, visit the official [Firebase Documentation](https://firebase.google.com/docs/firestore).
 
-## Deployment
+## Deploying Firebase Resources
 
-After running the buildscript, run the following command after installing the [Firebase CLI](https://firebase.google.com/docs/cli) to deploy the website as well as the functions.
+Run the following command after installing the [Firebase CLI](https://firebase.google.com/docs/cli) to deploy everything but the website.
 
 ```bash
-firebase deploy
+firebase deploy --except hosting
 ```
 
-To deploy only functions,
+To deploy functions,
 
 ```bash
 npm run deploy
@@ -78,6 +79,22 @@ To deploy a specific function,
 
 ```bash
 firebase deploy --only functions:(function name)
+```
+
+## Deploying the Website to Staging
+
+After running the buildscript, run the following command.
+
+```bash
+firebase deploy --only hosting:staging
+```
+
+## Deploying the Website to Production
+
+After running the buildscript, run the following command.
+
+```bash
+firebase deploy --only hosting:production
 ```
 
 ## Contributing
