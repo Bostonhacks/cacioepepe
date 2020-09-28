@@ -217,7 +217,9 @@
 
         <v-row>
           <v-col cols="12">
-            <h2 class="display-1 text-center font-weight-bold">Schedule</h2>
+            <h2 class="display-1 text-center font-weight-bold">
+              Schedule for November
+            </h2>
             <br />
           </v-col>
           <v-col cols="12">
@@ -229,7 +231,7 @@
                 :events="events"
                 color="primary"
                 type="4day"
-                class="rounded-lg "
+                class="rounded-lg"
               ></v-calendar>
             </v-sheet>
           </v-col>
@@ -449,7 +451,7 @@ export default {
     RStudio
   },
   data: () => ({
-    today: "2019-01-08",
+    today: "2019-11-14",
     events: [
       // {
       //   name: "Weekly Meeting",
@@ -458,19 +460,19 @@ export default {
       // },
       {
         name: "Agenda Coming Soon!",
-        start: "2019-01-08"
+        start: "2019-11-14"
       },
       {
         name: "Agenda Coming Soon!",
-        start: "2019-01-09"
+        start: "2019-11-15"
       },
       {
         name: "Agenda Coming Soon!",
-        start: "2019-01-10"
+        start: "2019-11-16"
       },
       {
         name: "Agenda Coming Soon!",
-        start: "2019-01-11"
+        start: "2019-11-17"
       }
       // {
       //   name: "Mash Potatoes",
@@ -515,7 +517,6 @@ html {
 .basicTextShadow {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
-
 .sectionTitle {
   font-weight: bold;
   font-size: 2.5rem;
