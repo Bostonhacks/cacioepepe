@@ -18,13 +18,12 @@ module.exports.oneClickSelectDownload = functions
     var paths = [];
     var names = [];
     resumeList.forEach(async resume => {
-      var name = resume[1].split("/");
-      names.push(name[2]);
-      paths.push(resume[1]);
+      if (resume != null) {
+        var name = resume[1].split("/");
+        names.push(name[2]);
+        paths.push(resume[1]);
+      }
     });
-
-    // console.log(paths);
-    // console.log(names);
 
     const bucket = storage.bucket("bostonhacks-cacioepepe.appspot.com");
 
@@ -39,8 +38,6 @@ module.exports.oneClickSelectDownload = functions
     });
     archive.pipe(output);
 
-    console.log("Zip file created.");
-
     // Downloads the resumes to the tempfile
     var uuid = UUID();
     for (var i = 0; i < paths.length; i++) {
@@ -54,8 +51,6 @@ module.exports.oneClickSelectDownload = functions
     // Finalize the zip file with all the resumes inside
     await archive.finalize();
 
-    console.log("Zip file finalized.");
-
     // Uploads resume back to allResumes folder in Firebase Storage
     await bucket.upload(tempFilePath + "/Resume.zip", {
       destination: "selectedResumes/" + context.auth.uid + "/" + "Resume.zip",
@@ -66,8 +61,6 @@ module.exports.oneClickSelectDownload = functions
         }
       }
     });
-
-    console.log("Zip file generated.");
 
     return {
       URL:

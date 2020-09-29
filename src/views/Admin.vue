@@ -223,12 +223,7 @@ export default {
             text: "Majors"
           }
         },
-        labels: [
-          "Computer Science",
-          "Electrical Engineering",
-          "Computer Engineering",
-          "Others"
-        ],
+        labels: ["CS", "EE", "CE", "Others"],
         datasets: [
           {
             label: "2020",
@@ -259,7 +254,6 @@ export default {
     async getEvents() {
       var out = await functions.httpsCallable("readSchedules")({});
       if (out.data) {
-        console.log(out.data);
         this.events = out.data;
       } else {
         this.events = [];
@@ -275,7 +269,13 @@ export default {
       }
     },
     async getData() {
-      const applicantStatus = ["Accepted", "Confirmed", "Checked In"];
+      const applicantStatus = [
+        "Started",
+        "Submitted",
+        "Accepted",
+        "Confirmed",
+        "Checked In"
+      ];
       const statusList = [
         "Started",
         "Submitted",
@@ -295,7 +295,7 @@ export default {
       appData.forEach(element => {
         out.push(element.data());
       });
-      const applicants = out.data;
+      const applicants = out;
       this.data = applicants.filter(applicant =>
         applicantStatus.includes(statusList[applicant.status])
       );
@@ -387,9 +387,9 @@ export default {
       volunteerOut.push(element.data());
     });
 
-    this.hackerData = hackOut.data;
-    this.mentorData = mentorOut.data;
-    this.volunteerData = volunteerOut.data;
+    this.hackerData = hackOut;
+    this.mentorData = mentorOut;
+    this.volunteerData = volunteerOut;
     this.hackerCurrentData = this.hackerData;
     this.volunteerCurrentData = this.volunteerData;
     this.mentorCurrentData = this.mentorData;

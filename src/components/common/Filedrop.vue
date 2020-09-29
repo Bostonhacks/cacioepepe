@@ -34,7 +34,7 @@
       </v-row>
       <v-row justify="center" class="mx-5 mb-5">
         <span class="title indigo--text text--darken-2"
-          >Drag'n drop or click to upload file!</span
+          >Upload your resume!</span
         >
       </v-row>
     </div>

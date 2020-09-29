@@ -37,6 +37,14 @@ service cloud.firestore {
 			allow update: if hasRole("admin") || (sameUID(voldId));
 			allow delete: if hasRole("admin");
 		}
+
+		match /mentors/{voldId} {
+			allow list: if hasRole("admin");
+			allow get: if hasRole("admin") || (sameUID(voldId));
+			allow create: if hasRole("admin") || (sameUID(voldId));
+			allow update: if hasRole("admin") || (sameUID(voldId));
+			allow delete: if hasRole("admin");
+		}
 		
 		match /teams/{teamId}{
 			allow get: if hasRole("admin");
@@ -55,8 +63,11 @@ service cloud.firestore {
 		}
 		
 		match /admin/{docId} {
-			allow read: if true;
-			allow write: if hasRole("admin");
+			allow get: if true;
+			allow list: if true;
+			allow create: if hasRole("admin");
+			allow update: if hasRole("admin");
+			allow delete: if hasRole("admin");
 		}
 		
   }

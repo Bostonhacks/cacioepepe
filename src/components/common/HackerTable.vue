@@ -110,15 +110,18 @@
             <v-data-table
               v-model="selected"
               show-select
-              item-key="name"
+              item-key="phone"
               :headers="headers"
               :items="data"
               :items-per-page="5"
               class="elevation-1"
               :search="search"
             >
+              <template v-slot:item.firstName="{ item }">
+                {{ item.firstName + " " + item.lastName }}
+              </template>
               <template v-slot:item.resume[0]="{ item }">
-                <button v-if="item.resume[0]">
+                <button v-if="item.resume">
                   <a :href="item.resume[0]" target="_blank" rel="noreferrer"
                     >Open</a
                   >
@@ -586,7 +589,7 @@ export default {
           text: "Name",
           align: "start",
           sortable: false,
-          value: "name"
+          value: "firstName"
         },
         {
           text: "Phone",
