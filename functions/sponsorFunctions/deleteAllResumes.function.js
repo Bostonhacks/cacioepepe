@@ -11,7 +11,6 @@ module.exports.deleteAllResumes = functions
 
     const bucket = storage.bucket("bostonhacks-cacioepepe.appspot.com");
     var path = "allResumes/" + context.auth.uid + "/" + "Resume.zip";
-
     // Deletes all resumes based on file path + user's uid
     await bucket.file(path).delete();
 
