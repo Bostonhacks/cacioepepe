@@ -3,6 +3,8 @@ import "firebase/firestore";
 import "firebase/auth";
 import "firebase/functions";
 import "firebase/firestore";
+import "firebase/performance";
+import "firebase/analytics";
 
 const config = {
   apiKey: "AIzaSyBGE2R4SS_JZ3vXDPt-q8rJ6kjfE3u-iPE",
@@ -19,6 +21,8 @@ const app = firebase.initializeApp(config);
 const auth = firebase.auth();
 const functions = firebase.functions();
 const db = firebase.firestore();
+firebase.performance();
+firebase.analytics();
 
 const arrayUnion = array => firebase.firestore.FieldValue.arrayUnion(array);
 
