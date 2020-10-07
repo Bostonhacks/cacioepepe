@@ -216,18 +216,30 @@
         </v-row>
 
         <v-row>
-          <v-col>
-            <h2 class="display-1 text-center font-weight-bold">Schedule</h2>
+          <v-col cols="12">
+            <h2 class="display-1 text-center font-weight-bold">
+              Schedule for November
+            </h2>
             <br />
-            <div style="min-height: 20em">
-              <div class="text-center">To Be Decided!</div>
-            </div>
+          </v-col>
+          <v-col cols="12">
+            <v-sheet height="400" class="rounded-lg">
+              <v-calendar
+                ref="calendar"
+                :now="today"
+                :value="today"
+                :events="events"
+                color="primary"
+                type="4day"
+                class="rounded-lg"
+              ></v-calendar>
+            </v-sheet>
           </v-col>
         </v-row>
 
         <v-row>
           <v-col>
-            <Tree style="position: relative;  top: -13rem;" />
+            <Tree style="position: relative;  top: 7rem;" />
           </v-col>
           <v-col>
             <Tree style="position: relative;  top: 1rem;" />
@@ -376,12 +388,20 @@
     </div>
 
     <div id="sponsors" class="pb-16 white--text basicTextShadow">
-      <h2 class="display-1 pt-15 text-center font-weight-bold">
-        <!-- Thank You To Our Sponsors! -->
-      </h2>
+      <v-container>
+        <h2 class="display-1 py-15 text-center font-weight-bold">
+          Thank You To Our Sponsors!
+        </h2>
+        <v-row justify="center">
+          <v-col cols="12" sm="8" md="6" lg="4">
+            <Twilio />
+          </v-col>
 
-      <!-- this is just a spacer placed here so the footer gets colored -->
-      <div class="my-16 py-16"></div>
+          <v-col cols="12" sm="8" md="6" lg="4">
+            <RStudio />
+          </v-col>
+        </v-row>
+      </v-container>
     </div>
   </main>
 </template>
@@ -399,6 +419,8 @@ import GreenHotAirBalloon from "@/components/common/SVG/GreenHotAirBalloon";
 import BostonHacksLogoTextShadowed from "@/components/common/SVG/BostonHacksLogoTextShadowed";
 import River from "@/components/common/SVG/River";
 import Feliz from "@/components/common/SVG/Feliz";
+import Twilio from "@/assets/sponsorlogos/Twilio.svg.vue";
+import RStudio from "@/assets/sponsorlogos/RStudio.svg.vue";
 
 export default {
   computed: {
@@ -424,8 +446,41 @@ export default {
     GreenHotAirBalloon,
     BostonHacksLogoTextShadowed,
     River,
-    Feliz
-  }
+    Feliz,
+    Twilio,
+    RStudio
+  },
+  data: () => ({
+    today: "2019-11-14",
+    events: [
+      // {
+      //   name: "Weekly Meeting",
+      //   start: "2019-01-07 09:00",
+      //   end: "2019-01-07 10:00"
+      // },
+      {
+        name: "Agenda Coming Soon!",
+        start: "2019-11-14"
+      },
+      {
+        name: "Agenda Coming Soon!",
+        start: "2019-11-15"
+      },
+      {
+        name: "Agenda Coming Soon!",
+        start: "2019-11-16"
+      },
+      {
+        name: "Agenda Coming Soon!",
+        start: "2019-11-17"
+      }
+      // {
+      //   name: "Mash Potatoes",
+      //   start: "2019-01-09 12:30",
+      //   end: "2019-01-09 15:30"
+      // }
+    ]
+  })
 };
 </script>
 
@@ -462,7 +517,6 @@ html {
 .basicTextShadow {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
-
 .sectionTitle {
   font-weight: bold;
   font-size: 2.5rem;

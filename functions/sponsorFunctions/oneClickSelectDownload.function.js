@@ -18,9 +18,11 @@ module.exports.oneClickSelectDownload = functions
     var paths = [];
     var names = [];
     resumeList.forEach(async resume => {
-      var name = resume[1].split("/");
-      names.push(name[2]);
-      paths.push(resume[1]);
+      if (resume != null) {
+        var name = resume[1].split("/");
+        names.push(name[2]);
+        paths.push(resume[1]);
+      }
     });
 
     const bucket = storage.bucket("bostonhacks-cacioepepe.appspot.com");
