@@ -216,7 +216,7 @@
                 <v-radio label="2" value="2"></v-radio>
                 <v-radio label="3+" value="3+"></v-radio>
               </v-radio-group>
-              <v-btn color="primary" @click="e1 = 4" class="mt-5"
+              <v-btn color="primary" @click="e1 = 3" class="mt-5"
                 >Continue</v-btn
               >
 
@@ -302,7 +302,7 @@
 </template>
 <script>
 import Cloud9 from "@/components/common/SVG/Cloud9";
-import db from "@/firebase/init";
+import { db } from "@/firebase/init";
 import store from "@/store/index";
 import BostonHacksLoadingLogo from "@/components/common/SVG/BostonHacksLoadingLogo";
 export default {
@@ -752,7 +752,7 @@ export default {
   methods: {
     async saveApplication() {
       this.loading = true;
-      const applications = db.collection("applications").doc(this.user.uid);
+      const applications = db.collection("volunteers").doc(this.user.uid);
       await applications.update({
         firstName: this.firstName,
         lastName: this.lastName,
@@ -785,9 +785,7 @@ export default {
         await userdb.update({
           applicationStatus: 1
         });
-        const userApplication = db
-          .collection("applications")
-          .doc(this.user.uid);
+        const userApplication = db.collection("volunteers").doc(this.user.uid);
         await userApplication.update({
           status: 1,
           firstName: this.firstName,
@@ -848,7 +846,7 @@ export default {
   async mounted() {
     this.loading = true;
     if (this.user.applicationStatus >= 0) {
-      const userApplication = db.collection("applications").doc(this.user.uid);
+      const userApplication = db.collection("volunteers").doc(this.user.uid);
       var userApplicationDoc = await userApplication.get();
       (this.language = userApplicationDoc.data().language),
         (this.firstName = userApplicationDoc.data().firstName),
@@ -873,7 +871,7 @@ export default {
       await userdb.update({
         applicationStatus: 0
       });
-      const userApplication = db.collection("applications").doc(this.user.uid);
+      const userApplication = db.collection("volunteers").doc(this.user.uid);
       await userApplication.set({
         uid: this.user.uid,
         status: 0,
@@ -897,9 +895,6 @@ export default {
         tAndC2: false
       });
       await store.dispatch("getUser");
-    }
-    if (this.user.role == "sponsor") {
-      this.$router.push({ name: "home" });
     }
     this.loading = false;
     fetch(

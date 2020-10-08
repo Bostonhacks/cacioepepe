@@ -922,7 +922,7 @@ export default {
     },
     async saveApplication() {
       this.loading = true;
-      const applications = db.collection("applications").doc(this.user.uid);
+      const applications = db.collection("mentors").doc(this.user.uid);
       await applications.update({
         language: this.language,
         essayAns: this.essayAns,
@@ -961,9 +961,7 @@ export default {
         await userdb.update({
           applicationStatus: 1
         });
-        const userApplication = db
-          .collection("applications")
-          .doc(this.user.uid);
+        const userApplication = db.collection("mentors").doc(this.user.uid);
         await userApplication.update({
           status: 1,
           uid: this.user.uid,
@@ -1016,7 +1014,7 @@ export default {
           .then(async data => {
             this.resume = [data.data.URL, data.data.location];
             await db
-              .collection("applications")
+              .collection("mentor applications")
               .doc(this.user.uid)
               .update({
                 resume: this.resume
@@ -1066,12 +1064,13 @@ export default {
   async mounted() {
     this.loading = true;
     if (this.user.applicationStatus >= 0) {
-      const userApplication = db.collection("applications").doc(this.user.uid);
+      const userApplication = db.collection("mentors").doc(this.user.uid);
       var userApplicationDoc = await userApplication.get();
       (this.essayAns = userApplicationDoc.data().essayAns),
         (this.language = userApplicationDoc.data().language),
         (this.firstName = userApplicationDoc.data().firstName),
         (this.lastName = userApplicationDoc.data().lastName),
+        (this.essayAns = userApplicationDoc.data().essayAns),
         (this.countryCode = userApplicationDoc.data().countryCode),
         (this.email = userApplicationDoc.data().email),
         (this.timeZone = userApplicationDoc.data().timeZone),
@@ -1097,7 +1096,7 @@ export default {
       await userdb.update({
         applicationStatus: 0
       });
-      const userApplication = db.collection("applications").doc(this.user.uid);
+      const userApplication = db.collection("mentors").doc(this.user.uid);
       await userApplication.set({
         uid: this.user.uid,
         status: 0,

@@ -1,11 +1,6 @@
 <template>
   <main class="pt-70px blue">
-    <MentorApp v-if="this.user.role == 'mentor'" />
-    <VolunteerApp v-else-if="this.user.role == 'volunteer'" />
-    <v-container
-      class="blue py-16"
-      v-else-if="this.user.role == 'hacker' || 'admin'"
-    >
+    <v-container class="blue py-16">
       <v-row style="height: 0">
         <v-col cols="4" class="pa-0">
           <Cloud9
@@ -137,7 +132,7 @@
                   <v-autocomplete
                     v-model="timeZone"
                     :items="timeZoneList"
-                    hint="Don't Google - Boston Time Zone is GMT-5"
+                    hint="Don't Google - Boston Time Zone is GMT+5"
                     color="primary"
                     label="Time Zone"
                     :rules="requiredRule"
@@ -415,15 +410,11 @@ import { functions, db } from "@/firebase/init";
 import store from "@/store/index";
 import BostonHacksLoadingLogo from "@/components/common/SVG/BostonHacksLoadingLogo";
 import Filedrop from "@/components/common/Filedrop";
-import VolunteerApp from "@/components/volunteer/VolunteerApp";
-import MentorApp from "@/components/mentor/MentorApp";
 export default {
   components: {
     Cloud9,
     BostonHacksLoadingLogo,
-    Filedrop,
-    VolunteerApp,
-    MentorApp
+    Filedrop
   },
   name: "ApplicationUI",
   data() {
@@ -1333,105 +1324,97 @@ export default {
     }
   },
   async mounted() {
-    if (this.user.role == "sponsor") {
-      this.$router.push({ name: "home" });
+    this.loading = true;
+    if (this.user.applicationStatus >= 0) {
+      const userApplication = db.collection("applications").doc(this.user.uid);
+      var userApplicationDoc = await userApplication.get();
+      (this.essayAns = userApplicationDoc.data().essayAns),
+        (this.language = userApplicationDoc.data().language),
+        (this.firstName = userApplicationDoc.data().firstName),
+        (this.lastName = userApplicationDoc.data().lastName),
+        (this.country = userApplicationDoc.data().country),
+        (this.countryCode = userApplicationDoc.data().countryCode),
+        (this.address = userApplicationDoc.data().address),
+        (this.zip = userApplicationDoc.data().zip),
+        (this.city = userApplicationDoc.data().city),
+        (this.email = userApplicationDoc.data().email),
+        (this.timeZone = userApplicationDoc.data().timeZone),
+        (this.phone = userApplicationDoc.data().phone),
+        (this.age = userApplicationDoc.data().age),
+        (this.gender = userApplicationDoc.data().gender),
+        (this.pronouns = userApplicationDoc.data().pronouns),
+        (this.educationLevel = userApplicationDoc.data().educationLevel),
+        (this.university = userApplicationDoc.data().university),
+        (this.major = userApplicationDoc.data().major),
+        (this.minor = userApplicationDoc.data().minor),
+        (this.resume = userApplicationDoc.data().resume),
+        (this.githubURL = userApplicationDoc.data().githubURL),
+        (this.linkedinURL = userApplicationDoc.data().linkedinURL),
+        (this.otherURL = userApplicationDoc.data().otherURL),
+        (this.beenToHackathon = userApplicationDoc.data().beenToHackathon),
+        (this.attendedBHacks = userApplicationDoc.data().attendedBHacks),
+        (this.marketingData = userApplicationDoc.data().marketingData),
+        (this.tAndC1 = userApplicationDoc.data().tAndC1),
+        (this.tAndC2 = userApplicationDoc.data().tAndC2);
+      this.miniHacks = userApplicationDoc.data().miniHacks;
     } else {
-      this.loading = true;
-      if (this.user.applicationStatus >= 0) {
-        const userApplication = db
-          .collection("applications")
-          .doc(this.user.uid);
-        var userApplicationDoc = await userApplication.get();
-        (this.essayAns = userApplicationDoc.data().essayAns),
-          (this.language = userApplicationDoc.data().language),
-          (this.firstName = userApplicationDoc.data().firstName),
-          (this.lastName = userApplicationDoc.data().lastName),
-          (this.country = userApplicationDoc.data().country),
-          (this.countryCode = userApplicationDoc.data().countryCode),
-          (this.address = userApplicationDoc.data().address),
-          (this.zip = userApplicationDoc.data().zip),
-          (this.city = userApplicationDoc.data().city),
-          (this.email = userApplicationDoc.data().email),
-          (this.timeZone = userApplicationDoc.data().timeZone),
-          (this.phone = userApplicationDoc.data().phone),
-          (this.age = userApplicationDoc.data().age),
-          (this.gender = userApplicationDoc.data().gender),
-          (this.pronouns = userApplicationDoc.data().pronouns),
-          (this.educationLevel = userApplicationDoc.data().educationLevel),
-          (this.university = userApplicationDoc.data().university),
-          (this.major = userApplicationDoc.data().major),
-          (this.minor = userApplicationDoc.data().minor),
-          (this.resume = userApplicationDoc.data().resume),
-          (this.githubURL = userApplicationDoc.data().githubURL),
-          (this.linkedinURL = userApplicationDoc.data().linkedinURL),
-          (this.otherURL = userApplicationDoc.data().otherURL),
-          (this.beenToHackathon = userApplicationDoc.data().beenToHackathon),
-          (this.attendedBHacks = userApplicationDoc.data().attendedBHacks),
-          (this.marketingData = userApplicationDoc.data().marketingData),
-          (this.tAndC1 = userApplicationDoc.data().tAndC1),
-          (this.tAndC2 = userApplicationDoc.data().tAndC2);
-        this.miniHacks = userApplicationDoc.data().miniHacks;
-      } else {
-        const userdb = db.collection("users").doc(this.user.uid);
-        await userdb.update({
-          applicationStatus: 0
-        });
-        const userApplication = db
-          .collection("applications")
-          .doc(this.user.uid);
-        await userApplication.set({
-          uid: this.user.uid,
-          status: 0,
-          firstName: null,
-          lastName: null,
-          phone: null,
-          countryCode: "United States +1",
-          country: null,
-          email: null,
-          timeZone: null,
-          address: null,
-          city: null,
-          zip: null,
-          age: null,
-          gender: null,
-          pronouns: null,
-          educationLevel: null,
-          university: null,
-          language: null,
-          essayAns: "",
-          major: null,
-          minor: null,
-          resume: null,
-          githubURL: null,
-          linkedinURL: null,
-          otherURL: null,
-          beenToHackathon: null,
-          attendedBHacks: false,
-          marketingData: false,
-          tAndC1: false,
-          tAndC2: false,
-          miniHacks: false
-        });
-        await store.dispatch("getUser");
-      }
-      this.loading = false;
-      fetch(
-        "https://raw.githubusercontent.com/MLH/mlh-policies/master/schools.csv"
-      )
-        .then(response => response.text())
-        .then(result => {
-          let schoolList = result.split("\n").map(item => {
-            item = item.startsWith('"')
-              ? item.substring(1, item.length - 2)
-              : item;
-            return item;
-          });
-          schoolList.splice(0, 1);
-          schoolList.push("Other");
-          54;
-          this.universityList = schoolList;
-        });
+      const userdb = db.collection("users").doc(this.user.uid);
+      await userdb.update({
+        applicationStatus: 0
+      });
+      const userApplication = db.collection("applications").doc(this.user.uid);
+      await userApplication.set({
+        uid: this.user.uid,
+        status: 0,
+        firstName: null,
+        lastName: null,
+        phone: null,
+        countryCode: "United States +1",
+        country: null,
+        email: null,
+        timeZone: null,
+        address: null,
+        city: null,
+        zip: null,
+        age: null,
+        gender: null,
+        pronouns: null,
+        educationLevel: null,
+        university: null,
+        language: null,
+        essayAns: "",
+        major: null,
+        minor: null,
+        resume: null,
+        githubURL: null,
+        linkedinURL: null,
+        otherURL: null,
+        beenToHackathon: null,
+        attendedBHacks: false,
+        marketingData: false,
+        tAndC1: false,
+        tAndC2: false,
+        miniHacks: false
+      });
+      await store.dispatch("getUser");
     }
+    this.loading = false;
+    fetch(
+      "https://raw.githubusercontent.com/MLH/mlh-policies/master/schools.csv"
+    )
+      .then(response => response.text())
+      .then(result => {
+        let schoolList = result.split("\n").map(item => {
+          item = item.startsWith('"')
+            ? item.substring(1, item.length - 2)
+            : item;
+          return item;
+        });
+        schoolList.splice(0, 1);
+        schoolList.push("Other");
+        54;
+        this.universityList = schoolList;
+      });
   },
   watch: {
     language(val) {
