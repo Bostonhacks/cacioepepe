@@ -9,7 +9,8 @@ module.exports.checkSlackUser = functions.https.onCall(async (_, context) => {
   if (!context.auth) {
     return { message: "Authentication Required!", code: 401 };
   }
-  const slackInfo = db.collection("admin").doc("slackAPIToken");
+  const slackInfo = db.collection("admin").doc("slackInfo");
+
   const docRef = db.collection("users").doc(context.auth.uid);
   var userEmail = await docRef.get().then(doc => {
     return doc.data().email;
