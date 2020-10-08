@@ -29,9 +29,6 @@ export default {
     };
   },
   async mounted() {
-    if (this.user.role == "sponsor" || this.user.role == "admin") {
-      this.$router.push({ name: "home" });
-    }
     this.getDate();
   },
   methods: {
