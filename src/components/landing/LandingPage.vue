@@ -223,17 +223,19 @@
             <br />
           </v-col>
           <v-col cols="12">
-            <v-sheet height="400" class="rounded-lg">
-              <v-calendar
-                ref="calendar"
-                :now="today"
-                :value="today"
-                :events="events"
-                color="primary"
-                type="4day"
-                class="rounded-lg"
-              ></v-calendar>
-            </v-sheet>
+            <!-- <v-sheet height="400" class="rounded-lg"> -->
+            <v-calendar
+              ref="calendar"
+              :events="events"
+              color="primary"
+              type="custom-daily"
+              start="2020-11-14"
+              end="2020-11-15"
+              class="rounded-lg"
+              first-time="08:00"
+              interval-count="16"
+            ></v-calendar>
+            <!-- </v-sheet> -->
           </v-col>
         </v-row>
 
@@ -451,34 +453,127 @@ export default {
     RStudio
   },
   data: () => ({
-    today: "2019-11-14",
+    today: "2020-11-14",
+    today2: "2020-11-15",
+    maxDays: 2,
+    weekdays: [5, 6],
     events: [
-      // {
-      //   name: "Weekly Meeting",
-      //   start: "2019-01-07 09:00",
-      //   end: "2019-01-07 10:00"
-      // },
       {
-        name: "Agenda Coming Soon!",
-        start: "2019-11-14"
+        name: "Opening Ceremony",
+        start: "2020-11-14 09:00",
+        end: "2020-11-14 09:45"
       },
       {
-        name: "Agenda Coming Soon!",
-        start: "2019-11-15"
+        name: "Team Formation",
+        start: "2020-11-14 09:45",
+        end: "2020-11-14 10:45"
       },
       {
-        name: "Agenda Coming Soon!",
-        start: "2019-11-16"
+        name: "Hacking",
+        start: "2020-11-14 10:45",
+        end: "2020-11-14 11:45"
       },
       {
-        name: "Agenda Coming Soon!",
-        start: "2019-11-17"
+        name: "Lunch Break",
+        start: "2020-11-14 11:45",
+        end: "2020-11-14 12:30"
+      },
+      {
+        name: "Workshop",
+        start: "2020-11-14 12:30",
+        end: "2020-11-14 13:30"
+      },
+      {
+        name: "Workshop",
+        start: "2020-11-14 14:00",
+        end: "2020-11-14 15:00"
+      },
+      {
+        name: "Workshop",
+        start: "2020-11-14 15:30",
+        end: "2020-11-14 16:30"
+      },
+      {
+        name: "Workshop",
+        start: "2020-11-14 17:00",
+        end: "2020-11-14 18:00"
+      },
+      {
+        name: "Dinner Break",
+        start: "2020-11-14 18:00",
+        end: "2020-11-14 18:30"
+      },
+      {
+        name: "Workshops",
+        start: "2020-11-14 19:15",
+        end: "2020-11-14 20:15"
+      },
+      {
+        name: "Workshops",
+        start: "2020-11-14 20:45",
+        end: "2020-11-14 21:45"
+      },
+      {
+        name: "Workshops",
+        start: "2020-11-14 22:15",
+        end: "2020-11-14 23:00"
+      },
+
+      {
+        name: "Morning Energizers",
+        start: "2020-11-15 09:00",
+        end: "2020-11-15 10:00"
+      },
+      {
+        name: "Brunch",
+        start: "2020-11-15 10:30",
+        end: "2020-11-15 11:30"
+      },
+      {
+        name: "Judging Sign-ups Open",
+        start: "2020-11-15 12:00",
+        end: "2020-11-15 12:00"
+      },
+      {
+        name: "Workshops",
+        start: "2020-11-15 12:15",
+        end: "2020-11-15 13:00"
+      },
+      {
+        name: "Judging Orientation",
+        start: "2020-11-15 13:30",
+        end: "2020-11-15 14:00"
+      },
+      {
+        name: "Judging Setup",
+        start: "2020-11-15 14:00",
+        end: "2020-11-15 14:45"
+      },
+      {
+        name: "Submissions and Signups Due",
+        start: "2020-11-15 14:45",
+        end: "2020-11-15 15:00"
+      },
+      {
+        name: "First Round Judging",
+        start: "2020-11-15 15:30",
+        end: "2020-11-15 17:00"
+      },
+      {
+        name: "Final Round Judging",
+        start: "2020-11-15 18:00",
+        end: "2020-11-15 19:00"
+      },
+      {
+        name: "Closing Ceremony",
+        start: "2020-11-15 19:15",
+        end: "2020-11-15 20:15"
+      },
+      {
+        name: "Loose Ends",
+        start: "2020-11-15 20:15",
+        end: "2020-11-15 21:15"
       }
-      // {
-      //   name: "Mash Potatoes",
-      //   start: "2019-01-09 12:30",
-      //   end: "2019-01-09 15:30"
-      // }
     ]
   })
 };
