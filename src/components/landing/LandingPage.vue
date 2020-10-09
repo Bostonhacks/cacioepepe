@@ -223,17 +223,43 @@
             <br />
           </v-col>
           <v-col cols="12">
-            <v-sheet height="400" class="rounded-lg">
-              <v-calendar
-                ref="calendar"
-                :now="today"
-                :value="today"
-                :events="events"
-                color="primary"
-                type="4day"
-                class="rounded-lg"
-              ></v-calendar>
-            </v-sheet>
+            <!-- <v-sheet height="400" class="rounded-lg"> -->
+            <v-calendar
+              ref="calendar"
+              :events="events"
+              color="primary"
+              type="custom-daily"
+              start="2020-11-14"
+              end="2020-11-15"
+              class="rounded-lg"
+              first-time="08:00"
+              interval-count="16"
+              @click:event="showEvent"
+            ></v-calendar>
+            <v-menu
+              v-model="selectedOpen"
+              :close-on-content-click="false"
+              :activator="selectedElement"
+              offset-x
+            >
+              <v-card color="grey lighten-4" min-width="350px" flat>
+                <v-toolbar color="red" dark>
+                  <v-toolbar-title
+                    v-html="selectedEvent.name"
+                  ></v-toolbar-title>
+                  <v-spacer></v-spacer>
+                </v-toolbar>
+                <v-card-text>
+                  <span v-html="selectedEvent.details"></span>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn text color="secondary" @click="selectedOpen = false">
+                    close
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-menu>
+            <!-- </v-sheet> -->
           </v-col>
         </v-row>
 
@@ -393,11 +419,11 @@
           Thank You To Our Sponsors!
         </h2>
         <v-row justify="center">
-          <v-col cols="12" sm="8" md="6" lg="4">
+          <v-col cols="9" sm="5" md="4" lg="3">
             <Twilio />
           </v-col>
 
-          <v-col cols="12" sm="8" md="6" lg="4">
+          <v-col cols="9" sm="5" md="4" lg="3">
             <RStudio />
           </v-col>
         </v-row>
@@ -432,6 +458,24 @@ export default {
     navigate(url) {
       window.scrollTo(0, 0);
       this.$router.push(`${url}`);
+    },
+    showEvent({ nativeEvent, event }) {
+      const open = () => {
+        this.selectedEvent = event;
+        this.selectedElement = nativeEvent.target;
+        setTimeout(() => {
+          this.selectedOpen = true;
+        }, 10);
+      };
+
+      if (this.selectedOpen) {
+        this.selectedOpen = false;
+        setTimeout(open, 10);
+      } else {
+        open();
+      }
+
+      nativeEvent.stopPropagation();
     }
   },
   components: {
@@ -451,34 +495,153 @@ export default {
     RStudio
   },
   data: () => ({
-    today: "2019-11-14",
+    selectedEvent: {},
+    selectedElement: null,
+    selectedOpen: false,
+    today: "2020-11-14",
+    today2: "2020-11-15",
+    maxDays: 2,
+    weekdays: [5, 6],
     events: [
-      // {
-      //   name: "Weekly Meeting",
-      //   start: "2019-01-07 09:00",
-      //   end: "2019-01-07 10:00"
-      // },
       {
-        name: "Agenda Coming Soon!",
-        start: "2019-11-14"
+        name: "Opening Ceremony",
+        start: "2020-11-14 09:00",
+        end: "2020-11-14 09:45",
+        details: "More details coming soon!"
       },
       {
-        name: "Agenda Coming Soon!",
-        start: "2019-11-15"
+        name: "Team Formation",
+        start: "2020-11-14 09:45",
+        end: "2020-11-14 10:45",
+        details: "More details coming soon!"
       },
       {
-        name: "Agenda Coming Soon!",
-        start: "2019-11-16"
+        name: "Hacking",
+        start: "2020-11-14 10:45",
+        end: "2020-11-14 11:45",
+        details: "More details coming soon!"
       },
       {
-        name: "Agenda Coming Soon!",
-        start: "2019-11-17"
+        name: "Lunch Break",
+        start: "2020-11-14 11:45",
+        end: "2020-11-14 12:30",
+        details: "More details coming soon!"
+      },
+      {
+        name: "Workshop",
+        start: "2020-11-14 12:30",
+        end: "2020-11-14 13:30",
+        details: "More details coming soon!"
+      },
+      {
+        name: "Workshop",
+        start: "2020-11-14 14:00",
+        end: "2020-11-14 15:00",
+        details: "More details coming soon!"
+      },
+      {
+        name: "Workshop",
+        start: "2020-11-14 15:30",
+        end: "2020-11-14 16:30",
+        details: "More details coming soon!"
+      },
+      {
+        name: "Workshop",
+        start: "2020-11-14 17:00",
+        end: "2020-11-14 18:00",
+        details: "More details coming soon!"
+      },
+      {
+        name: "Dinner Break",
+        start: "2020-11-14 18:00",
+        end: "2020-11-14 18:30",
+        details: "More details coming soon!"
+      },
+      {
+        name: "Workshops",
+        start: "2020-11-14 19:15",
+        end: "2020-11-14 20:15",
+        details: "More details coming soon!"
+      },
+      {
+        name: "Workshops",
+        start: "2020-11-14 20:45",
+        end: "2020-11-14 21:45",
+        details: "More details coming soon!"
+      },
+      {
+        name: "Workshops",
+        start: "2020-11-14 22:15",
+        end: "2020-11-14 23:00",
+        details: "More details coming soon!"
+      },
+
+      {
+        name: "Morning Energizers",
+        start: "2020-11-15 09:00",
+        end: "2020-11-15 10:00",
+        details: "More details coming soon!"
+      },
+      {
+        name: "Brunch",
+        start: "2020-11-15 10:30",
+        end: "2020-11-15 11:30",
+        details: "More details coming soon!"
+      },
+      {
+        name: "Judging Sign-ups Open",
+        start: "2020-11-15 12:00",
+        end: "2020-11-15 12:00",
+        details: "More details coming soon!"
+      },
+      {
+        name: "Workshops",
+        start: "2020-11-15 12:15",
+        end: "2020-11-15 13:00",
+        details: "More details coming soon!"
+      },
+      {
+        name: "Judging Orientation",
+        start: "2020-11-15 13:30",
+        end: "2020-11-15 14:00",
+        details: "More details coming soon!"
+      },
+      {
+        name: "Judging Setup",
+        start: "2020-11-15 14:00",
+        end: "2020-11-15 14:45",
+        details: "More details coming soon!"
+      },
+      {
+        name: "Submissions and Signups Due",
+        start: "2020-11-15 14:45",
+        end: "2020-11-15 15:00",
+        details: "More details coming soon!"
+      },
+      {
+        name: "First Round Judging",
+        start: "2020-11-15 15:30",
+        end: "2020-11-15 17:00",
+        details: "More details coming soon!"
+      },
+      {
+        name: "Final Round Judging",
+        start: "2020-11-15 18:00",
+        end: "2020-11-15 19:00",
+        details: "More details coming soon!"
+      },
+      {
+        name: "Closing Ceremony",
+        start: "2020-11-15 19:15",
+        end: "2020-11-15 20:15",
+        details: "More details coming soon!"
+      },
+      {
+        name: "Loose Ends",
+        start: "2020-11-15 20:15",
+        end: "2020-11-15 21:15",
+        details: "More details coming soon!"
       }
-      // {
-      //   name: "Mash Potatoes",
-      //   start: "2019-01-09 12:30",
-      //   end: "2019-01-09 15:30"
-      // }
     ]
   })
 };
