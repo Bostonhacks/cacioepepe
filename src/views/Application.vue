@@ -3,16 +3,25 @@
     <RefuseUI />
   </div>
   <div v-else>
-    <ApplicationUI />
+    <ApplicationUI v-if="this.user.role == 'hacker'" />
+    <MentorApp v-else-if="this.user.role == 'mentor'" />
+    <VolunteerApp v-else-if="this.user.role == 'volunteer'" />
   </div>
 </template>
 
 <script>
 import ApplicationUI from "@/components/hacker/ApplicationUI";
+import MentorApp from "@/components/mentor/MentorApp";
+import VolunteerApp from "@/components/volunteer/VolunteerApp";
 import RefuseUI from "@/components/reject/RefuseUI";
 import { db } from "@/firebase/init";
 
 export default {
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
+  },
   data() {
     return {
       date: new Date().toISOString().substr(0, 10),
@@ -38,7 +47,9 @@ export default {
   },
   components: {
     ApplicationUI,
-    RefuseUI
+    RefuseUI,
+    VolunteerApp,
+    MentorApp
   }
 };
 </script>
