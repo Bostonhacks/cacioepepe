@@ -421,11 +421,11 @@
           Thank You To Our Sponsors!
         </h2>
         <v-row justify="center">
-          <v-col cols="12" sm="8" md="6" lg="4">
+          <v-col cols="11" sm="7" md="5" lg="3">
             <Twilio />
           </v-col>
 
-          <v-col cols="12" sm="8" md="6" lg="4">
+          <v-col cols="11" sm="7" md="5" lg="3">
             <RStudio />
           </v-col>
         </v-row>
