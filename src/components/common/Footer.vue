@@ -43,9 +43,15 @@
               <v-row justify="center">
                 <v-col cols="12" class="text-center">
                   <p class="white--text">
-                    <a class="white--text" href="google.com">Code of Conduct</a>
+                    <a
+                      class="white--text"
+                      href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
+                      >MLH Code of Conduct</a
+                    >
                     |
-                    <a class="white--text" href="google.com">Privacy Policy</a>
+                    <a class="white--text" href="https://bostonhacks.io/privacy"
+                      >Privacy Policy</a
+                    >
                   </p>
                 </v-col>
               </v-row>
