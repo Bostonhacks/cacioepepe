@@ -9,7 +9,7 @@
           <Banner :bannerLink="bannerLink" />
         </button>
       </li>
-      <li>
+      <li v-if="!this.user">
         <a
           href="https://mlh.io/seasons/2021/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2021-season&utm_content=white"
           target="_blank"
