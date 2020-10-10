@@ -1430,14 +1430,12 @@ export default {
 .smallVertical .col-sm-6 {
   margin-bottom: -1em;
 }
-
 .loadingSVG {
   position: relative;
   top: 100%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 .v-menu__content {
   margin-top: 3rem !important;
 }

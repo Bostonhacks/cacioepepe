@@ -27,7 +27,8 @@ const routes = [
     name: "application",
     component: () => import("@/views/Application.vue"),
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      isEligible: true
     }
   },
   {
@@ -185,6 +186,23 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(rec => rec.meta.isAdmin)) {
     let user = store.state.user;
     if (user.role == "admin") {
+      next();
+    } else {
+      next({ name: "home" });
+    }
+  } else {
+    next();
+  }
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(rec => rec.meta.isEligible)) {
+    let user = store.state.user;
+    if (
+      user.role == "hacker" ||
+      user.role == "mentor" ||
+      user.role == "volunteer"
+    ) {
       next();
     } else {
       next({ name: "home" });

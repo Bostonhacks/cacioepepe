@@ -24,9 +24,11 @@ module.exports.oneClickDownload = functions
     var paths = [];
     var names = [];
     userData.forEach(element => {
-      var name = element.data().resume[1].split("/");
-      names.push(name[2]);
-      paths.push(element.data().resume[1]);
+      if (element.data.resume != null) {
+        var name = element.data().resume[1].split("/");
+        names.push(name[2]);
+        paths.push(element.data().resume[1]);
+      }
     });
 
     const bucket = storage.bucket("bostonhacks-cacioepepe.appspot.com");
