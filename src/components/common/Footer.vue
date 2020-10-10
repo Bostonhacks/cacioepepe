@@ -49,9 +49,14 @@
                       >MLH Code of Conduct</a
                     >
                     |
-                    <a class="white--text" href="https://bostonhacks.io/privacy"
-                      >Privacy Policy</a
+                    <router-link
+                      to="/privacy"
+                      aria-label="Privacy Policy"
+                      alt="Privacy Policy"
+                      class="white--text"
                     >
+                      Privacy Policy
+                    </router-link>
                   </p>
                 </v-col>
               </v-row>
