@@ -27,7 +27,8 @@ const routes = [
     name: "application",
     component: () => import("@/views/Application.vue"),
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      isEligible: true
     }
   },
   {
@@ -38,7 +39,6 @@ const routes = [
       requiresAuth: false
     }
   },
-
   {
     path: "/sponsor",
     name: "sponsor",
@@ -47,22 +47,22 @@ const routes = [
       requiresAuth: false
     }
   },
-  {
-    path: "/mentor",
-    name: "mentor",
-    component: () => import("@/views/Mentor.vue"),
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: "/volunteer",
-    name: "volunteer",
-    component: () => import("@/views/Volunteer.vue"),
-    meta: {
-      requiresAuth: true
-    }
-  },
+  // {
+  //   path: "/mentor",
+  //   name: "mentor",
+  //   component: () => import("@/views/Mentor.vue"),
+  //   meta: {
+  //     requiresAuth: true
+  //   }
+  // },
+  // {
+  //   path: "/volunteer",
+  //   name: "volunteer",
+  //   component: () => import("@/views/Volunteer.vue"),
+  //   meta: {
+  //     requiresAuth: true
+  //   }
+  // },
   {
     path: "/live",
     name: "live",
@@ -100,6 +100,14 @@ const routes = [
     path: "/resetpw",
     name: "resetpw",
     component: () => import("@/views/ResetPw.vue"),
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: "/privacy",
+    name: "privacy",
+    component: () => import("@/views/Privacy.vue"),
     meta: {
       requiresAuth: false
     }
@@ -178,6 +186,23 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(rec => rec.meta.isAdmin)) {
     let user = store.state.user;
     if (user.role == "admin") {
+      next();
+    } else {
+      next({ name: "home" });
+    }
+  } else {
+    next();
+  }
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(rec => rec.meta.isEligible)) {
+    let user = store.state.user;
+    if (
+      user.role == "hacker" ||
+      user.role == "mentor" ||
+      user.role == "volunteer"
+    ) {
       next();
     } else {
       next({ name: "home" });

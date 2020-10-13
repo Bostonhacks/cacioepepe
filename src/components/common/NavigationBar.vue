@@ -9,15 +9,23 @@
           <Banner :bannerLink="bannerLink" />
         </button>
       </li>
+      <li v-if="!this.user">
+        <a
+          href="https://mlh.io/seasons/2021/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2021-season&utm_content=white"
+          target="_blank"
+        >
+          <MLHBanner width="70px" />
+        </a>
+      </li>
     </ul>
   </nav>
 </template>
 
 <script>
 import Banner from "./Banner";
-
+import MLHBanner from "./MLHBanner.svg.vue";
 export default {
-  components: { Banner: Banner },
+  components: { Banner: Banner, MLHBanner: MLHBanner },
   name: "NavigationBar",
   data() {
     return {
