@@ -64,6 +64,7 @@
             </v-form>
             <v-btn
               class="btn mb-6 align-self-center red white--text"
+              rounded
               @click="signUp"
               >Sign Up</v-btn
             >
@@ -205,7 +206,7 @@ export default {
 
 .btn {
   text-transform: none;
-  width: 95%;
+  width: 70%;
 }
 
 .form-input {

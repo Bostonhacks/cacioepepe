@@ -102,8 +102,9 @@
               ></v-text-field>
             </v-form>
             <v-btn
-              style="text-transform: none; width: 95%;"
+              style="text-transform: none; width: 70%;"
               class="mb-6 align-self-center red white--text"
+              rounded
               @click="login()"
               >Log In</v-btn
             >
