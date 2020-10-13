@@ -161,7 +161,7 @@ import { db } from "@/firebase/init.js";
 
 export default {
   name: "GoogleLoginButton",
-  props: ["buttonName"],
+  props: ["buttonName", "role"],
   mounted() {
     firebase
       .auth()
@@ -182,7 +182,7 @@ export default {
                 displayName: user.displayName,
                 email: user.email,
                 uid: user.uid,
-                role: "hacker" // hardcoded until we use finish signup
+                role: this.role // hardcoded until we use finish signup
               });
             await store.dispatch("getUser");
           }

@@ -73,7 +73,10 @@
               <p>Or</p>
               <span></span>
             </v-row>
-            <GoogleLoginButton buttonName="Sign Up with Google" />
+            <GoogleLoginButton
+              buttonName="Sign Up with Google"
+              :role="this.accountType"
+            />
             <v-btn
               absolute
               dark
@@ -127,8 +130,8 @@ export default {
       displayName: null,
       accountType: "Hacker",
       accountTypes: ["Hacker", "Volunteer", "Mentor"],
-      formFields: [
-        {
+      formFields: {
+        name: {
           name: "Name",
           type: "text",
           rules: [value => !!value || "Name is Required."],
@@ -136,7 +139,7 @@ export default {
           placeholder: "Jane Doe",
           icon: "mdi-account-outline"
         },
-        {
+        email: {
           name: "Email",
           type: "text",
           rules: [
@@ -150,7 +153,7 @@ export default {
           placeholder: "jane@example.com",
           icon: "mdi-email-outline"
         },
-        {
+        password: {
           name: "Password",
           type: "password",
           rules: [value => !!value || "Password is Required."],
@@ -158,7 +161,7 @@ export default {
           placeholder: "••••••••••••",
           icon: "mdi-lock-outline"
         }
-      ]
+      }
     };
   },
   components: {
@@ -168,20 +171,20 @@ export default {
   },
   methods: {
     async signUp() {
-      this.name = this.formFields[0].model;
-      this.email = this.formFields[1].model;
-      this.password = this.formFields[2].model;
       if (!this.$refs.form.validate()) return;
       firebase
         .auth()
-        .createUserWithEmailAndPassword(this.email, this.password)
+        .createUserWithEmailAndPassword(
+          this.formFields.email.model,
+          this.formFields.password.model
+        )
         .then(() => {
           var user = firebase.auth().currentUser;
           db.collection("users")
             .doc(user.uid)
             .set({
-              displayName: this.displayName,
-              email: this.email,
+              displayName: this.formFields.name.model,
+              email: this.formFields.email.model,
               uid: user.uid,
               role: this.accountType.toLowerCase()
             })
