@@ -1,0 +1,6 @@
+diff a/src/views/SignUp.vue b/src/views/SignUp.vue	(rejected hunks)
+@@ -9,2 +9,2 @@ export default {
+-    SignUpForm,
+-  },
++    SignUpForm
++  }
