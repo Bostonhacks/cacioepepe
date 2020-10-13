@@ -1,58 +1,67 @@
 <template>
   <v-footer style="background: #683614">
     <v-container>
-      <v-row>
-        <v-col cols="12" sm="4" md="1" class="pa-0 verticalCenter">
-          <router-link
-            to="/"
-            aria-label="Home"
-            alt="Home Link"
-            class="text-left"
-          >
-            <BostonHacksLogoTextShadowed class="max-height-75" />
-          </router-link>
-        </v-col>
-        <v-col cols="12" sm="3" md="3" offset-md="1">
-          <v-row class="logos">
-            <v-col cols="4">
-              <a
-                href="https://www.facebook.com/bostonhacks"
-                aria-label="Facebook"
-                alt="Facebook Link"
-              >
-                <FaceBookLogo class="max-height-75" />
-              </a>
+      <v-row justify="center">
+        <v-col cols="10" sm="8" md="7" lg="7">
+          <v-row justify="center">
+            <v-col cols="10" sm="6" md="5" lg="4" class="pa-0 verticalCenter">
+              <router-link to="/" aria-label="Home" alt="Home Link">
+                <BostonHacksLogoTextShadowed />
+              </router-link>
             </v-col>
-            <v-col cols="4">
-              <a
-                href="https://www.instagram.com/bostonhacks/"
-                aria-label="Instagram"
-                alt="Instagram Link"
-              >
-                <InstagramLogo class="max-height-75" />
-              </a>
-            </v-col>
-            <v-col cols="4">
-              <a
-                href="https://twitter.com/boston_hacks"
-                aria-label="Twitter"
-                alt="Twitter Link"
-              >
-                <TwitterLogo class="max-height-75" />
-              </a>
+
+            <v-col cols="12" sm="6" md="7">
+              <v-row class="logos" justify="center">
+                <v-col>
+                  <a
+                    href="https://www.facebook.com/bostonhacks"
+                    aria-label="Facebook"
+                    alt="Facebook Link"
+                  >
+                    <FaceBookLogo class="socialLogo" />
+                  </a>
+                </v-col>
+                <v-col>
+                  <a
+                    href="https://www.instagram.com/bostonhacks/"
+                    aria-label="Instagram"
+                    alt="Instagram Link"
+                  >
+                    <InstagramLogo class="socialLogo" />
+                  </a>
+                </v-col>
+                <v-col>
+                  <a
+                    href="https://twitter.com/boston_hacks"
+                    aria-label="Twitter"
+                    alt="Twitter Link"
+                  >
+                    <TwitterLogo class="socialLogo" />
+                  </a>
+                </v-col>
+              </v-row>
+              <v-row justify="center">
+                <v-col cols="12" class="text-center">
+                  <p class="white--text">
+                    <a
+                      class="white--text"
+                      href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
+                      >MLH Code of Conduct</a
+                    >
+                    |
+                    <router-link
+                      to="/privacy"
+                      aria-label="Privacy Policy"
+                      alt="Privacy Policy"
+                      class="white--text"
+                    >
+                      Privacy Policy
+                    </router-link>
+                  </p>
+                </v-col>
+              </v-row>
             </v-col>
           </v-row>
-        </v-col>
-        <v-col
-          cols="12"
-          sm="5"
-          offset-sm="0"
-          offset-md="2"
-          class="text-center text-md-right verticalCenter"
-        >
-          <a class="email basicTextShadow" href="mailto:contact@bostonhacks.io"
-            >contact@bostonhacks.io</a
-          >
         </v-col>
       </v-row>
     </v-container>
@@ -85,12 +94,9 @@ export default {
 </script>
 
 <style scoped>
-.email {
-  color: white;
-  font-size: 1.5em;
-}
-.max-height-75 {
-  max-height: 65px;
+.socialLogo {
+  width: 70px;
+  max-width: 100%;
 }
 .verticalCenter {
   display: flex;
@@ -106,5 +112,11 @@ footer {
   background: #683614;
   bottom: 0;
   width: 100vw;
+}
+
+.logos .col {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
 }
 </style>

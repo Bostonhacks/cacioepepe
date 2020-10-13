@@ -132,7 +132,7 @@
                   <v-autocomplete
                     v-model="timeZone"
                     :items="timeZoneList"
-                    hint="Don't Google - Boston Timezone is GMT+5"
+                    hint="Don't Google - Boston Time Zone is GMT-5"
                     color="primary"
                     label="Time Zone"
                     :rules="requiredRule"
@@ -181,11 +181,11 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <v-btn color="primary" class=" mt-5" @click="e1 = 2"
+              <v-btn color="primary" class="mt-5" @click="e1 = 2"
                 >Continue</v-btn
               >
 
-              <v-btn @click="saveApplication" class=" mt-5">Save</v-btn>
+              <v-btn @click="saveApplication" class="mt-5 ml-5">Save</v-btn>
             </v-stepper-content>
 
             <v-stepper-content step="2">
@@ -253,7 +253,8 @@
                       <v-list-item>
                         <v-list-item-content>
                           <v-list-item-title>
-                            No results matching "<strong>{{ search }}</strong
+                            No results matching "
+                            <strong>{{ search }}</strong
                             >". Press <kbd>enter</kbd> to create a new one
                           </v-list-item-title>
                         </v-list-item-content>
@@ -263,11 +264,11 @@
                 </v-col>
               </v-row>
 
-              <v-btn color="primary" class=" mt-5" @click="e1 = 3"
+              <v-btn color="primary" class="mt-5" @click="e1 = 3"
                 >Continue</v-btn
               >
 
-              <v-btn @click="saveApplication" class=" mt-5">Save</v-btn>
+              <v-btn @click="saveApplication" class="mt-5 ml-5">Save</v-btn>
             </v-stepper-content>
 
             <v-stepper-content step="3">
@@ -275,74 +276,120 @@
                 class="pt-3"
                 counter="200"
                 :counter-value="wordCounter"
-                label="Why do you want to participate in BostonHacks? (200 word max) "
+                label="Why do you want to come to BostonHacks? (200 word max) "
                 :rules="essayRules.concat(requiredRule)"
                 v-model="essayAns"
                 outlined
               ></v-textarea>
               <Filedrop
-                v-on:change="test"
-                v-on:click="test"
+                v-on:change="fileUpload"
+                v-on:click="fileUpload"
                 :loading.sync="resumeLoading"
                 :file="resume"
               />
               <v-text-field
                 v-model="githubURL"
                 label="Github URL"
+                :rules="urlRules"
               ></v-text-field>
               <v-text-field
                 v-model="linkedinURL"
                 label="LinkedIn URL"
+                :rules="urlRules"
               ></v-text-field>
               <v-text-field v-model="otherURL" label="Other URL"></v-text-field>
               <v-switch
                 v-model="attendedBHacks"
-                label="Have you attended BostonHacks?"
+                label="Have you attended BostonHacks previously?"
+                class="pl-3"
               ></v-switch>
-              <label>How many hackathons have you attended?</label>
-              <v-radio-group v-model="beenToHackathon" :rules="requiredRule">
+              <label>How many hackathons have you attended before?</label>
+              <v-radio-group
+                v-model="beenToHackathon"
+                :rules="requiredRule"
+                class="pl-5"
+              >
                 <v-radio label="0" value="0"></v-radio>
                 <v-radio label="1" value="1"></v-radio>
                 <v-radio label="2" value="2"></v-radio>
                 <v-radio label="3+" value="3+"></v-radio>
               </v-radio-group>
 
-              <v-btn color="primary" @click="e1 = 4" class=" mt-5"
+              <v-btn color="primary" @click="e1 = 4" class="mt-5"
                 >Continue</v-btn
               >
 
-              <v-btn @click="saveApplication" class=" mt-5">Save</v-btn>
+              <v-btn @click="saveApplication" class="mt-5 ml-5">Save</v-btn>
             </v-stepper-content>
 
             <v-stepper-content step="4">
               <v-switch
                 class="pl-3"
                 v-model="miniHacks"
-                label="Did you attend BostonHacks Mini Hacks 2020?"
+                label="Did you attend BostonHacks Virtual MiniHacks 2020?"
               ></v-switch>
               <v-switch
                 class="pl-3"
                 v-model="marketingData"
-                label="Do you consent to us stealing your data?"
-                :rules="requiredRule"
+                label="Do you consent to your picture or your likeness being used in future BostonHacks marketing material?"
               ></v-switch>
               <v-switch
                 class="pl-3"
                 v-model="tAndC1"
-                label="Do you accept the terms and conditions?"
+                label="Do you agree to abide by the MLH code of conduct?"
                 :rules="requiredRule"
-              ></v-switch>
+              >
+                <template v-slot:label>
+                  <div>
+                    Do you agree to abide by the
+                    <v-tooltip bottom>
+                      <template v-slot:activator="{ on }">
+                        <a
+                          target="_blank"
+                          href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
+                          @click.stop
+                          v-on="on"
+                        >
+                          MLH code of conduct
+                        </a>
+                      </template>
+                      Opens in new window
+                    </v-tooltip>
+                    ？
+                  </div>
+                </template>
+              </v-switch>
               <v-switch
                 class="pl-3"
                 v-model="tAndC2"
-                label="Do you accept the terms and conditions?"
+                label="Do you agree to abide by the Boston University code of conduct?"
                 :rules="requiredRule"
-              ></v-switch>
-              <v-btn color="primary" class=" mt-5" @click="submitApplication"
+              >
+                <template v-slot:label>
+                  <div>
+                    Do you agree to abide by the
+                    <v-tooltip bottom>
+                      <template v-slot:activator="{ on }">
+                        <a
+                          target="_blank"
+                          href="http://www.bu.edu/dos/policies/student-responsibilities/"
+                          @click.stop
+                          v-on="on"
+                        >
+                          Boston University code of conduct
+                        </a>
+                      </template>
+                      Opens in new window
+                    </v-tooltip>
+                    ？
+                  </div>
+                </template>
+              </v-switch>
+              <v-btn color="primary" class="mt-5" @click="submitApplication"
                 >Submit</v-btn
               >
 
-              <v-btn @click="saveApplication" class=" mt-5">Save</v-btn>
+              <v-btn @click="saveApplication" class="mt-5 ml-5">Save</v-btn>
             </v-stepper-content>
           </v-stepper-items>
         </v-form>
@@ -505,6 +552,12 @@ export default {
             v
           ) || "Please enter a valid email"
       ],
+      urlRules: [
+        v =>
+          /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=+$,\w]+@)[A-Za-z0-9.-]+)((?:\/[+~%/.\w-_]*)?\??(?:[-+=&;%@.\w_]*)#?(?:[\w]*))?)/.test(
+            v
+          ) || "Please enter a valid URL"
+      ],
       timeZoneList: [
         "GMT+1:00",
         "GMT+2:00",
@@ -565,6 +618,7 @@ export default {
         "Bulgaria",
         "Burkina Faso",
         "Burundi",
+        "Canada",
         "Cambodia",
         "Cameroon",
         "Cape Verde",
@@ -1099,7 +1153,7 @@ export default {
     }
   },
   methods: {
-    test(value) {
+    fileUpload(value) {
       if (value == "viewFile") {
         window.open(this.resume[0], "_blank");
       } else if (value == "deleteFile") {
@@ -1147,10 +1201,8 @@ export default {
     },
     async submitApplication() {
       this.loading = true;
-      // console.log(this.valid);
       this.$refs.form.validate();
       this.check();
-      // console.log(this.valid);
       if (this.valid) {
         const userdb = db.collection("users").doc(this.user.uid);
         await userdb.update({
@@ -1172,6 +1224,7 @@ export default {
           address: this.address,
           city: this.city,
           zip: this.zip,
+          email: this.email,
           phone: this.phone,
           age: this.age,
           gender: this.gender,
@@ -1249,9 +1302,6 @@ export default {
         this.educationLevel == null ||
         this.university == null ||
         this.major == null ||
-        this.resume == null ||
-        this.marketingData == false ||
-        this.marketingData == null ||
         this.tAndC1 == false ||
         this.tAndC1 == null ||
         this.tAndC2 == false ||
@@ -1332,7 +1382,7 @@ export default {
         educationLevel: null,
         university: null,
         language: null,
-        essayAns: null,
+        essayAns: "",
         major: null,
         minor: null,
         resume: null,
@@ -1340,12 +1390,13 @@ export default {
         linkedinURL: null,
         otherURL: null,
         beenToHackathon: null,
-        attendedBHacks: null,
-        marketingData: null,
-        tAndC1: null,
-        tAndC2: null,
-        miniHacks: null
+        attendedBHacks: false,
+        marketingData: false,
+        tAndC1: false,
+        tAndC2: false,
+        miniHacks: false
       });
+      await store.dispatch("getUser");
     }
     this.loading = false;
     fetch(
@@ -1379,14 +1430,12 @@ export default {
 .smallVertical .col-sm-6 {
   margin-bottom: -1em;
 }
-
 .loadingSVG {
   position: relative;
   top: 100%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 .v-menu__content {
   margin-top: 3rem !important;
 }

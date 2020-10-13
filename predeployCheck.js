@@ -7,7 +7,7 @@ const rl = readline.createInterface({
 
 rl.question(
   colors.red.bold(
-    "Are you sure you know what you are doing? \nRishab said don't deploy if you don't know what you are doing 👀. [Y/N]"
+    "Are you sure you know what you are doing? \nThis deploys to production. [Y/N]"
   ),
   function(answer) {
     if (answer.toLowerCase().substring(0, 1) == "y") {

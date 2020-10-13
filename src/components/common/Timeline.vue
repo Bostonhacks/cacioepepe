@@ -112,10 +112,10 @@ export default {
       var deadlineDoc = await deadlineDb.get();
       var out = deadlineDoc.data();
 
-      if (out.data["startTime"] != null && out.data["startTime"] != null) {
+      if (out["startTime"] != null && out["startTime"] != null) {
         this.firstInput = false;
-        this.start = out.data["startTime"];
-        this.end = out.data["finishTime"];
+        this.start = out["startTime"];
+        this.end = out["finishTime"];
       }
     },
     async saveDate() {

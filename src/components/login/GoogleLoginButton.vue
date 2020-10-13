@@ -31,7 +31,8 @@ export default {
               .set({
                 displayName: user.displayName,
                 email: user.email,
-                uid: user.uid
+                uid: user.uid,
+                role: "hacker" // hardcoded until we use finish signup
               });
             await store.dispatch("getUser");
           }

@@ -27,7 +27,8 @@ const routes = [
     name: "application",
     component: () => import("@/views/Application.vue"),
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      isEligible: true
     }
   },
   {
@@ -38,7 +39,6 @@ const routes = [
       requiresAuth: false
     }
   },
-
   {
     path: "/sponsor",
     name: "sponsor",
@@ -47,30 +47,22 @@ const routes = [
       requiresAuth: false
     }
   },
-  {
-    path: "/mentor",
-    name: "mentor",
-    component: () => import("@/views/Mentor.vue"),
-    meta: {
-      requiresAuth: false
-    }
-  },
-  {
-    path: "/volunteer",
-    name: "volunteer",
-    component: () => import("@/views/Volunteer.vue"),
-    meta: {
-      requiresAuth: false
-    }
-  },
-  {
-    path: "/hacker",
-    name: "hacker",
-    component: () => import("@/views/Hacker.vue"),
-    meta: {
-      requiresAuth: false
-    }
-  },
+  // {
+  //   path: "/mentor",
+  //   name: "mentor",
+  //   component: () => import("@/views/Mentor.vue"),
+  //   meta: {
+  //     requiresAuth: true
+  //   }
+  // },
+  // {
+  //   path: "/volunteer",
+  //   name: "volunteer",
+  //   component: () => import("@/views/Volunteer.vue"),
+  //   meta: {
+  //     requiresAuth: true
+  //   }
+  // },
   {
     path: "/live",
     name: "live",
@@ -85,7 +77,7 @@ const routes = [
     name: "dashboard",
     component: () => import("@/views/Dashboard.vue"),
     meta: {
-      requiresAuth: false
+      requiresAuth: true
     }
   },
   {
@@ -96,18 +88,26 @@ const routes = [
       requiresAuth: false
     }
   },
-  {
+  /*  {
     path: "/finishsignup",
     name: "finishsignup",
     component: () => import("@/views/FinishSignUp.vue"),
     meta: {
       requiresAuth: true
     }
-  },
+  },*/
   {
     path: "/resetpw",
     name: "resetpw",
     component: () => import("@/views/ResetPw.vue"),
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: "/privacy",
+    name: "privacy",
+    component: () => import("@/views/Privacy.vue"),
     meta: {
       requiresAuth: false
     }
@@ -160,14 +160,14 @@ const router = new VueRouter({
   }
 });
 
-router.beforeEach((to, from, next) => {
+/*router.beforeEach((to, from, next) => {
   let user = store.state.user;
   if (user && to.name != "finishsignup" && notFullySignUp(user)) {
     next({ name: "finishsignup" });
   } else {
     next();
   }
-});
+});*/
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(rec => rec.meta.requiresAuth)) {
@@ -195,8 +195,25 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-const notFullySignUp = user => {
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(rec => rec.meta.isEligible)) {
+    let user = store.state.user;
+    if (
+      user.role == "hacker" ||
+      user.role == "mentor" ||
+      user.role == "volunteer"
+    ) {
+      next();
+    } else {
+      next({ name: "home" });
+    }
+  } else {
+    next();
+  }
+});
+
+/*const notFullySignUp = user => {
   return user.role == null;
-};
+};*/
 
 export default router;
