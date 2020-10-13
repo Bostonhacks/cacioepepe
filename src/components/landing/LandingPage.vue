@@ -201,7 +201,7 @@
       <Wave2 z-index="10" class="d-block mt-n16 mb-n11 pt-16" />
     </div>
 
-    <div id="schedule" class="basicTextShadow white--text">
+    <div id="schedule" class=" white--text">
       <v-container>
         <v-row>
           <v-col>
@@ -217,13 +217,15 @@
 
         <v-row>
           <v-col cols="12">
-            <h2 class="display-1 text-center font-weight-bold">
+            <h2 class="display-1 text-center font-weight-bold basicTextShadow">
               Schedule for November
             </h2>
             <br />
           </v-col>
-          <v-col cols="12">
-            <!-- <v-sheet height="400" class="rounded-lg"> -->
+          <v-col cols="12"> </v-col>
+          <CalendarTwoDay v-if="events" :loadEvents="events" />
+
+          <!-- <v-col cols="12">
             <v-calendar
               ref="calendar"
               :events="events"
@@ -259,8 +261,8 @@
                 </v-card-actions>
               </v-card>
             </v-menu>
-            <!-- </v-sheet> -->
-          </v-col>
+            </v-sheet> 
+          </v-col> -->
         </v-row>
 
         <v-row>
@@ -447,6 +449,8 @@ import River from "@/components/common/SVG/River";
 import Feliz from "@/components/common/SVG/Feliz";
 import Twilio from "@/assets/sponsorlogos/Twilio.svg.vue";
 import RStudio from "@/assets/sponsorlogos/RStudio.svg.vue";
+import CalendarTwoDay from "@/components/admin/CalendarTwoDay";
+import { functions } from "@/firebase/init";
 
 export default {
   computed: {
@@ -476,6 +480,17 @@ export default {
       }
 
       nativeEvent.stopPropagation();
+    },
+    async getEvents() {
+      var out = await functions.httpsCallable("readSchedules")({});
+      if (out.data) {
+        this.events = out.data;
+      } else {
+        this.events = [];
+      }
+    },
+    async mounted() {
+      this.getEvents();
     }
   },
   components: {
@@ -492,157 +507,159 @@ export default {
     River,
     Feliz,
     Twilio,
-    RStudio
+    RStudio,
+    CalendarTwoDay
+  },
+  mounted: function() {
+    this.mounted();
   },
   data: () => ({
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
-    today: "2020-11-14",
-    today2: "2020-11-15",
-    maxDays: 2,
-    weekdays: [5, 6],
-    events: [
-      {
-        name: "Opening Ceremony",
-        start: "2020-11-14 09:00",
-        end: "2020-11-14 09:45",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Team Formation",
-        start: "2020-11-14 09:45",
-        end: "2020-11-14 10:45",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Hacking",
-        start: "2020-11-14 10:45",
-        end: "2020-11-14 11:45",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Lunch Break",
-        start: "2020-11-14 11:45",
-        end: "2020-11-14 12:30",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Workshop",
-        start: "2020-11-14 12:30",
-        end: "2020-11-14 13:30",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Workshop",
-        start: "2020-11-14 14:00",
-        end: "2020-11-14 15:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Workshop",
-        start: "2020-11-14 15:30",
-        end: "2020-11-14 16:30",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Workshop",
-        start: "2020-11-14 17:00",
-        end: "2020-11-14 18:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Dinner Break",
-        start: "2020-11-14 18:00",
-        end: "2020-11-14 18:30",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Workshops",
-        start: "2020-11-14 19:15",
-        end: "2020-11-14 20:15",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Workshops",
-        start: "2020-11-14 20:45",
-        end: "2020-11-14 21:45",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Workshops",
-        start: "2020-11-14 22:15",
-        end: "2020-11-14 23:00",
-        details: "More details coming soon!"
-      },
+    events: null
+    // events: [
+    //   {
+    //     name: "Opening Ceremony",
+    //     start: "2020-11-14 09:00",
+    //     end: "2020-11-14 09:45",
+    //     details: "More details coming soon!",
+    //     color: ""
+    //   },]
+    //   {
+    //     name: "Team Formation",
+    //     start: "2020-11-14 09:45",
+    //     end: "2020-11-14 10:45",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Hacking",
+    //     start: "2020-11-14 10:45",
+    //     end: "2020-11-14 11:45",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Lunch Break",
+    //     start: "2020-11-14 11:45",
+    //     end: "2020-11-14 12:30",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Workshop",
+    //     start: "2020-11-14 12:30",
+    //     end: "2020-11-14 13:30",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Workshop",
+    //     start: "2020-11-14 14:00",
+    //     end: "2020-11-14 15:00",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Workshop",
+    //     start: "2020-11-14 15:30",
+    //     end: "2020-11-14 16:30",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Workshop",
+    //     start: "2020-11-14 17:00",
+    //     end: "2020-11-14 18:00",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Dinner Break",
+    //     start: "2020-11-14 18:00",
+    //     end: "2020-11-14 18:30",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Workshops",
+    //     start: "2020-11-14 19:15",
+    //     end: "2020-11-14 20:15",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Workshops",
+    //     start: "2020-11-14 20:45",
+    //     end: "2020-11-14 21:45",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Workshops",
+    //     start: "2020-11-14 22:15",
+    //     end: "2020-11-14 23:00",
+    //     details: "More details coming soon!"
+    //   },
 
-      {
-        name: "Morning Energizers",
-        start: "2020-11-15 09:00",
-        end: "2020-11-15 10:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Brunch",
-        start: "2020-11-15 10:30",
-        end: "2020-11-15 11:30",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Judging Sign-ups Open",
-        start: "2020-11-15 12:00",
-        end: "2020-11-15 12:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Workshops",
-        start: "2020-11-15 12:15",
-        end: "2020-11-15 13:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Judging Orientation",
-        start: "2020-11-15 13:30",
-        end: "2020-11-15 14:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Judging Setup",
-        start: "2020-11-15 14:00",
-        end: "2020-11-15 14:45",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Submissions and Signups Due",
-        start: "2020-11-15 14:45",
-        end: "2020-11-15 15:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "First Round Judging",
-        start: "2020-11-15 15:30",
-        end: "2020-11-15 17:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Final Round Judging",
-        start: "2020-11-15 18:00",
-        end: "2020-11-15 19:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Closing Ceremony",
-        start: "2020-11-15 19:15",
-        end: "2020-11-15 20:15",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Loose Ends",
-        start: "2020-11-15 20:15",
-        end: "2020-11-15 21:15",
-        details: "More details coming soon!"
-      }
-    ]
+    //   {
+    //     name: "Morning Energizers",
+    //     start: "2020-11-15 09:00",
+    //     end: "2020-11-15 10:00",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Brunch",
+    //     start: "2020-11-15 10:30",
+    //     end: "2020-11-15 11:30",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Judging Sign-ups Open",
+    //     start: "2020-11-15 12:00",
+    //     end: "2020-11-15 12:00",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Workshops",
+    //     start: "2020-11-15 12:15",
+    //     end: "2020-11-15 13:00",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Judging Orientation",
+    //     start: "2020-11-15 13:30",
+    //     end: "2020-11-15 14:00",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Judging Setup",
+    //     start: "2020-11-15 14:00",
+    //     end: "2020-11-15 14:45",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Submissions and Signups Due",
+    //     start: "2020-11-15 14:45",
+    //     end: "2020-11-15 15:00",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "First Round Judging",
+    //     start: "2020-11-15 15:30",
+    //     end: "2020-11-15 17:00",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Final Round Judging",
+    //     start: "2020-11-15 18:00",
+    //     end: "2020-11-15 19:00",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Closing Ceremony",
+    //     start: "2020-11-15 19:15",
+    //     end: "2020-11-15 20:15",
+    //     details: "More details coming soon!"
+    //   },
+    //   {
+    //     name: "Loose Ends",
+    //     start: "2020-11-15 20:15",
+    //     end: "2020-11-15 21:15",
+    //     details: "More details coming soon!"
+    //   }
+    // ]
   })
 };
 </script>

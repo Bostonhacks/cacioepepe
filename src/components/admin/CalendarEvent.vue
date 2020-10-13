@@ -102,7 +102,7 @@
             <v-icon small>mdi-chevron-right</v-icon>
           </v-btn>
           <v-toolbar-title v-if="$refs.calendar">
-            {{ $refs.calendar.title }} July
+            {{ $refs.calendar.title }}
           </v-toolbar-title>
           <v-spacer></v-spacer>
           <v-menu bottom right>
@@ -241,6 +241,10 @@ export default {
   }),
   methods: {
     async getEvents() {
+      // readSchedules
+      // const eventsDb = db.collection("admin").doc("schedules");
+      // var allEvents = await eventsDb.get();
+      // var out = allEvents.data().events;
       var out = await functions.httpsCallable("readSchedules")({});
       if (out.data) {
         this.events = out.data;
@@ -286,6 +290,27 @@ export default {
       this.dialog = true;
     },
     async updateEvent() {
+      // updateEvent
+      const schedDb = db.collection("admin").doc("schedules");
+      let info = await schedDb.get();
+      this.schedules = info.data().events;
+
+      // this.selectedEventIndex = this.events.findIndex(
+      //   current =>
+      //     current.name == event.name &&
+      //     current.start == event.start &&
+      //     current.end == event.end
+      // );
+
+      // this.schedules[selectedEventIndex] = {
+      //   name: data.newName,
+      //   location: data.newLoc,
+      //   start: data.newStart,
+      //   end: data.newEnd,
+      //   description: data.newDesc,
+      //   type: data.newType
+      // };
+
       await functions.httpsCallable("updateEvent")({
         name: this.name,
         description: this.description,
