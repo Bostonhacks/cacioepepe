@@ -426,6 +426,9 @@
           <v-col cols="9" sm="5" md="4" lg="3">
             <RStudio />
           </v-col>
+          <v-col cols="9" sm="5" md="4" lg="3">
+            <StickerMule />
+          </v-col>
         </v-row>
       </v-container>
     </div>
@@ -447,6 +450,7 @@ import River from "@/components/common/SVG/River";
 import Feliz from "@/components/common/SVG/Feliz";
 import Twilio from "@/assets/sponsorlogos/Twilio.svg.vue";
 import RStudio from "@/assets/sponsorlogos/RStudio.svg.vue";
+import StickerMule from "@/assets/sponsorlogos/StickerMule.svg.vue";
 
 export default {
   computed: {
@@ -492,7 +496,8 @@ export default {
     River,
     Feliz,
     Twilio,
-    RStudio
+    RStudio,
+    StickerMule
   },
   data: () => ({
     selectedEvent: {},
