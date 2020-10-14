@@ -213,6 +213,7 @@ export default {
           var errorMessage = error.message;
           alert(errorMessage);
         });
+      this.$router.push("/");
     }
   }
 };
