@@ -1,12 +1,6 @@
 <template>
-  <SignUpForm class="blue" />
+  <SignUpForm />
 </template>
-
-<style scoped>
-.google-signup {
-  margin-top: 200px;
-}
-</style>
 
 <script>
 import SignUpForm from "@/components/login/SignUpForm";
