@@ -213,7 +213,7 @@
 
         <v-row>
           <v-col cols="12">
-            <h2 class="display-1 text-center font-weight-bold">
+            <h2 class="display-1 text-center font-weight-bold basicTextShadow">
               Schedule for November
             </h2>
             <br />
