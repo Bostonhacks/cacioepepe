@@ -129,7 +129,8 @@ export default {
       password: null,
       displayName: null,
       accountType: "Hacker",
-      accountTypes: ["Hacker", "Volunteer", "Mentor"],
+      // accountTypes: ["Hacker", "Volunteer", "Mentor"],
+      accountTypes: ["Hacker"],
       formFields: {
         name: {
           name: "Name",
