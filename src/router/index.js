@@ -72,14 +72,6 @@ const routes = [
       requiresAuth: false
     }
   },
-  /*  {
-    path: "/finishsignup",
-    name: "finishsignup",
-    component: () => import("@/views/FinishSignUp.vue"),
-    meta: {
-      requiresAuth: true
-    }
-  },*/
   {
     path: "/resetpw",
     name: "resetpw",
