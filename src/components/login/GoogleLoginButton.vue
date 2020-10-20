@@ -182,7 +182,7 @@ export default {
                 displayName: user.displayName,
                 email: user.email,
                 uid: user.uid,
-                role: this.role // hardcoded until we use finish signup
+                role: this.role.toLowerCase() // hardcoded until we use finish signup
               });
             await store.dispatch("getUser");
           }
