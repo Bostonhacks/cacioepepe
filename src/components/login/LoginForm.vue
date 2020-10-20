@@ -3,6 +3,7 @@
     class="pb-10 px-5 justify-center align-center"
     style="min-height: 100vh;"
   >
+    <GoogleLoginButton v-show="false" buttonName="Log In with Google" />
     <!-- style="min-height: calc(100vh - 120px)" -->
     <v-container class="mt-5" style="width: 100vw;">
       <v-row justify="space-between" class="mx-md-n8 mb-n16">
