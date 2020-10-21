@@ -1,9 +1,10 @@
 <template>
   <v-row
     class="pb-10 px-5 justify-center align-center"
-    style="min-height: calc(100vh - 120px)"
+    style="min-height: 100vh;"
   >
-    <v-container class="mt-5">
+    <!-- style="min-height: calc(100vh - 120px)" -->
+    <v-container class="mt-5" style="width: 100vw;">
       <v-row justify="space-between" class="mx-md-n8 mb-n16">
         <v-col cols="6" class="pa-0">
           <Cloud9
@@ -21,59 +22,114 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-col cols="12" sm="6" md="4">
-      <v-card>
-        <v-card-title class="justify-center">
-          <h3>Login</h3>
-        </v-card-title>
-        <v-card-text>
-          <v-form v-if="switchbt">
-            <v-container>
+    <v-row justify="center" style="width: 100vw;">
+      <v-col v-if="!this.renderLogin" cols="12" sm="6" md="4">
+        <v-row no-gutters class="flex-row-reverse">
+          <RedHotAirBalloon class="align-self-end red-balloon"
+        /></v-row>
+        <v-row class="justify-space-between">
+          <v-btn
+            style="text-transform: none; width: 40%; height: 72px; font-size: 2em; z-index: 1;"
+            class="align-self-center red white--text ma-3"
+            rounded
+            x-large
+            @click="$router.push(`/signup`)"
+            >Sign Up</v-btn
+          >
+          <v-btn
+            style="text-transform: none; width: 40%; height: 72px; font-size: 2em;"
+            class="align-self-center red white--text ma-3"
+            rounded
+            x-large
+            @click="renderLogin = !renderLogin"
+            >Log In</v-btn
+          >
+        </v-row>
+        <v-row class="justify-space-between">
+          <GreenHotAirBalloon class="green-balloon" />
+        </v-row>
+      </v-col>
+      <v-col v-else cols="12" sm="6" md="4" lg="3">
+        <v-card>
+          <v-row class="justify-center">
+            <BostonHacksLogo width="50%" class="pt-10 mr-n10" /><v-card-title
+              class="display-1 font-weight-bold red--text ml-n10"
+              style="width: 50%;"
+              >Log In</v-card-title
+            >
+          </v-row>
+          <v-row class="flex-column align-center pa-6 pt-0">
+            <v-form
+              style="width: 100%"
+              class="d-flex flex-column align-center"
+              ref="form"
+            >
+              <v-row class="mb-n3  justify-space-between form-input">
+                <v-subheader class="pl-0 font-weight-bold"
+                  >Email Address</v-subheader
+                >
+              </v-row>
               <v-text-field
+                dense
+                :rules="emailRules"
+                class="form-input"
                 v-model="email"
-                type="text"
-                label="Email"
                 placeholder="jane@example.com"
+                type="text"
+                prepend-inner-icon="mdi-email-outline"
+                outlined
               ></v-text-field>
+              <v-row class="mb-n3 mt-n5 justify-space-between form-input">
+                <v-subheader class="pl-0 font-weight-bold"
+                  >Password</v-subheader
+                >
+                <router-link
+                  style="z-index: 1;"
+                  class="pr-0 d-flex align-center caption"
+                  to="/resetPw"
+                  >Forgot Password?</router-link
+                >
+              </v-row>
               <v-text-field
+                dense
+                :rules="passwordRules"
+                class="form-input"
                 v-model="password"
+                placeholder="••••••••••••"
                 type="password"
-                label="Password"
-                placeholder="********"
+                prepend-inner-icon="mdi-lock-outline"
+                outlined
               ></v-text-field>
-              <v-btn color="info white--text" @click="login"> Login </v-btn>
-              <v-btn class="ml-2" color="red white--text" @click="cancel">
-                Cancel
-              </v-btn>
-              <router-link class="ml-2" to="/resetPw"
-                >Forgot Password?</router-link
-              >
-            </v-container>
-          </v-form>
-          <v-form v-else>
-            <v-card-actions>
-              <v-btn block color="info white--text" @click="switchpage"
-                >Login with Email</v-btn
-              >
-            </v-card-actions>
-            <v-divider></v-divider>
-            <v-card-actions>
-              <GoogleLoginButton
-                buttonName="Login with Google"
-                class="google-signup"
-              />
-            </v-card-actions>
-            <v-card-text>
-              Hackers, don't have an account?
-              <router-link to="/signup">Sign Up</router-link>
-              <!-- <v-spacer></v-spacer>
-              Interested in sponsoring and helping?
-              <router-link to="/signup">Sign Up</router-link> -->
-            </v-card-text>
-          </v-form>
-        </v-card-text>
-      </v-card>
-    </v-col>
+            </v-form>
+            <v-btn
+              style="text-transform: none; width: 70%;"
+              class="mb-6 align-self-center red white--text"
+              rounded
+              @click="login()"
+              >Log In</v-btn
+            >
+            <v-row style="width: 95%;" class="justify-center divider">
+              <span></span>
+              <p>Or</p>
+              <span></span>
+            </v-row>
+            <GoogleLoginButton buttonName="Log In with Google" />
+          </v-row>
+          <v-btn
+            absolute
+            dark
+            fab
+            bottom
+            left
+            small
+            color="red"
+            @click="renderLogin = !renderLogin"
+          >
+            <v-icon small>mdi-arrow-left</v-icon>
+          </v-btn>
+        </v-card>
+      </v-col>
+    </v-row>
     <v-container class="mt-5">
       <v-row justify="space-between" class="mx-md-n8 mb-n16">
         <v-col cols="4" class="pa-0">
@@ -98,7 +154,10 @@
 <script>
 import firebase from "firebase/app";
 import Cloud9 from "@/components/common/SVG/Cloud9";
-import GoogleLoginButton from "@/components/login/GoogleLoginButton.vue";
+import RedHotAirBalloon from "@/components/common/SVG/RedHotAirBalloon";
+import GreenHotAirBalloon from "@/components/common/SVG/GreenHotAirBalloon";
+import GoogleLoginButton from "@/components/login/GoogleLoginButton";
+import BostonHacksLogo from "@/components/login/BostonHacksLogo.svg";
 
 export default {
   name: "LoginForm",
@@ -106,20 +165,25 @@ export default {
     return {
       email: null,
       password: null,
-      switchbt: false
+      renderLogin: false,
+      emailRules: [
+        value => !!value || "Email is Required.",
+        value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return pattern.test(value) || "Invalid e-mail.";
+        }
+      ],
+      passwordRules: [value => !!value || "Password is Required."]
     };
   },
   components: {
     Cloud9,
-    GoogleLoginButton
+    GoogleLoginButton,
+    RedHotAirBalloon,
+    GreenHotAirBalloon,
+    BostonHacksLogo
   },
   methods: {
-    cancel() {
-      this.switchbt = false;
-    },
-    switchpage() {
-      this.switchbt = true;
-    },
     async forgetPW() {
       var auth = firebase.auth();
       var emailAddress = this.email;
@@ -137,6 +201,7 @@ export default {
         });
     },
     async login() {
+      if (!this.$refs.form.validate()) return;
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
@@ -148,7 +213,55 @@ export default {
           var errorMessage = error.message;
           alert(errorMessage);
         });
+      this.$router.push("/");
     }
   }
 };
 </script>
+
+<style scoped>
+.form-input {
+  width: 95%;
+}
+
+.divider span {
+  overflow: visible;
+  padding: 0;
+  margin-top: 12px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  color: #6e6d7a;
+  text-align: center;
+  width: 33%;
+}
+
+.divider p {
+  color: #6e6d7a;
+}
+
+.green-balloon {
+  width: 30%;
+  margin-top: -5rem;
+  margin-left: -5rem;
+}
+
+.red-balloon {
+  width: 30%;
+  margin-top: -5rem;
+  margin-right: -5rem;
+}
+
+@media screen and (max-width: 600px) {
+  .red-balloon {
+    margin-top: 0;
+    margin-right: 0;
+  }
+
+  .green-balloon {
+    margin-top: 0;
+    margin-left: 0;
+  }
+}
+</style>

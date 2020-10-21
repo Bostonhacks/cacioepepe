@@ -39,29 +39,12 @@ const routes = [
       requiresAuth: false
     }
   },
-
   {
     path: "/sponsor",
     name: "sponsor",
     component: () => import("@/views/Sponsor.vue"),
     meta: {
       requiresAuth: false
-    }
-  },
-  {
-    path: "/mentor",
-    name: "mentor",
-    component: () => import("@/views/Mentor.vue"),
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: "/volunteer",
-    name: "volunteer",
-    component: () => import("@/views/Volunteer.vue"),
-    meta: {
-      requiresAuth: true
     }
   },
   {
@@ -89,14 +72,6 @@ const routes = [
       requiresAuth: false
     }
   },
-  /*  {
-    path: "/finishsignup",
-    name: "finishsignup",
-    component: () => import("@/views/FinishSignUp.vue"),
-    meta: {
-      requiresAuth: true
-    }
-  },*/
   {
     path: "/resetpw",
     name: "resetpw",

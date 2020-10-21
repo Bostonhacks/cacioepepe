@@ -21,6 +21,14 @@ service cloud.firestore {
 		function invalidUserUpdate() {
 			return (notUpdating("apple_pass_url") && notUpdating("google_qr_url") && notUpdating("role") && notUpdating("uid"));
 		}
+
+		function isInTeam(teamData) {
+			return (isLoggedIn() && (teamData.teamMembers.indexOf(request.auth.uid) >= 0));
+		}
+
+		function isInTeamWithInvite(inviteData) {
+			return (isInTeam(get(/databases/$(database)/documents/teams/$(inviteData.teamId)).data));
+		}
 		
 		match /users/{userId} {
 			allow get: if hasRole("admin") || hasRole("sponsor") || sameUID(userId);
@@ -46,12 +54,20 @@ service cloud.firestore {
 			allow delete: if hasRole("admin");
 		}
 		
-		match /teams/{teamId}{
-			allow get: if hasRole("admin");
+		match /teams/{teamId} {
+			allow get: if hasRole("admin") || isInTeam(resource.data);
 			allow list: if hasRole("admin");
-			allow create: if hasRole("admin");
-			allow update: if hasRole("admin");
-			allow delete: if hasRole("admin")
+			allow create: if isLoggedIn();
+			allow update: if hasRole("admin") || isInTeam(resource.data);
+			allow delete: if hasRole("admin") || isInTeam(resource.data);
+		}
+
+		match /teamInvites/{teamInviteId} {
+			allow get: if hasRole("admin") || isInTeamWithInvite(resource.data);
+			allow list: if hasRole("admin");
+			allow create: if hasRole("admin") || isInTeamWithInvite(request.resource.data);
+			allow update: if hasRole("admin") || isInTeamWithInvite(request.resource.data);
+			allow delete: if hasRole("admin") || isInTeamWithInvite(resource.data);
 		}
 		
 		match /applications/{appId} {

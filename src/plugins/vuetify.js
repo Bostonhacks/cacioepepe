@@ -21,13 +21,13 @@ export default new Vuetify({
     // dark: darkModeEnabled,
     themes: {
       light: {
-        green: "#53d186",
-        primary: "#fe745f",
+        green: "#4bbc79",
+        primary: "#fe755f",
         yellow: "#f6d374",
         red: "#fe745f",
         lightBlue: "#aee2ff",
-        blue: "#80d2ff",
-        darkBlue: "#0098FF",
+        blue: "#70D2FF",
+        darkBlue: "#24b1ff",
         tan: "#e6c8bc",
         brown: "#683614",
         aqua: "#21998a"
