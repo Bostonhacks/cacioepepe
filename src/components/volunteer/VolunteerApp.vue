@@ -349,12 +349,14 @@ export default {
       role: null,
       timeSlot: null,
       timeSlots: [
-        "November 14 morning",
-        "November 14 afternoon",
-        "November 14 night",
-        "November 15 morning",
-        "November 15 afternoon",
-        "November 15 night"
+        "November 14 9am - 1pm",
+        "November 14 1pm - 5pm",
+        "November 14 5pm - 9pm",
+        "November 14/15 9pm - 1am",
+        "November 15 1am - 5am",
+        "November 15 5am - 9am",
+        "November 15 9am - 1pm",
+        "November 15 1pm - 5pm"
       ],
       wordCounter: input => (input ? input.split(" ").length : 0),
       e1: 1,
