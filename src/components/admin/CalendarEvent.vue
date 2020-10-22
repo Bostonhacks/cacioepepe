@@ -193,7 +193,7 @@
 </template>
 
 <script>
-import { functions, db, arrayUnion } from "@/firebase/init";
+import { db, arrayUnion } from "@/firebase/init";
 export default {
   name: "CalendarEvent",
   props: ["loadEvents"],
@@ -242,12 +242,11 @@ export default {
   methods: {
     async getEvents() {
       // readSchedules
-      // const eventsDb = db.collection("admin").doc("schedules");
-      // var allEvents = await eventsDb.get();
-      // var out = allEvents.data().events;
-      var out = await functions.httpsCallable("readSchedules")({});
-      if (out.data) {
-        this.events = out.data;
+      const eventsDb = db.collection("admin").doc("schedules");
+      var allEvents = await eventsDb.get();
+      var out = allEvents.data().events;
+      if (out) {
+        this.events = out;
       } else {
         this.events = [];
       }
@@ -255,16 +254,31 @@ export default {
     async saveEvent() {
       this.dialog = false;
       if (Object.keys(this.selectedEvent).length > 0) {
-        this.updateEvent();
+        this.updateEvent(this.selectedEvent);
       } else {
         // createSchedule
+        const today = new Date();
+        const date =
+          today.getFullYear() +
+          "-" +
+          (today.getMonth() + 1) +
+          "-" +
+          today.getDate();
+        const time =
+          today.getHours() +
+          ":" +
+          today.getMinutes() +
+          ":" +
+          today.getSeconds();
+        const dateTime = date + " " + time;
         var newEvent = {
           name: this.name,
           description: this.description,
           location: this.location,
           type: this.scheduleType,
           start: this.$refs.startTimePicker.formattedDatetime,
-          end: this.$refs.endTimePicker.formattedDatetime
+          end: this.$refs.endTimePicker.formattedDatetime,
+          timestamp: dateTime
         };
         const eventSchedule = db.collection("admin").doc("schedules");
         await eventSchedule
@@ -275,12 +289,7 @@ export default {
             console.error("Error: ", error);
           });
         this.events.push({
-          name: this.name,
-          description: this.description,
-          location: this.location,
-          type: this.scheduleType,
-          start: this.$refs.startTimePicker.formattedDatetime,
-          end: this.$refs.endTimePicker.formattedDatetime
+          newEvent
         });
       }
       this.clearForm();
@@ -289,45 +298,46 @@ export default {
       this.clearForm();
       this.dialog = true;
     },
-    async updateEvent() {
+    async updateEvent(event) {
       // updateEvent
       const schedDb = db.collection("admin").doc("schedules");
       let info = await schedDb.get();
-      this.schedules = info.data().events;
+      this.events = info.data().events;
 
-      // this.selectedEventIndex = this.events.findIndex(
-      //   current =>
-      //     current.name == event.name &&
-      //     current.start == event.start &&
-      //     current.end == event.end
-      // );
+      this.selectedEventIndex = this.events.findIndex(
+        current =>
+          current.name == event.name &&
+          current.start == event.start &&
+          current.end == event.end
+      );
 
-      // this.schedules[selectedEventIndex] = {
-      //   name: data.newName,
-      //   location: data.newLoc,
-      //   start: data.newStart,
-      //   end: data.newEnd,
-      //   description: data.newDesc,
-      //   type: data.newType
-      // };
-
-      await functions.httpsCallable("updateEvent")({
+      this.events[this.selectedEventIndex] = {
         name: this.name,
         description: this.description,
         location: this.location,
         type: this.scheduleType,
         start: this.$refs.startTimePicker.formattedDatetime,
-        end: this.$refs.endTimePicker.formattedDatetime,
-        index: this.selectedEventIndex
-      });
-      // this.events[this.selectedEventIndex] = {
+        end: this.$refs.endTimePicker.formattedDatetime
+      };
+
+      // await functions.httpsCallable("updateEvent")({
       //   name: this.name,
       //   description: this.description,
       //   location: this.location,
       //   type: this.scheduleType,
       //   start: this.$refs.startTimePicker.formattedDatetime,
-      //   end: this.$refs.endTimePicker.formattedDatetime
-      // };
+      //   end: this.$refs.endTimePicker.formattedDatetime,
+      //   index: this.selectedEventIndex
+      // });
+
+      await schedDb
+        .update({
+          events: this.events
+        })
+        .catch(function(error) {
+          console.error("Error: ", error);
+        });
+
       this.getEvents();
     },
     clearForm() {

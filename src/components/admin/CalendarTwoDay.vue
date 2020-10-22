@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { functions } from "@/firebase/init";
+import { db } from "@/firebase/init";
 export default {
   name: "CalendarEvent",
   props: ["loadEvents"],
@@ -79,17 +79,11 @@ export default {
   methods: {
     async getEvents() {
       // readSchedules
-      // const eventsDb = db.collection("admin").doc("schedules");
-      // var allEvents = await eventsDb.get();
-      // var out = allEvents.data().events;
-      var out = await functions.httpsCallable("readSchedules")({});
-      if (out.data) {
-        for (let i = 0; i < out.data.length; i++) {
-          let colorIndex = this.names.indexOf(out.data[i].type);
-          if (colorIndex == -1) colorIndex = 0;
-          out.data[i].color = this.colors[colorIndex];
-        }
-        this.events = out.data;
+      const eventsDb = db.collection("admin").doc("schedules");
+      var allEvents = await eventsDb.get();
+      var out = allEvents.data().events;
+      if (out) {
+        this.events = out;
       } else {
         this.events = [];
       }
@@ -99,7 +93,9 @@ export default {
       this.type = "day";
     },
     getEventColor(event) {
-      return event.color;
+      let colorIndex = this.names.indexOf(event.type);
+      if (colorIndex == -1) colorIndex = 0;
+      return this.colors[colorIndex];
     },
     showEvent({ nativeEvent, event }) {
       this.selectedEventIndex = this.events.findIndex(
