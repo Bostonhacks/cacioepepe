@@ -1,5 +1,5 @@
 <template>
-  <v-btn @click="googleSignUp" rounded class="google white--text">
+  <v-btn @click="googleSignUp" rounded class="google">
     <svg
       width="36px"
       height="36px"
@@ -90,7 +90,7 @@
           >
             <g id="button-bg">
               <use
-                fill="#4285F4"
+                fill="#FFFFFF"
                 fill-rule="evenodd"
                 sketch:type="MSShapeGroup"
                 xlink:href="#path-2"
@@ -182,7 +182,7 @@ export default {
                 displayName: user.displayName,
                 email: user.email,
                 uid: user.uid,
-                role: this.role // hardcoded until we use finish signup
+                role: this.role.toLowerCase() // hardcoded until we use finish signup
               });
             await store.dispatch("getUser");
           }
@@ -201,6 +201,7 @@ export default {
       var provider = new firebase.auth.GoogleAuthProvider();
       firebase.auth().useDeviceLanguage();
       firebase.auth().signInWithRedirect(provider);
+      this.$router.push("/");
     }
   }
 };
@@ -209,7 +210,7 @@ export default {
 <style scoped>
 .google {
   text-transform: none;
-  background-color: #4285f4 !important;
+  background-color: #ffffff !important;
   padding-left: 8%;
   padding-right: 8%;
   width: 70%;
