@@ -414,13 +414,16 @@ export default {
       language: [],
       timeSlot: [],
       timeSlots: [
-        "November 14 10am - 2pm",
-        "November 14 2pm - 6pm",
-        "November 14 6pm - 10pm",
-        "November 14/15 10pm - 2am",
-        "November 15 2am - 6am",
-        "November 15 6am - 10am",
-        "November 15 10am - 3pm"
+        "November 14 10am - 1pm",
+        "November 14 1pm - 4pm",
+        "November 14 4pm - 7pm",
+        "November 14 7pm - 10pm",
+        "November 14/15 10pm - 1am",
+        "November 15 1am - 4am",
+        "November 15 4am - 7am",
+        "November 15 7am - 10am",
+        "November 15 10am - 1pm",
+        "November 15 1am - 3pm"
       ],
       languageList: [
         "ABAP",
