@@ -342,20 +342,53 @@
                 <template v-slot:label>
                   <div>
                     Do you agree to abide by the
-                    <v-tooltip bottom>
-                      <template v-slot:activator="{ on }">
-                        <a
-                          target="_blank"
-                          href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
-                          @click.stop
-                          v-on="on"
-                        >
-                          MLH code of conduct
-                        </a>
-                      </template>
-                      Opens in new window
-                    </v-tooltip>
+                    <a
+                      target="_blank"
+                      href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
+                      @click.stop
+                    >
+                      MLH code of conduct
+                    </a>
                     ？
+                  </div>
+                </template>
+              </v-switch>
+              <v-switch
+                class="pl-3"
+                v-model="tAndC3"
+                label=""
+                :rules="requiredRule"
+              >
+                <template v-slot:label>
+                  <div>
+                    I authorize you to share my application/registration
+                    information for event administration, ranking, MLH
+                    administration, pre- and post-event informational e-mails,
+                    and occasional messages about hackathons in-line with the
+                    <a
+                      target="_blank"
+                      href="https://mlh.io/privacy"
+                      @click.stop
+                    >
+                      MLH Privacy Policy
+                    </a>
+                    I further agree to the terms of both the
+                    <a
+                      target="_blank"
+                      href="https://github.com/MLH/mlh-policies/blob/master/prize-terms-and-conditions/contest-terms.md"
+                      @click.stop
+                    >
+                      MLH Contest Terms and Conditions
+                    </a>
+                    and the
+                    <a
+                      target="_blank"
+                      href="https://mlh.io/privacy"
+                      @click.stop
+                    >
+                      MLH Privacy Policy
+                    </a>
+                    .
                   </div>
                 </template>
               </v-switch>
@@ -368,19 +401,13 @@
                 <template v-slot:label>
                   <div>
                     Do you agree to abide by the
-                    <v-tooltip bottom>
-                      <template v-slot:activator="{ on }">
-                        <a
-                          target="_blank"
-                          href="http://www.bu.edu/dos/policies/student-responsibilities/"
-                          @click.stop
-                          v-on="on"
-                        >
-                          Boston University code of conduct
-                        </a>
-                      </template>
-                      Opens in new window
-                    </v-tooltip>
+                    <a
+                      target="_blank"
+                      href="http://www.bu.edu/dos/policies/student-responsibilities/"
+                      @click.stop
+                    >
+                      Boston University code of conduct
+                    </a>
                     ？
                   </div>
                 </template>
@@ -900,6 +927,7 @@ export default {
       marketingData: 0,
       tAndC1: 0,
       tAndC2: 0,
+      tAndC3: 0,
       countryCodeList: [
         "Afghanistan (\u202bافغانستان\u202c\u200e) +93",
         "Albania (Shqipëri) +355",
@@ -1194,7 +1222,8 @@ export default {
         marketingData: this.marketingData,
         miniHacks: this.miniHacks,
         tAndC1: this.tAndC1,
-        tAndC2: this.tAndC2
+        tAndC2: this.tAndC2,
+        tAndC3: this.tAndC3
       });
       this.loading = false;
       this.$router.push({ name: "dashboard" });
@@ -1242,7 +1271,8 @@ export default {
           marketingData: this.marketingData,
           miniHacks: this.miniHacks,
           tAndC1: this.tAndC1,
-          tAndC2: this.tAndC2
+          tAndC2: this.tAndC2,
+          tAndC3: this.tAndC3
         });
         await store.dispatch("getUser");
         this.loading = false;
@@ -1306,6 +1336,8 @@ export default {
         this.tAndC1 == null ||
         this.tAndC2 == false ||
         this.tAndC2 == null ||
+        this.tAndC3 == false ||
+        this.tAndC3 == null ||
         !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
           this.email
         ) ||
@@ -1355,8 +1387,13 @@ export default {
         (this.attendedBHacks = userApplicationDoc.data().attendedBHacks),
         (this.marketingData = userApplicationDoc.data().marketingData),
         (this.tAndC1 = userApplicationDoc.data().tAndC1),
-        (this.tAndC2 = userApplicationDoc.data().tAndC2);
-      this.miniHacks = userApplicationDoc.data().miniHacks;
+        (this.tAndC2 = userApplicationDoc.data().tAndC2),
+        (this.miniHacks = userApplicationDoc.data().miniHacks);
+      if (userApplicationDoc.data().tAndC3) {
+        this.tAndC3 = userApplicationDoc.data().tAndC3;
+      } else {
+        this.tAndC3 = false;
+      }
     } else {
       const userdb = db.collection("users").doc(this.user.uid);
       await userdb.update({
@@ -1394,6 +1431,7 @@ export default {
         marketingData: false,
         tAndC1: false,
         tAndC2: false,
+        tAndC3: false,
         miniHacks: false
       });
       await store.dispatch("getUser");

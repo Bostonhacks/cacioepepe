@@ -299,20 +299,53 @@
                 <template v-slot:label>
                   <div>
                     Do you agree to abide by the
-                    <v-tooltip bottom>
-                      <template v-slot:activator="{ on }">
-                        <a
-                          target="_blank"
-                          href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
-                          @click.stop
-                          v-on="on"
-                        >
-                          MLH code of conduct
-                        </a>
-                      </template>
-                      Opens in new window
-                    </v-tooltip>
+                    <a
+                      target="_blank"
+                      href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
+                      @click.stop
+                    >
+                      MLH code of conduct
+                    </a>
                     ？
+                  </div>
+                </template>
+              </v-switch>
+              <v-switch
+                class="pl-3"
+                v-model="tAndC3"
+                label=""
+                :rules="requiredRule"
+              >
+                <template v-slot:label>
+                  <div>
+                    I authorize you to share my application/registration
+                    information for event administration, ranking, MLH
+                    administration, pre- and post-event informational e-mails,
+                    and occasional messages about hackathons in-line with the
+                    <a
+                      target="_blank"
+                      href="https://mlh.io/privacy"
+                      @click.stop
+                    >
+                      MLH Privacy Policy
+                    </a>
+                    I further agree to the terms of both the
+                    <a
+                      target="_blank"
+                      href="https://github.com/MLH/mlh-policies/blob/master/prize-terms-and-conditions/contest-terms.md"
+                      @click.stop
+                    >
+                      MLH Contest Terms and Conditions
+                    </a>
+                    and the
+                    <a
+                      target="_blank"
+                      href="https://mlh.io/privacy"
+                      @click.stop
+                    >
+                      MLH Privacy Policy
+                    </a>
+                    .
                   </div>
                 </template>
               </v-switch>
@@ -325,19 +358,13 @@
                 <template v-slot:label>
                   <div>
                     Do you agree to abide by the
-                    <v-tooltip bottom>
-                      <template v-slot:activator="{ on }">
-                        <a
-                          target="_blank"
-                          href="http://www.bu.edu/dos/policies/student-responsibilities/"
-                          @click.stop
-                          v-on="on"
-                        >
-                          Boston University code of conduct
-                        </a>
-                      </template>
-                      Opens in new window
-                    </v-tooltip>
+                    <a
+                      target="_blank"
+                      href="http://www.bu.edu/dos/policies/student-responsibilities/"
+                      @click.stop
+                    >
+                      Boston University code of conduct
+                    </a>
                     ？
                   </div>
                 </template>
@@ -387,12 +414,16 @@ export default {
       language: [],
       timeSlot: [],
       timeSlots: [
-        "November 14 morning",
-        "November 14 afternoon",
-        "November 14 night",
-        "November 15 morning",
-        "November 15 afternoon",
-        "November 15 night"
+        "November 14 10am - 1pm",
+        "November 14 1pm - 4pm",
+        "November 14 4pm - 7pm",
+        "November 14 7pm - 10pm",
+        "November 14/15 10pm - 1am",
+        "November 15 1am - 4am",
+        "November 15 4am - 7am",
+        "November 15 7am - 10am",
+        "November 15 10am - 1pm",
+        "November 15 1am - 3pm"
       ],
       languageList: [
         "ABAP",
@@ -658,6 +689,7 @@ export default {
       marketingData: 0,
       tAndC1: 0,
       tAndC2: 0,
+      tAndC3: 0,
       countryCodeList: [
         "Afghanistan (\u202bافغانستان\u202c\u200e) +93",
         "Albania (Shqipëri) +355",
@@ -947,7 +979,8 @@ export default {
         attendedBHacks: this.attendedBHacks,
         marketingData: this.marketingData,
         tAndC1: this.tAndC1,
-        tAndC2: this.tAndC2
+        tAndC2: this.tAndC2,
+        tAndC3: this.tAndC3
       });
       this.loading = false;
       this.$router.push({ name: "dashboard" });
@@ -988,7 +1021,8 @@ export default {
           attendedBHacks: this.attendedBHacks,
           marketingData: this.marketingData,
           tAndC1: this.tAndC1,
-          tAndC2: this.tAndC2
+          tAndC2: this.tAndC2,
+          tAndC3: this.tAndC3
         });
         await store.dispatch("getUser");
         this.loading = false;
@@ -1051,6 +1085,8 @@ export default {
         this.tAndC1 == null ||
         this.tAndC2 == false ||
         this.tAndC2 == null ||
+        this.tAndC3 == false ||
+        this.tAndC3 == null ||
         !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
           this.email
         )
@@ -1091,6 +1127,11 @@ export default {
         (this.marketingData = userApplicationDoc.data().marketingData),
         (this.tAndC1 = userApplicationDoc.data().tAndC1),
         (this.tAndC2 = userApplicationDoc.data().tAndC2);
+      if (userApplicationDoc.data().tAndC3) {
+        this.tAndC3 = userApplicationDoc.data().tAndC3;
+      } else {
+        this.tAndC3 = false;
+      }
     } else {
       const userdb = db.collection("users").doc(this.user.uid);
       await userdb.update({
@@ -1123,7 +1164,8 @@ export default {
         attendedBHacks: false,
         marketingData: false,
         tAndC1: false,
-        tAndC2: false
+        tAndC2: false,
+        tAndC3: false
       });
       await store.dispatch("getUser");
     }
