@@ -343,10 +343,17 @@ export default {
     isLinkValid(item) {
       return item.includes("http");
     },
-    async downloadResumes() {
+    async downloadAuxOne() {
       var res = await functions.httpsCallable("oneClickDownload")();
       var url = res["data"].URL;
-      window.open(url, "_blank");
+      return window.open(url, "_blank");
+    },
+    async downloadAuxTwo() {
+      return await functions.httpsCallable("deleteAllResumes")();
+    },
+    async downloadResumes() {
+      await this.downloadAuxOne();
+      await this.downloadAuxTwo();
     },
     async downloadEntries() {
       var res = await functions.httpsCallable("entryDownload")();
@@ -380,7 +387,7 @@ export default {
         });
       });
     },
-    async downloadSelectedResumes() {
+    async downloadSelectedResumesAuxOne() {
       var resumeList = [];
       this.selected.forEach(entry => {
         resumeList.push(entry.resume);
@@ -389,7 +396,14 @@ export default {
         resumeList: resumeList
       });
       var url = res["data"].URL;
-      window.open(url, "_blank");
+      return window.open(url, "_blank");
+    },
+    async downloadSelectedResumesAuxTwo() {
+      return await functions.httpsCallable("deleteSelectedResumes")();
+    },
+    async downloadSelectedResumes() {
+      await this.downloadSelectedResumesAuxOne();
+      await this.downloadSelectedResumesAuxTwo();
     },
     async rejectApplicants() {
       var UIDList = [];

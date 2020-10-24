@@ -41,7 +41,7 @@
             offset="2"
             sm="4"
             offset-sm="0"
-            class="text-center white--text basicTextShadow"
+            class="text-center white--text"
           >
             <BostonHacksLogoTextShadowed
               class="mb-5"
@@ -81,7 +81,7 @@
           <v-col cols="12" offset-sm="0" sm="5">
             <v-row
               justify="center"
-              class="basicTextShadow white--text text-center font-weight-light"
+              class="white--text text-center font-weight-light"
             >
               <h2>Interested in Sponsoring?</h2>
               <p class="size-1-25">
@@ -108,11 +108,7 @@
       <Wave z-index="10" class="d-block mt-n16" />
     </div>
 
-    <div
-      id="tracks"
-      class="pb-10 lightBlue darkBlue--text text--darken-2"
-      style="text-shadow: 1px 1px 0.5px rgba(0,0,0,.2);"
-    >
+    <div id="tracks" class="pb-10 lightBlue darkBlue--text text--darken-2">
       <v-container>
         <v-row style="height: 0">
           <v-col cols="4" class="pa-0">
@@ -201,7 +197,7 @@
       <Wave2 z-index="10" class="d-block mt-n16 mb-n11 pt-16" />
     </div>
 
-    <div id="schedule" class="basicTextShadow white--text">
+    <div id="schedule" class=" white--text">
       <v-container>
         <v-row>
           <v-col>
@@ -217,24 +213,52 @@
 
         <v-row>
           <v-col cols="12">
-            <h2 class="display-1 text-center font-weight-bold">
+            <h2 class="display-1 text-center font-weight-bold basicTextShadow">
               Schedule for November
             </h2>
             <br />
           </v-col>
-          <v-col cols="12">
-            <v-sheet height="400" class="rounded-lg">
-              <v-calendar
-                ref="calendar"
-                :now="today"
-                :value="today"
-                :events="events"
-                color="primary"
-                type="4day"
-                class="rounded-lg"
-              ></v-calendar>
-            </v-sheet>
-          </v-col>
+          <v-col cols="12"> </v-col>
+          <CalendarTwoDay v-if="events" :loadEvents="events" />
+
+          <!-- <v-col cols="12">
+            <v-calendar
+              ref="calendar"
+              :events="events"
+              color="primary"
+              type="custom-daily"
+              start="2020-11-14"
+              end="2020-11-15"
+              class="rounded-lg"
+              first-time="08:00"
+              interval-count="16"
+              @click:event="showEvent"
+            ></v-calendar>
+            <v-menu
+              v-model="selectedOpen"
+              :close-on-content-click="false"
+              :activator="selectedElement"
+              offset-x
+            >
+              <v-card color="grey lighten-4" min-width="350px" flat>
+                <v-toolbar color="red" dark>
+                  <v-toolbar-title
+                    v-html="selectedEvent.name"
+                  ></v-toolbar-title>
+                  <v-spacer></v-spacer>
+                </v-toolbar>
+                <v-card-text>
+                  <span v-html="selectedEvent.details"></span>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn text color="secondary" @click="selectedOpen = false">
+                    close
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-menu>
+            </v-sheet> 
+          </v-col> -->
         </v-row>
 
         <v-row>
@@ -251,7 +275,7 @@
       <Wave4 z-index="10" class="d-block mt-n16 mb-n1" />
     </div>
 
-    <div id="FAQ" class="white--text basicTextShadow green darken-1">
+    <div id="FAQ" class="white--text green darken-1">
       <h2 class="display-1 pt-15 text-center font-weight-bold">
         Frequently Asked Questions
       </h2>
@@ -387,18 +411,21 @@
       <Wave3 z-index="10" class="d-block" />
     </div>
 
-    <div id="sponsors" class="pb-16 white--text basicTextShadow">
+    <div id="sponsors" class="pb-16 white--text ">
       <v-container>
         <h2 class="display-1 py-15 text-center font-weight-bold">
           Thank You To Our Sponsors!
         </h2>
         <v-row justify="center">
-          <v-col cols="12" sm="8" md="6" lg="4">
+          <v-col cols="9" sm="5" md="4" lg="3">
             <Twilio />
           </v-col>
 
-          <v-col cols="12" sm="8" md="6" lg="4">
+          <v-col cols="9" sm="5" md="4" lg="3">
             <RStudio />
+          </v-col>
+          <v-col cols="9" sm="5" md="4" lg="3">
+            <StickerMule />
           </v-col>
         </v-row>
       </v-container>
@@ -421,6 +448,9 @@ import River from "@/components/common/SVG/River";
 import Feliz from "@/components/common/SVG/Feliz";
 import Twilio from "@/assets/sponsorlogos/Twilio.svg.vue";
 import RStudio from "@/assets/sponsorlogos/RStudio.svg.vue";
+import CalendarTwoDay from "@/components/admin/CalendarTwoDay";
+import { db } from "@/firebase/init";
+import StickerMule from "@/assets/sponsorlogos/StickerMule.svg.vue";
 
 export default {
   computed: {
@@ -432,6 +462,38 @@ export default {
     navigate(url) {
       window.scrollTo(0, 0);
       this.$router.push(`${url}`);
+    },
+    showEvent({ nativeEvent, event }) {
+      const open = () => {
+        this.selectedEvent = event;
+        this.selectedElement = nativeEvent.target;
+        setTimeout(() => {
+          this.selectedOpen = true;
+        }, 10);
+      };
+
+      if (this.selectedOpen) {
+        this.selectedOpen = false;
+        setTimeout(open, 10);
+      } else {
+        open();
+      }
+
+      nativeEvent.stopPropagation();
+    },
+    async getEvents() {
+      // readSchedules
+      const eventsDb = db.collection("admin").doc("schedules");
+      var allEvents = await eventsDb.get();
+      var out = allEvents.data().events;
+      if (out) {
+        this.events = out;
+      } else {
+        this.events = [];
+      }
+    },
+    async mounted() {
+      this.getEvents();
     }
   },
   components: {
@@ -448,38 +510,18 @@ export default {
     River,
     Feliz,
     Twilio,
-    RStudio
+    RStudio,
+    CalendarTwoDay,
+    StickerMule
+  },
+  mounted: function() {
+    this.mounted();
   },
   data: () => ({
-    today: "2019-11-14",
-    events: [
-      // {
-      //   name: "Weekly Meeting",
-      //   start: "2019-01-07 09:00",
-      //   end: "2019-01-07 10:00"
-      // },
-      {
-        name: "Agenda Coming Soon!",
-        start: "2019-11-14"
-      },
-      {
-        name: "Agenda Coming Soon!",
-        start: "2019-11-15"
-      },
-      {
-        name: "Agenda Coming Soon!",
-        start: "2019-11-16"
-      },
-      {
-        name: "Agenda Coming Soon!",
-        start: "2019-11-17"
-      }
-      // {
-      //   name: "Mash Potatoes",
-      //   start: "2019-01-09 12:30",
-      //   end: "2019-01-09 15:30"
-      // }
-    ]
+    selectedEvent: {},
+    selectedElement: null,
+    selectedOpen: false,
+    events: null
   })
 };
 </script>
