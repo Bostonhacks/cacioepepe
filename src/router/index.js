@@ -188,4 +188,8 @@ router.beforeEach((to, from, next) => {
   }
 });
 
+/*const notFullySignUp = user => {
+  return user.role == null;
+};*/
+
 export default router;
