@@ -73,10 +73,7 @@
               <p>Or</p>
               <span></span>
             </v-row>
-            <GoogleLoginButton
-              buttonName="Sign Up with Google"
-              :role="this.accountType"
-            />
+            <GoogleLoginButton buttonName="Sign Up with Google" />
             <v-btn
               absolute
               dark

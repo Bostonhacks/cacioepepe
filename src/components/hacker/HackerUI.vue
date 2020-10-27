@@ -127,17 +127,24 @@ export default {
     mentorList: [
       { header: "Mentor List" },
       {
-        value: "Rishab Bishab",
+        value: "Twillio",
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-        title: "Rishab Bishab",
+        title: "Twillio",
         description:
           "<span class='text--primary'>God of Everything</span> &mdash; Vue, Firebase"
       },
       { divider: true, inset: true },
       {
-        value: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
+        value: "RStudio",
         avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
-        title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
+        title: "RStudio",
+        description:
+          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
+      },
+      {
+        value: "stickermule",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+        title: "stickermule",
         description:
           "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
       }
@@ -145,17 +152,24 @@ export default {
     challengeList: [
       { header: "Challenge List" },
       {
-        value: "Rishab Bishab",
+        value: "Twillio",
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-        title: "Rishab Bishab",
+        title: "Twillio",
         description:
           "<span class='text--primary'>God of Everything</span> &mdash; Vue, Firebase"
       },
       { divider: true, inset: true },
       {
-        value: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
+        value: "RStudio",
         avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
-        title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
+        title: "RStudio",
+        description:
+          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
+      },
+      {
+        value: "stickermule",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+        title: "stickermule",
         description:
           "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
       }

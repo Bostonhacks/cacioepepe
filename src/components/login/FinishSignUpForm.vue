@@ -1,7 +1,7 @@
 <!-- For use after Google Signup Route -->
 <template>
   <v-row
-    class="pb-10 px-5 justify-center align-center"
+    class="blue pb-10 px-5 justify-center align-center"
     style="min-height: calc(100vh - 120px)"
   >
     <v-container class="mt-5">
@@ -24,22 +24,28 @@
     </v-container>
     <v-col cols="12" sm="6" md="4">
       <v-card>
-        <v-card-title class="justify-center">
+        <v-card-title class="justify-center font-weight-bold red--text"
+              style="width: 80%;">
+              <BostonHacksLogo width="50%" class="pt-10 mr-n10" />
           <h3>Finish Sign Up</h3>
         </v-card-title>
         <v-card-text>
-          <v-form class="login-form">
+          <v-form class="form-input">
             <v-text-field
+              class="form-input"
               v-model="displayName"
               type="text"
               label="Name"
               placeholder="Jone Doe"
             ></v-text-field>
             <v-select
-              label="Account Type"
-              item-text="name"
-              v-model="accountType"
-              :items="accountTypes"
+                  class="form-input"
+                  v-model="accountType"
+                  :items="accountTypes"
+                  outlined
+                  required
+                  dense
+                  prepend-inner-icon="mdi-account-box-outline"
             ></v-select>
             <v-btn color="primary" class="mr-4" @click="finishSignUp">
               Submit
@@ -74,6 +80,8 @@ import firebase from "firebase/app";
 import { db } from "@/firebase/init.js";
 import store from "@/store";
 import Cloud9 from "@/components/common/SVG/Cloud9";
+import BostonHacksLogo from "@/components/login/BostonHacksLogo.svg";
+
 
 export default {
   name: "FinishSignUpForm",
@@ -85,7 +93,8 @@ export default {
     };
   },
   components: {
-    Cloud9
+    Cloud9,
+    BostonHacksLogo
   },
   methods: {
     async finishSignUp() {
@@ -109,3 +118,7 @@ export default {
   }
 };
 </script>
+<style scoped>
+.form-input {
+  width: 95%;
+}
