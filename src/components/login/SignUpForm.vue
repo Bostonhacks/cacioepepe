@@ -27,7 +27,7 @@
               class="btn mb-6 align-self-center red white--text"
               rounded
               @click="appear"
-              >Sign Up</v-btn
+              >Sign Up with Email</v-btn
             >
             <v-form v-if="form" class="w-100p" ref="form">
               <div
