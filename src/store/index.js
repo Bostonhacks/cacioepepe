@@ -29,7 +29,11 @@ const actions = {
       .collection("users")
       .doc(user.uid)
       .get();
-    context.commit("setUser", raid.data());
+    if (raid.exists) {
+      context.commit("setUser", raid.data());
+    } else {
+      context.commit("setUser", { role: null });
+    }
   },
   logOut: async context => {
     await firebase.auth().signOut();
