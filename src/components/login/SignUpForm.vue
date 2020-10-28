@@ -22,7 +22,14 @@
             >
           </v-row>
           <v-row class="flex-column align-center pa-6 pt-0">
-            <v-form class="w-100p" ref="form">
+            <v-btn
+              v-if="!form"
+              class="btn mb-6 align-self-center red white--text"
+              rounded
+              @click="appear"
+              >Sign Up</v-btn
+            >
+            <v-form v-if="form" class="w-100p" ref="form">
               <div
                 class="d-flex flex-column align-center"
                 v-for="(field, index) in formFields"
@@ -63,10 +70,11 @@
               </div>
             </v-form>
             <v-btn
+              v-if="form"
               class="btn mb-6 align-self-center red white--text"
               rounded
               @click="signUp"
-              >Sign Up</v-btn
+              >Submit</v-btn
             >
             <v-row class="justify-center divider">
               <span></span>
@@ -122,6 +130,7 @@ export default {
   name: "SignUpForm",
   data() {
     return {
+      form: false,
       email: null,
       password: null,
       displayName: null,
@@ -167,6 +176,9 @@ export default {
     BostonHacksLogo
   },
   methods: {
+    appear() {
+      this.form = true;
+    },
     async signUp() {
       if (!this.$refs.form.validate()) return;
       firebase

@@ -24,9 +24,11 @@
     </v-container>
     <v-col cols="12" sm="6" md="4">
       <v-card>
-        <v-card-title class="justify-center font-weight-bold red--text"
-              style="width: 80%;">
-              <BostonHacksLogo width="50%" class="pt-10 mr-n10" />
+        <v-card-title
+          class="justify-center font-weight-bold red--text"
+          style="width: 80%;"
+        >
+          <BostonHacksLogo width="50%" class="pt-10 mr-n10" />
           <h3>Finish Sign Up</h3>
         </v-card-title>
         <v-card-text>
@@ -39,13 +41,13 @@
               placeholder="Jone Doe"
             ></v-text-field>
             <v-select
-                  class="form-input"
-                  v-model="accountType"
-                  :items="accountTypes"
-                  outlined
-                  required
-                  dense
-                  prepend-inner-icon="mdi-account-box-outline"
+              class="form-input"
+              v-model="accountType"
+              :items="accountTypes"
+              outlined
+              required
+              dense
+              prepend-inner-icon="mdi-account-box-outline"
             ></v-select>
             <v-btn color="primary" class="mr-4" @click="finishSignUp">
               Submit
@@ -82,14 +84,13 @@ import store from "@/store";
 import Cloud9 from "@/components/common/SVG/Cloud9";
 import BostonHacksLogo from "@/components/login/BostonHacksLogo.svg";
 
-
 export default {
   name: "FinishSignUpForm",
   data() {
     return {
       displayName: null,
-      accountType: null,
-      accountTypes: ["Hacker", "Volunteer", "Mentor", "Sponsor"]
+      accountType: "Hacker",
+      accountTypes: ["Hacker", "Volunteer", "Mentor"]
     };
   },
   components: {
@@ -102,8 +103,10 @@ export default {
       // you cant update role, user must be created with the right role
       db.collection("users")
         .doc(user.uid)
-        .update({
+        .set({
           displayName: this.displayName,
+          uid: user.uid,
+          email: user.email,
           role: this.accountType.toLowerCase()
         })
         .then(() => {
@@ -122,3 +125,4 @@ export default {
 .form-input {
   width: 95%;
 }
+</style>

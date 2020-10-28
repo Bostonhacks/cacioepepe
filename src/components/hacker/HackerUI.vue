@@ -127,7 +127,7 @@ export default {
     mentorList: [
       { header: "Mentor List" },
       {
-        value: "Twillio",
+        value: "Twilio",
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         title: "Twillio",
         description:
