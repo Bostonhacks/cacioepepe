@@ -238,20 +238,6 @@
                 <template v-slot:label>
                   <div>
                     Do you agree to abide by the
-                    <v-tooltip bottom>
-                      <template v-slot:activator="{ on }">
-                        <a
-                          target="_blank"
-                          href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
-                          @click.stop
-                          v-on="on"
-                        >
-                          MLH code of conduct
-                        </a>
-                      </template>
-                      Opens in new window
-                    </v-tooltip>
-                    =======
                     <a
                       target="_blank"
                       href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
@@ -259,7 +245,7 @@
                     >
                       MLH code of conduct
                     </a>
-                    >>>>>>> 45fe38623f4bed107c9ff070b4627afb1a457d19 ？
+                    ？
                   </div>
                 </template>
               </v-switch>
@@ -991,7 +977,6 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 .v-menu__content {
   margin-top: 3rem !important;
 }
