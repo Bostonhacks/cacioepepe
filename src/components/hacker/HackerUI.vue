@@ -87,14 +87,14 @@
 </template>
 
 <script>
-import CountdownTimer from "./CountdownTimer";
-import Timeline from "./Timeline/Timeline.svg.vue";
+import CountdownTimer from "@/components/common/CountdownTimer";
+import Timeline from "@/components/common/Timeline/Timeline.svg.vue";
 import Tree from "@/components/common/SVG/Tree.vue";
-import grasstop from "./grasstop.svg.vue";
-import grassbottom from "./grassbottom.svg.vue";
-import footertop from "./footertop.svg.vue";
+import grasstop from "@/components/common/grasstop.svg.vue";
+import grassbottom from "@/components/common/grassbottom.svg.vue";
+import footertop from "@/components/common/footertop.svg.vue";
 import MentorList from "./MentorList.vue";
-import Schedule from "./Schedule.vue";
+import Schedule from "@/components/common/Schedule.vue";
 import SlackChannels from "./SlackChannels.vue";
 import Challenges from "./Challenges.vue";
 
