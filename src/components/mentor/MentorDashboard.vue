@@ -88,7 +88,7 @@ import grasstop from "@/components/common/grasstop.svg.vue";
 import grassbottom from "@/components/common/grassbottom.svg.vue";
 import footertop from "@/components/common/footertop.svg.vue";
 import Schedule from "@/components/common/Schedule.vue";
-import SlackChannels from "./SlackChannels.vue";
+import SlackChannels from "@/components/mentor/SlackChannels.vue";
 
 export default {
   name: "MentorDashboard",
