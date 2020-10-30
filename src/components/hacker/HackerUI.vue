@@ -87,14 +87,14 @@
 </template>
 
 <script>
-import CountdownTimer from "./CountdownTimer";
-import Timeline from "./Timeline/Timeline.svg.vue";
+import CountdownTimer from "@/components/common/CountdownTimer";
+import Timeline from "@/components/common/Timeline/Timeline.svg.vue";
 import Tree from "@/components/common/SVG/Tree.vue";
-import grasstop from "./grasstop.svg.vue";
-import grassbottom from "./grassbottom.svg.vue";
-import footertop from "./footertop.svg.vue";
+import grasstop from "@/components/common/grasstop.svg.vue";
+import grassbottom from "@/components/common/grassbottom.svg.vue";
+import footertop from "@/components/common/footertop.svg.vue";
 import MentorList from "./MentorList.vue";
-import Schedule from "./Schedule.vue";
+import Schedule from "@/components/common/Schedule.vue";
 import SlackChannels from "./SlackChannels.vue";
 import Challenges from "./Challenges.vue";
 
@@ -127,17 +127,24 @@ export default {
     mentorList: [
       { header: "Mentor List" },
       {
-        value: "Rishab Bishab",
+        value: "Twilio",
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-        title: "Rishab Bishab",
+        title: "Twillio",
         description:
           "<span class='text--primary'>God of Everything</span> &mdash; Vue, Firebase"
       },
       { divider: true, inset: true },
       {
-        value: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
+        value: "RStudio",
         avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
-        title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
+        title: "RStudio",
+        description:
+          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
+      },
+      {
+        value: "stickermule",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+        title: "stickermule",
         description:
           "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
       }
@@ -145,17 +152,24 @@ export default {
     challengeList: [
       { header: "Challenge List" },
       {
-        value: "Rishab Bishab",
+        value: "Twillio",
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-        title: "Rishab Bishab",
+        title: "Twillio",
         description:
           "<span class='text--primary'>God of Everything</span> &mdash; Vue, Firebase"
       },
       { divider: true, inset: true },
       {
-        value: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
+        value: "RStudio",
         avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
-        title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
+        title: "RStudio",
+        description:
+          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
+      },
+      {
+        value: "stickermule",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+        title: "stickermule",
         description:
           "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
       }

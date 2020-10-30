@@ -977,7 +977,6 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 .v-menu__content {
   margin-top: 3rem !important;
 }
