@@ -1,11 +1,10 @@
 <template>
-  <FinishSignUpForm class="blue" />
+  <FinishSignUpForm />
 </template>
 
 <script>
 import FinishSignUpForm from "@/components/login/FinishSignUpForm";
 export default {
-  name: "FinishSignUp",
   components: {
     FinishSignUpForm
   }

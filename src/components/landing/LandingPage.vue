@@ -41,7 +41,7 @@
             offset="2"
             sm="4"
             offset-sm="0"
-            class="text-center white--text basicTextShadow"
+            class="text-center white--text"
           >
             <BostonHacksLogoTextShadowed
               class="mb-5"
@@ -81,7 +81,7 @@
           <v-col cols="12" offset-sm="0" sm="5">
             <v-row
               justify="center"
-              class="basicTextShadow white--text text-center font-weight-light"
+              class="white--text text-center font-weight-light"
             >
               <h2>Interested in Sponsoring?</h2>
               <p class="size-1-25">
@@ -108,11 +108,7 @@
       <Wave z-index="10" class="d-block mt-n16" />
     </div>
 
-    <div
-      id="tracks"
-      class="pb-10 lightBlue darkBlue--text text--darken-2"
-      style="text-shadow: 1px 1px 0.5px rgba(0,0,0,.2);"
-    >
+    <div id="tracks" class="pb-10 lightBlue darkBlue--text text--darken-2">
       <v-container>
         <v-row style="height: 0">
           <v-col cols="4" class="pa-0">
@@ -201,7 +197,7 @@
       <Wave2 z-index="10" class="d-block mt-n16 mb-n11 pt-16" />
     </div>
 
-    <div id="schedule" class="basicTextShadow white--text">
+    <div id="schedule" class=" white--text">
       <v-container>
         <v-row>
           <v-col>
@@ -217,13 +213,15 @@
 
         <v-row>
           <v-col cols="12">
-            <h2 class="display-1 text-center font-weight-bold">
+            <h2 class="display-1 text-center font-weight-bold basicTextShadow">
               Schedule for November
             </h2>
             <br />
           </v-col>
-          <v-col cols="12">
-            <!-- <v-sheet height="400" class="rounded-lg"> -->
+          <v-col cols="12"> </v-col>
+          <CalendarTwoDay v-if="events" :loadEvents="events" />
+
+          <!-- <v-col cols="12">
             <v-calendar
               ref="calendar"
               :events="events"
@@ -259,8 +257,8 @@
                 </v-card-actions>
               </v-card>
             </v-menu>
-            <!-- </v-sheet> -->
-          </v-col>
+            </v-sheet> 
+          </v-col> -->
         </v-row>
 
         <v-row>
@@ -277,7 +275,7 @@
       <Wave4 z-index="10" class="d-block mt-n16 mb-n1" />
     </div>
 
-    <div id="FAQ" class="white--text basicTextShadow green darken-1">
+    <div id="FAQ" class="white--text green darken-1">
       <h2 class="display-1 pt-15 text-center font-weight-bold">
         Frequently Asked Questions
       </h2>
@@ -413,7 +411,7 @@
       <Wave3 z-index="10" class="d-block" />
     </div>
 
-    <div id="sponsors" class="pb-16 white--text basicTextShadow">
+    <div id="sponsors" class="pb-16 white--text ">
       <v-container>
         <h2 class="display-1 py-15 text-center font-weight-bold">
           Thank You To Our Sponsors!
@@ -425,6 +423,9 @@
 
           <v-col cols="9" sm="5" md="4" lg="3">
             <RStudio />
+          </v-col>
+          <v-col cols="9" sm="5" md="4" lg="3">
+            <StickerMule />
           </v-col>
         </v-row>
       </v-container>
@@ -447,6 +448,9 @@ import River from "@/components/common/SVG/River";
 import Feliz from "@/components/common/SVG/Feliz";
 import Twilio from "@/assets/sponsorlogos/Twilio.svg.vue";
 import RStudio from "@/assets/sponsorlogos/RStudio.svg.vue";
+import CalendarTwoDay from "@/components/admin/CalendarTwoDay";
+import { db } from "@/firebase/init";
+import StickerMule from "@/assets/sponsorlogos/StickerMule.svg.vue";
 
 export default {
   computed: {
@@ -476,6 +480,20 @@ export default {
       }
 
       nativeEvent.stopPropagation();
+    },
+    async getEvents() {
+      // readSchedules
+      const eventsDb = db.collection("admin").doc("schedules");
+      var allEvents = await eventsDb.get();
+      var out = allEvents.data().events;
+      if (out) {
+        this.events = out;
+      } else {
+        this.events = [];
+      }
+    },
+    async mounted() {
+      this.getEvents();
     }
   },
   components: {
@@ -492,157 +510,18 @@ export default {
     River,
     Feliz,
     Twilio,
-    RStudio
+    RStudio,
+    CalendarTwoDay,
+    StickerMule
+  },
+  mounted: function() {
+    this.mounted();
   },
   data: () => ({
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
-    today: "2020-11-14",
-    today2: "2020-11-15",
-    maxDays: 2,
-    weekdays: [5, 6],
-    events: [
-      {
-        name: "Opening Ceremony",
-        start: "2020-11-14 09:00",
-        end: "2020-11-14 09:45",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Team Formation",
-        start: "2020-11-14 09:45",
-        end: "2020-11-14 10:45",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Hacking",
-        start: "2020-11-14 10:45",
-        end: "2020-11-14 11:45",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Lunch Break",
-        start: "2020-11-14 11:45",
-        end: "2020-11-14 12:30",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Workshop",
-        start: "2020-11-14 12:30",
-        end: "2020-11-14 13:30",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Workshop",
-        start: "2020-11-14 14:00",
-        end: "2020-11-14 15:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Workshop",
-        start: "2020-11-14 15:30",
-        end: "2020-11-14 16:30",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Workshop",
-        start: "2020-11-14 17:00",
-        end: "2020-11-14 18:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Dinner Break",
-        start: "2020-11-14 18:00",
-        end: "2020-11-14 18:30",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Workshops",
-        start: "2020-11-14 19:15",
-        end: "2020-11-14 20:15",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Workshops",
-        start: "2020-11-14 20:45",
-        end: "2020-11-14 21:45",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Workshops",
-        start: "2020-11-14 22:15",
-        end: "2020-11-14 23:00",
-        details: "More details coming soon!"
-      },
-
-      {
-        name: "Morning Energizers",
-        start: "2020-11-15 09:00",
-        end: "2020-11-15 10:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Brunch",
-        start: "2020-11-15 10:30",
-        end: "2020-11-15 11:30",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Judging Sign-ups Open",
-        start: "2020-11-15 12:00",
-        end: "2020-11-15 12:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Workshops",
-        start: "2020-11-15 12:15",
-        end: "2020-11-15 13:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Judging Orientation",
-        start: "2020-11-15 13:30",
-        end: "2020-11-15 14:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Judging Setup",
-        start: "2020-11-15 14:00",
-        end: "2020-11-15 14:45",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Submissions and Signups Due",
-        start: "2020-11-15 14:45",
-        end: "2020-11-15 15:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "First Round Judging",
-        start: "2020-11-15 15:30",
-        end: "2020-11-15 17:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Final Round Judging",
-        start: "2020-11-15 18:00",
-        end: "2020-11-15 19:00",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Closing Ceremony",
-        start: "2020-11-15 19:15",
-        end: "2020-11-15 20:15",
-        details: "More details coming soon!"
-      },
-      {
-        name: "Loose Ends",
-        start: "2020-11-15 20:15",
-        end: "2020-11-15 21:15",
-        details: "More details coming soon!"
-      }
-    ]
+    events: null
   })
 };
 </script>

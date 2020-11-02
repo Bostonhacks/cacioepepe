@@ -93,7 +93,7 @@
               :search="search"
             >
               <template v-slot:item.resume[0]="{ item }">
-                <button v-if="item.resume[0]">
+                <button v-if="item.resume">
                   <a :href="item.resume[0]" target="_blank" rel="noreferrer"
                     >Open</a
                   >
