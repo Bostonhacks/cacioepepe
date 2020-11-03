@@ -23,7 +23,7 @@ service cloud.firestore {
 		}
 
 		function isInTeam(teamData) {
-			return (isLoggedIn() && (teamData.teamMembers.indexOf(request.auth.uid) >= 0));
+			return (isLoggedIn() && (request.auth.uid in teamData.teamMembers);
 		}
 
 		function isInTeamWithInvite(inviteData) {

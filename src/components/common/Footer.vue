@@ -112,6 +112,7 @@ footer {
   background: #683614;
   bottom: 0;
   width: 100vw;
+  flex-shrink: 0;
 }
 
 .logos .col {
