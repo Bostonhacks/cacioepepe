@@ -148,6 +148,8 @@ router.beforeEach((to, from, next) => {
   let user = store.state.user;
   if (user && to.name != "finishsignup" && notFullySignUp(user)) {
     next({ name: "finishsignup" });
+  } else if (user && to.name == "finishsignup" && user.role != null) {
+    next({ name: "home" });
   } else {
     next();
   }

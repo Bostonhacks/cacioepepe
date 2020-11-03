@@ -3,7 +3,6 @@
     class="pb-10 px-5 justify-center align-center"
     style="min-height: 100vh;"
   >
-    <!-- style="min-height: calc(100vh - 120px)" -->
     <v-container style="width: 100vw;">
       <v-row justify="space-between" class="mx-md-n8 mb-n16">
         <v-col cols="6" class="pa-0">
