@@ -1,7 +1,7 @@
 <!-- [Started, Submitted, Rejected, Waitlisted, Accepted, Confirmed, Declined, Checked In] -->
 <template>
   <div class="white--text blue mt-n14">
-    <CountdownTimer class="py-10" v-if="this.user.applicationStatus === 7" />
+    <CountdownTimer v-if="this.user.applicationStatus === 7" />
     <v-row justify="center">
       <v-col cols="12" sm="10" md="8" xl="6">
         <Timeline :applicationStatus="this.user.applicationStatus" />
@@ -116,7 +116,7 @@
 
 <script>
 import { db } from "@/firebase/init";
-import CountdownTimer from "@/components/common/CountdownTimer";
+import CountdownTimer from "@/components/hacker/CountdownTimer";
 import Timeline from "@/components/common/Timeline/Timeline.svg.vue";
 import Tree from "@/components/common/SVG/Tree.vue";
 import grasstop from "@/components/common/grasstop.svg.vue";
@@ -241,6 +241,9 @@ export default {
 </script>
 
 <style scoped>
+.green-base {
+  background: var(--v-green-base);
+}
 #tree1 {
   position: relative;
   top: -10rem;
