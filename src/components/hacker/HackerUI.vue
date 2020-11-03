@@ -116,8 +116,8 @@
 
 <script>
 import { db } from "@/firebase/init";
-import CountdownTimer from "./CountdownTimer";
-import Timeline from "./Timeline/Timeline.svg.vue";
+import CountdownTimer from "@/components/common/CountdownTimer";
+import Timeline from "@/components/common/Timeline/Timeline.svg.vue";
 import Tree from "@/components/common/SVG/Tree.vue";
 import grasstop from "@/components/common/grasstop.svg.vue";
 import grassbottom from "@/components/common/grassbottom.svg.vue";
