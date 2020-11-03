@@ -34,9 +34,37 @@
               </v-btn>
             </v-row>
           </div>
-          <div class="display-1" v-if="this.user.applicationStatus === 1">
-            You're all set! We'll let you know as soon as there's an update to
-            your application.
+          <div
+            class="display-3 font-weight-bold"
+            v-if="this.user.applicationStatus === 5"
+          >
+            <v-row class="pb-5 display-1 font-weight-bold">
+              You are confirmed to attend BostonHacks! We will update details
+              soon!
+            </v-row>
+          </div>
+        </v-row>
+        <v-row class="justify-center text-align-center">
+          <div class="display-1" v-if="this.user.applicationStatus === 4">
+            <v-form class="justify-center">
+              <label>Confirmation</label>
+              <v-radio-group v-model="statuscheck" class="pl-5">
+                <v-radio
+                  label="Yes, I'm going to BostonHacks!"
+                  value="5"
+                ></v-radio>
+                <v-radio label="No, sorry I can't attend." value="6"></v-radio>
+              </v-radio-group>
+              <v-btn
+                v-on:click="confirm()"
+                rounded
+                x-large
+                class="red--text pa-8 display-1 font-weight-bold"
+                style="text-transform: none !important"
+              >
+                Submit
+              </v-btn>
+            </v-form>
           </div>
         </v-row>
       </v-col>
@@ -87,6 +115,7 @@
 </template>
 
 <script>
+import { db } from "@/firebase/init";
 import CountdownTimer from "./CountdownTimer";
 import Timeline from "./Timeline/Timeline.svg.vue";
 import Tree from "@/components/common/SVG/Tree.vue";
@@ -115,9 +144,23 @@ export default {
   methods: {
     pushApplication() {
       this.$router.push("application");
+    },
+    async confirm() {
+      const user = db.collection("users").doc(this.user.uid);
+      if (this.statuscheck === "5") {
+        await user.update({
+          applicationStatus: 5
+        });
+      } else {
+        await user.update({
+          applicationStatus: 6
+        });
+      }
+      this.$router.go();
     }
   },
   data: () => ({
+    statuscheck: null,
     contentLoaded: false,
     null: "No result",
     searchM: "",
