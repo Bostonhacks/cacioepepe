@@ -40,7 +40,7 @@
           >
             <v-row class="pb-5 display-1 font-weight-bold">
               You are confirmed to attend BostonHacks! We will update details
-              soon!
+              soon.
             </v-row>
           </div>
         </v-row>
