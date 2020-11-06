@@ -12,18 +12,21 @@ module.exports.checkSlackUser = functions.https.onCall(async (_, context) => {
   const slackInfo = db.collection("admin").doc("slackInfo");
 
   const docRef = db.collection("users").doc(context.auth.uid);
-  var userEmail = await docRef.get().then(doc => {
+  var userEmail = docRef.get().then(doc => {
     return doc.data().email;
   });
-  const token = await slackInfo.get().then(doc => {
+  const token = slackInfo.get().then(doc => {
     return doc.data().slackToken;
   });
-
+  console.log(token);
   const web = new WebClient(token);
 
   return await web.users
     .lookupByEmail({ token: token, email: userEmail })
     .then(result => {
       return result["ok"];
+    })
+    .catch(err => {
+      return err["ok"];
     });
 });

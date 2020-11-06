@@ -11,7 +11,7 @@ module.exports.populateSlackComponent = functions.https.onCall(
       return { message: "Authentication Required!", code: 401 };
     }
 
-    const slackInfo = db.collection("admin").doc("slackAPIToken");
+    const slackInfo = db.collection("admin").doc("slackInfo");
     var token = await slackInfo.get().then(doc => {
       return doc.data().slackToken;
     });
@@ -20,21 +20,19 @@ module.exports.populateSlackComponent = functions.https.onCall(
     });
     const web = new WebClient(token);
     if (!data.userAdded) {
-      return [inviteLink];
+      return { "Invite Link": inviteLink };
     } else {
       var teamId = await web.auth.test({ token: token }).then(response => {
         return response["team_id"];
       });
-      var channelLinks = [];
-      for (var i = 0; i < data.channels.length; i++) {
-        channelLinks.push([
+      var channelLinks = {};
+      data.channels.forEach(element => {
+        channelLinks[element] =
           "https://slack.com/app_redirect?team=" +
-            teamId +
-            "&channel=" +
-            data.channels[i],
-          data.channels[i]
-        ]);
-      }
+          teamId +
+          "&channel=" +
+          element;
+      });
       return channelLinks;
     }
   }
