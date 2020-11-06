@@ -60,7 +60,7 @@
             <Schedule />
           </v-col>
           <v-col>
-            <SlackChannels />
+            <SlackComponent />
           </v-col>
         </v-row>
       </div>
@@ -88,7 +88,7 @@ import grasstop from "@/components/common/grasstop.svg.vue";
 import grassbottom from "@/components/common/grassbottom.svg.vue";
 import footertop from "@/components/common/footertop.svg.vue";
 import Schedule from "@/components/common/Schedule.vue";
-import SlackChannels from "./SlackChannels.vue";
+import SlackComponent from "@/components/common/SlackComponent.vue";
 
 export default {
   name: "VolunteerDashboard",
@@ -99,7 +99,7 @@ export default {
     grassbottom,
     footertop,
     Schedule,
-    SlackChannels,
+    SlackComponent,
     Timeline
   },
   methods: {
