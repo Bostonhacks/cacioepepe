@@ -54,7 +54,7 @@ export default {
   data() {
     return {
       challengeList: [
-        { header: "Challe List" },
+        { header: "Challenge List" },
         {
           value: "Google",
           avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",

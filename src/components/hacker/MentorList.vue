@@ -87,6 +87,9 @@ export default {
     this.searchItemM = this.mentorList;
   },
   computed: {
+    mentor() {
+      return this.$store.state.mentor;
+    },
     filteredItemsM() {
       return this.searchItemM.filter(item => {
         if ("value" in item) {

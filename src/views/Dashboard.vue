@@ -10,9 +10,9 @@
       class="darkBlue text--white white--text py-10"
       v-if="this.user.role == 'admin'"
     >
-      <SponsorDashboard />
+      <!-- <SponsorDashboard />
       <MentorDashboard />
-      <VolunteerDashboard />
+      <VolunteerDashboard /> -->
     </div>
     <div
       class="darkBlue text--white white--text py-10"
