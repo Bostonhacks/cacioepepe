@@ -1,51 +1,90 @@
 <template>
-  <div>
-    <v-row class="justify-center">
-      <p id="timer" class="display-4 white--text font-weight-bold">
-        {{ this.seconds }}
+  <v-container id="container">
+    <v-row>
+      <p class="text-center display-2 white--text font-weight-bold">
+        Good Title
       </p>
     </v-row>
-    <v-row class="justify-center">
-      <p class="white--text font-weight-bold mr-8">Hours</p>
-      <p class="white--text font-weight-bold mr-8 ml-8">Minutes</p>
-      <p class="white--text font-weight-bold ml-10">Seconds</p>
+    <v-row class="justify-center align-center" id="timer">
+      <v-col cols="1" id="hours" class="ma-8">
+        <v-row
+          ><p class="text-center display-4 white--text font-weight-bold">
+            {{ hours }}
+          </p></v-row
+        >
+        <v-row
+          ><p class="text-center white--text font-weight-bold">
+            Hours
+          </p></v-row
+        >
+      </v-col>
+      <v-col cols="1" id="minutes" class="ma-8">
+        <v-row
+          ><p class="text-center display-4 white--text font-weight-bold">
+            {{ minutes }}
+          </p></v-row
+        >
+        <v-row
+          ><p class="text-center white--text font-weight-bold">
+            Minutes
+          </p></v-row
+        >
+      </v-col>
+      <v-col cols="1" id="seconds" class="ma-8">
+        <v-row
+          ><p class="text-center display-4 white--text font-weight-bold">
+            {{ seconds }}
+          </p></v-row
+        >
+        <v-row
+          ><p class="text-center white--text font-weight-bold">
+            Seconds
+          </p></v-row
+        >
+      </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script>
 export default {
   data: () => {
     return {
-      hours: 0,
-      minutes: 0,
-      seconds: 0
+      hours: "",
+      minutes: "",
+      seconds: ""
     };
   },
   mounted() {
-    this.countDown();
+    let countDownDate = new Date("Nov 15, 2020, 14:30:00").getTime();
+    this.timerCount(countDownDate);
+    this.interval = setInterval(() => {
+      this.timerCount(countDownDate);
+    }, 1000);
   },
   methods: {
-    countDown() {
-      let countDownDate = new Date("Nov 4, 2020, 0:00:00").getTime();
-      setTimeout(function() {
-        let now = new Date().getTime();
-        let distance = countDownDate - now;
-        let hours = Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        this.hours = hours;
-        this.minutes = minutes;
-        this.seconds = seconds;
-      }, 1000);
-    },
     prefixZero(num) {
       return String(num).padStart(2, "0");
+    },
+    timerCount(countDownDate) {
+      let now = new Date().getTime();
+      let distance = countDownDate - now;
+      this.hours = this.prefixZero(
+        Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      );
+      this.minutes = this.prefixZero(
+        Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+      );
+      this.seconds = this.prefixZero(
+        Math.floor((distance % (1000 * 60)) / 1000)
+      );
     }
   }
 };
 </script>
 
-<style></style>
+<style>
+#container p {
+  width: 100%;
+}
+</style>

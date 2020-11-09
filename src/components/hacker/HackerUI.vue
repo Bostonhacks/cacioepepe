@@ -8,7 +8,7 @@ change avatar for mentors (sample blank svg for now?)
 -->
 <template>
   <div class="white--text blue mt-n14">
-    <CountdownTimer class="py-10" v-if="this.user.applicationStatus === 7" />
+    <CountdownTimer v-if="this.user.applicationStatus === 7" />
     <v-row justify="center">
       <v-col
         cols="12"
@@ -124,7 +124,7 @@ change avatar for mentors (sample blank svg for now?)
 
 <script>
 import { db } from "@/firebase/init";
-import CountdownTimer from "@/components/common/CountdownTimer";
+import CountdownTimer from "@/components/hacker/CountdownTimer";
 import Timeline from "@/components/common/Timeline/Timeline.svg.vue";
 import Tree from "@/components/common/SVG/Tree.vue";
 import grasstop from "@/components/common/grasstop.svg.vue";
@@ -197,6 +197,9 @@ export default {
 </script>
 
 <style scoped>
+.green-base {
+  background: var(--v-green-base);
+}
 #tree1 {
   position: relative;
   top: -10rem;
