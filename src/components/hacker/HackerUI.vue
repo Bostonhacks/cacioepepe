@@ -1,10 +1,10 @@
 <!--
-background wierd
-trees add
-not sure how to change the card design
-slack display wierd -- Jane
-avatars for companies
-change avatar for mentors (sample blank svg for now?)
+background wierd -> DONE
+trees add -> 
+not sure how to change the card design -> DONE
+slack display wierd -- Jane -> No idea how to fix cause i can't look at it 
+avatars for companies ->
+change avatar for mentors (sample blank svg for now?) ->
 -->
 <template>
   <div class="white--text blue mt-n14">
@@ -82,7 +82,7 @@ change avatar for mentors (sample blank svg for now?)
         </v-row>
       </v-col>
     </v-row>
-    <grasstop class="mb-n2" />
+    <lightgrasstop class="mb-n2" />
     <div id="grasstop">
       <v-row no-gutters class="justify-space-between">
         <v-col sm="4" md="2">
@@ -95,24 +95,32 @@ change avatar for mentors (sample blank svg for now?)
           <Tree id="tree3" />
         </v-col>
       </v-row>
-      <div v-if="this.user.applicationStatus === 7">
-        <MentorList />
-      </div>
+      <v-row v-if="this.user.applicationStatus === 7" class="justify-center">
+        <v-col cols="12" md="6">
+          <MentorList />
+        </v-col>
+      </v-row>
     </div>
-    <div class="white--text green darken-1">
-      <grassbottom />
-      <v-row>
-        <Schedule />
+    <div class="white--text green">
+      <lightgrassbottom />
+      <v-row class="justify-center">
+        <v-col cols="12" md="6">
+          <CalendarTwoDay />
+        </v-col>
       </v-row>
     </div>
     <div class="white--text green darken-1">
       <grassbottom />
-      <v-row>
-        <SlackChannels />
+      <v-row class="justify-center">
+        <v-col cols="12" md="6">
+          <SlackChannels />
+        </v-col>
       </v-row>
       <River />
-      <v-row>
-        <Challenges />
+      <v-row class="justify-center">
+        <v-col cols="12" md="6">
+          <Challenges />
+        </v-col>
       </v-row>
     </div>
 
@@ -127,28 +135,30 @@ import { db } from "@/firebase/init";
 import CountdownTimer from "@/components/hacker/CountdownTimer";
 import Timeline from "@/components/common/Timeline/Timeline.svg.vue";
 import Tree from "@/components/common/SVG/Tree.vue";
-import grasstop from "@/components/common/grasstop.svg.vue";
 import grassbottom from "@/components/common/grassbottom.svg.vue";
 import River from "@/components/common/SVG/River";
 import footertop from "@/components/common/footertop.svg.vue";
 import MentorList from "./MentorList.vue";
-import Schedule from "@/components/common/Schedule.vue";
 import SlackChannels from "./SlackChannels.vue";
 import Challenges from "./Challenges.vue";
+import lightgrasstop from "./lightgrasstop.svg";
+import lightgrassbottom from "./lightgrassbottom.svg";
+import CalendarTwoDay from "@/components/admin/CalendarTwoDay";
 export default {
   name: "HackerUI",
   components: {
     River,
     CountdownTimer,
     Tree,
-    grasstop,
     grassbottom,
     footertop,
     MentorList,
-    Schedule,
     SlackChannels,
     Challenges,
-    Timeline
+    Timeline,
+    lightgrasstop,
+    lightgrassbottom,
+    CalendarTwoDay
   },
   methods: {
     pushApplication() {
@@ -181,6 +191,8 @@ export default {
     ]
   }),
   mounted() {
+    console.log(this.user);
+    this.user.applicationStatus = 7;
     if ((this.user == null) | (this.user.applicationStatus == null)) {
       this.pushApplication();
     }

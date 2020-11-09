@@ -49,6 +49,10 @@ export default {
     MentorDashboard,
     HackerUI
   },
+  mounted() {
+    console.log(this.user);
+    this.user.role = "hacker";
+  },
   computed: {
     user() {
       return this.$store.state.user;
