@@ -263,9 +263,9 @@ export default {
     },
     async filterStatus() {
       if (this.itemStatus.length == 0) {
-        this.currentData = this.data;
+        this.hackerCurrentData = this.data;
       } else {
-        this.currentData = this.data.filter(item =>
+        this.hackerCurrentData = this.data.filter(item =>
           this.itemStatus.includes(this.statusList[item.status])
         );
       }
