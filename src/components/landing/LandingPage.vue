@@ -353,7 +353,7 @@
               <h2>Can we form teams?</h2>
               <p>
                 Of course you can! We encourage people to work in teams of up to
-                5 people. You may opt-in to team formation through our Slack
+                4 people. You may opt-in to team formation through our Slack
                 Channel which will match you with an ideal team. You can work
                 alone, but it won’t be the same.
               </p>
@@ -459,6 +459,11 @@
           </v-col>
           <v-col cols="12" md="6" lg="3" class="my-12">
             <MLH />
+          </v-col>
+        </v-row>
+        <v-row class="mx-12 justify-center">
+          <v-col cols="12" md="6" lg="3" class="my-12">
+            <v-img src="@/assets/sponsorlogos/Agora.png" />
           </v-col>
         </v-row>
       </v-container>
