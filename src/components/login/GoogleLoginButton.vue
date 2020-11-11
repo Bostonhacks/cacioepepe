@@ -176,7 +176,6 @@ export default {
       var provider = new firebase.auth.GoogleAuthProvider();
       firebase.auth().useDeviceLanguage();
       firebase.auth().signInWithRedirect(provider);
-      this.$router.push("/");
     }
   }
 };
