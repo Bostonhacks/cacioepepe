@@ -142,7 +142,6 @@ import PieChart from "@/components/common/PieChart";
 import Timeline from "@/components/common/Timeline";
 import SlackInfoUpload from "@/components/admin/SlackInfoUpload";
 import { db } from "@/firebase/init";
-import { functions } from "@/firebase/init";
 import BostonHacksLoadingLogo from "@/components/common/SVG/BostonHacksLoadingLogo.vue";
 
 export default {
@@ -252,18 +251,21 @@ export default {
   },
   methods: {
     async getEvents() {
-      var out = await functions.httpsCallable("readSchedules")({});
-      if (out.data) {
-        this.events = out.data;
+      // readSchedules
+      const eventsDb = db.collection("admin").doc("schedules");
+      var allEvents = await eventsDb.get();
+      var out = allEvents.data().events;
+      if (out) {
+        this.events = out;
       } else {
         this.events = [];
       }
     },
     async filterStatus() {
       if (this.itemStatus.length == 0) {
-        this.currentData = this.data;
+        this.hackerCurrentData = this.data;
       } else {
-        this.currentData = this.data.filter(item =>
+        this.hackerCurrentData = this.data.filter(item =>
           this.itemStatus.includes(this.statusList[item.status])
         );
       }

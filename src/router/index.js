@@ -47,22 +47,6 @@ const routes = [
       requiresAuth: false
     }
   },
-  // {
-  //   path: "/mentor",
-  //   name: "mentor",
-  //   component: () => import("@/views/Mentor.vue"),
-  //   meta: {
-  //     requiresAuth: true
-  //   }
-  // },
-  // {
-  //   path: "/volunteer",
-  //   name: "volunteer",
-  //   component: () => import("@/views/Volunteer.vue"),
-  //   meta: {
-  //     requiresAuth: true
-  //   }
-  // },
   {
     path: "/live",
     name: "live",
@@ -88,14 +72,14 @@ const routes = [
       requiresAuth: false
     }
   },
-  /*  {
+  {
     path: "/finishsignup",
     name: "finishsignup",
     component: () => import("@/views/FinishSignUp.vue"),
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     }
-  },*/
+  },
   {
     path: "/resetpw",
     name: "resetpw",
@@ -160,14 +144,16 @@ const router = new VueRouter({
   }
 });
 
-/*router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
   let user = store.state.user;
   if (user && to.name != "finishsignup" && notFullySignUp(user)) {
     next({ name: "finishsignup" });
+  } else if (user && to.name == "finishsignup" && user.role != null) {
+    next({ name: "home" });
   } else {
     next();
   }
-});*/
+});
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(rec => rec.meta.requiresAuth)) {
@@ -212,8 +198,8 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-/*const notFullySignUp = user => {
+const notFullySignUp = user => {
   return user.role == null;
-};*/
+};
 
 export default router;

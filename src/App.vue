@@ -3,7 +3,7 @@
     <navigationBar />
 
     <transition name="slide" mode="out-in">
-      <router-view />
+      <router-view id="router" />
     </transition>
     <Footer />
 
@@ -54,12 +54,24 @@ export default {
 </script>
 
 <style>
+html,
+body {
+  height: 100%;
+}
+
 #app {
   overflow-x: hidden;
   background-repeat: no-repeat;
   /* background-image: url("/assets/landingPage/bostonHacksLoadingLogo.svg"); */
   background-position: center calc(50vh - 75px);
   background-size: 150px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#router {
+  flex: 1 0 auto;
 }
 
 .slide-enter-active,

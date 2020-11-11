@@ -34,9 +34,37 @@
               </v-btn>
             </v-row>
           </div>
-          <div class="display-1" v-if="this.user.applicationStatus === 1">
-            You're all set! We'll let you know as soon as there's an update to
-            your application.
+          <div
+            class="display-3 font-weight-bold"
+            v-if="this.user.applicationStatus === 5"
+          >
+            <v-row class="pb-5 display-1 font-weight-bold">
+              You are confirmed to attend BostonHacks! We will update details
+              soon.
+            </v-row>
+          </div>
+        </v-row>
+        <v-row class="justify-center text-align-center">
+          <div class="display-1" v-if="this.user.applicationStatus === 4">
+            <v-form class="justify-center">
+              <label>Confirmation</label>
+              <v-radio-group v-model="statuscheck" class="pl-5">
+                <v-radio
+                  label="Yes, I'm going to BostonHacks!"
+                  value="5"
+                ></v-radio>
+                <v-radio label="No, sorry I can't attend." value="6"></v-radio>
+              </v-radio-group>
+              <v-btn
+                v-on:click="confirm()"
+                rounded
+                x-large
+                class="red--text pa-8 display-1 font-weight-bold"
+                style="text-transform: none !important"
+              >
+                Submit
+              </v-btn>
+            </v-form>
           </div>
         </v-row>
       </v-col>
@@ -87,17 +115,17 @@
 </template>
 
 <script>
-import CountdownTimer from "./CountdownTimer";
-import Timeline from "./Timeline/Timeline.svg.vue";
+import { db } from "@/firebase/init";
+import CountdownTimer from "@/components/common/CountdownTimer";
+import Timeline from "@/components/common/Timeline/Timeline.svg.vue";
 import Tree from "@/components/common/SVG/Tree.vue";
-import grasstop from "./grasstop.svg.vue";
-import grassbottom from "./grassbottom.svg.vue";
-import footertop from "./footertop.svg.vue";
+import grasstop from "@/components/common/grasstop.svg.vue";
+import grassbottom from "@/components/common/grassbottom.svg.vue";
+import footertop from "@/components/common/footertop.svg.vue";
 import MentorList from "./MentorList.vue";
-import Schedule from "./Schedule.vue";
+import Schedule from "@/components/common/Schedule.vue";
 import SlackChannels from "./SlackChannels.vue";
 import Challenges from "./Challenges.vue";
-
 export default {
   name: "HackerUI",
   components: {
@@ -115,9 +143,23 @@ export default {
   methods: {
     pushApplication() {
       this.$router.push("application");
+    },
+    async confirm() {
+      const user = db.collection("users").doc(this.user.uid);
+      if (this.statuscheck === "5") {
+        await user.update({
+          applicationStatus: 5
+        });
+      } else {
+        await user.update({
+          applicationStatus: 6
+        });
+      }
+      this.$router.go();
     }
   },
   data: () => ({
+    statuscheck: null,
     contentLoaded: false,
     null: "No result",
     searchM: "",
@@ -127,17 +169,24 @@ export default {
     mentorList: [
       { header: "Mentor List" },
       {
-        value: "Rishab Bishab",
+        value: "Twilio",
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-        title: "Rishab Bishab",
+        title: "Twillio",
         description:
           "<span class='text--primary'>God of Everything</span> &mdash; Vue, Firebase"
       },
       { divider: true, inset: true },
       {
-        value: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
+        value: "RStudio",
         avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
-        title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
+        title: "RStudio",
+        description:
+          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
+      },
+      {
+        value: "stickermule",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+        title: "stickermule",
         description:
           "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
       }
@@ -145,17 +194,24 @@ export default {
     challengeList: [
       { header: "Challenge List" },
       {
-        value: "Rishab Bishab",
+        value: "Twillio",
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-        title: "Rishab Bishab",
+        title: "Twillio",
         description:
           "<span class='text--primary'>God of Everything</span> &mdash; Vue, Firebase"
       },
       { divider: true, inset: true },
       {
-        value: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
+        value: "RStudio",
         avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
-        title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
+        title: "RStudio",
+        description:
+          "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
+      },
+      {
+        value: "stickermule",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+        title: "stickermule",
         description:
           "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
       }

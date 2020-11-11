@@ -156,40 +156,15 @@
 
 <script>
 import firebase from "firebase/app";
-import store from "../../store";
-import { db } from "@/firebase/init.js";
 
 export default {
   name: "GoogleLoginButton",
-  props: ["buttonName", "role"],
+  props: ["buttonName"],
   mounted() {
     firebase
       .auth()
       .getRedirectResult()
-      .then(async result => {
-        if (result.credential) {
-          // The signed-in user info.
-          var user = result.user;
-          let userDbResult = await db
-            .collection("users")
-            .doc(user.uid)
-            .get();
-          if (!userDbResult.data()) {
-            await db
-              .collection("users")
-              .doc(user.uid)
-              .set({
-                displayName: user.displayName,
-                email: user.email,
-                uid: user.uid,
-                role: this.role // hardcoded until we use finish signup
-              });
-            await store.dispatch("getUser");
-          }
-
-          this.$router.push("/");
-        }
-      })
+      .then()
       .catch(function(error) {
         // Handle Errors here.
         var errorMessage = error.message;

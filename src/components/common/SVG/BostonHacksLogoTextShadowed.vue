@@ -1,6 +1,6 @@
 <template>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 570 290">
-    <g fill="white" filter="url(#basicDropShadow)">
+    <g fill="white">
       <g>
         <path
           d="M191.3 154a7.6 7.6 0 01-3.8-14.2l103.7-59.6a7.6 7.6 0 117.6 13L195 153a7.6 7.6 0 01-3.8 1z"
