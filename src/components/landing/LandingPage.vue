@@ -353,7 +353,7 @@
               <h2>Can we form teams?</h2>
               <p>
                 Of course you can! We encourage people to work in teams of up to
-                5 people. You may opt-in to team formation through our Slack
+                4 people. You may opt-in to team formation through our Slack
                 Channel which will match you with an ideal team. You can work
                 alone, but it won’t be the same.
               </p>
@@ -416,16 +416,54 @@
         <h2 class="display-1 py-15 text-center font-weight-bold">
           Thank You To Our Sponsors!
         </h2>
-        <v-row justify="center">
-          <v-col cols="9" sm="5" md="4" lg="3">
+        <v-row class="mx-12 justify-center justify-lg-space-between">
+          <v-col cols="12" md="6" lg="3" class="my-12">
             <Twilio />
           </v-col>
 
-          <v-col cols="9" sm="5" md="4" lg="3">
+          <v-col cols="12" md="6" lg="3" class="my-12">
             <RStudio />
           </v-col>
-          <v-col cols="9" sm="5" md="4" lg="3">
+          <v-col cols="12" md="6" lg="3" class="my-12">
             <StickerMule />
+          </v-col>
+        </v-row>
+        <v-row class="mx-12 justify-center justify-lg-space-between">
+          <v-col cols="12" md="6" lg="3" class="my-12 d-flex justify-center">
+            <Balsamiq />
+          </v-col>
+          <v-col cols="12" md="6" lg="3" class="my-12">
+            <v-img src="@/assets/sponsorlogos/Cloudera.png" />
+          </v-col>
+          <v-col cols="12" md="6" lg="3" class="my-12">
+            <v-img src="@/assets/sponsorlogos/EchoAR.png" />
+          </v-col>
+        </v-row>
+        <v-row class="mx-12 justify-center justify-lg-space-between">
+          <v-col cols="12" md="6" lg="3" class="my-12">
+            <v-img src="@/assets/sponsorlogos/Spark.png" />
+          </v-col>
+          <v-col cols="12" md="6" lg="3" class="my-12">
+            <v-img src="@/assets/sponsorlogos/LibertyMutual.png" />
+          </v-col>
+          <v-col cols="12" md="6" lg="3" class="my-12">
+            <v-img src="@/assets/sponsorlogos/Hatchways.png" />
+          </v-col>
+        </v-row>
+        <v-row class="mx-12 justify-center justify-lg-space-between">
+          <v-col cols="12" md="6" lg="3" class="my-12">
+            <v-img src="@/assets/sponsorlogos/GoogleCloud.png" />
+          </v-col>
+          <v-col cols="12" md="6" lg="3" class="my-12">
+            <v-img src="@/assets/sponsorlogos/Pinnacle.png" />
+          </v-col>
+          <v-col cols="12" md="6" lg="3" class="my-12">
+            <MLH />
+          </v-col>
+        </v-row>
+        <v-row class="mx-12 justify-center">
+          <v-col cols="12" md="6" lg="3" class="my-12">
+            <v-img src="@/assets/sponsorlogos/Agora.png" />
           </v-col>
         </v-row>
       </v-container>
@@ -446,11 +484,14 @@ import GreenHotAirBalloon from "@/components/common/SVG/GreenHotAirBalloon";
 import BostonHacksLogoTextShadowed from "@/components/common/SVG/BostonHacksLogoTextShadowed";
 import River from "@/components/common/SVG/River";
 import Feliz from "@/components/common/SVG/Feliz";
-import Twilio from "@/assets/sponsorlogos/Twilio.svg.vue";
-import RStudio from "@/assets/sponsorlogos/RStudio.svg.vue";
+
 import CalendarTwoDay from "@/components/admin/CalendarTwoDay";
 import { db } from "@/firebase/init";
+import Twilio from "@/assets/sponsorlogos/Twilio.svg.vue";
+import RStudio from "@/assets/sponsorlogos/RStudio.svg.vue";
 import StickerMule from "@/assets/sponsorlogos/StickerMule.svg.vue";
+import Balsamiq from "@/assets/sponsorlogos/Balsamiq.svg.vue";
+import MLH from "@/assets/sponsorlogos/MLH.svg.vue";
 
 export default {
   computed: {
@@ -512,7 +553,9 @@ export default {
     Twilio,
     RStudio,
     CalendarTwoDay,
-    StickerMule
+    StickerMule,
+    Balsamiq,
+    MLH
   },
   mounted: function() {
     this.mounted();
