@@ -25,6 +25,15 @@
                 </v-col>
               </v-row>
               <v-row>
+                <v-col>
+                  <v-text-field
+                    label="Link (If multiple links, input them comma separated"
+                    required
+                    v-model="csvLinks"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
                 <v-col cols="12" sm="6" md="6">
                   <v-text-field
                     label="Location"
@@ -171,6 +180,16 @@
               <span v-html="selectedEvent.description"></span>
             </v-card-text>
             <v-card-text>
+              <a
+                v-for="(link, index) in selectedEvent.link"
+                :key="index"
+                :href="link"
+                target="_blank"
+                rel="noopener noreferrer"
+                >{{ link }}</a
+              >
+            </v-card-text>
+            <v-card-text>
               Time:
               <span v-html="selectedEvent.start"></span>
               to
@@ -205,6 +224,7 @@ export default {
     end: null,
     name: "",
     description: "",
+    csvLinks: "",
     menu: false,
     dialog: false,
     focus: "",
@@ -239,6 +259,11 @@ export default {
       "Party"
     ]
   }),
+  computed: {
+    link() {
+      return this.csvLinks.split(",");
+    }
+  },
   methods: {
     async getEvents() {
       // readSchedules
@@ -260,11 +285,13 @@ export default {
         var newEvent = {
           name: this.name,
           description: this.description,
+          link: this.link,
           location: this.location,
           type: this.scheduleType,
           start: this.$refs.startTimePicker.formattedDatetime,
           end: this.$refs.endTimePicker.formattedDatetime
         };
+        console.log(newEvent);
         const eventSchedule = db.collection("admin").doc("schedules");
         await eventSchedule
           .update({
@@ -288,11 +315,13 @@ export default {
       var newEvent = {
         name: this.name,
         description: this.description,
+        link: this.link,
         location: this.location,
         type: this.scheduleType,
         start: this.$refs.startTimePicker.formattedDatetime,
         end: this.$refs.endTimePicker.formattedDatetime
       };
+      console.log(newEvent);
       const schedDb = db.collection("admin").doc("schedules");
       let info = await schedDb.get();
       this.events = info.data().events;
@@ -316,7 +345,7 @@ export default {
     clearForm() {
       this.name = "";
       this.description = "";
-      this.location = "";
+      (this.link = []), (this.location = "");
       this.scheduleType = "";
       this.start = "";
       this.end = "";
@@ -347,6 +376,7 @@ export default {
           schedule =>
             schedule.name != this.selectedEvent.name &&
             schedule.description != this.selectedEvent.description &&
+            schedule.link != this.selectedEvent.link &&
             schedule.location != this.selectedEvent.location &&
             schedule.type != this.selectedEvent.scheduleType &&
             schedule.start != this.selectedEvent.start &&
@@ -367,6 +397,7 @@ export default {
       this.start = event.start;
       this.end = event.end;
       this.location = event.location;
+      this.link = event.link;
       this.scheduleType = event.type;
       this.description = event.description;
       this.dialog = true;
