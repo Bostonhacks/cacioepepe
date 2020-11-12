@@ -256,7 +256,6 @@ export default {
       if (Object.keys(this.selectedEvent).length > 0) {
         this.updateEvent(this.selectedEvent);
       } else {
-        console.log(this.$refs.startTimePicker.formattedDatetime);
         // createSchedule
         var newEvent = {
           name: this.name,
