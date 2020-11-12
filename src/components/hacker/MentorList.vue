@@ -33,7 +33,11 @@
 
                 <v-list-item v-else :key="mentor.title">
                   <v-list-item-avatar>
-                    <v-img :src="mentor.avatar"></v-img>
+                    <v-avatar color="indigo">
+                      <v-icon dark>
+                        mdi-account-circle
+                      </v-icon>
+                    </v-avatar>
                   </v-list-item-avatar>
 
                   <v-list-item-content>
