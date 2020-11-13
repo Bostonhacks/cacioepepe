@@ -50,8 +50,11 @@ export default {
     }
   },
   async mounted() {
-    var slackUserData = await functions.httpsCallable("checkSlackUser")({});
+    var slackUserData = await functions.httpsCallable("checkSlackUser")({
+      email: this.user.email
+    });
     this.userExists = slackUserData.data;
+    console.log(this.userExists);
     const slackdb = db.collection("admin").doc("slackInfo");
     var allChannels = await slackdb.get().then(doc => {
       return doc.data();

@@ -26,21 +26,16 @@
           >
           <v-card-actions>
             <v-list>
-              <v-list-item>
-                <v-btn block color="secondary" dark
-                  >Open #general Channel</v-btn
-                >
-              </v-list-item>
-              <v-list-item>
-                <v-btn block color="secondary" dark
-                  >Open #sponsor Channel</v-btn
-                >
-              </v-list-item>
-              <v-list-item>
-                <v-btn block color="secondary" dark
-                  >Open #workshops Channel</v-btn
-                >
-              </v-list-item>
+              <v-list-item-subtitle
+                v-for="(link, channel) in links"
+                v-bind:key="link.id"
+              >
+                <v-btn class="mb-2" block color="secondary" dark>
+                  #<a :href="link" target="_blank" rel="noreferrer">
+                    {{ channel.toProperCase() }}</a
+                  >
+                </v-btn>
+              </v-list-item-subtitle>
             </v-list>
           </v-card-actions>
         </v-list-item-content>
@@ -70,13 +65,17 @@ export default {
     }
   },
   async mounted() {
-    var slackUserData = await functions.httpsCallable("checkSlackUser")({});
+    var slackUserData = await functions.httpsCallable("checkSlackUser")({
+      email: this.user.email
+    });
     this.userExists = slackUserData.data;
+    console.log(this.userExists);
     const slackdb = db.collection("admin").doc("slackInfo");
     var allChannels = await slackdb.get().then(doc => {
       return doc.data();
     });
     this.channels = allChannels[this.user.role + "Channels"];
+
     var slackComponentData = await functions.httpsCallable(
       "populateSlackComponent"
     )({
