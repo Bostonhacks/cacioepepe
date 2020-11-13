@@ -1,5 +1,4 @@
 <!--
-slack display wierd -- Jane -> 
 avatars for companies ->
 change avatar for mentors (sample blank svg for now?) ->
 Fix countdown on mobile -> 
@@ -116,7 +115,7 @@ Fix countdown on mobile ->
       <v-row class="justify-center">
         <v-col cols="12" md="6">
           <h2 class="display-1 text-center font-weight-bold basicTextShadow">
-            Schedule for November
+            Schedule
           </h2>
           <CalendarTwoDay />
         </v-col>
