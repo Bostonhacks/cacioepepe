@@ -2,54 +2,57 @@
   <div id="Mentors">
     <v-row class="justify-center">
       <v-container class="justify-center align-center">
-        <v-card max-width="599" class="mx-auto">
-          <v-toolbar color="light-blue" dark>
-            <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-            <v-toolbar-title>Mentors</v-toolbar-title>
-
-            <v-spacer></v-spacer>
-            <v-spacer></v-spacer>
-            <!-- <v-btn icon>
-                <v-icon>mdi-magnify</v-icon>
-              </v-btn> -->
-            <v-text-field
-              v-model="searchM"
-              append-icon="mdi-magnify"
-              label="Search"
-              single-line
-              hide-details
-            ></v-text-field>
+        <v-card class="mx-auto">
+          <v-toolbar color="light-blue" dark class="d-flex justify-center">
+            <v-toolbar-title class="display-1 font-weight-bold"
+              >Mentors</v-toolbar-title
+            >
           </v-toolbar>
+          <v-text-field
+            class="mx-12"
+            v-model="searchM"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
+          <div class="mx-8">
+            <v-list three-line>
+              <v-list-item>Coming Soon!</v-list-item>
+              <!-- <template v-for="(mentor, index) in filteredItemsM">
+                <v-subheader
+                  v-if="mentor.header"
+                  :key="mentor.header"
+                  v-text="mentor.header"
+                ></v-subheader>
 
-          <v-list three-line>
-            <template v-for="(mentor, index) in filteredItemsM">
-              <v-subheader
-                v-if="mentor.header"
-                :key="mentor.header"
-                v-text="mentor.header"
-              ></v-subheader>
+                <v-divider
+                  v-else-if="mentor.divider"
+                  :key="index"
+                  :inset="mentor.inset"
+                ></v-divider>
 
-              <v-divider
-                v-else-if="mentor.divider"
-                :key="index"
-                :inset="mentor.inset"
-              ></v-divider>
+                <v-list-item v-else :key="mentor.title">
+                  <v-list-item-avatar>
+                    <v-avatar color="indigo">
+                      <v-icon dark>
+                        mdi-account-circle
+                      </v-icon>
+                    </v-avatar>
+                  </v-list-item-avatar>
 
-              <v-list-item v-else :key="mentor.title">
-                <v-list-item-avatar>
-                  <v-img :src="mentor.avatar"></v-img>
-                </v-list-item-avatar>
-
-                <v-list-item-content>
-                  <v-list-item-title v-html="mentor.title"></v-list-item-title>
-                  <v-list-item-subtitle
-                    v-html="mentor.description"
-                  ></v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-            </template>
-          </v-list>
+                  <v-list-item-content>
+                    <v-list-item-title
+                      v-html="mentor.title"
+                    ></v-list-item-title>
+                    <v-list-item-subtitle
+                      v-html="mentor.description"
+                    ></v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
+              </template> -->
+            </v-list>
+          </div>
         </v-card>
       </v-container>
     </v-row>
@@ -87,6 +90,9 @@ export default {
     this.searchItemM = this.mentorList;
   },
   computed: {
+    mentor() {
+      return this.$store.state.mentor;
+    },
     filteredItemsM() {
       return this.searchItemM.filter(item => {
         if ("value" in item) {
