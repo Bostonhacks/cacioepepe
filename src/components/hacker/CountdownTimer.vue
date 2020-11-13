@@ -2,7 +2,7 @@
   <v-container id="container">
     <v-row>
       <p class="text-center display-2 white--text font-weight-bold">
-        Good Title
+        Submission Countdown
       </p>
     </v-row>
     <v-row class="justify-center align-center" id="timer">
