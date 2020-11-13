@@ -1,9 +1,10 @@
 <!--
-trees add -> 
-slack display wierd -- Jane -> No idea how to fix cause i can't look at it 
+slack display wierd -- Jane -> 
 avatars for companies ->
 change avatar for mentors (sample blank svg for now?) ->
+Fix countdown on mobile -> 
 -->
+
 <template>
   <div class="white--text blue mt-n14">
     <CountdownTimer v-if="this.user.applicationStatus === 7" />
@@ -231,7 +232,6 @@ export default {
     ]
   }),
   mounted() {
-    console.log(this.user);
     this.user.applicationStatus = 7;
     if ((this.user == null) | (this.user.applicationStatus == null)) {
       this.pushApplication();

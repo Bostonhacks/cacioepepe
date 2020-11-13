@@ -74,7 +74,6 @@ export default {
       email: this.user.email
     });
     this.userExists = slackUserData.data;
-    console.log(this.userExists);
     const slackdb = db.collection("admin").doc("slackInfo");
     var allChannels = await slackdb.get().then(doc => {
       return doc.data();
@@ -89,7 +88,6 @@ export default {
     });
 
     this.links = slackComponentData.data;
-    console.log(this.links);
   }
 };
 </script>
