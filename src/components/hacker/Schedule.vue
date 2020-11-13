@@ -1,6 +1,6 @@
 <template>
   <v-container class="justify-center pl-lg-10">
-    <v-card max-width="450" class="mx-auto">
+    <v-card max-width="500" class="mx-auto">
       <v-toolbar color="brown" dark>
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
