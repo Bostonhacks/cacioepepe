@@ -1,7 +1,5 @@
 <!--
-background wierd -> DONE
 trees add -> 
-not sure how to change the card design -> DONE
 slack display wierd -- Jane -> No idea how to fix cause i can't look at it 
 avatars for companies ->
 change avatar for mentors (sample blank svg for now?) ->
@@ -103,20 +101,62 @@ change avatar for mentors (sample blank svg for now?) ->
     </div>
     <div class="white--text green">
       <lightgrassbottom />
+      <v-row no-gutters class="justify-space-between">
+        <v-col sm="4" md="2">
+          <Tree id="tree4" />
+        </v-col>
+        <v-col sm="4" md="2">
+          <Tree id="tree5" />
+        </v-col>
+        <v-col v-if="!this.$vuetify.breakpoint.mobile" sm="4" md="2">
+          <Tree id="tree6" />
+        </v-col>
+      </v-row>
       <v-row class="justify-center">
         <v-col cols="12" md="6">
+          <h2 class="display-1 text-center font-weight-bold basicTextShadow">
+            Schedule for November
+          </h2>
           <CalendarTwoDay />
         </v-col>
       </v-row>
     </div>
     <div class="white--text green darken-1">
       <grassbottom />
+      <v-row no-gutters class="justify-space-between">
+        <v-col sm="4" md="2">
+          <Tree id="tree7" />
+        </v-col>
+        <v-col sm="4" md="2">
+          <Tree id="tree8" />
+        </v-col>
+        <v-col v-if="!this.$vuetify.breakpoint.mobile" sm="4" md="2">
+          <Tree id="tree9" />
+        </v-col>
+      </v-row>
       <v-row class="justify-center">
         <v-col cols="12" md="6">
           <SlackChannels />
         </v-col>
       </v-row>
       <River />
+      <v-row no-gutters class="justify-space-between">
+        <v-col sm="4" md="2">
+          <Tree id="tree10" />
+        </v-col>
+        <v-col sm="4" md="2">
+          <Tree id="tree11" />
+        </v-col>
+        <v-col v-if="!this.$vuetify.breakpoint.mobile" sm="4" md="2">
+          <Tree id="tree12" />
+        </v-col>
+        <v-col v-if="!this.$vuetify.breakpoint.mobile" sm="4" md="2">
+          <Tree id="tree13" />
+        </v-col>
+        <v-col v-if="!this.$vuetify.breakpoint.mobile" sm="4" md="2">
+          <Tree id="tree14" />
+        </v-col>
+      </v-row>
       <v-row class="justify-center">
         <v-col cols="12" md="6">
           <Challenges />
@@ -226,8 +266,96 @@ export default {
   top: -15rem;
   left: -10rem;
 }
+#tree4 {
+  position: relative;
+  top: -12rem;
+}
+#tree5 {
+  position: relative;
+  top: -10rem;
+  right: -30rem;
+}
+#tree6 {
+  position: relative;
+  top: -5rem;
+}
+#tree7 {
+  position: relative;
+  bottom: -5rem;
+}
+#tree8 {
+  position: relative;
+  bottom: -15rem;
+  left: -30rem;
+}
+#tree9 {
+  position: relative;
+  top: -8rem;
+  left: -10rem;
+}
+#tree10 {
+  position: relative;
+  bottom: -20rem;
+  left: -10rem;
+}
+#tree11 {
+  position: relative;
+  bottom: -10rem;
+  left: -15rem;
+}
+#tree12 {
+  position: relative;
+  top: -8rem;
+  right: -20rem;
+}
+#tree13 {
+  position: relative;
+  bottom: -25rem;
+  right: -10rem;
+}
+#tree14 {
+  position: relative;
+  bottom: -17rem;
+}
 #grasstop {
   background-color: #53d186;
+}
+@media only screen and (max-width: 1300px) {
+  #tree4 {
+    top: -5rem;
+  }
+
+  #tree5 {
+    top: -10rem;
+    right: -20rem;
+  }
+  #tree8 {
+    bottom: 0rem;
+    left: 0rem;
+  }
+  #tree9 {
+    top: 0rem;
+    left: 0rem;
+  }
+  #tree10 {
+    bottom: 0rem;
+    left: 0rem;
+  }
+  #tree11 {
+    bottom: 0rem;
+    left: 0rem;
+  }
+  #tree12 {
+    top: 0rem;
+    right: 0rem;
+  }
+  #tree13 {
+    bottom: 0rem;
+    right: 0rem;
+  }
+  #tree14 {
+    bottom: 0rem;
+  }
 }
 @media only screen and (max-width: 900px) {
   #tree3 {
@@ -239,6 +367,9 @@ export default {
   #tree2 {
     left: 0rem;
     top: -7rem;
+  }
+  #tree7 {
+    bottom: -2rem;
   }
 }
 </style>
