@@ -6,6 +6,7 @@ Fix countdown on mobile ->
 
 <template>
   <div class="white--text blue mt-n14">
+
     <CountdownTimer v-if="this.user.applicationStatus === 5" />
 
     <v-row justify="center">
