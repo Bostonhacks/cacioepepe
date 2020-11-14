@@ -233,8 +233,6 @@ export default {
     ]
   }),
   mounted() {
-    console.log(this.user);
-    this.user.applicationStatus = 7;
     if ((this.user == null) | (this.user.applicationStatus == null)) {
       this.pushApplication();
     }
