@@ -41,6 +41,17 @@
           >Location:
           <span v-html="selectedEvent.location"></span>
         </v-card-text>
+
+        <v-card-text v-if="this.user.applicationStatus == 5">
+          <a
+            v-for="(link, index) in selectedEvent.link"
+            :key="index"
+            :href="link"
+            target="_blank"
+            rel="noopener noreferrer"
+            >{{ link }}<br
+          /></a>
+        </v-card-text>
         <v-card-actions>
           <v-btn text color="secondary" @click="selectedOpen = false">
             Close
@@ -76,6 +87,11 @@ export default {
     ],
     names: ["General", "Social", "Workshop", "Alerts"]
   }),
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
+  },
   methods: {
     async getEvents() {
       // readSchedules
@@ -122,6 +138,7 @@ export default {
   },
   mounted() {
     this.getEvents();
+    this.user.applicationStatus = 7;
   }
 };
 </script>

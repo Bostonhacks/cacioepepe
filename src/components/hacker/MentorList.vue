@@ -18,7 +18,8 @@
           ></v-text-field>
           <div class="mx-8">
             <v-list three-line>
-              <template v-for="(mentor, index) in filteredItemsM">
+              <v-list-item>Coming Soon!</v-list-item>
+              <!-- <template v-for="(mentor, index) in filteredItemsM">
                 <v-subheader
                   v-if="mentor.header"
                   :key="mentor.header"
@@ -49,7 +50,7 @@
                     ></v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
-              </template>
+              </template> -->
             </v-list>
           </div>
         </v-card>

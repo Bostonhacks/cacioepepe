@@ -1,19 +1,20 @@
 <!--
-trees add -> 
-slack display wierd -- Jane -> No idea how to fix cause i can't look at it 
 avatars for companies ->
 change avatar for mentors (sample blank svg for now?) ->
+Fix countdown on mobile -> 
 -->
+
 <template>
   <div class="white--text blue mt-n14">
-    <CountdownTimer v-if="this.user.applicationStatus === 7" />
+    <CountdownTimer v-if="this.user.applicationStatus === 5" />
+
     <v-row justify="center">
       <v-col
         cols="12"
         sm="10"
         md="8"
         xl="6"
-        v-if="this.user.applicationStatus != 7"
+        v-if="this.user.applicationStatus != 5"
       >
         <Timeline :applicationStatus="this.user.applicationStatus" />
       </v-col>
@@ -23,7 +24,7 @@ change avatar for mentors (sample blank svg for now?) ->
     >
       <v-col cols="8">
         <v-row class="justify-center text-align-center">
-          <div class="pb-10" v-if="this.user.applicationStatus != 7">
+          <div class="pb-10">
             Application Status: {{ status[this.user.applicationStatus] }}
           </div>
           <div
@@ -45,7 +46,7 @@ change avatar for mentors (sample blank svg for now?) ->
               </v-btn>
             </v-row>
           </div>
-          <div
+          <!-- <div
             class="display-3 font-weight-bold"
             v-if="this.user.applicationStatus === 5"
           >
@@ -53,7 +54,7 @@ change avatar for mentors (sample blank svg for now?) ->
               You are confirmed to attend BostonHacks! We will update details
               soon.
             </v-row>
-          </div>
+          </div> -->
         </v-row>
         <v-row class="justify-center text-align-center">
           <div class="display-1" v-if="this.user.applicationStatus === 4">
@@ -93,7 +94,8 @@ change avatar for mentors (sample blank svg for now?) ->
           <Tree id="tree3" />
         </v-col>
       </v-row>
-      <v-row v-if="this.user.applicationStatus === 7" class="justify-center">
+
+      <v-row v-if="this.user.applicationStatus === 5" class="justify-center">
         <v-col cols="12" md="6">
           <MentorList />
         </v-col>
@@ -115,7 +117,7 @@ change avatar for mentors (sample blank svg for now?) ->
       <v-row class="justify-center">
         <v-col cols="12" md="6">
           <h2 class="display-1 text-center font-weight-bold basicTextShadow">
-            Schedule for November
+            Schedule
           </h2>
           <CalendarTwoDay />
         </v-col>
