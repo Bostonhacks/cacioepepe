@@ -18,8 +18,7 @@
           ></v-text-field>
           <div class="mx-8">
             <v-list three-line>
-              <v-list-item>Coming Soon!</v-list-item>
-              <!-- <template v-for="(mentor, index) in filteredItemsM">
+              <template v-for="(mentor, index) in filteredItemsM">
                 <v-subheader
                   v-if="mentor.header"
                   :key="mentor.header"
@@ -35,7 +34,9 @@
                 <v-list-item v-else :key="mentor.title">
                   <v-list-item-avatar>
                     <v-avatar>
-                      <v-icon>info</v-icon>
+                      <v-icon orange>
+                        mdi-alarm
+                      </v-icon>
                     </v-avatar>
                   </v-list-item-avatar>
 
@@ -48,7 +49,7 @@
                     ></v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
-              </template> -->
+              </template>
             </v-list>
           </div>
         </v-card>

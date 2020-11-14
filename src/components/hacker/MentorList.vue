@@ -18,8 +18,7 @@
           ></v-text-field>
           <div class="mx-8">
             <v-list three-line>
-              <v-list-item>Coming Soon!</v-list-item>
-              <!-- <template v-for="(mentor, index) in filteredItemsM">
+              <template v-for="(mentor, index) in filteredItemsM">
                 <v-subheader
                   v-if="mentor.header"
                   :key="mentor.header"
@@ -45,12 +44,9 @@
                     <v-list-item-title
                       v-html="mentor.title"
                     ></v-list-item-title>
-                    <v-list-item-subtitle
-                      v-html="mentor.description"
-                    ></v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
-              </template> -->
+              </template>
             </v-list>
           </div>
         </v-card>
@@ -66,19 +62,52 @@ export default {
       mentorList: [
         { header: "Mentor List" },
         {
-          value: "Rishab Bishab",
+          value: "Rudy Raveendran",
           avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-          title: "Rishab Bishab",
-          description:
-            "<span class='text--primary'>God of Everything</span> &mdash; Vue, Firebase"
+          title: "Rudy Raveendran",
+          description: ""
         },
         { divider: true, inset: true },
         {
-          value: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
+          value: "Jason Cho",
           avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
-          title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
-          description:
-            "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
+          title: "Jason Cho",
+          description: ""
+        },
+        { divider: true, inset: true },
+        {
+          value: "Micheal Hendrick",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+          title: "Micheal Hendrick",
+          description: ""
+        },
+        { divider: true, inset: true },
+        {
+          value: "Charles Ma",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+          title: "Charles Ma",
+          description: ""
+        },
+        { divider: true, inset: true },
+        {
+          value: "Ekta",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+          title: "Ekta",
+          description: ""
+        },
+        { divider: true, inset: true },
+        {
+          value: "Yash",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+          title: "Yash",
+          description: ""
+        },
+        { divider: true, inset: true },
+        {
+          value: "Sharif",
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+          title: "Sharif",
+          description: ""
         }
       ],
       null: "No result",
