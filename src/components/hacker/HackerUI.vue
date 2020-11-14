@@ -6,7 +6,6 @@ Fix countdown on mobile ->
 
 <template>
   <div class="white--text blue mt-n14">
-
     <CountdownTimer v-if="this.user.applicationStatus === 5" />
 
     <v-row justify="center">
@@ -15,9 +14,7 @@ Fix countdown on mobile ->
         sm="10"
         md="8"
         xl="6"
-
         v-if="this.user.applicationStatus != 5"
-
       >
         <Timeline :applicationStatus="this.user.applicationStatus" />
       </v-col>
@@ -27,9 +24,7 @@ Fix countdown on mobile ->
     >
       <v-col cols="8">
         <v-row class="justify-center text-align-center">
-
-          <div class="pb-10" v-if="this.user.applicationStatus != 5">
-
+          <div class="pb-10">
             Application Status: {{ status[this.user.applicationStatus] }}
           </div>
           <div
@@ -101,7 +96,6 @@ Fix countdown on mobile ->
       </v-row>
 
       <v-row v-if="this.user.applicationStatus === 5" class="justify-center">
-
         <v-col cols="12" md="6">
           <MentorList />
         </v-col>
