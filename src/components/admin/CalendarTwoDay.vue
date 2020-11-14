@@ -43,7 +43,6 @@
         </v-card-text>
 
         <v-card-text v-if="this.user.applicationStatus == 5">
-
           <a
             v-for="(link, index) in selectedEvent.link"
             :key="index"

@@ -368,12 +368,23 @@ export default {
 
   async mounted() {
     const applications = db.collection("applications").where("status", ">", 0);
+    const users = db.collection("users").where("applicationStatus", ">", 4);
     // retrieveAllApplications
     var appData = await applications.get();
+    var userData = await users.get();
+    var userOut = [];
     var hackOut = [];
     appData.forEach(element => {
       hackOut.push(element.data());
     });
+    userData.forEach(element => {
+      userOut.push(element.data());
+    });
+    // userOut.forEach(user => {
+    //   user.update{
+
+    //   }
+    // });
     // retrieveAllMentors
     const mentors = db.collection("mentors").where("status", ">", 0);
     var mData = await mentors.get();

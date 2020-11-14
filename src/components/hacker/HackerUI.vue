@@ -6,7 +6,6 @@ Fix countdown on mobile ->
 
 <template>
   <div class="white--text blue mt-n14">
-
     <CountdownTimer v-if="this.user.applicationStatus === 5" />
 
     <v-row justify="center">
@@ -96,7 +95,7 @@ Fix countdown on mobile ->
         </v-col>
       </v-row>
 
-      <v-row v-if="this.user.applicationStatus === 5" class="justify-center">
+      <v-row class="justify-center">
         <v-col cols="12" md="6">
           <MentorList />
         </v-col>
@@ -209,6 +208,7 @@ export default {
     },
     async confirm() {
       const user = db.collection("users").doc(this.user.uid);
+      console.log(user);
       if (this.statuscheck === "5") {
         await user.update({
           applicationStatus: 5
