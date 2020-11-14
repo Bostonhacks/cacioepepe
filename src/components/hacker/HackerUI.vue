@@ -6,14 +6,18 @@ Fix countdown on mobile ->
 
 <template>
   <div class="white--text blue mt-n14">
-    <CountdownTimer v-if="this.user.applicationStatus === 7" />
+
+    <CountdownTimer v-if="this.user.applicationStatus === 5" />
+
     <v-row justify="center">
       <v-col
         cols="12"
         sm="10"
         md="8"
         xl="6"
-        v-if="this.user.applicationStatus != 7"
+
+        v-if="this.user.applicationStatus != 5"
+
       >
         <Timeline :applicationStatus="this.user.applicationStatus" />
       </v-col>
@@ -23,7 +27,9 @@ Fix countdown on mobile ->
     >
       <v-col cols="8">
         <v-row class="justify-center text-align-center">
-          <div class="pb-10" v-if="this.user.applicationStatus != 7">
+
+          <div class="pb-10" v-if="this.user.applicationStatus != 5">
+
             Application Status: {{ status[this.user.applicationStatus] }}
           </div>
           <div
@@ -45,7 +51,7 @@ Fix countdown on mobile ->
               </v-btn>
             </v-row>
           </div>
-          <div
+          <!-- <div
             class="display-3 font-weight-bold"
             v-if="this.user.applicationStatus === 5"
           >
@@ -53,7 +59,7 @@ Fix countdown on mobile ->
               You are confirmed to attend BostonHacks! We will update details
               soon.
             </v-row>
-          </div>
+          </div> -->
         </v-row>
         <v-row class="justify-center text-align-center">
           <div class="display-1" v-if="this.user.applicationStatus === 4">
@@ -93,7 +99,9 @@ Fix countdown on mobile ->
           <Tree id="tree3" />
         </v-col>
       </v-row>
-      <v-row v-if="this.user.applicationStatus === 7" class="justify-center">
+
+      <v-row v-if="this.user.applicationStatus === 5" class="justify-center">
+
         <v-col cols="12" md="6">
           <MentorList />
         </v-col>
@@ -231,7 +239,6 @@ export default {
     ]
   }),
   mounted() {
-    this.user.applicationStatus = 7;
     if ((this.user == null) | (this.user.applicationStatus == null)) {
       this.pushApplication();
     }

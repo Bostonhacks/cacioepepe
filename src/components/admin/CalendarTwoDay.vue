@@ -41,7 +41,9 @@
           >Location:
           <span v-html="selectedEvent.location"></span>
         </v-card-text>
-        <v-card-text v-if="this.user.applicationStatus == 7">
+
+        <v-card-text v-if="this.user.applicationStatus == 5">
+
           <a
             v-for="(link, index) in selectedEvent.link"
             :key="index"
