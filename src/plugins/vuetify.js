@@ -3,22 +3,11 @@ import Vuetify from "vuetify/lib";
 
 Vue.use(Vuetify);
 
-// let darkModeEnabled =
-//   window.matchMedia("(prefers-color-scheme: dark)").matches || false;
-
-// window
-//   .matchMedia("(prefers-color-scheme: dark)")
-//   .addEventListener("change", e => {
-//     // const newColorScheme = e.matches ? "dark" : "light";
-//     darkModeEnabled = e.matches || false;
-//   });
-
 export default new Vuetify({
   theme: {
     options: {
       customProperties: true
     },
-    // dark: darkModeEnabled,
     themes: {
       light: {
         green: "#4bbc79",

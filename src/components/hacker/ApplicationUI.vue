@@ -1,25 +1,6 @@
 <template>
   <main class="pt-70px blue">
     <v-container class="blue py-16">
-      <v-row style="height: 0">
-        <v-col cols="4" class="pa-0">
-          <Cloud9
-            alt="Blue Cloud"
-            type="light"
-            style="position: relative; top: -9rem;"
-          />
-        </v-col>
-      </v-row>
-      <h1 class="py-4 white--text basicTextShadow">Apply to BostonHacks!</h1>
-      <v-row style="height: 0">
-        <v-col cols="4" offset="8" class="pa-0">
-          <Cloud9
-            alt="Blue Cloud"
-            type="light"
-            style="position: relative; top: -8rem;"
-          />
-        </v-col>
-      </v-row>
       <v-stepper v-model="e1">
         <v-stepper-header>
           <v-stepper-step :complete="e1 > 1" step="1" :editable="editable"
@@ -432,14 +413,12 @@
   </main>
 </template>
 <script>
-import Cloud9 from "@/components/common/SVG/Cloud9";
 import { functions, db } from "@/firebase/init";
 import store from "@/store/index";
 import BostonHacksLoadingLogo from "@/components/common/SVG/BostonHacksLoadingLogo";
 import Filedrop from "@/components/common/Filedrop";
 export default {
   components: {
-    Cloud9,
     BostonHacksLoadingLogo,
     Filedrop
   },
