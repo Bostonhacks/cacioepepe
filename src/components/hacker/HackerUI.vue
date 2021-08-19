@@ -81,7 +81,6 @@ Fix countdown on mobile ->
         </v-row>
       </v-col>
     </v-row>
-    <lightgrasstop class="mb-n2" />
     <div id="grasstop">
       <v-row no-gutters class="justify-space-between">
         <v-col sm="4" md="2">
@@ -176,30 +175,18 @@ Fix countdown on mobile ->
 import { db } from "@/firebase/init";
 import CountdownTimer from "@/components/hacker/CountdownTimer";
 import Timeline from "@/components/common/Timeline/Timeline.svg.vue";
-import Tree from "@/components/common/SVG/Tree.vue";
-import grassbottom from "@/components/common/grassbottom.svg.vue";
-import River from "@/components/common/SVG/River";
-import footertop from "@/components/common/footertop.svg.vue";
 import MentorList from "./MentorList.vue";
 import SlackChannels from "./SlackChannels.vue";
 import Challenges from "./Challenges.vue";
-import lightgrasstop from "./lightgrasstop.svg";
-import lightgrassbottom from "./lightgrassbottom.svg";
-import CalendarTwoDay from "@/components/admin/CalendarTwoDay";
+import CalendarTwoDay from "@/components/common/CalendarTwoDay";
 export default {
   name: "HackerUI",
   components: {
-    River,
     CountdownTimer,
-    Tree,
-    grassbottom,
-    footertop,
     MentorList,
     SlackChannels,
     Challenges,
     Timeline,
-    lightgrasstop,
-    lightgrassbottom,
     CalendarTwoDay
   },
   methods: {

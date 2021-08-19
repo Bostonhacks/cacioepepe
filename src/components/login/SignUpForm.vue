@@ -1,23 +1,11 @@
 <template>
   <v-container class="blue justify-center align-center pb-10 pt-12 mx-0" fluid>
-    <v-row justify="space-between" class="pt-sm mt-5 mx-md-n8 mb-n16">
-      <v-col cols="6" class="pa-0">
-        <Cloud9 type="light" class="cloud d-none d-sm-flex ml-sm-4 mt-n16" />
-      </v-col>
-      <v-col cols="4">
-        <Cloud9
-          type="light"
-          class="cloud d-none d-sm-flex ml-sm-4 mt-1 pt-16"
-        />
-      </v-col>
-    </v-row>
-    <v-row justify="center" style="width: 100vw;">
+    <v-row justify="center">
       <v-col cols="12" sm="6" md="4" lg="3">
         <v-card>
           <v-row class="justify-center">
             <BostonHacksLogo width="50%" class="pt-10 mr-n10" /><v-card-title
               class="display-1 font-weight-bold red--text ml-n10"
-              style="width: 50%;"
               >Sign Up</v-card-title
             >
           </v-row>
@@ -76,7 +64,7 @@
               @click="signUp"
               >Submit</v-btn
             >
-            <v-row class="justify-center divider">
+            <v-row class="justify-center">
               <span></span>
               <p>Or</p>
               <span></span>
@@ -98,32 +86,13 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-container class="mt-5">
-      <v-row justify="space-between" class="mx-md-n8 mb-n16">
-        <v-col cols="4" class="pa-0">
-          <Cloud9
-            type="light"
-            style=" position: relative"
-            class="d-none d-sm-flex ml-sm-4 mt-n16"
-          />
-        </v-col>
-        <v-col cols="4">
-          <Cloud9
-            type="light"
-            style=" position: relative"
-            class="d-none d-sm-flex ml-sm-4 mt-1 pt-16"
-          />
-        </v-col>
-      </v-row>
-    </v-container>
   </v-container>
 </template>
 
 <script>
-import firebase from "firebase/app";
-import Cloud9 from "@/components/common/SVG/Cloud9";
 import GoogleLoginButton from "@/components/login/GoogleLoginButton.vue";
 import { db } from "@/firebase/init.js";
+import firebase from "firebase/app";
 import BostonHacksLogo from "@/components/login/BostonHacksLogo.svg";
 
 export default {
@@ -171,7 +140,6 @@ export default {
     };
   },
   components: {
-    Cloud9,
     GoogleLoginButton,
     BostonHacksLogo
   },
@@ -211,48 +179,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.cloud {
-  position: relative;
-}
-
-.btn {
-  text-transform: none;
-  width: 70%;
-}
-
-.form-input {
-  width: 95%;
-}
-
-.divider span {
-  overflow: visible;
-  padding: 0;
-  margin-top: 12px;
-  margin-left: 5px;
-  margin-right: 5px;
-  border: none;
-  border-top: 1px solid #e0e0e0;
-  color: #6e6d7a;
-  text-align: center;
-  width: 33%;
-}
-
-.divider p {
-  color: #6e6d7a;
-}
-
-.divider {
-  width: 100%;
-}
-
-.w-100p {
-  width: 100%;
-}
-
-@media screen and (max-width: 600px) {
-  .pt-sm {
-    padding-top: 15vh;
-  }
-}
-</style>
+<style scoped></style>

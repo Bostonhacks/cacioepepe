@@ -2,25 +2,13 @@
   <main class="pt-70px blue">
     <v-container class="blue py-16" v-if="this.user">
       <v-row style="height: 0">
-        <v-col cols="4" class="pa-0">
-          <Cloud9
-            alt="Blue Cloud"
-            type="light"
-            style="position: relative; top: -9rem;"
-          />
-        </v-col>
+        <v-col cols="4" class="pa-0"> </v-col>
       </v-row>
       <h1 class="py-4 white--text basicTextShadow">
         Apply to be a Volunteer!
       </h1>
       <v-row style="height: 0">
-        <v-col cols="4" offset="8" class="pa-0">
-          <Cloud9
-            alt="Blue Cloud"
-            type="light"
-            style="position: relative; top: -8rem;"
-          />
-        </v-col>
+        <v-col cols="4" offset="8" class="pa-0"> </v-col>
       </v-row>
       <v-stepper v-model="e1">
         <v-stepper-header>
@@ -328,13 +316,11 @@
   </main>
 </template>
 <script>
-import Cloud9 from "@/components/common/SVG/Cloud9";
 import { db } from "@/firebase/init";
 import store from "@/store/index";
 import BostonHacksLoadingLogo from "@/components/common/SVG/BostonHacksLoadingLogo";
 export default {
   components: {
-    Cloud9,
     BostonHacksLoadingLogo
   },
   name: "ApplicationUI",

@@ -48,15 +48,6 @@ const routes = [
     }
   },
   {
-    path: "/live",
-    name: "live",
-    component: () => import("@/views/Live.vue"),
-    meta: {
-      requiresAuth: false
-    }
-  },
-
-  {
     path: "/dashboard",
     name: "dashboard",
     component: () => import("@/views/Dashboard.vue"),
