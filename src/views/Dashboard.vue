@@ -51,7 +51,7 @@ export default {
   },
   mounted() {
     console.log(this.user);
-    this.user.role = "hacker";
+    this.user.role = "sponsor";
   },
   computed: {
     user() {
