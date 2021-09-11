@@ -1,9 +1,15 @@
 <template>
-  <div>Landing Page <CalendarTwoDay /></div>
+  <div>
+    Landing Page <CalendarTwoDay /> <Logo /> <Card /> <Planets /> <Section1 />
+  </div>
 </template>
 
 <script>
 import CalendarTwoDay from "@/components/common/CalendarTwoDay";
+import Card from "@/components/landing/Card.vue";
+import Section1 from "@/components/landing/Section1.vue";
+import Logo from "@/components/landing/Logo.vue";
+import Planets from "@/components/landing/Planets.vue";
 import { db } from "@/firebase/init";
 
 export default {
@@ -13,7 +19,11 @@ export default {
     }
   },
   components: {
-    CalendarTwoDay
+    CalendarTwoDay,
+    Card,
+    Planets,
+    Section1,
+    Logo
   },
   async mounted() {
     this.getEvents();
