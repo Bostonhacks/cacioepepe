@@ -15,5 +15,6 @@
   border-radius: 34px;
   width: 300px;
   height: 500px;
+  border-style: groove;
 }
 </style>
