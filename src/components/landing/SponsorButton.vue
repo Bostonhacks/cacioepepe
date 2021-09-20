@@ -1,7 +1,7 @@
 <template>
   <div class="btn-shadow">
     <button class="btn font-weight-bold text-sm-h4 text-h6">
-      SPONSOR<br />LOG IN
+      SPONSOR<br />SIGN<br/>IN
     </button>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
     #ffa767 7.86%,
     rgba(255, 217, 116, 0.13) 79.44%
   );
-  border-radius: 11px;
+  border-radius: 50%;
   text-shadow: 1px 1px 3px #f7f7f7;
 }
 
@@ -34,7 +34,7 @@ export default {
 
 .btn-shadow {
   display: inline-block;
-  border-radius: 11px;
+  border-radius: 50%;
   background: #ec602d;
 }
 </style>
