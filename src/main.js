@@ -7,9 +7,11 @@ import * as firebase from "firebase/app";
 import vuetify from "./plugins/vuetify";
 import DatetimePicker from "vuetify-datetime-picker";
 import VueMeta from "vue-meta";
+import ScrollAnimation from "./components/landing/scrollanimation";
 
 Vue.use(DatetimePicker);
 Vue.use(VueMeta);
+Vue.directive("scrollanimation", ScrollAnimation);
 
 Vue.config.productionTip = false;
 

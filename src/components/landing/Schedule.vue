@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-scrollanimation>
     <Person1 class="person mb-n16" />
     <div class="crd-shadow">
       <div class="crd">
@@ -81,5 +81,16 @@ export default {
   position: relative;
   max-width: 50vw;
   margin-left: 1%;
+}
+
+.before-enter {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 1s ease-out;
+}
+
+.enter {
+  opacity: 1;
+  transform: translateY(0px);
 }
 </style>

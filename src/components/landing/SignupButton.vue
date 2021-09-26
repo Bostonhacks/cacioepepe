@@ -3,9 +3,9 @@
     <div class="btn-shadow">
       <button
         class="btn button-1 font-weight-bold text-sm-h4 text-h6"
-        @click="login"
+        @click="signup()"
       >
-        SIGN IN
+        SIGN UP
       </button>
     </div>
   </div>
@@ -13,10 +13,10 @@
 
 <script>
 export default {
-  name: "LoginButton",
+  name: "SignupButton",
   methods: {
-    login() {
-      this.$router.push("/login");
+    signup() {
+      this.$router.push("/signup");
     }
   }
 };
@@ -59,6 +59,7 @@ export default {
   display: inline-block;
   border-radius: 11px;
   background: #ec602d;
+  overflow: visible;
 }
 
 .before-enter {
