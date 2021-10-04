@@ -1,5 +1,8 @@
 <template>
-  <v-container class="blue justify-center align-center pb-10 pt-12 mx-0" fluid>
+  <v-container
+    class="#ffcf93 justify-center align-center pb-10 pt-12 mx-0"
+    fluid
+  >
     <v-row justify="center">
       <v-col cols="12" sm="6" md="4" lg="3">
         <v-card>
@@ -78,7 +81,7 @@
               left
               small
               color="red"
-              @click="$router.push(`/login`)"
+              @click="$router.push(`/`)"
             >
               <v-icon small>mdi-arrow-left</v-icon>
             </v-btn>

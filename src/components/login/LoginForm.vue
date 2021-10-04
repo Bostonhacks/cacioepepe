@@ -12,7 +12,7 @@
       <v-card>
         <v-row class="justify-center">
           <BostonHacksLogo width="50%" class="pt-10 mr-n10" /><v-card-title
-            >Log In</v-card-title
+            >Sign In</v-card-title
           >
         </v-row>
         <v-row class="flex-column align-center pa-6 pt-0">
@@ -73,7 +73,7 @@
           left
           small
           color="red"
-          @click="renderLogin = !renderLogin"
+          @click="$router.push(`/`)"
         >
           <v-icon small>mdi-arrow-left</v-icon>
         </v-btn>
@@ -93,7 +93,7 @@ export default {
     return {
       email: null,
       password: null,
-      renderLogin: false,
+      renderLogin: true,
       emailRules: [
         value => !!value || "Email is Required.",
         value => {
