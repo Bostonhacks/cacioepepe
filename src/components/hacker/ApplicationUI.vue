@@ -1423,13 +1423,12 @@ export default {
       .then(result => {
         let schoolList = result.split("\n").map(item => {
           item = item.startsWith('"')
-            ? item.substring(1, item.length - 2)
+            ? item.substring(1, item.length - 1)
             : item;
           return item;
         });
         schoolList.splice(0, 1);
         schoolList.push("Other");
-        54;
         this.universityList = schoolList;
       });
   },
