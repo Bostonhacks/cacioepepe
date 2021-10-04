@@ -1,20 +1,55 @@
 <template>
   <div>
-    Sponsor
-    <SponsorBenefitsTable />
-    <PieChart />
+    <v-row>
+      <v-col>
+        <StatisticsPolygon />
+      </v-col>
+    </v-row>
+    <v-row justify="center" class="my-16">
+      <v-col cols="3"></v-col>
+      <v-col cols="6">
+        <ApplicantPlanet />
+      </v-col>
+      <v-col cols="3"></v-col>
+    </v-row>
+    <v-row justify="center" class="my-16">
+      <v-col cols="4">
+        <AttendeePlanet />
+      </v-col>
+      <v-col cols="4"></v-col>
+      <v-col cols="4">
+        <ReviewPolygon />
+      </v-col>
+    </v-row>
+
+    <ApplicantMap />
+
+    <ApplicantChart />
+    <!-- <SponsorBenefitsTable />
+    <PieChart /> -->
   </div>
 </template>
 
 <script>
-import SponsorBenefitsTable from "@/components/sponsor/SponsorBenefitsTable";
-import PieChart from "@/components/common/PieChart";
-
+// import SponsorBenefitsTable from "@/components/sponsor/SponsorBenefitsTable";
+// import PieChart from "@/components/common/PieChart";
+import ApplicantPlanet from "@/components/sponsor/ApplicantPlanet.vue";
+import ApplicantMap from "@/components/sponsor/ApplicantMap.vue";
+import ApplicantChart from "@/components/sponsor/ApplicantChart.vue";
+import AttendeePlanet from "@/components/sponsor/AttendeePlanet.vue";
+import StatisticsPolygon from "@/components/sponsor/StatisticsPolygon.vue";
+import ReviewPolygon from "@/components/sponsor/ReviewPolygon.vue";
 export default {
   name: "SponsorPage",
   components: {
-    PieChart,
-    SponsorBenefitsTable
+    StatisticsPolygon,
+    // PieChart,
+    // SponsorBenefitsTable,
+    ApplicantPlanet,
+    ApplicantMap,
+    ApplicantChart,
+    AttendeePlanet,
+    ReviewPolygon
   },
   methods: {
     applicantRadius() {
