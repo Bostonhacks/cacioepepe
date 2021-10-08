@@ -160,11 +160,20 @@ import firebase from "firebase/app";
 export default {
   name: "GoogleLoginButton",
   props: ["buttonName"],
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
+  },
   mounted() {
     firebase
       .auth()
       .getRedirectResult()
-      .then()
+      .then(() => {
+        if (this.user) {
+          this.$router.push("/dashboard");
+        }
+      })
       .catch(function(error) {
         // Handle Errors here.
         var errorMessage = error.message;
@@ -176,7 +185,7 @@ export default {
       var provider = new firebase.auth.GoogleAuthProvider();
       firebase.auth().useDeviceLanguage();
       firebase.auth().signInWithRedirect(provider);
-      this.$router.push("/");
+      this.$router.push("/dashboard");
     }
   }
 };

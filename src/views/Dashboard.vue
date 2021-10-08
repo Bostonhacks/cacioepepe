@@ -10,9 +10,9 @@
       class="darkBlue text--white white--text py-10"
       v-if="this.user.role == 'admin'"
     >
-      <!-- <SponsorDashboard />
+      <SponsorDashboard />
       <MentorDashboard />
-      <VolunteerDashboard /> -->
+      <VolunteerDashboard />
     </div>
     <div
       class="darkBlue text--white white--text py-10"
@@ -49,13 +49,14 @@ export default {
     MentorDashboard,
     HackerUI
   },
-  mounted() {
-    console.log(this.user);
-    this.user.role = "sponsor";
-  },
   computed: {
     user() {
       return this.$store.state.user;
+    }
+  },
+  async mounted() {
+    if (this.user.role == "admin") {
+      this.$router.push("/admin");
     }
   }
 };
