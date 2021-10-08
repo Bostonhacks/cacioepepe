@@ -93,7 +93,7 @@ export default {
     return {
       email: null,
       password: null,
-      renderLogin: false,
+      renderLogin: true,
       emailRules: [
         value => !!value || "Email is Required.",
         value => {
@@ -131,7 +131,7 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          this.$router.push("/");
+          this.$router.push("/dashboard");
         })
         .catch(function(error) {
           // Handle Errors here.

@@ -1,11 +1,11 @@
 <template>
   <v-app id="app">
-    <!-- <navigationBar /> -->
+    <navigationBar />
 
     <transition name="slide" mode="out-in">
       <router-view id="router" />
     </transition>
-    <!-- <Footer /> -->
+    <Footer />
 
     <!-- 
       because "svg don't care", we can create a filter for 
@@ -38,14 +38,14 @@
 
 <script>
 import store from "@/store/index.js";
-// import navigationBar from ;
-// import Footer from "@/components/common/Footer.vue";
+import navigationBar from "@/components/common/NavigationBar.vue";
+import Footer from "@/components/common/Footer.vue";
 export default {
   name: "App",
   store,
   components: {
-    // navigationBar: () => import("@/components/common/NavigationBar.vue")
-    // Footer
+    navigationBar,
+    Footer
   },
   metaInfo: {
     title: "BostonHacks"

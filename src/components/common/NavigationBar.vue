@@ -1,72 +1,48 @@
 <template>
-  <nav>
-    <ul>
-      <li
-        v-for="bannerLink in filteredBannerLinks"
-        :key="bannerLink.text + bannerLink.path"
+  <v-app-bar app elevate-on-scroll elevation="1" color="var(--v-primary-base)">
+    <v-row class="align-center">
+      <v-col lg="1" cols="3" class="d-flex justify-center">
+        <BostonHacksNavbarLogo />
+      </v-col>
+      <v-col
+        v-for="button in buttons"
+        :key="button.text"
+        lg="1"
+        cols="3"
+        class="d-flex justify-center"
       >
-        <button :alt="bannerLink.text" @click="bannerLink.action">
-          <Banner :bannerLink="bannerLink" />
-        </button>
-      </li>
-      <li v-if="!this.user">
-        <a
-          href="https://mlh.io/seasons/2021/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2021-season&utm_content=white"
-          target="_blank"
+        <v-btn
+          depressed
+          color="var(--v-primary-base)"
+          class="white--text font-weight-bold"
+          @click="navigate(button.url)"
         >
-          <MLHBanner width="70px" />
-        </a>
-      </li>
-    </ul>
-  </nav>
+          {{ button.text }}
+        </v-btn>
+      </v-col>
+    </v-row>
+  </v-app-bar>
 </template>
 
 <script>
-import Banner from "./Banner";
-import MLHBanner from "./MLHBanner.svg.vue";
+import BostonHacksNavbarLogo from "./SVG/BostonHacksNavbarLogo.vue";
 export default {
-  components: { Banner: Banner, MLHBanner: MLHBanner },
+  components: { BostonHacksNavbarLogo },
   name: "NavigationBar",
   data() {
     return {
-      BannerLinks: [
+      buttons: [
         {
-          // specify a condition to conditionally render a flag!
-          condition: () => true,
-          text: "Home",
-          direction: "right",
-          color: "#fe735f",
-          action: () => this.navigate("/")
+          text: "Menu",
+          url: "/"
         },
         {
-          condition: () => true,
           text: "Sponsors",
-          direction: "left",
-          color: "#F6D374",
-          action: () => this.navigate("/sponsor")
+          url: "/sponsor"
         },
         {
-          condition: () => this.user,
-          text: "Dashboard",
-          direction: "right",
-          color: "#0098FF",
-          action: () => this.navigate("/dashboard")
-        },
-        {
-          condition: () => !this.user,
           text: "Log In",
-          direction: "left",
-          color: "#4BBC79",
-          action: () => {
-            this.navigate("/login");
-          }
-        },
-        {
-          condition: () => this.user,
-          text: "Log Out",
-          direction: "left",
-          color: "#4BBC79",
-          action: () => this.logOut()
+          url: "/login"
         }
       ]
     };
@@ -94,24 +70,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-nav {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100px;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-end;
-  z-index: 10000;
-}
-ul {
-  display: flex;
-  flex-direction: row;
-  list-style-type: none;
-  padding-left: 0 !important;
-}
-</style>
