@@ -1,6 +1,6 @@
 <template>
-  <main class="pt-70px blue">
-    <v-container class="blue py-16">
+  <main class="pt-70px #ffcf93">
+    <v-container class="#ffcf93 py-16">
       <v-stepper v-model="e1">
         <v-stepper-header>
           <v-stepper-step :complete="e1 > 1" step="1" :editable="editable"
@@ -295,7 +295,12 @@
                 <v-radio label="2" value="2"></v-radio>
                 <v-radio label="3+" value="3+"></v-radio>
               </v-radio-group>
-
+              <v-switch
+                v-if="this.university == 'Boston University'"
+                v-model="goingInPerson"
+                label="Are you planning on attending in person?"
+                class="pl-3"
+              ></v-switch>
               <v-btn color="primary" @click="e1 = 4" class="mt-5"
                 >Continue</v-btn
               >
@@ -307,7 +312,7 @@
               <v-switch
                 class="pl-3"
                 v-model="miniHacks"
-                label="Did you attend BostonHacks Virtual MiniHacks 2020?"
+                label="Did you attend BostonHacks Virtual MiniHacks 2021?"
               ></v-switch>
               <v-switch
                 class="pl-3"
@@ -902,6 +907,7 @@ export default {
       otherURL: null,
       beenToHackathon: null,
       attendedBHacks: 0,
+      goingInPerson: 0,
       miniHacks: 0,
       marketingData: 0,
       tAndC1: 0,
@@ -1198,6 +1204,7 @@ export default {
         otherURL: this.otherURL,
         beenToHackathon: this.beenToHackathon,
         attendedBHacks: this.attendedBHacks,
+        goingInPerson: this.goingInPerson,
         marketingData: this.marketingData,
         miniHacks: this.miniHacks,
         tAndC1: this.tAndC1,
@@ -1247,6 +1254,7 @@ export default {
           otherURL: this.otherURL,
           beenToHackathon: this.beenToHackathon,
           attendedBHacks: this.attendedBHacks,
+          goingInPerson: this.goingInPerson,
           marketingData: this.marketingData,
           miniHacks: this.miniHacks,
           tAndC1: this.tAndC1,
@@ -1364,6 +1372,7 @@ export default {
         (this.otherURL = userApplicationDoc.data().otherURL),
         (this.beenToHackathon = userApplicationDoc.data().beenToHackathon),
         (this.attendedBHacks = userApplicationDoc.data().attendedBHacks),
+        (this.goingInPerson = userApplicationDoc.data().goingInPerson),
         (this.marketingData = userApplicationDoc.data().marketingData),
         (this.tAndC1 = userApplicationDoc.data().tAndC1),
         (this.tAndC2 = userApplicationDoc.data().tAndC2),
@@ -1407,6 +1416,7 @@ export default {
         otherURL: null,
         beenToHackathon: null,
         attendedBHacks: false,
+        goingInPerson: false,
         marketingData: false,
         tAndC1: false,
         tAndC2: false,
