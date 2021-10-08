@@ -1,11 +1,11 @@
 <template>
   <v-app id="app">
-    <navigationBar />
+    <!-- <navigationBar /> -->
 
     <transition name="slide" mode="out-in">
       <router-view id="router" />
     </transition>
-    <Footer />
+    <!-- <Footer /> -->
 
     <!-- 
       because "svg don't care", we can create a filter for 
@@ -39,13 +39,13 @@
 <script>
 import store from "@/store/index.js";
 // import navigationBar from ;
-import Footer from "@/components/common/Footer.vue";
+// import Footer from "@/components/common/Footer.vue";
 export default {
   name: "App",
   store,
   components: {
-    navigationBar: () => import("@/components/common/NavigationBar.vue"),
-    Footer
+    // navigationBar: () => import("@/components/common/NavigationBar.vue")
+    // Footer
   },
   metaInfo: {
     title: "BostonHacks"
@@ -62,10 +62,9 @@ body {
 #app {
   overflow-x: hidden;
   background-repeat: no-repeat;
-  /* background-image: url("/assets/landingPage/bostonHacksLoadingLogo.svg"); */
   background-position: center calc(50vh - 75px);
   background-size: 150px;
-
+  background-color: var(--v-background-base);
   display: flex;
   flex-direction: column;
 }
