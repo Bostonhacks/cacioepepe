@@ -1,46 +1,48 @@
 <template>
   <svg
-    width="572"
-    height="173"
-    viewBox="0 0 572 173"
+    width="100%"
+    height="100%"
+    viewBox="0 0 320 210"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M619 0L95 60.5L0.5 153L641.5 172.5L619 0Z"
-      fill="url(#paint_reviewpolygon0_linear)"
+      d="M-67.5 77.5L342 0V210L-28 184L-67.5 77.5Z"
+      fill="url(#paint_sponsorshipopportunitiesmobile0_linear)"
     />
     <text
       fill="white"
       xml:space="preserve"
       style="white-space: pre"
       font-family="Roboto"
-      font-size="50"
+      font-size="30"
       font-weight="bold"
       letter-spacing="-0.04em"
     >
-      <tspan x="181.495" y="120.59">REVIEWS</tspan>
+      <tspan x="62.5801" y="107.754">SPONSORSHIP&#10;</tspan>
+      <tspan x="52.1639" y="142.754">OPPORTUNITIES</tspan>
     </text>
-    <g filter="url(#filter_reviewpolygon0_f)">
+    <g filter="url(#filter_sponsorshipopportunitiesmobile0_f)">
       <text
         fill="white"
         xml:space="preserve"
         style="white-space: pre"
         font-family="Roboto"
-        font-size="50"
+        font-size="30"
         font-weight="bold"
         letter-spacing="-0.04em"
       >
-        <tspan x="181.495" y="120.59">REVIEWS</tspan>
+        <tspan x="62.5801" y="107.754">SPONSORSHIP&#10;</tspan>
+        <tspan x="52.1639" y="142.754">OPPORTUNITIES</tspan>
       </text>
     </g>
     <defs>
       <filter
-        id="filter_reviewpolygon0_f"
-        x="178.669"
-        y="78.9648"
-        width="205.029"
-        height="48.5234"
+        id="filter_sponsorshipopportunitiesmobile0_f"
+        x="47.4236"
+        y="80.3789"
+        width="224.329"
+        height="68.9141"
         filterUnits="userSpaceOnUse"
         color-interpolation-filters="sRGB"
       >
@@ -54,15 +56,15 @@
         <feGaussianBlur stdDeviation="3" result="effect1_foregroundBlur" />
       </filter>
       <linearGradient
-        id="paint_reviewpolygon0_linear"
-        x1="101.642"
-        y1="155.717"
-        x2="626.03"
-        y2="196.188"
+        id="paint_sponsorshipopportunitiesmobile0_linear"
+        x1="291.5"
+        y1="94.5"
+        x2="32.6948"
+        y2="187.962"
         gradientUnits="userSpaceOnUse"
       >
         <stop stop-color="#FF703D" />
-        <stop offset="0.714935" stop-color="#FFA14A" stop-opacity="0.76" />
+        <stop offset="0.604167" stop-color="#FFA14A" stop-opacity="0.47" />
         <stop offset="1" stop-color="#FFCF55" stop-opacity="0.45" />
       </linearGradient>
     </defs>

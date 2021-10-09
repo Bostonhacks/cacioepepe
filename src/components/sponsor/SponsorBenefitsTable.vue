@@ -1,17 +1,19 @@
 <template>
   <div>
+    <v-sheet></v-sheet>
+
     <v-data-table
       class="my-table"
       disable-pagination
       disable-sort
       hide-default-footer
-      :headers="generalHeader"
+      :headers="sponsorshipBenefit"
       :items="generalData"
     ></v-data-table>
     <v-container>
       <br />
     </v-container>
-    <v-data-table
+    <!-- <v-data-table
       class="my-table"
       disable-pagination
       disable-sort
@@ -30,7 +32,7 @@
       hide-default-footer
       :headers="brandingHeader"
       :items="brandingData"
-    ></v-data-table>
+    ></v-data-table>-->
   </div>
 </template>
 <script>
@@ -38,11 +40,11 @@ export default {
   name: "GeneralSponsorTable",
   data() {
     return {
-      generalHeader: [
+      sponsorshipBenefit: [
         {
-          text: "General",
+          text: "SPONSORSHIP BENEFIT",
           value: "name",
-          width: "28%"
+          width: "20%"
         },
         {
           text: "$1.5k",
@@ -63,60 +65,40 @@ export default {
           text: "$7.5k",
           value: "sevenPointFive",
           width: "18%"
+        }
+      ],
+
+      generalHeader: [
+        {
+          text: "General",
+          value: "name",
+          width: "15%"
+        },
+
+        {
+          text: "Recruit",
+          value: "name",
+          width: "15%"
+        },
+
+        {
+          text: "Branding",
+          value: "name",
+          width: "15%"
         }
       ],
       recruitingHeader: [
         {
           text: "Recruit",
           value: "name",
-          width: "28%"
-        },
-        {
-          text: "$1.5k",
-          value: "onePointFive",
-          width: "18%"
-        },
-        {
-          text: "$3k",
-          value: "three",
-          width: "18%"
-        },
-        {
-          text: "$5k",
-          value: "five",
-          width: "18%"
-        },
-        {
-          text: "$7.5k",
-          value: "sevenPointFive",
-          width: "18%"
+          width: "15%"
         }
       ],
       brandingHeader: [
         {
           text: "Branding",
           value: "name",
-          width: "28%"
-        },
-        {
-          text: "$1.5k",
-          value: "onePointFive",
-          width: "18%"
-        },
-        {
-          text: "$3k",
-          value: "three",
-          width: "18%"
-        },
-        {
-          text: "$5k",
-          value: "five",
-          width: "18%"
-        },
-        {
-          text: "$7.5k",
-          value: "sevenPointFive",
-          width: "18%"
+          width: "15%"
         }
       ],
       generalData: [
@@ -154,6 +136,77 @@ export default {
           three: "2 min",
           five: "4 min",
           sevenPointFive: "8 min"
+        },
+
+        {
+          name: "Access to emails to distribute recruiting materials",
+          onePointFive: "Post-event",
+          three: "Post-event",
+          five: "Pre-event",
+          sevenPointFive: "Pre-event"
+        },
+        {
+          name: "Access to resumes",
+          onePointFive: "",
+          three: "Post-event",
+          five: "Pre-event",
+          sevenPointFive: "Pre-event"
+        },
+        {
+          name: "Bring recruiters",
+          onePointFive: "",
+          three: "1",
+          five: "2",
+          sevenPointFive: "4"
+        },
+        {
+          name: "Virtual interview Rooms",
+          onePointFive: "",
+          three: "",
+          five: "✓",
+          sevenPointFive: "✓"
+        },
+        {
+          name: "Email hackathon attendees",
+          onePointFive: "",
+          three: "",
+          five: "✓",
+          sevenPointFive: "✓"
+        },
+        {
+          name: "Distribute swag",
+          onePointFive: "✓",
+          three: "✓",
+          five: "✓",
+          sevenPointFive: "✓"
+        },
+        {
+          name: "Give branded/API prize",
+          onePointFive: "✓",
+          three: "✓",
+          five: "✓",
+          sevenPointFive: "✓"
+        },
+        {
+          name: "Logo on website & T-Shirt",
+          onePointFive: "✓",
+          three: "✓",
+          five: "✓",
+          sevenPointFive: "✓"
+        },
+        {
+          name: "Branded virtual event",
+          onePointFive: "",
+          three: "",
+          five: "✓",
+          sevenPointFive: "✓"
+        },
+        {
+          name: "Sponsored Track (contact us!)",
+          onePointFive: "",
+          three: "",
+          five: "",
+          sevenPointFive: "✓"
         }
       ],
       recruitingData: [
@@ -239,30 +292,31 @@ export default {
   table-layout: fixed;
 }
 td:nth-child(odd) {
-  background-color: #ecd5cc;
-  color: black;
+  background: #e5e5e5;
+  color: white;
   text-align: center;
   font-weight: bold;
   font-size: 1em !important;
 }
 
 td:nth-child(even) {
-  background-color: #e6c7bb;
-  color: black;
+  background: #e5e5e5;
+  color: white;
   text-align: center;
   font-weight: bold;
   font-size: 1em !important;
 }
 
 td:first-child {
-  background-color: #4abb79;
+  background: #e5e5e5;
   color: white !important;
   text-align: left;
   font-size: 1em !important;
 }
 
 th {
-  color: black !important;
+  background: #e5e5e5;
+  color: white !important;
   font-size: 1.5em !important;
   font-weight: bold !important;
 }
