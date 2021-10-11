@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app elevate-on-scroll elevation="1" color="var(--v-primary-base)">
+  <v-app-bar class="navbar" app elevate-on-scroll color="#FBDF94">
     <v-row class="align-center">
       <v-col lg="1" cols="3" class="d-flex justify-center">
         <BostonHacksNavbarLogo />
@@ -13,7 +13,7 @@
       >
         <v-btn
           depressed
-          color="var(--v-primary-base)"
+          color="transparent"
           class="white--text font-weight-bold"
           @click="navigate(button.url)"
         >
@@ -41,7 +41,7 @@ export default {
           url: "/sponsor"
         },
         {
-          text: "Log In",
+          text: "Sign In",
           url: "/login"
         }
       ]
@@ -70,3 +70,13 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.navbar {
+  background: linear-gradient(
+    128.47deg,
+    #ffa767 7.86%,
+    rgba(255, 217, 116, 0.13) 79.44%
+  );
+}
+</style>

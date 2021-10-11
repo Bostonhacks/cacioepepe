@@ -1,5 +1,5 @@
 <template>
-  <v-footer class="footer">
+  <v-footer class="footer" color="#FBDF94">
     <v-container>
       <v-row justify="center">
         <v-col cols="10" sm="8" md="7" lg="7">
@@ -110,7 +110,11 @@ export default {
 .footer {
   /* #683614 */
   /* position: absolute; */
-  background-color: var(--v-primary-base) !important;
+  background: linear-gradient(
+    128.47deg,
+    #ffa767 7.86%,
+    rgba(255, 217, 116, 0.13) 79.44%
+  );
   bottom: 0;
   width: 100vw;
   flex-shrink: 0;
