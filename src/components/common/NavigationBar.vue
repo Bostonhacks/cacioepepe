@@ -1,4 +1,5 @@
 <template>
+
   <v-app-bar class="navbar" app elevate-on-scroll color="#FBDF94">
     <v-row class="align-center">
       <v-col lg="1" cols="3" class="d-flex justify-center">
