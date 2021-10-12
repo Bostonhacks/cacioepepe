@@ -5,7 +5,7 @@
         class="btn button-1 font-weight-bold text-sm-h4 text-h6"
         @click="login"
       >
-        SIGN IN
+        LOG IN
       </button>
     </div>
   </div>
