@@ -1,56 +1,54 @@
 <template>
   <div>
-    <v-row justify="center" class="my-16" v-if="!useMobileImages">
-      <v-col class="my-16" cols="12" lg="4">
-        <SponsorInformation />
-      </v-col>
-      <v-col class="my-16" cols="0" lg="1"></v-col>
-      <v-col class="my-16" cols="12" lg="4">
-        <Diamond />
-      </v-col>
-    </v-row>
-    <v-row v-else class="my-16 d-flex justify-center">
-      <SponsorInformationMobile />
-    </v-row>
-    <v-row>
-      <TwilioQuoteMobile v-if="useMobileImages" />
-      <TwilioQuote v-else />
-    </v-row>
-    <v-row class="d-flex justify-center">
-      <WhoweareWhyusMobile v-if="useMobileImages" />
-      <!-- fix padding -->
-      <WhoweareWhyus v-else />
-    </v-row>
-    <v-row>
-      <SponsorshipOpportunitiesMobile v-if="useMobileImages" />
-      <SponsorshipOpportunities v-else />
-    </v-row>
-    <v-row>
-      <SponsorBenefitsTable />
-    </v-row>
-    <v-row>
-      <v-col>
-        <StatisticsPolygon />
-      </v-col>
-    </v-row>
-    <v-row justify="center" class="my-16">
-      <v-col cols="3"></v-col>
-      <v-col cols="6">
-        <ApplicantPlanet />
-      </v-col>
-      <v-col cols="3"></v-col>
-    </v-row>
-    <v-row justify="center" class="my-16">
-      <v-col cols="4">
-        <AttendeePlanet />
-      </v-col>
-      <v-col cols="4"></v-col>
-      <v-col cols="4">
-        <ReviewPolygon />
-      </v-col>
-    </v-row>
-    <ApplicantMap />
-    <ApplicantChart />
+    <v-container>
+      <v-row justify="center" class="my-16" v-if="!useMobileImages">
+        <v-col class="my-16" cols="12" lg="4">
+          <SponsorInformation />
+        </v-col>
+        <v-col class="my-16" cols="0" lg="1"></v-col>
+        <v-col class="my-16" cols="12" lg="4">
+          <Diamond />
+        </v-col>
+      </v-row>
+      <v-row v-else class="my-16 d-flex justify-center">
+        <SponsorInformationMobile />
+      </v-row>
+      <v-row>
+        <TwilioQuoteMobile v-if="useMobileImages" />
+        <TwilioQuote v-else />
+      </v-row>
+      <v-row class="d-flex justify-center">
+        <WhoweareWhyusMobile v-if="useMobileImages" />
+        <!-- fix padding -->
+        <WhoweareWhyus v-else />
+      </v-row>
+      <v-row>
+        <SponsorshipOpportunitiesMobile v-if="useMobileImages" />
+        <SponsorshipOpportunities v-else />
+      </v-row>
+      <v-row>
+        <SponsorBenefitsTable />
+      </v-row>
+      <v-row>
+        <v-col>
+          <StatisticsPolygon />
+        </v-col>
+      </v-row>
+      <v-row justify="center" class="my-16">
+        <v-col cols="3"></v-col>
+        <v-col cols="6">
+          <ApplicantPlanet />
+        </v-col>
+        <v-col cols="3"></v-col>
+      </v-row>
+      <v-row justify="center" class="my-16">
+        <v-col cols="5"><AttendeePlanet /></v-col>
+        <v-col cols="1"></v-col>
+        <v-col cols="6" class="text-right"><ReviewPolygon /></v-col>
+      </v-row>
+      <ApplicantChart />
+      <ApplicantMap />
+    </v-container>
   </div>
 </template>
 
