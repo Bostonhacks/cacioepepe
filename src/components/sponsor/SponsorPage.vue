@@ -48,6 +48,7 @@
       </v-row>
       <ApplicantChart />
       <ApplicantMap />
+      <Reviews />
     </v-container>
   </div>
 </template>
@@ -69,6 +70,7 @@ import ApplicantChart from "@/components/sponsor/ApplicantChart.vue";
 import AttendeePlanet from "@/components/sponsor/AttendeePlanet.vue";
 import StatisticsPolygon from "@/components/sponsor/StatisticsPolygon.vue";
 import ReviewPolygon from "@/components/sponsor/ReviewPolygon.vue";
+import Reviews from "@/components/sponsor/Reviews.vue";
 
 export default {
   name: "SponsorPage",
@@ -88,7 +90,8 @@ export default {
     ApplicantChart,
     AttendeePlanet,
     StatisticsPolygon,
-    ReviewPolygon
+    ReviewPolygon,
+    Reviews
   },
   computed: {
     useMobileImages() {
