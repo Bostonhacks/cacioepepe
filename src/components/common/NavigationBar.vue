@@ -1,23 +1,48 @@
 <template>
-  <v-app-bar app elevate-on-scroll elevation="1" color="var(--v-primary-base)">
+  <v-app-bar class="navbar" app elevate-on-scroll color="#FBDF94">
     <v-row class="align-center">
-      <v-col lg="1" cols="3" class="d-flex justify-center">
+      <v-col
+        lg="1"
+        cols="3"
+        class="d-flex justify-center"
+        v-if="!$vuetify.breakpoint.mobile"
+      >
         <BostonHacksNavbarLogo />
       </v-col>
       <v-col
         v-for="button in buttons"
         :key="button.text"
         lg="1"
-        cols="3"
+        cols="4"
         class="d-flex justify-center"
       >
         <v-btn
           depressed
-          color="var(--v-primary-base)"
+          color="transparent"
           class="white--text font-weight-bold"
           @click="navigate(button.url)"
         >
           {{ button.text }}
+        </v-btn>
+      </v-col>
+      <v-col v-if="!user" lg="1" cols="4" class="d-flex justify-center">
+        <v-btn
+          depressed
+          color="transparent"
+          class="white--text font-weight-bold"
+          @click="navigate('/login')"
+        >
+          Log in
+        </v-btn>
+      </v-col>
+      <v-col v-else lg="1" cols="4" class="d-flex justify-center">
+        <v-btn
+          depressed
+          color="transparent"
+          class="white--text font-weight-bold"
+          @click="logOut()"
+        >
+          Log out
         </v-btn>
       </v-col>
     </v-row>
@@ -39,10 +64,6 @@ export default {
         {
           text: "Sponsors",
           url: "/sponsor"
-        },
-        {
-          text: "Log In",
-          url: "/login"
         }
       ]
     };
@@ -70,3 +91,13 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.navbar {
+  background: linear-gradient(
+    128.47deg,
+    #ffa767 7.86%,
+    rgba(255, 217, 116, 0.13) 79.44%
+  );
+}
+</style>
