@@ -26,7 +26,7 @@
       <SponsorshipOpportunities v-else />
     </v-row>
     <v-row justify="center" class="tableRow">
-      <TableBackground />
+      <TableBackground class="background" />
       <SponsorBenefitsTable class="table" />
     </v-row>
     <v-row justify="center"> <TableAsterisks /> </v-row>
@@ -135,5 +135,12 @@ export default {
   z-index: 2;
   display: inline-block;
   position: absolute;
+  width: 55%;
+}
+.background {
+  width: 50%;
+}
+.tableRow {
+  margin-top: 10%;
 }
 </style>

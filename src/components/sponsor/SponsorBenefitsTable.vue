@@ -289,11 +289,18 @@ export default {
 </script>
 <style>
 .my-table {
-  table-layout: fixed;
-  background-color: transparent;
+  /* table-layout: fixed; */
+  /* Rectangle 90 */
+
+  background: linear-gradient(
+    54.26deg,
+    rgba(255, 220, 129, 0.68) -0.7%,
+    rgba(239, 121, 135, 0.46) 70.5%
+  );
+  border-radius: 15px;
+  margin-left: 10%;
 }
 td:nth-child(odd) {
-  background: #e5e5e5;
   color: white;
   text-align: center;
   font-weight: bold;
@@ -301,7 +308,6 @@ td:nth-child(odd) {
 }
 
 td:nth-child(even) {
-  background: #e5e5e5;
   color: white;
   text-align: center;
   font-weight: bold;
@@ -309,14 +315,12 @@ td:nth-child(even) {
 }
 
 td:first-child {
-  background: #e5e5e5;
   color: white !important;
   text-align: left;
   font-size: 1em !important;
 }
 
 th {
-  background: #e5e5e5;
   color: white !important;
   font-size: 1.5em !important;
   font-weight: bold !important;
