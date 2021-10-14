@@ -33,7 +33,7 @@
         hours to build awesome projects. In
       </tspan>
       <tspan x="19.1473" y="331.336">
-        our past five events, students had
+        our past six events, students had
       </tspan>
       <tspan x="4.11641" y="354.336">
         meaningful interactions with mentors,

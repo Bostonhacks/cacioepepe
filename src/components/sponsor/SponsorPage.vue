@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row justify="center" class="my-16" v-if="!useMobileImages">
+    <v-row justify="center" class="my-16" v-if="!$vuetify.breakpoint.mobile">
       <v-col class="my-16" cols="12" lg="4">
         <SponsorInformation />
       </v-col>
@@ -9,53 +9,94 @@
         <Diamond />
       </v-col>
     </v-row>
-    <v-row v-else class="my-16 d-flex justify-center">
+    <v-row v-else class="my-16" justify="center">
       <SponsorInformationMobile />
     </v-row>
     <v-row>
-      <TwilioQuoteMobile v-if="useMobileImages" />
+      <TwilioQuoteMobile v-if="$vuetify.breakpoint.mobile" />
       <TwilioQuote v-else />
     </v-row>
-    <v-row class="d-flex justify-center">
-      <WhoweareWhyusMobile v-if="useMobileImages" />
+    <v-row justify="center">
+      <WhoweareWhyusMobile v-if="$vuetify.breakpoint.mobile" />
       <!-- fix padding -->
       <WhoweareWhyus v-else />
     </v-row>
     <v-row>
-      <SponsorshipOpportunitiesMobile v-if="useMobileImages" />
+      <SponsorshipOpportunitiesMobile v-if="$vuetify.breakpoint.mobile" />
       <SponsorshipOpportunities v-else />
     </v-row>
     <v-row justify="center" class="tableRow">
-      <TableBackground class="background" />
       <SponsorBenefitsTable class="table" />
     </v-row>
-    <v-row justify="center"> <TableAsterisks /> </v-row>
+    <v-row justify="center" align="center">
+      <v-col cols="12" lg="2"><GeneralEmail /></v-col>
+      <v-col cols="12" lg="2"><SpecialSideEvent /></v-col>
+      <v-col cols="12" lg="2"><EarlyBird /></v-col>
+    </v-row>
 
     <v-row>
-      <v-col>
+      <v-col v-if="!$vuetify.breakpoint.mobile">
         <StatisticsPolygon />
       </v-col>
-    </v-row>
-    <v-row justify="center" class="my-16">
-      <v-col cols="1" lg="1"></v-col>
-      <v-col class="left" cols="12" lg="3"
-        ><AttendeePlanet class="attendeePlanet"
-      /></v-col>
-      <v-col class="center" cols="12" lg="3">
-        <ApplicantPlanet />
+      <v-col class="my-16 d-flex justify-center" v-else>
+        <LetsTalkStatistics />
       </v-col>
-      <v-col v-if="!useMobileImages" cols="12" lg="5" sm="0" class="text-right"
-        ><ReviewPolygon
-      /></v-col>
     </v-row>
-    <v-row>
-      <v-col cols="1" lg="1"></v-col>
-      <v-col cols="12" lg="5"
-        ><ApplicantChart class="pieChart"/> <ApplicantMap
-      /></v-col>
-      <v-col class="reviewsRight" cols="12" lg="5"><Reviews /></v-col>
-      <v-col cols="1" lg="1"></v-col>
-    </v-row>
+    <div v-if="!$vuetify.breakpoint.mobile">
+      <v-row justify="center" class="my-16">
+        <v-col cols="1" lg="1"></v-col>
+        <v-col class="left" cols="12" lg="3"
+          ><AttendeePlanet class="attendeePlanet"
+        /></v-col>
+        <v-col class="center" cols="12" lg="3">
+          <ApplicantPlanet />
+        </v-col>
+        <v-col
+          v-if="!$vuetify.breakpoint.mobile"
+          cols="12"
+          lg="5"
+          sm="0"
+          class="text-right"
+          ><ReviewPolygon
+        /></v-col>
+      </v-row>
+      <v-row justify="space-around">
+        <v-col cols="12" lg="5">
+          <v-row justify="center">
+            <ApplicantChart />
+          </v-row>
+          <v-row>
+            <ApplicantMap />
+          </v-row>
+        </v-col>
+        <v-col class="reviewsRight" cols="12" lg="3"><Reviews /></v-col>
+      </v-row>
+    </div>
+    <div v-else>
+      <v-row>
+        <v-col cols="10">
+          <AttendeePlanet />
+        </v-col>
+      </v-row>
+      <v-row justify="end">
+        <v-col cols="7">
+          <ApplicantPlanet />
+        </v-col>
+      </v-row>
+      <v-row class="ma-5">
+        <v-col>
+          <ApplicantChart />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col class="ma-5">
+          <ApplicantMap />
+        </v-col>
+      </v-row>
+      <v-row class="ma-5">
+        <Reviews />
+      </v-row>
+    </div>
   </div>
 </template>
 
@@ -77,8 +118,10 @@ import AttendeePlanet from "@/components/sponsor/AttendeePlanet.vue";
 import StatisticsPolygon from "@/components/sponsor/StatisticsPolygon.vue";
 import ReviewPolygon from "@/components/sponsor/ReviewPolygon.vue";
 import Reviews from "@/components/sponsor/Reviews.vue";
-import TableAsterisks from "@/components/sponsor/TableAsterisks.vue";
-import TableBackground from "@/components/sponsor/TableBackground.vue";
+import GeneralEmail from "@/components/sponsor/TableAsterisks/GeneralEmail.vue";
+import SpecialSideEvent from "@/components/sponsor/TableAsterisks/SpecialSideEvent.vue";
+import EarlyBird from "@/components/sponsor/TableAsterisks/EarlyBird.vue";
+import LetsTalkStatistics from "@/components/sponsor/LetsTalkStatistics.vue";
 
 export default {
   name: "SponsorPage",
@@ -100,13 +143,10 @@ export default {
     StatisticsPolygon,
     ReviewPolygon,
     Reviews,
-    TableAsterisks,
-    TableBackground
-  },
-  computed: {
-    useMobileImages() {
-      return ["xs", "sm", "md"].includes(this.$vuetify.breakpoint.name);
-    }
+    GeneralEmail,
+    SpecialSideEvent,
+    EarlyBird,
+    LetsTalkStatistics
   }
 };
 </script>
@@ -131,12 +171,11 @@ export default {
   margin-left: 30%;
   margin-bottom: 10%;
 }
-.table {
-  z-index: 2;
+/* .table {
   display: inline-block;
   position: absolute;
   width: 55%;
-}
+} */
 .background {
   width: 50%;
 }

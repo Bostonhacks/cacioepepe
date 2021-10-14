@@ -1,19 +1,20 @@
 <template>
-  <div>
-    <v-sheet></v-sheet>
-
+  <div
+    :class="$vuetify.breakpoint.mobile ? `table-shadow-mobile` : `table-shadow`"
+  >
     <v-data-table
-      class="my-table"
+      :class="$vuetify.breakpoint.mobile ? `my-table-mobile` : `my-table`"
       disable-pagination
       disable-sort
       hide-default-footer
       :headers="sponsorshipBenefit"
       :items="generalData"
     ></v-data-table>
-    <v-container>
+  </div>
+  <!-- <v-container>
       <br />
-    </v-container>
-    <!-- <v-data-table
+    </v-container> -->
+  <!-- <v-data-table
       class="my-table"
       disable-pagination
       disable-sort
@@ -33,7 +34,6 @@
       :headers="brandingHeader"
       :items="brandingData"
     ></v-data-table>-->
-  </div>
 </template>
 <script>
 export default {
@@ -289,40 +289,71 @@ export default {
 </script>
 <style>
 .my-table {
-  /* table-layout: fixed; */
-  /* Rectangle 90 */
-
+  background-color: transparent !important;
+  color: #f7f7f7 !important;
+  position: relative;
+  padding: 10px 20px;
+  top: -3rem;
+  right: -2rem;
   background: linear-gradient(
     54.26deg,
     rgba(255, 220, 129, 0.68) -0.7%,
     rgba(239, 121, 135, 0.46) 70.5%
   );
-  border-radius: 15px;
-  margin-left: 10%;
+  border-radius: 11px;
 }
-td:nth-child(odd) {
-  color: white;
-  text-align: center;
+
+.my-table-mobile {
+  background-color: transparent !important;
+  color: #f7f7f7 !important;
+  position: relative;
+  background: linear-gradient(
+    54.26deg,
+    rgba(255, 220, 129, 0.68) -0.7%,
+    rgba(239, 121, 135, 0.46) 70.5%
+  );
+  border-radius: 11px;
+}
+
+.table-shadow {
+  display: inline-block;
+  border-radius: 11px;
+  /* background: linear-gradient(180deg, #EC602D 0%, rgba(236, 96, 45, 0.86) 14.58%, #FFDA78 88.54%, #FFEBB7 100%); */
+  background: linear-gradient(
+    180deg,
+    #ec602d 0%,
+    rgba(236, 96, 45, 0.86) 50%,
+    #ffda78 100%
+  );
+  overflow: visible;
+}
+
+.table-shadow-mobile {
+  display: inline-block;
+  border-radius: 11px;
+  background: rgba(236, 96, 45, 0.86);
+  overflow: visible;
+}
+
+div.my-table td,
+div.my-table th {
   font-weight: bold;
-  font-size: 1em !important;
+  font-size: large !important;
+  border: 1px solid white;
+  border-bottom: 1px solid white !important;
 }
 
-td:nth-child(even) {
-  color: white;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1em !important;
+.my-table tr:hover:not(.v-table__expanded__content) {
+  background: transparent !important;
 }
 
-td:first-child {
-  color: white !important;
-  text-align: left;
-  font-size: 1em !important;
+div.my-table span {
+  color: #f7f7f7 !important;
+  font-size: larger !important;
 }
 
-th {
-  color: white !important;
-  font-size: 1.5em !important;
-  font-weight: bold !important;
+.button-1:hover {
+  box-shadow: 0 0 10px 0 #ff7b46 inset, 0 0 20px 2px #ff7b46;
+  border: 3px #ffcf93;
 }
 </style>
