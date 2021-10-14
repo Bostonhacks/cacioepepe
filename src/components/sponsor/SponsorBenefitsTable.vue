@@ -290,6 +290,7 @@ export default {
 <style>
 .my-table {
   table-layout: fixed;
+  background-color: transparent;
 }
 td:nth-child(odd) {
   background: #e5e5e5;
