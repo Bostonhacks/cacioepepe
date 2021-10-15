@@ -3,9 +3,9 @@
     <div class="btn-shadow">
       <button
         class="btn button-1 font-weight-bold text-sm-h4 text-h6"
-        @click="login"
+        @click="logOut"
       >
-        LOG IN
+        LOG OUT
       </button>
     </div>
   </div>
@@ -15,8 +15,9 @@
 export default {
   name: "LoginButton",
   methods: {
-    login() {
-      this.$router.push("/login");
+    async logOut() {
+      await this.$store.dispatch("logOut");
+      this.navigate("/");
     }
   }
 };

@@ -1,72 +1,69 @@
 <template>
-  <nav>
-    <ul>
-      <li
-        v-for="bannerLink in filteredBannerLinks"
-        :key="bannerLink.text + bannerLink.path"
+  <v-app-bar class="navbar" app elevate-on-scroll color="#FBDF94">
+    <v-row class="align-center">
+      <v-col
+        lg="1"
+        cols="3"
+        class="d-flex justify-center"
+        v-if="!$vuetify.breakpoint.mobile"
       >
-        <button :alt="bannerLink.text" @click="bannerLink.action">
-          <Banner :bannerLink="bannerLink" />
-        </button>
-      </li>
-      <li v-if="!this.user">
-        <a
-          href="https://mlh.io/seasons/2021/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2021-season&utm_content=white"
-          target="_blank"
+        <BostonHacksNavbarLogo />
+      </v-col>
+      <v-col
+        v-for="button in buttons"
+        :key="button.text"
+        lg="1"
+        cols="4"
+        class="d-flex justify-center"
+      >
+        <v-btn
+          depressed
+          color="transparent"
+          class="white--text font-weight-bold"
+          @click="navigate(button.url)"
         >
-          <MLHBanner width="70px" />
-        </a>
-      </li>
-    </ul>
-  </nav>
+          {{ button.text }}
+        </v-btn>
+      </v-col>
+      <v-col v-if="!user" lg="1" cols="4" class="d-flex justify-center">
+        <v-btn
+          depressed
+          color="transparent"
+          class="white--text font-weight-bold"
+          @click="navigate('/login')"
+        >
+          Log in
+        </v-btn>
+      </v-col>
+      <v-col v-else lg="1" cols="4" class="d-flex justify-center">
+        <v-btn
+          depressed
+          color="transparent"
+          class="white--text font-weight-bold"
+          @click="logOut()"
+        >
+          Log out
+        </v-btn>
+      </v-col>
+    </v-row>
+  </v-app-bar>
 </template>
 
 <script>
-import Banner from "./Banner";
-import MLHBanner from "./MLHBanner.svg.vue";
+import BostonHacksNavbarLogo from "./SVG/BostonHacksNavbarLogo.vue";
 export default {
-  components: { Banner: Banner, MLHBanner: MLHBanner },
+  components: { BostonHacksNavbarLogo },
   name: "NavigationBar",
   data() {
     return {
-      BannerLinks: [
+      buttons: [
         {
-          // specify a condition to conditionally render a flag!
-          condition: () => true,
-          text: "Home",
-          direction: "right",
-          color: "#fe735f",
-          action: () => this.navigate("/")
+          text: "Menu",
+          url: "/"
         },
         {
-          condition: () => true,
           text: "Sponsors",
-          direction: "left",
-          color: "#F6D374",
-          action: () => this.navigate("/sponsor")
-        },
-        {
-          condition: () => this.user,
-          text: "Dashboard",
-          direction: "right",
-          color: "#0098FF",
-          action: () => this.navigate("/dashboard")
-        },
-        {
-          condition: () => !this.user,
-          text: "Log In",
-          direction: "left",
-          color: "#4BBC79",
-          action: () => {
-            this.navigate("/login");
-          }
-        },
-        {
-          condition: () => this.user,
-          text: "Log Out",
-          direction: "left",
-          color: "#4BBC79",
-          action: () => this.logOut()
+          url: "/sponsor"
         }
       ]
     };
@@ -96,22 +93,11 @@ export default {
 </script>
 
 <style scoped>
-nav {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100px;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-end;
-  z-index: 10000;
-}
-ul {
-  display: flex;
-  flex-direction: row;
-  list-style-type: none;
-  padding-left: 0 !important;
+.navbar {
+  background: linear-gradient(
+    128.47deg,
+    #ffa767 7.86%,
+    rgba(255, 217, 116, 0.13) 79.44%
+  );
 }
 </style>

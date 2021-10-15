@@ -7,12 +7,15 @@
         <v-col cols="12" lg="4"> <Section1 /></v-col>
       </v-row>
       <v-row justify="center" class="my-16">
-        <v-col cols="5" lg="2" class="d-flex justify-center"
-          ><LoginButton
-        /></v-col>
-        <v-col cols="5" lg="2" class="d-flex justify-center"
-          ><SignupButton
-        /></v-col>
+        <v-col v-if="!user" cols="5" lg="2" class="d-flex justify-center"
+          ><LoginButton />
+        </v-col>
+        <v-col v-if="!user" cols="5" lg="2" class="d-flex justify-center"
+          ><SignupButton />
+        </v-col>
+        <v-col v-else class="d-flex justify-center">
+          <LogoutButton />
+        </v-col>
       </v-row>
 
       <v-row class="my-16">
@@ -40,6 +43,7 @@ import { db } from "@/firebase/init";
 import Logo from "@/components/landing/Logo.vue";
 import Section1 from "@/components/landing/Section1.vue";
 import LoginButton from "@/components/landing/LoginButton.vue";
+import LogoutButton from "@/components/landing/LogoutButton.vue";
 import SignupButton from "@/components/landing/SignupButton.vue";
 import Schedule from "@/components/landing/Schedule.vue";
 import FAQ from "@/components/landing/FAQ.vue";
@@ -58,6 +62,7 @@ export default {
     Logo,
     Section1,
     LoginButton,
+    LogoutButton,
     SignupButton,
     Schedule,
     Track1,

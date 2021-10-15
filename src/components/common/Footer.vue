@@ -1,5 +1,5 @@
 <template>
-  <v-footer style="background: #683614">
+  <v-footer class="footer" color="#FBDF94">
     <v-container>
       <v-row justify="center">
         <v-col cols="10" sm="8" md="7" lg="7">
@@ -106,10 +106,15 @@ export default {
 .basicTextShadow {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
-footer {
+
+.footer {
   /* #683614 */
   /* position: absolute; */
-  background: #683614;
+  background: linear-gradient(
+    128.47deg,
+    #ffa767 7.86%,
+    rgba(255, 217, 116, 0.13) 79.44%
+  );
   bottom: 0;
   width: 100vw;
   flex-shrink: 0;
