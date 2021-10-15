@@ -1,19 +1,22 @@
 <template>
-  <v-row justify="center">
+  <v-row justify="center" class="mt-16">
     <v-col v-if="!this.renderLogin" cols="12" sm="6" md="4">
       <v-row class="justify-space-between">
-        <v-btn rounded x-large @click="$router.push(`/signup`)">Sign Up</v-btn>
+        <v-btn rounded x-large @click="$router.push(`/signup`)">Log In</v-btn>
         <v-btn rounded x-large @click="renderLogin = !renderLogin"
           >Log In</v-btn
         >
       </v-row>
     </v-col>
     <v-col v-else cols="12" sm="6" md="4" lg="3">
-      <v-card>
+      <v-card class="pt-12">
         <v-row class="justify-center">
-          <BostonHacksLogo width="50%" class="pt-10 mr-n10" /><v-card-title
-            >Sign In</v-card-title
-          >
+          <v-col cols="5">
+            <BostonHacksLogo class="mr-n10" />
+          </v-col>
+          <v-col cols="5">
+            <v-card-title>Log In</v-card-title>
+          </v-col>
         </v-row>
         <v-row class="flex-column align-center pa-6 pt-0">
           <v-form class="d-flex flex-column align-center" ref="form">
@@ -53,7 +56,7 @@
             ></v-text-field>
           </v-form>
           <v-btn
-            class="mb-6 align-self-center red white--text"
+            class="mb-6 align-self-center primary white--text"
             rounded
             @click="login()"
             >Log In</v-btn
@@ -65,18 +68,6 @@
           </v-row>
           <GoogleLoginButton buttonName="Log In with Google" />
         </v-row>
-        <v-btn
-          absolute
-          dark
-          fab
-          bottom
-          left
-          small
-          color="red"
-          @click="$router.push(`/`)"
-        >
-          <v-icon small>mdi-arrow-left</v-icon>
-        </v-btn>
       </v-card>
     </v-col>
   </v-row>
@@ -131,7 +122,7 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          this.$router.push("/dashboard");
+          this.$router.push("/");
         })
         .catch(function(error) {
           // Handle Errors here.

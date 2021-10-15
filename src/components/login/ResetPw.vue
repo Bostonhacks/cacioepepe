@@ -1,8 +1,5 @@
 <template>
-  <v-row
-    class="pb-10 px-5 justify-center align-center"
-    style="min-height: calc(100vh - 120px)"
-  >
+  <v-row class="pb-10 px-5 justify-center align-center">
     <v-col cols="12" sm="6" md="4">
       <v-card>
         <v-card-title class="justify-center">
@@ -10,21 +7,24 @@
         </v-card-title>
         <v-card-subtitle class="justify-center">
           <v-card-text>
-            <h4>Please enter your email address to reset yout password</h4>
+            <h4>Please enter your email address to reset your password</h4>
           </v-card-text>
         </v-card-subtitle>
         <v-form>
           <v-container>
-            <v-text-field
-              v-model="email"
-              type="text"
-              label="Email"
-              placeholder="jone@example.com"
-            ></v-text-field>
-            <v-divider></v-divider>
-            <v-btn v-btn block color="info white--text" @click="forgetPW">
-              Reset Password
-            </v-btn>
+            <v-row class="mx-5">
+              <v-text-field
+                v-model="email"
+                type="text"
+                label="Email"
+                placeholder="jone@example.com"
+              ></v-text-field>
+            </v-row>
+            <v-row class="justify-center">
+              <v-btn color="primary white--text" @click="forgetPW">
+                Reset Password
+              </v-btn>
+            </v-row>
           </v-container>
         </v-form>
       </v-card>
@@ -61,3 +61,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.bg {
+  background-color: var(--v-primary-lighten5);
+}
+</style>

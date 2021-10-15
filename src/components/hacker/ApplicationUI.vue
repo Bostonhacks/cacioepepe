@@ -1263,7 +1263,7 @@ export default {
         });
         await store.dispatch("getUser");
         this.loading = false;
-        this.$router.push({ name: "dashboard" });
+        this.$router.push("/");
       } else {
         this.loading = false;
         this.e1 = 1;
