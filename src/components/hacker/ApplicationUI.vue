@@ -311,11 +311,6 @@
             <v-stepper-content step="4">
               <v-switch
                 class="pl-3"
-                v-model="miniHacks"
-                label="Did you attend BostonHacks Virtual MiniHacks 2021?"
-              ></v-switch>
-              <v-switch
-                class="pl-3"
                 v-model="marketingData"
                 label="Do you consent to your picture or your likeness being used in future BostonHacks marketing material?"
               ></v-switch>
