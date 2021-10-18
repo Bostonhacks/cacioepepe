@@ -19,7 +19,9 @@
           ><LogoutButton />
         </v-col>
         <v-col cols="5" lg="2" class="d-flex justify-center"
-          ><ApplyButton v-if="user.applicationStatus == 0" />
+          ><ApplyButton
+            v-if="user.applicationStatus == 0 || !user.applicationStatus"
+          />
           <DashboardButton v-else />
         </v-col>
       </v-row>
