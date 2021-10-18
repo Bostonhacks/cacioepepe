@@ -9,9 +9,18 @@
       >
         <BostonHacksNavbarLogo />
       </v-col>
+      <v-col lg="1" cols="4" class="d-flex justify-center">
+        <v-btn
+          depressed
+          color="transparent"
+          class="white--text font-weight-bold"
+          @click="navigate('/sponsor')"
+        >
+          Sponsor
+        </v-btn>
+      </v-col>
       <v-col
-        v-for="button in buttons"
-        :key="button.text"
+        v-if="user && (user.applicationStatus == 0 || !user.applicationStatus)"
         lg="1"
         cols="4"
         class="d-flex justify-center"
@@ -20,9 +29,9 @@
           depressed
           color="transparent"
           class="white--text font-weight-bold"
-          @click="navigate(button.url)"
+          @click="navigate('/application')"
         >
-          {{ button.text }}
+          Apply
         </v-btn>
       </v-col>
       <v-col v-if="!user" lg="1" cols="4" class="d-flex justify-center">

@@ -1207,7 +1207,7 @@ export default {
         tAndC3: this.tAndC3
       });
       this.loading = false;
-      this.$router.push({ name: "dashboard" });
+      this.$router.push("/");
     },
     async submitApplication() {
       this.loading = true;
