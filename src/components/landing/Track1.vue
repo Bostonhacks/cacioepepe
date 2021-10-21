@@ -1,7 +1,6 @@
 <template>
   <div :class="isMobile ? `gradient-mobile` : `gradient`" v-scrollanimation>
-    <!-- <v-hover :value="isMobile" v-slot="{ hover }"> -->
-    <v-hover :value="isMobile">
+    <v-hover :value="isMobile" v-slot="{ hover }">
       <div class="d-flex justify-center flex-column align-center">
         <svg
           width="100%"
@@ -250,14 +249,19 @@
             class="
               d-flex
               v-card--reveal
-              text-h5
+              text-h6
+              text-center
               font-weight-bold
               primary--text
               mt-10
             "
             style="height: 100%"
           >
-            <!-- Track 1 Description -->
+            Life during and after isolation has us realizing how much day-to-day
+            social interactions, structured schedules, and changes in
+            environment can affect our mental well-being. What can we do to
+            address the mental health struggles that rose amidst the pandemic
+            and continue to affect thousands of peoples’ lives now?
           </div>
         </v-expand-transition>
       </div>
