@@ -1,7 +1,6 @@
 <template>
   <div :class="isMobile ? `gradient-mobile` : `gradient`" v-scrollanimation>
-    <!-- <v-hover :value="isMobile" v-slot="{ hover }"> -->
-    <v-hover :value="isMobile">
+    <v-hover :value="isMobile" v-slot="{ hover }">
       <div class="d-flex justify-center flex-column align-center">
         <svg
           width="100%"
@@ -344,14 +343,20 @@
             class="
               d-flex
               v-card--reveal
-              text-h5
+              text-h6
+              text-center
               font-weight-bold
               primary--text
               mt-10
             "
             style="height: 100%"
           >
-            <!-- Track 2 Description -->
+            Social distancing during the pandemic has made it all more important
+            for us to stay connected with and find our communities. With such
+            profound circumstances comes the increasing need for social good and
+            social justice. How can we develop solutions to forge new
+            connections and give everyone a voice to help make their community
+            and world a better place?
           </div>
         </v-expand-transition>
       </div>
