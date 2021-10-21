@@ -1,6 +1,7 @@
 <template>
   <div :class="isMobile ? `gradient-mobile` : `gradient`" v-scrollanimation>
-    <v-hover :value="isMobile" v-slot="{ hover }">
+    <!-- <v-hover :value="isMobile" v-slot="{ hover }"> -->
+    <v-hover :value="isMobile">
       <div class="d-flex justify-center flex-column align-center">
         <svg
           width="100%"
@@ -221,7 +222,7 @@
             "
             style="height: 100%"
           >
-            Track 3 Description
+            <!-- Track 3 Description -->
           </div>
         </v-expand-transition>
       </div>

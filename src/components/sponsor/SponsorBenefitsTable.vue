@@ -1,17 +1,20 @@
 <template>
-  <div>
+  <div
+    :class="$vuetify.breakpoint.mobile ? `table-shadow-mobile` : `table-shadow`"
+  >
     <v-data-table
-      class="my-table"
+      :class="$vuetify.breakpoint.mobile ? `my-table-mobile` : `my-table`"
       disable-pagination
       disable-sort
       hide-default-footer
-      :headers="generalHeader"
+      :headers="sponsorshipBenefit"
       :items="generalData"
     ></v-data-table>
-    <v-container>
+  </div>
+  <!-- <v-container>
       <br />
-    </v-container>
-    <v-data-table
+    </v-container> -->
+  <!-- <v-data-table
       class="my-table"
       disable-pagination
       disable-sort
@@ -30,19 +33,18 @@
       hide-default-footer
       :headers="brandingHeader"
       :items="brandingData"
-    ></v-data-table>
-  </div>
+    ></v-data-table>-->
 </template>
 <script>
 export default {
   name: "GeneralSponsorTable",
   data() {
     return {
-      generalHeader: [
+      sponsorshipBenefit: [
         {
-          text: "General",
+          text: "SPONSORSHIP BENEFIT",
           value: "name",
-          width: "28%"
+          width: "20%"
         },
         {
           text: "$1.5k",
@@ -63,60 +65,40 @@ export default {
           text: "$7.5k",
           value: "sevenPointFive",
           width: "18%"
+        }
+      ],
+
+      generalHeader: [
+        {
+          text: "General",
+          value: "name",
+          width: "15%"
+        },
+
+        {
+          text: "Recruit",
+          value: "name",
+          width: "15%"
+        },
+
+        {
+          text: "Branding",
+          value: "name",
+          width: "15%"
         }
       ],
       recruitingHeader: [
         {
           text: "Recruit",
           value: "name",
-          width: "28%"
-        },
-        {
-          text: "$1.5k",
-          value: "onePointFive",
-          width: "18%"
-        },
-        {
-          text: "$3k",
-          value: "three",
-          width: "18%"
-        },
-        {
-          text: "$5k",
-          value: "five",
-          width: "18%"
-        },
-        {
-          text: "$7.5k",
-          value: "sevenPointFive",
-          width: "18%"
+          width: "15%"
         }
       ],
       brandingHeader: [
         {
           text: "Branding",
           value: "name",
-          width: "28%"
-        },
-        {
-          text: "$1.5k",
-          value: "onePointFive",
-          width: "18%"
-        },
-        {
-          text: "$3k",
-          value: "three",
-          width: "18%"
-        },
-        {
-          text: "$5k",
-          value: "five",
-          width: "18%"
-        },
-        {
-          text: "$7.5k",
-          value: "sevenPointFive",
-          width: "18%"
+          width: "15%"
         }
       ],
       generalData: [
@@ -154,6 +136,77 @@ export default {
           three: "2 min",
           five: "4 min",
           sevenPointFive: "8 min"
+        },
+
+        {
+          name: "Access to emails to distribute recruiting materials",
+          onePointFive: "Post-event",
+          three: "Post-event",
+          five: "Pre-event",
+          sevenPointFive: "Pre-event"
+        },
+        {
+          name: "Access to resumes",
+          onePointFive: "",
+          three: "Post-event",
+          five: "Pre-event",
+          sevenPointFive: "Pre-event"
+        },
+        {
+          name: "Bring recruiters",
+          onePointFive: "",
+          three: "1",
+          five: "2",
+          sevenPointFive: "4"
+        },
+        {
+          name: "Virtual interview Rooms",
+          onePointFive: "",
+          three: "",
+          five: "✓",
+          sevenPointFive: "✓"
+        },
+        {
+          name: "Email hackathon attendees",
+          onePointFive: "",
+          three: "",
+          five: "✓",
+          sevenPointFive: "✓"
+        },
+        {
+          name: "Distribute swag",
+          onePointFive: "✓",
+          three: "✓",
+          five: "✓",
+          sevenPointFive: "✓"
+        },
+        {
+          name: "Give branded/API prize",
+          onePointFive: "✓",
+          three: "✓",
+          five: "✓",
+          sevenPointFive: "✓"
+        },
+        {
+          name: "Logo on website & T-Shirt",
+          onePointFive: "✓",
+          three: "✓",
+          five: "✓",
+          sevenPointFive: "✓"
+        },
+        {
+          name: "Branded virtual event",
+          onePointFive: "",
+          three: "",
+          five: "✓",
+          sevenPointFive: "✓"
+        },
+        {
+          name: "Sponsored Track (contact us!)",
+          onePointFive: "",
+          three: "",
+          five: "",
+          sevenPointFive: "✓"
         }
       ],
       recruitingData: [
@@ -236,34 +289,71 @@ export default {
 </script>
 <style>
 .my-table {
-  table-layout: fixed;
+  background-color: transparent !important;
+  color: #f7f7f7 !important;
+  position: relative;
+  padding: 10px 20px;
+  top: -3rem;
+  right: -2rem;
+  background: linear-gradient(
+    54.26deg,
+    rgba(255, 220, 129, 0.68) -0.7%,
+    rgba(239, 121, 135, 0.46) 70.5%
+  );
+  border-radius: 11px;
 }
-td:nth-child(odd) {
-  background-color: #ecd5cc;
-  color: black;
-  text-align: center;
+
+.my-table-mobile {
+  background-color: transparent !important;
+  color: #f7f7f7 !important;
+  position: relative;
+  background: linear-gradient(
+    54.26deg,
+    rgba(255, 220, 129, 0.68) -0.7%,
+    rgba(239, 121, 135, 0.46) 70.5%
+  );
+  border-radius: 11px;
+}
+
+.table-shadow {
+  display: inline-block;
+  border-radius: 11px;
+  /* background: linear-gradient(180deg, #EC602D 0%, rgba(236, 96, 45, 0.86) 14.58%, #FFDA78 88.54%, #FFEBB7 100%); */
+  background: linear-gradient(
+    180deg,
+    #ec602d 0%,
+    rgba(236, 96, 45, 0.86) 50%,
+    #ffda78 100%
+  );
+  overflow: visible;
+}
+
+.table-shadow-mobile {
+  display: inline-block;
+  border-radius: 11px;
+  background: rgba(236, 96, 45, 0.86);
+  overflow: visible;
+}
+
+div.my-table td,
+div.my-table th {
   font-weight: bold;
-  font-size: 1em !important;
+  font-size: large !important;
+  border: 1px solid white;
+  border-bottom: 1px solid white !important;
 }
 
-td:nth-child(even) {
-  background-color: #e6c7bb;
-  color: black;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1em !important;
+.my-table tr:hover:not(.v-table__expanded__content) {
+  background: transparent !important;
 }
 
-td:first-child {
-  background-color: #4abb79;
-  color: white !important;
-  text-align: left;
-  font-size: 1em !important;
+div.my-table span {
+  color: #f7f7f7 !important;
+  font-size: larger !important;
 }
 
-th {
-  color: black !important;
-  font-size: 1.5em !important;
-  font-weight: bold !important;
+.button-1:hover {
+  box-shadow: 0 0 10px 0 #ff7b46 inset, 0 0 20px 2px #ff7b46;
+  border: 3px #ffcf93;
 }
 </style>

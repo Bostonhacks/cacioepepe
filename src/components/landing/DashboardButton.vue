@@ -3,10 +3,28 @@
     <div class="btn-shadow">
       <button
         class="btn button-1 font-weight-bold text-sm-h4 text-h6"
-        @click="login"
+        @click="checkBackAlert"
+        color="primary"
+        v-bind="attrs"
+        v-on="on"
       >
-        LOG IN
+        DASHBOARD
       </button>
+      <v-dialog v-model="dialog" transition="dialog-bottom-transition">
+        <template v-slot:default="dialog">
+          <v-card color="primary lighten-5">
+            <v-card-text>
+              <div class="d-flex justify-center text-h4 pa-12">
+                Thanks for applying! Check back later to access the dashboard
+                and view your application status.
+              </div>
+            </v-card-text>
+            <v-card-actions class="justify-end">
+              <v-btn text @click="dialog.value = false">Close</v-btn>
+            </v-card-actions>
+          </v-card>
+        </template>
+      </v-dialog>
     </div>
   </div>
 </template>
@@ -15,9 +33,18 @@
 export default {
   name: "LoginButton",
   methods: {
-    login() {
-      this.$router.push("/login");
+    apply() {
+      this.$router.push("dashboard");
+    },
+    checkBackAlert() {
+      this.dialog = true;
+      // alert("Thanks for applying! Check back later to access the dashboard and see your application status.")
     }
+  },
+  data() {
+    return {
+      dialog: false
+    };
   }
 };
 </script>
@@ -36,17 +63,17 @@ export default {
   );
   border-radius: 11px;
   text-shadow: 1px 1px 3px #f7f7f7;
+  background-color: transparent;
 }
 
 .button-1 {
-  background-color: transparent;
   -webkit-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
 }
-.button-1:hover {
+/* .button-1:hover {
   box-shadow: 0 0 10px 0 #ff7b46 inset, 0 0 20px 2px #ff7b46;
   border: 3px #ffcf93;
-}
+} */
 
 .btn:active {
   transform: translateY(8px) translateX(5px);

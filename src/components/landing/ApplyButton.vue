@@ -3,9 +3,9 @@
     <div class="btn-shadow">
       <button
         class="btn button-1 font-weight-bold text-sm-h4 text-h6"
-        @click="login"
+        @click="apply"
       >
-        LOG IN
+        APPLY
       </button>
     </div>
   </div>
@@ -15,8 +15,8 @@
 export default {
   name: "LoginButton",
   methods: {
-    login() {
-      this.$router.push("/login");
+    apply() {
+      this.$router.push("application");
     }
   }
 };
@@ -36,10 +36,10 @@ export default {
   );
   border-radius: 11px;
   text-shadow: 1px 1px 3px #f7f7f7;
+  background-color: transparent;
 }
 
 .button-1 {
-  background-color: transparent;
   -webkit-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
 }

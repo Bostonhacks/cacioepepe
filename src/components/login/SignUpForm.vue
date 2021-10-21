@@ -1,18 +1,21 @@
 <template>
-  <v-container class="blue justify-center align-center pb-10 pt-12 mx-0" fluid>
+  <v-container
+    class="#ffcf93 justify-center align-center pb-10 pt-12 mx-0 mt-16"
+    fluid
+  >
     <v-row justify="center">
       <v-col cols="12" sm="6" md="4" lg="3">
         <v-card>
           <v-row class="justify-center">
             <BostonHacksLogo width="50%" class="pt-10 mr-n10" /><v-card-title
-              class="display-1 font-weight-bold red--text ml-n10"
+              class="display-1 font-weight-bold primary--text ml-n10"
               >Sign Up</v-card-title
             >
           </v-row>
           <v-row class="flex-column align-center pa-6 pt-0">
             <v-btn
               v-if="!form"
-              class="btn mb-6 align-self-center red white--text"
+              class="btn mb-6 align-self-center primary white--text"
               rounded
               @click="appear"
               >Sign Up with Email</v-btn
@@ -59,7 +62,8 @@
             </v-form>
             <v-btn
               v-if="form"
-              class="btn mb-6 align-self-center red white--text"
+              class="btn mb-6 align-self-center white--text"
+              color="primary"
               rounded
               @click="signUp"
               >Submit</v-btn
@@ -70,18 +74,6 @@
               <span></span>
             </v-row>
             <GoogleLoginButton buttonName="Sign Up with Google" />
-            <v-btn
-              absolute
-              dark
-              fab
-              bottom
-              left
-              small
-              color="red"
-              @click="$router.push(`/login`)"
-            >
-              <v-icon small>mdi-arrow-left</v-icon>
-            </v-btn>
           </v-row>
         </v-card>
       </v-col>
