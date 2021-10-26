@@ -34,6 +34,42 @@
       <v-col cols="12" lg="2"><EarlyBird /></v-col>
     </v-row>
 
+    <v-row class="mx-12 justify-center justify-lg-space-between">
+      <v-col cols="12" md="6" lg="3" class="my-12">
+        <v-img src="@/components/sponsor/logos/balsamiq.png" />
+      </v-col>
+      <v-col cols="12" md="6" lg="3" class="my-12">
+        <!-- <Sketch_logo /> -->
+      </v-col>
+      <v-col cols="12" md="6" lg="3" class="my-12">
+        <v-img src="@/components/sponsor/logos/GoogleCloud.png" />
+      </v-col>
+    </v-row>
+    <v-row class="mx-12 justify-center justify-lg-space-between">
+      <v-col cols="12" md="6" lg="3" class="my-12">
+        <Axure_logo_400 />
+      </v-col>
+      <v-col cols="12" md="6" lg="3" class="my-12">
+        <v-img
+          margin-top="10px"
+          src="@/components/sponsor/logos/thunkableLogo.png"
+        />
+      </v-col>
+      <v-col cols="12" md="6" lg="3" class="my-12">
+        <!-- <repel.it /> -->
+      </v-col>
+    </v-row>
+    <v-row class="mx-12 justify-center justify-lg-space-between">
+      <v-col cols="12" md="6" lg="3" class="my-12">
+        <v-img src="@/components/sponsor/logos/RStudio-Logo-Gray.png" />
+      </v-col>
+      <v-col cols="12" md="6" lg="3" class="my-12">
+        <v-img src="@/components/sponsor/logos/echoar.png" />
+      </v-col>
+      <v-col cols="12" md="6" lg="3" class="my-12">
+        <taskade_logo />
+      </v-col>
+    </v-row>
     <v-row>
       <v-col v-if="!$vuetify.breakpoint.mobile">
         <StatisticsPolygon />
@@ -122,6 +158,9 @@ import GeneralEmail from "@/components/sponsor/TableAsterisks/GeneralEmail.vue";
 import SpecialSideEvent from "@/components/sponsor/TableAsterisks/SpecialSideEvent.vue";
 import EarlyBird from "@/components/sponsor/TableAsterisks/EarlyBird.vue";
 import LetsTalkStatistics from "@/components/sponsor/LetsTalkStatistics.vue";
+import taskade_logo from "@/components/sponsor/logos/Taskade_logo.vue";
+import Axure_logo_400 from "./logos/Axure_logo_400.vue";
+// import Sketch_logo from "./logos/Sketch_logo.vue";
 
 export default {
   name: "SponsorPage",
@@ -146,7 +185,10 @@ export default {
     GeneralEmail,
     SpecialSideEvent,
     EarlyBird,
-    LetsTalkStatistics
+    LetsTalkStatistics,
+    Axure_logo_400,
+    // Sketch_logo,
+    taskade_logo
   }
 };
 </script>
