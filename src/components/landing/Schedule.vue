@@ -77,6 +77,7 @@ export default {
 .content {
   text-align: center;
   font-weight: 600;
+  margin-bottom: 8%;
 }
 
 .person {
@@ -97,7 +98,7 @@ export default {
   transform: translateY(0px);
 }
 .events {
-  margin: auto;
+  margin-left: 25%;
   text-align: left;
 }
 </style>
