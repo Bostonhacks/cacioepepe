@@ -8,12 +8,12 @@
           Coming Soon!
         </div> -->
         <div class="content">
-          <h1>NOVEMBER 13</h1>
-          <div v-for="event in events1" :key="event.message">
+          <h1 class="eventTitle">NOVEMBER 13</h1>
+          <div class="events" v-for="event in events1" :key="event.message">
             {{ (event.time + " " + event.title).toUpperCase() }}
           </div>
-          <h1>NOVEMBER 14</h1>
-          <div v-for="event in events2" :key="event.message">
+          <h1 class="eventTitle">NOVEMBER 14</h1>
+          <div class="events" v-for="event in events2" :key="event.message">
             {{ (event.time + " " + event.title).toUpperCase() }}
           </div>
         </div>
@@ -95,5 +95,9 @@ export default {
 .enter {
   opacity: 1;
   transform: translateY(0px);
+}
+.events {
+  margin: auto;
+  text-align: left;
 }
 </style>
