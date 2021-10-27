@@ -101,4 +101,7 @@ export default {
   margin-left: 25%;
   text-align: left;
 }
+.eventTitle {
+  margin-top: 3%;
+}
 </style>
