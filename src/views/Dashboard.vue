@@ -1,5 +1,5 @@
 <template>
-  <main class="blue pt-70px">
+  <main class="pt-70px">
     <div
       class="text--white white--text pt-10"
       v-if="this.user.role == 'hacker'"
