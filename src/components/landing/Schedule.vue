@@ -4,19 +4,19 @@
     <div class="crd-shadow">
       <div class="crd">
         <div class="title font-weight-bold text-h4">SCHEDULE</div>
-        <div class="content">
-          Coming Soon!
-        </div>
         <!-- <div class="content">
-          <h3>NOVEMBER 13</h3>
-          <div v-for="event in events1" :key="event.message">
-            {{ (event.time + " " + event.title).toUpperCase() }}
-          </div>
-          <h3>NOVEMBER 14</h3>
-          <div v-for="event in events2" :key="event.message">
-            {{ (event.time + " " + event.title).toUpperCase() }}
-          </div>
+          Coming Soon!
         </div> -->
+        <div class="content">
+          <h1 class="eventTitle">NOVEMBER 13</h1>
+          <div class="events" v-for="event in events1" :key="event.message">
+            {{ (event.time + " " + event.title).toUpperCase() }}
+          </div>
+          <h1 class="eventTitle">NOVEMBER 14</h1>
+          <div class="events" v-for="event in events2" :key="event.message">
+            {{ (event.time + " " + event.title).toUpperCase() }}
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -77,6 +77,7 @@ export default {
 .content {
   text-align: center;
   font-weight: 600;
+  margin-bottom: 8%;
 }
 
 .person {
@@ -95,5 +96,12 @@ export default {
 .enter {
   opacity: 1;
   transform: translateY(0px);
+}
+.events {
+  margin-left: 25%;
+  text-align: left;
+}
+.eventTitle {
+  margin-top: 3%;
 }
 </style>
