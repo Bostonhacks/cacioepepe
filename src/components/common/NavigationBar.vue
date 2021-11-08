@@ -9,7 +9,12 @@
       >
         <BostonHacksNavbarLogo />
       </v-col>
-      <v-col lg="1" cols="4" class="d-flex justify-center">
+      <v-col
+        lg="1"
+        cols="4"
+        class="d-flex justify-center"
+        v-if="!($vuetify.breakpoint.mobile && getRoutePath == `/sponsor`)"
+      >
         <v-btn
           depressed
           color="transparent"
@@ -17,6 +22,16 @@
           @click="navigate('/sponsor')"
         >
           Sponsor
+        </v-btn>
+      </v-col>
+      <v-col lg="1" cols="4" class="d-flex justify-center" v-else>
+        <v-btn
+          depressed
+          color="transparent"
+          class="white--text font-weight-bold"
+          @click="navigate('/')"
+        >
+          Home
         </v-btn>
       </v-col>
       <v-col
@@ -76,6 +91,9 @@ export default {
         }
       ]
     };
+  },
+  mounted() {
+    console.log(this.getRoutePath);
   },
   computed: {
     user() {
