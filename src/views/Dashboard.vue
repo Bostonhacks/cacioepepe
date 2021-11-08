@@ -2,19 +2,16 @@
   <main class="pt-70px">
     <div
       class="text--white white--text pt-10"
-      v-if="this.user.role == 'hacker'"
+      v-if="['hacker', 'mentor', 'volunteer'].includes(this.user.role)"
     >
       <HackerUI />
     </div>
-    <div
-      class="darkBlue text--white white--text py-10"
-      v-if="this.user.role == 'admin'"
-    >
+    <div class="text--white white--text py-10" v-if="this.user.role == 'admin'">
       <SponsorDashboard />
-      <MentorDashboard />
-      <VolunteerDashboard />
+      <!-- <MentorDashboard />
+      <VolunteerDashboard /> -->
     </div>
-    <div
+    <!-- <div
       class="darkBlue text--white white--text py-10"
       v-if="this.user.role == 'mentor'"
     >
@@ -25,7 +22,7 @@
       v-if="this.user.role == 'volunteer'"
     >
       <VolunteerDashboard />
-    </div>
+    </div> -->
     <div
       class="darkBlue text--white white--text py-10"
       v-if="this.user.role == 'sponsor'"
@@ -37,16 +34,16 @@
 
 <script>
 import SponsorDashboard from "@/components/sponsor/SponsorDashboard";
-import VolunteerDashboard from "@/components/volunteer/VolunteerDashboard";
-import MentorDashboard from "@/components/mentor/MentorDashboard";
+// import VolunteerDashboard from "@/components/volunteer/VolunteerDashboard";
+// import MentorDashboard from "@/components/mentor/MentorDashboard";
 import HackerUI from "@/components/hacker/HackerUI";
 
 export default {
   name: "Dashboard",
   components: {
     SponsorDashboard,
-    VolunteerDashboard,
-    MentorDashboard,
+    // VolunteerDashboard,
+    // MentorDashboard,
     HackerUI
   },
   computed: {

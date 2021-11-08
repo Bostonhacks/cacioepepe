@@ -1,31 +1,12 @@
 <template>
-  <div v-scrollanimation>
-    <div class="btn-shadow">
-      <button
-        class="btn button-1 font-weight-bold text-sm-h4 text-h6"
-        @click="checkBackAlert"
-        color="primary"
-        v-bind="attrs"
-        v-on="on"
-      >
-        DASHBOARD
-      </button>
-      <v-dialog v-model="dialog" transition="dialog-bottom-transition">
-        <template v-slot:default="dialog">
-          <v-card color="primary lighten-5">
-            <v-card-text>
-              <div class="d-flex justify-center text-h4 pa-12">
-                Thanks for applying! Check back later to access the dashboard
-                and view your application status.
-              </div>
-            </v-card-text>
-            <v-card-actions class="justify-end">
-              <v-btn text @click="dialog.value = false">Close</v-btn>
-            </v-card-actions>
-          </v-card>
-        </template>
-      </v-dialog>
-    </div>
+  <div class="btn-shadow">
+    <button
+      class="btn button-1 font-weight-bold text-sm-h4 text-h6"
+      @click="$router.push(`/dashboard`)"
+      color="primary"
+    >
+      DASHBOARD
+    </button>
   </div>
 </template>
 
