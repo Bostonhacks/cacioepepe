@@ -1,5 +1,5 @@
 <template>
-  <LoginForm class="blue" />
+  <LoginForm class="#ffcf93" />
 </template>
 
 <script>

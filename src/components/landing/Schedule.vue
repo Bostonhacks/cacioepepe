@@ -5,6 +5,9 @@
       <div class="crd">
         <div class="title font-weight-bold text-h4">SCHEDULE</div>
         <div class="content">
+          Coming Soon!
+        </div>
+        <!-- <div class="content">
           <h3>NOVEMBER 13</h3>
           <div v-for="event in events1" :key="event.message">
             {{ (event.time + " " + event.title).toUpperCase() }}
@@ -13,7 +16,7 @@
           <div v-for="event in events2" :key="event.message">
             {{ (event.time + " " + event.title).toUpperCase() }}
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

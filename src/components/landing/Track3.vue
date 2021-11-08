@@ -214,14 +214,18 @@
             class="
               d-flex
               v-card--reveal
-              text-h5
+              text-h6
+              text-center
               font-weight-bold
               primary--text
               mt-10
             "
-            style="height: 100%"
           >
-            Track 3 Description
+            After a year of online interactions, work-from-home has dramatically
+            reshaped our outlook on productivity, and made some aspects of
+            working easier than ever. How can we create or leverage existing
+            technologies that adapt to the new changing needs of the workforce
+            and overall improve the productivity of the workplace?
           </div>
         </v-expand-transition>
       </div>

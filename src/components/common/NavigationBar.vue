@@ -1,23 +1,72 @@
 <template>
   <v-app-bar class="navbar" app elevate-on-scroll color="#FBDF94">
     <v-row class="align-center">
-      <v-col lg="1" cols="3" class="d-flex justify-center">
+      <v-col
+        lg="1"
+        cols="3"
+        class="d-flex justify-center"
+        v-if="!$vuetify.breakpoint.mobile"
+      >
         <BostonHacksNavbarLogo />
       </v-col>
       <v-col
-        v-for="button in buttons"
-        :key="button.text"
         lg="1"
-        cols="3"
+        cols="4"
+        class="d-flex justify-center"
+        v-if="!($vuetify.breakpoint.mobile && getRoutePath == `/sponsor`)"
+      >
+        <v-btn
+          depressed
+          color="transparent"
+          class="white--text font-weight-bold"
+          @click="navigate('/sponsor')"
+        >
+          Sponsor
+        </v-btn>
+      </v-col>
+      <v-col lg="1" cols="4" class="d-flex justify-center" v-else>
+        <v-btn
+          depressed
+          color="transparent"
+          class="white--text font-weight-bold"
+          @click="navigate('/')"
+        >
+          Home
+        </v-btn>
+      </v-col>
+      <v-col
+        v-if="user && (user.applicationStatus == 0 || !user.applicationStatus)"
+        lg="1"
+        cols="4"
         class="d-flex justify-center"
       >
         <v-btn
           depressed
           color="transparent"
           class="white--text font-weight-bold"
-          @click="navigate(button.url)"
+          @click="navigate('/application')"
         >
-          {{ button.text }}
+          Apply
+        </v-btn>
+      </v-col>
+      <v-col v-if="!user" lg="1" cols="4" class="d-flex justify-center">
+        <v-btn
+          depressed
+          color="transparent"
+          class="white--text font-weight-bold"
+          @click="navigate('/login')"
+        >
+          Log in
+        </v-btn>
+      </v-col>
+      <v-col v-else lg="1" cols="4" class="d-flex justify-center">
+        <v-btn
+          depressed
+          color="transparent"
+          class="white--text font-weight-bold"
+          @click="logOut()"
+        >
+          Log out
         </v-btn>
       </v-col>
     </v-row>
@@ -39,13 +88,12 @@ export default {
         {
           text: "Sponsors",
           url: "/sponsor"
-        },
-        {
-          text: "Log In",
-          url: "/login"
         }
       ]
     };
+  },
+  mounted() {
+    console.log(this.getRoutePath);
   },
   computed: {
     user() {

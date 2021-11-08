@@ -1,5 +1,5 @@
 <template>
-  <ResetPw class="blue" />
+  <ResetPw />
 </template>
 
 <style scoped>

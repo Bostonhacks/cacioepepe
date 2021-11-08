@@ -171,7 +171,7 @@ export default {
       .getRedirectResult()
       .then(() => {
         if (this.user) {
-          this.$router.push("/dashboard");
+          this.$router.push("/");
         }
       })
       .catch(function(error) {
@@ -185,7 +185,7 @@ export default {
       var provider = new firebase.auth.GoogleAuthProvider();
       firebase.auth().useDeviceLanguage();
       firebase.auth().signInWithRedirect(provider);
-      this.$router.push("/dashboard");
+      this.$router.push("/");
     }
   }
 };

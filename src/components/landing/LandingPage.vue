@@ -6,13 +6,24 @@
         <v-col cols="0" lg="1"></v-col>
         <v-col cols="12" lg="4"> <Section1 /></v-col>
       </v-row>
-      <v-row justify="center" class="my-16">
+      <v-row v-if="!user" justify="center" class="my-16">
         <v-col cols="5" lg="2" class="d-flex justify-center"
-          ><LoginButton
-        /></v-col>
+          ><LoginButton />
+        </v-col>
         <v-col cols="5" lg="2" class="d-flex justify-center"
-          ><SignupButton
-        /></v-col>
+          ><SignupButton />
+        </v-col>
+      </v-row>
+      <v-row v-else justify="center" class="my-16">
+        <v-col cols="5" lg="2" class="d-flex justify-center"
+          ><LogoutButton />
+        </v-col>
+        <v-col cols="5" lg="2" class="d-flex justify-center"
+          ><ApplyButton
+            v-if="user.applicationStatus == 0 || !user.applicationStatus"
+          />
+          <DashboardButton v-else />
+        </v-col>
       </v-row>
 
       <v-row class="my-16">
@@ -28,9 +39,10 @@
         <v-col cols="0" lg="1"></v-col>
         <v-col cols="12" lg="6"><FAQ /></v-col>
       </v-row>
-      <v-row justify="center" class="my-16">
+      <!-- Wait for Shimli to get logos -->
+      <!-- <v-row justify="center" class="my-16">
         <v-col cols="12" lg="10"><Sponsors /></v-col>
-      </v-row>
+      </v-row> -->
     </v-container>
   </div>
 </template>
@@ -40,13 +52,16 @@ import { db } from "@/firebase/init";
 import Logo from "@/components/landing/Logo.vue";
 import Section1 from "@/components/landing/Section1.vue";
 import LoginButton from "@/components/landing/LoginButton.vue";
+import LogoutButton from "@/components/landing/LogoutButton.vue";
 import SignupButton from "@/components/landing/SignupButton.vue";
+import ApplyButton from "@/components/landing/ApplyButton.vue";
+import DashboardButton from "@/components/landing/DashboardButton.vue";
 import Schedule from "@/components/landing/Schedule.vue";
 import FAQ from "@/components/landing/FAQ.vue";
 import Track1 from "@/components/landing/Track1.vue";
 import Track2 from "@/components/landing/Track2.vue";
 import Track3 from "@/components/landing/Track3.vue";
-import Sponsors from "@/components/landing/Sponsors.vue";
+// import Sponsors from "@/components/landing/Sponsors.vue";
 
 export default {
   computed: {
@@ -58,12 +73,15 @@ export default {
     Logo,
     Section1,
     LoginButton,
+    LogoutButton,
     SignupButton,
+    ApplyButton,
+    DashboardButton,
     Schedule,
     Track1,
     Track2,
     Track3,
-    Sponsors,
+    // Sponsors,
     FAQ
   },
   async mounted() {
