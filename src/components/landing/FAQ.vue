@@ -57,7 +57,7 @@ export default {
         {
           q: "Can we form teams?",
           a:
-            "Of course you can! We encourage people to work in teams of up to 4 people. You may opt-in to team formation through our Slack Channel which will match you with an ideal team. You can work alone, but it won’t be the same. "
+            "Of course you can! We encourage people to work in teams of up to 4 people. You may opt-in to team formation through our Discord Channel which will match you with an ideal team. You can work alone, but it won’t be the same. "
         },
         {
           q: "Are there any rules?",
