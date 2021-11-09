@@ -42,12 +42,12 @@
         <v-img src="@/components/sponsor/logos/SketchLogo.png" />
       </v-col>
       <v-col cols="12" md="6" lg="3" class="my-12">
-        <v-img src="@/components/sponsor/logos/GoogleCloud.png" />
+        <v-img src="@/components/sponsor/logos/cloud.png" />
       </v-col>
     </v-row>
     <v-row class="mx-12 justify-center justify-lg-space-between">
       <v-col cols="12" md="6" lg="3" class="my-12">
-        <Axure_logo_400 />
+        <v-img src="@/components/sponsor/logos/axure.png" />
       </v-col>
       <v-col cols="12" md="6" lg="3" class="my-12">
         <v-img
@@ -67,7 +67,7 @@
         <v-img src="@/components/sponsor/logos/echoar.png" />
       </v-col>
       <v-col cols="12" md="6" lg="3" class="my-12">
-        <taskade_logo />
+        <v-img src="@/components/sponsor/logos/taskade.png" />
       </v-col>
     </v-row>
     <v-row>
@@ -158,8 +158,8 @@ import GeneralEmail from "@/components/sponsor/TableAsterisks/GeneralEmail.vue";
 import SpecialSideEvent from "@/components/sponsor/TableAsterisks/SpecialSideEvent.vue";
 import EarlyBird from "@/components/sponsor/TableAsterisks/EarlyBird.vue";
 import LetsTalkStatistics from "@/components/sponsor/LetsTalkStatistics.vue";
-import taskade_logo from "@/components/sponsor/logos/Taskade_logo.vue";
-import Axure_logo_400 from "./logos/Axure_logo_400.vue";
+//import taskade_logo from "@/components/sponsor/logos/Taskade_logo.vue";
+//import Axure_logo_400 from "./logos/Axure_logo_400.vue";
 
 export default {
   name: "SponsorPage",
@@ -184,10 +184,10 @@ export default {
     GeneralEmail,
     SpecialSideEvent,
     EarlyBird,
-    LetsTalkStatistics,
-    Axure_logo_400,
+    LetsTalkStatistics
+    //Axure_logo_400,
     // Sketch_logo,
-    taskade_logo
+    //taskade_logo
   }
 };
 </script>
