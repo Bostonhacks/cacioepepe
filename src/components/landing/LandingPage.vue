@@ -158,6 +158,6 @@ export default {
 
 <style scoped>
 .overflow-wrapper > div {
-  overflow: hidden;
+  overflow: visible;
 }
 </style>
