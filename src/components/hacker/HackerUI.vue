@@ -13,7 +13,40 @@
     <v-row class="mt-n16" v-else>
       <ApplicationStatus />
     </v-row>
-    <v-row class="justify-center align-center mb-8" no-gutters>
+    <v-row
+      class="
+        primary--text
+        text-h4
+        font-weight-bold
+        justify-center
+        text-center
+        my-16
+      "
+      v-if="user.applicationStatus == 4"
+    >
+      CONFIRM YOUR ATTENDANCE
+    </v-row>
+    <v-row class="justify-center mb-16" v-if="user.applicationStatus == 4">
+      <v-btn x-large color="primary" class="mx-2" @click="confirm()">
+        Confirm
+      </v-btn>
+      <v-btn
+        x-large
+        color="primary"
+        class="mx-4"
+        @click="
+          statuscheck = `6`;
+          confirm();
+        "
+      >
+        Decline
+      </v-btn>
+    </v-row>
+    <v-row
+      v-if="user.applicationStatus == 5"
+      class="justify-center align-center mb-8"
+      no-gutters
+    >
       <v-col cols="12" lg="5" class="links-background">
         <div :class="$vuetify.breakpoint.mobile ? `links-mobile` : `links`">
           <v-row class="justify-space-around align-center">
@@ -71,8 +104,7 @@ export default {
     },
     async confirm() {
       const user = db.collection("users").doc(this.user.uid);
-      console.log(user);
-      if (this.statuscheck === "5") {
+      if (this.statuscheck == "5") {
         await user.update({
           applicationStatus: 5
         });
@@ -94,7 +126,8 @@ export default {
       "Confirmed",
       "Declined",
       "Checked In"
-    ]
+    ],
+    statuscheck: "5"
   }),
   mounted() {
     if ((this.user == null) | (this.user.applicationStatus == null)) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="btn-shadow">
+  <div class="btn-shadow" v-scrollanimation>
     <button
       class="btn button-1 font-weight-bold text-sm-h4 text-h6"
       @click="$router.push(`/dashboard`)"
