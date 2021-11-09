@@ -4,7 +4,7 @@
       <v-layout text-center wrap>
         <v-flex xs12></v-flex>
         <v-flex mb-4>
-          <h1 class="display-2 font-weight-bold mb-3">
+          <h1 class="display-2 primary--text font-weight-bold mb-3">
             Welcome to the Sponsor Dashboard
           </h1>
           <v-card flat tile>

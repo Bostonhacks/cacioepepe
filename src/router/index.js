@@ -47,14 +47,14 @@ const routes = [
       requiresAuth: false
     }
   },
-  // {
-  //   path: "/dashboard",
-  //   name: "dashboard",
-  //   component: () => import("@/views/Dashboard.vue"),
-  //   meta: {
-  //     requiresAuth: true
-  //   }
-  // },
+  {
+    path: "/dashboard",
+    name: "dashboard",
+    component: () => import("@/views/Dashboard.vue"),
+    meta: {
+      requiresAuth: true
+    }
+  },
   {
     path: "/signup",
     name: "signup",

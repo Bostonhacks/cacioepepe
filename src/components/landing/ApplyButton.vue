@@ -1,5 +1,5 @@
 <template>
-  <div v-scrollanimation>
+  <div>
     <div class="btn-shadow">
       <button
         class="btn button-1 font-weight-bold text-sm-h4 text-h6"
