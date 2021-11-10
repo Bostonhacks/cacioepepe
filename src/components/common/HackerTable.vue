@@ -380,10 +380,10 @@ export default {
         const user = db.collection("users").doc(uid);
         const application = db.collection("applications").doc(uid);
         await user.update({
-          applicationStatus: 4
+          applicationStatus: 5
         });
         await application.update({
-          status: 4
+          status: 5
         });
       });
     },
