@@ -115,7 +115,6 @@ export default {
   },
   async mounted() {
     this.getEvents();
-    this.user.applicationStatus = 1;
   },
   data() {
     return {};
