@@ -40,13 +40,16 @@
     </v-row>
     <v-row class="mx-12 justify-center justify-lg-space-between">
       <v-col cols="12" md="6" lg="3" class="my-12">
+        <v-img
+          margin-top="10px"
+          src="@/components/sponsor/logos/SketchLogo.png"
+        />
+      </v-col>
+      <v-col cols="12" md="6" lg="3" class="my-12">
+        <v-img src="@/components/sponsor/logos/google_cloud.png" />
+      </v-col>
+      <v-col cols="12" md="6" lg="3" class="my-12">
         <v-img src="@/components/sponsor/logos/balsamiq.png" />
-      </v-col>
-      <v-col cols="12" md="6" lg="3" class="my-12">
-        <v-img src="@/components/sponsor/logos/SketchLogo.png" />
-      </v-col>
-      <v-col cols="12" md="6" lg="3" class="my-12">
-        <v-img src="@/components/sponsor/logos/GoogleCloud.png" />
       </v-col>
     </v-row>
     <v-row class="mx-12 justify-center justify-lg-space-between">
@@ -68,11 +71,31 @@
         <v-img src="@/components/sponsor/logos/RStudio-Logo-Gray.png" />
       </v-col>
       <v-col cols="12" md="6" lg="3" class="my-12">
-        <v-img src="@/components/sponsor/logos/echoar.png" />
+        <v-img src="@/components/sponsor/logos/InterviewCakeLogo.png" />
       </v-col>
       <v-col cols="12" md="6" lg="3" class="my-12">
-        <taskade_logo />
+        <v-img src="@/components/sponsor/logos/taskade.png" />
       </v-col>
+    </v-row>
+    <v-row class="mx-12 justify-center justify-lg-space-between">
+      <v-col cols="12" md="6" lg="3" class="my-12">
+        <v-img src="@/components/sponsor/logos/StickerGiantLogo.png" />
+      </v-col>
+      <v-col cols="12" md="6" lg="3" class="my-12">
+        <v-img src="@/components/sponsor/logos/echo3D.png" />
+      </v-col>
+      <v-col cols="12" md="6" lg="3" class="my-12">
+        <v-img src="@/components/sponsor/logos/voiceflow_logo1.png" />
+      </v-col>
+    </v-row>
+    <v-row class="mx-12 justify-center justify-lg-space-between">
+      <v-col cols="12" md="6" lg="3" class="my-12">
+        <v-img src="@/components/sponsor/logos/twilio-logo.png" />
+      </v-col>
+      <v-col cols="12" md="6" lg="3" class="my-12">
+        <v-img src="@/components/sponsor/logos/AssemblyAI.png" />
+      </v-col>
+      <v-col cols="12" md="6" lg="3" class="my-12"> </v-col>
     </v-row>
   </div>
 </template>
@@ -91,7 +114,6 @@ import FAQ from "@/components/landing/FAQ.vue";
 import Track1 from "@/components/landing/Track1.vue";
 import Track2 from "@/components/landing/Track2.vue";
 import Track3 from "@/components/landing/Track3.vue";
-import taskade_logo from "@/components/sponsor/logos/Taskade_logo.vue";
 import Axure_logo_400 from "@/components/sponsor/logos/Axure_logo_400.vue";
 export default {
   computed: {
@@ -112,7 +134,6 @@ export default {
     Track2,
     Track3,
     FAQ,
-    taskade_logo,
     Axure_logo_400
   },
   async mounted() {
