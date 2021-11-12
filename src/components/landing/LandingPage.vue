@@ -93,9 +93,11 @@
         <v-img src="@/components/sponsor/logos/twilio-logo.png" />
       </v-col>
       <v-col cols="12" md="6" lg="3" class="my-12">
+        <v-img src="@/components/sponsor/logos/spark-logo-round.png" />
+      </v-col>
+      <v-col cols="12" md="6" lg="3" class="my-12">
         <v-img src="@/components/sponsor/logos/AssemblyAI.png" />
       </v-col>
-      <v-col cols="12" md="6" lg="3" class="my-12"> </v-col>
     </v-row>
   </div>
 </template>
