@@ -3,7 +3,7 @@
     class="btn"
     @mouseover="hover = true"
     @mouseleave="hover = false"
-    @click="alertLater()"
+    @click="navigate()"
   >
     <v-dialog v-model="dialog" hide-overlay max-width="600">
       <template v-slot:default="dialog">
@@ -131,6 +131,9 @@ export default {
   methods: {
     alertLater() {
       this.dialog = true;
+    },
+    navigate() {
+      window.open("https://app.bramble.live/space/boston-hacks");
     }
   }
 };

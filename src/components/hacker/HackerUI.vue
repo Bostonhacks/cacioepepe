@@ -43,7 +43,7 @@
       </v-btn>
     </v-row>
     <v-row
-      v-if="user.applicationStatus == 5"
+      v-if="user.applicationStatus >= 5"
       class="justify-center align-center mb-8"
       no-gutters
     >

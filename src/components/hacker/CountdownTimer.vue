@@ -102,7 +102,7 @@
         letter-spacing="0em"
       >
         <tspan text-anchor="middle" x="50%" y="190.508">
-          WELCOME, {{ user.displayName.toUpperCase() }}
+          WELCOME, {{ user.displayName.split(" ")[0].toUpperCase() }}
         </tspan>
       </text>
     </g>
@@ -116,7 +116,7 @@
       letter-spacing="0em"
     >
       <tspan text-anchor="middle" x="50%" y="190.508">
-        WELCOME, {{ user.displayName.toUpperCase() }}
+        WELCOME, {{ user.displayName.split(" ")[0].toUpperCase() }}
       </tspan>
     </text>
     <defs>
