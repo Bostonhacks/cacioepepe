@@ -3,7 +3,7 @@
     class="btn"
     @mouseover="hover = true"
     @mouseleave="hover = false"
-    @click="dialog = true"
+    @click="navigate()"
   >
     <v-dialog v-model="dialog" hide-overlay max-width="600">
       <template v-slot:default="dialog">
@@ -113,6 +113,11 @@ export default {
       hover: false,
       dialog: false
     };
+  },
+  methods: {
+    navigate() {
+      window.open("https://bostonhacks-2021.devpost.com/");
+    }
   }
 };
 </script>
