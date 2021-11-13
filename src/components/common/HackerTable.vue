@@ -214,6 +214,18 @@
                   class="ma-2"
                   outlined
                   color="indigo"
+                  @click="checkinApplicants"
+                  >Check In Selected</v-btn
+                >
+              </div>
+            </template>
+            <template>
+              <div class="text-center">
+                <v-btn
+                  v-if="selected.length > 0 && user.role == 'admin'"
+                  class="ma-2"
+                  outlined
+                  color="indigo"
                   @click="acceptApplicants"
                   >Accept Selected</v-btn
                 >
@@ -313,7 +325,7 @@ export default {
         return "orange";
       }
       if (status == 1) {
-        return "teal";
+        return "purple";
       }
       if (status == 2) {
         return "black";
@@ -384,6 +396,22 @@ export default {
         });
         await application.update({
           status: 5
+        });
+      });
+    },
+    async checkinApplicants() {
+      var UIDList = [];
+      this.selected.forEach(entry => {
+        UIDList.push(entry.uid);
+      });
+      UIDList.forEach(async uid => {
+        const user = db.collection("users").doc(uid);
+        const application = db.collection("applications").doc(uid);
+        await user.update({
+          applicationStatus: 6
+        });
+        await application.update({
+          status: 6
         });
       });
     },
