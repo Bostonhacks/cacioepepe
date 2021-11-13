@@ -214,7 +214,7 @@
                   class="ma-2"
                   outlined
                   color="indigo"
-                  @click="checkinApplicant"
+                  @click="checkinApplicants"
                   >Check In Selected</v-btn
                 >
               </div>
@@ -325,7 +325,7 @@ export default {
         return "orange";
       }
       if (status == 1) {
-        return "teal";
+        return "purple";
       }
       if (status == 2) {
         return "black";

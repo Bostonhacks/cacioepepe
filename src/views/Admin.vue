@@ -1,6 +1,6 @@
 <template>
-  <main class="pt-70px blue">
-    <v-layout align-center justify-center class="blue">
+  <main class="pt-70px ">
+    <v-layout align-center justify-center class="background">
       <div class="loadingLogo" v-if="loading"><BostonHacksLoadingLogo /></div>
       <v-container v-else>
         <v-layout text-center wrap>
@@ -13,7 +13,7 @@
             <CalendarEvent v-if="events" :loadEvents="events" />
             <v-tabs
               v-model="tab"
-              background-color="deep-purple accent-4"
+              background-color="primary"
               class="elevation-2"
               dark
               grow
@@ -77,7 +77,7 @@
                     <HackerTable :data="hackerCurrentData" />
                   </v-card-text>
                 </v-card>
-                <v-card flat tile>
+                <!-- <v-card flat tile>
                   <v-card-title>
                     Mentor Table
                   </v-card-title>
@@ -112,7 +112,7 @@
                   <v-card-text>
                     <VolunteerTable :data="volunteerCurrentData" />
                   </v-card-text>
-                </v-card>
+                </v-card> -->
               </v-tab-item>
 
               <v-tab-item key="tabs[2]">
@@ -136,8 +136,8 @@
 import HackerTable from "@/components/common/HackerTable";
 import CalendarEvent from "@/components/admin/CalendarEvent";
 import AdminStats from "@/components/admin/AdminStats";
-import VolunteerTable from "@/components/admin/VolunteerTable";
-import MentorTable from "@/components/admin/MentorTable";
+// import VolunteerTable from "@/components/admin/VolunteerTable";
+// import MentorTable from "@/components/admin/MentorTable";
 import PieChart from "@/components/common/PieChart";
 import Timeline from "@/components/common/Timeline";
 import SlackInfoUpload from "@/components/admin/SlackInfoUpload";
@@ -151,8 +151,8 @@ export default {
     HackerTable,
     AdminStats,
     CalendarEvent,
-    VolunteerTable,
-    MentorTable,
+    // VolunteerTable,
+    // MentorTable,
     PieChart,
     SlackInfoUpload,
     BostonHacksLoadingLogo
