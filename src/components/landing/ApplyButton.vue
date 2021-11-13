@@ -3,10 +3,25 @@
     <div class="btn-shadow" v-scrollanimation>
       <button
         class="btn button-1 font-weight-bold text-sm-h4 text-h6"
-        @click="apply"
+        @click="dialog = true"
       >
         APPLY
       </button>
+      <v-dialog v-model="dialog" hide-overlay max-width="600">
+        <template v-slot:default="dialog">
+          <v-card>
+            <v-card-text>
+              <div class="text-h5 text-center pa-6">
+                Applications are closed for this year. Check back next year to
+                apply for BostonHacks 2022!
+              </div>
+            </v-card-text>
+            <v-card-actions class="justify-end">
+              <v-btn text @click="dialog.value = false">Close</v-btn>
+            </v-card-actions>
+          </v-card>
+        </template>
+      </v-dialog>
     </div>
   </div>
 </template>
@@ -18,6 +33,11 @@ export default {
     apply() {
       this.$router.push("application");
     }
+  },
+  data() {
+    return {
+      dialog: false
+    };
   }
 };
 </script>

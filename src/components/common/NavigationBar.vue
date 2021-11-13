@@ -44,7 +44,7 @@
           depressed
           color="transparent"
           class="white--text font-weight-bold"
-          @click="navigate('/application')"
+          @click="dialog = true"
         >
           Apply
         </v-btn>
@@ -85,6 +85,21 @@
         </v-btn>
       </v-col>
     </v-row>
+    <v-dialog v-model="dialog" hide-overlay max-width="600">
+      <template v-slot:default="dialog">
+        <v-card>
+          <v-card-text>
+            <div class="text-h5 text-center pa-6">
+              Applications are closed for this year. Check back next year to
+              apply for BostonHacks 2022!
+            </div>
+          </v-card-text>
+          <v-card-actions class="justify-end">
+            <v-btn text @click="dialog.value = false">Close</v-btn>
+          </v-card-actions>
+        </v-card>
+      </template>
+    </v-dialog>
   </v-app-bar>
 </template>
 
@@ -95,6 +110,7 @@ export default {
   name: "NavigationBar",
   data() {
     return {
+      dialog: false,
       buttons: [
         {
           text: "Menu",
