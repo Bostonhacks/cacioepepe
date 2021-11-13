@@ -22,15 +22,15 @@ const routes = [
       isAdmin: true
     }
   },
-  {
-    path: "/application",
-    name: "application",
-    component: () => import("@/views/Application.vue"),
-    meta: {
-      requiresAuth: true,
-      isEligible: true
-    }
-  },
+  // {
+  //   path: "/application",
+  //   name: "application",
+  //   component: () => import("@/views/Application.vue"),
+  //   meta: {
+  //     requiresAuth: true,
+  //     isEligible: true
+  //   }
+  // },
   {
     path: "/login",
     name: "login",

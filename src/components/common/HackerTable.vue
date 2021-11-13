@@ -336,6 +336,9 @@ export default {
       if (status == 4) {
         return "green";
       }
+      if (status == 7) {
+        return "pink";
+      }
       if (status == 5) {
         return "blue";
       } else {
@@ -408,10 +411,10 @@ export default {
         const user = db.collection("users").doc(uid);
         const application = db.collection("applications").doc(uid);
         await user.update({
-          applicationStatus: 6
+          applicationStatus: 7
         });
         await application.update({
-          status: 6
+          status: 7
         });
       });
     },
