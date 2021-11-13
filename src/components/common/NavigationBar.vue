@@ -35,7 +35,7 @@
         </v-btn>
       </v-col>
       <v-col
-        v-if="user && (user.applicationStatus == 0 || !user.applicationStatus)"
+        v-if="user && !user.applicationStatus"
         lg="1"
         cols="4"
         class="d-flex justify-center"
@@ -47,6 +47,21 @@
           @click="navigate('/application')"
         >
           Apply
+        </v-btn>
+      </v-col>
+      <v-col
+        v-if="user && user.applicationStatus"
+        lg="1"
+        cols="4"
+        class="d-flex justify-center"
+      >
+        <v-btn
+          depressed
+          color="transparent"
+          class="white--text font-weight-bold"
+          @click="navigate('/dashboard')"
+        >
+          Dashboard
         </v-btn>
       </v-col>
       <v-col v-if="!user" lg="1" cols="4" class="d-flex justify-center">
@@ -91,9 +106,6 @@ export default {
         }
       ]
     };
-  },
-  mounted() {
-    console.log(this.getRoutePath);
   },
   computed: {
     user() {

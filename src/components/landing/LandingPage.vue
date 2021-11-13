@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-wrapper">
+  <div class="overflow-wrapper mt-0 mt-md-12">
     <v-row justify="center" class="my-16">
       <v-col cols="12" lg="4"><Logo /></v-col>
       <v-col cols="0" lg="1"></v-col>
@@ -18,9 +18,7 @@
         ><LogoutButton />
       </v-col>
       <v-col cols="5" lg="2" class="d-flex justify-center"
-        ><ApplyButton
-          v-if="user.applicationStatus == 0 || !user.applicationStatus"
-        />
+        ><ApplyButton v-if="!user.applicationStatus" />
         <DashboardButton v-else />
       </v-col>
     </v-row>
