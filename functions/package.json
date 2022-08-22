@@ -22,7 +22,7 @@
     "fs-extra": "8.1.0",
     "glob": "^7.1.6",
     "json-2-csv": "3.7.1",
-    "shelljs": "^0.8.4",
+    "shelljs": "^0.8.5",
     "uuid-v4": "^0.1.0"
   },
   "devDependencies": {
