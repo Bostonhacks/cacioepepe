@@ -21,7 +21,7 @@
           class="white--text font-weight-bold"
           @click="navigate('/sponsor')"
         >
-          Sponsor
+          Sponsors
         </v-btn>
       </v-col>
       <v-col lg="1" cols="4" class="d-flex justify-center" v-else>
