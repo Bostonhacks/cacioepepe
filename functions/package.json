@@ -17,7 +17,7 @@
     "archiver": "^3.1.1",
     "async-openssl": "^1.0.3",
     "colors": "^1.4.0",
-    "firebase-admin": "^8.6.0",
+    "firebase-admin": "^11.0.1",
     "firebase-functions": "^3.11.0",
     "fs-extra": "8.1.0",
     "glob": "^7.1.6",
